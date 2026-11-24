@@ -92,7 +92,7 @@ Orientační rozpočet 45–76 tis. Kč (deska 12–15 tis., truhlář 25–45 t
 
 ## LED – zrušeno (2026-11-23)
 
-Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopLux COB 24 V, profil V4, MiBoxer) i plán kabeláže (drážky, stoupačka, hvězda ze soklu) neplatí, žádné drážky se nefrézují. Čtecí lampa nad křeslem je samostatná s vlastním kabelem do prodlužky.
+Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopLux COB 24 V, profil V4, MiBoxer) i plán kabeláže (drážky, stoupačka, hvězda ze soklu) neplatí, žádné drážky pro kabely se nefrézují. Čtecí lampa nad křeslem je samostatná s vlastním kabelem do prodlužky.
 
 ## Stav stavby (Fáze 3)
 
@@ -110,11 +110,11 @@ Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopL
 
 - **Spoje K10–K09 a K24–K20:** K09 i K20 končí dole v rovině spodku police, kterou mají nést, takže kolík do boku tam nejde. Díly jsou už nařezané (rozměry se nemění), spoj se dořeší: kolíky, nebo úhelník shora (asi K24).
 - **Kotvení dna mostu K24 do zadní stěny (X50):** skryté nosiče s trny nejdou dohromady s kolíky (na trny se nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Dořešit (drážka v levém konci K24 od zadní hrany k přednímu kolíku, úhelník, lišta pod K24…).
-- K24 nemá u pravé stěny vůli (řetěz obklad → K20 dává přesně 2370). Před montáží změřit šířku ve výšce 2,2 m.
+- K24 nemá u pravé stěny 5mm vůli jako díly ke stěně (jen 1 mm jako police) (řetěz obklad → K20 dává přesně 2370). Před montáží změřit šířku ve výšce 2,2 m.
 
 - Ověřit horní hranu zárubně na pravé stěně (musí být pod 220 cm).
 - Zarážka dveří v plně otevřené poloze.
-- Povrch: Ciranova Hardwaxoil Natural White 5485 (jako zbytek domu), použije se 5 let stará plechovka bez testu. Plechovka asi 5 l (prodává se 1 l a 5 l), zbývá ~60 % = ~3 l; knihovna ~15 m² na 2 vrstvy potřebuje ~1,5 l, stačí. Před použitím rozmíchat ode dna a přecedit.
+- Povrch: Ciranova Hardwaxoil Natural White 5485 (jako zbytek domu), použije se 5 let stará plechovka bez testu. Plechovka asi 5 l (prodává se 1 l a 5 l), zbývá ~60 % = ~3 l; knihovna ~11 m² ploch (obě strany dílů) na 2 vrstvy potřebuje ~1–1,5 l, stačí. Před použitím rozmíchat ode dna a přecedit.
 
 ---
 
@@ -173,7 +173,7 @@ Doporučení pro focení: ke každému kusu nebo balíku štítek s ID, svinovac
 - Police na kolících z obou stran jsou o 1 mm kratší než světlost (`PINGAP`). Díry pro kolíky: na pravé straně svislého dílu 30 mm od hran, na levé 60 mm, aby se díry z obou stran nepotkaly.
 - Spoje (Přemek má aku vrtačku, okružní a přímočarou pilu, frézku, brusku, svěrky, nemá stolní pilu): A) svislý díl stojí na polici / nese ji = 2 vruty 4,5 × 50 skrz, díly srovnat k lati a předvrtat společně (žádné měření, kolíky zamítnuty jako moc přesné), B) police mezi průběžnými díly = **dřevěné kolíky Ø 6 × 20** (Přemkovy, 2026-11-24): díra ve svislém dílu 10 mm hluboká (z 19 zbyde 9), kolík 10 mm venku; police má zespodu na konci drážku 14 mm dlouhou, 4 mm hlubokou (zbyde 15), na levém konci 6 mm širokou, na pravém 8 mm (vůle), kolík pod ní kouká 2 mm, střed díry 1 mm nad spodkem police. Parametry `KOLIK` v `prirazeni.py`. Nic nesmí jít skrz. Drážky drží polici i proti posunutí, úhelník vzadu u polic není potřeba; police se zasune o pár mm výš a spustí na kolíky. Horní deska K26 (pod stropem 2 cm) se zasune zepředu o pár mm výš a spustí: leží na svislých dílech (úhelníky zespodu), vpravo na kolících v K20. Staví se na místě odspodu v pořadí čísel dílů.
 - Poškozené desky (A01, A08, A18) jsou na dílech se skrytou stranou. Přiřazení drží v pruhu rezervu ≥ 15 mm, kde to jde. Výjimka: K02 a K04 z D03 a K01 z A18 (rezerva 5 mm).
-- Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (minimum úhelník nahoře na K02). Kotvení dna mostu K24 do zadní stěny se dořeší (X50), skryté nosiče s trny zrušené.
+- Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (K02 a K04 nahoře i v půlce, K09, K15, K19, K25 nahoře). Kotvení dna mostu K24 do zadní stěny se dořeší (X50), skryté nosiče s trny zrušené.
 - Kvalita: vše A/B z půdy (původní návrh počítal s B/C kvůli sukům jako obklad).
 
 - Porovnat inventář s kusovníkem výše.

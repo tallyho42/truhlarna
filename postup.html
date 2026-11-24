@@ -176,7 +176,7 @@ pins:()=>fig(svgw("0 0 560 300",
   T(20,22,"zepředu: konec police na kolíku (8× zvětšeno)",{fs:13,w:1})+
   '<rect x="40" y="40" width="152" height="240" '+WOOD2+'/>'+T(116,292,"svislý díl 19",{anchor:"middle",fs:12})+
   '<rect x="196" y="96" width="340" height="152" '+WOOD+'/>'+T(420,150,"police 19",{anchor:"middle",fs:12})+
-  // drážka ve spodku police: 12 mm dlouhá (96 px), 4 mm hluboká (32 px)
+  // drážka ve spodku police: KO.slot_l mm dlouhá (8 px/mm), 4 mm hluboká (32 px)
   '<rect x="196" y="216" width="'+(KO.slot_l*8)+'" height="32" fill="#F4F3EF" stroke="#9C7A48" stroke-width="1.5"/>'+
   // kolík Ø6 (48 px), 10 v díře + 10 venku; střed 1 mm nad spodkem police
   '<rect x="112" y="216" width="160" height="48" rx="6" fill="#C9A26B" stroke="#6B4A2E" stroke-width="1.5"/>'+
@@ -233,7 +233,7 @@ function figLying(){
   });
   s+='<line x1="'+(x0-20)+'" y1="'+(y0-20)+'" x2="'+(x0-20)+'" y2="'+(y0+L1*sc+20)+'" stroke="#8A6D42" stroke-width="5"/>'+T(x0-26,y0+L1*sc/2,"lať (čela)",{fs:13,anchor:"end"});
   // dočasné rozpěrky (už nařezané police) stažené páskem
-  [["K14",PBY.K14.za0-PBY.K02.za0],["K18",PBY.K02.L-150]].forEach(([id,a])=>{const x=vx+a*sc,y1=y0+19*sc*3,y2=y0+(PBY.K04.x0-PBY.K01.x0)*sc;
+  [["K14",PBY.K14.za0-PBY.K02.za0],["K18",PBY.K18.za0-PBY.K02.za0]].forEach(([id,a])=>{const x=vx+a*sc,y1=y0+19*sc*3,y2=y0+(PBY.K04.x0-PBY.K01.x0)*sc;
     s+='<rect x="'+x+'" y="'+y1+'" width="'+(19*sc*3)+'" height="'+(y2-y1)+'" fill="#F0B070" stroke="#7A3F08" stroke-width="1.5"/>';
     s+='<rect x="'+(x-4)+'" y="'+(y0-5)+'" width="'+(19*sc*3+8)+'" height="'+(y2-y0+19*sc*3+10)+'" fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="6 4"/>';
     s+=T(x+19*sc*3/2,y0-10,"rozpěrka "+id,{anchor:"middle",fs:12});});
@@ -409,7 +409,7 @@ add("Broušení a nátěr","Vybrus a natři pohledové strany Ciranovou Hardwaxo
   '<li><b>Ciranova Hardwaxoil Natural White 5485</b> (stejná jako ve zbytku domu, stará plechovka, ~3 l stačí). Před použitím důkladně rozmíchej ode dna (bílý pigment se usazuje) a přeceď přes punčochu nebo sítko. Míchej i průběžně při natírání, ať je odstín na všech dílech stejný.</li>'+
   '<li><b>Natírat</b> v tenkých vrstvách podle návodu na plechovce, přebytek setřít, ať nezůstanou lesklé mapy. Po první vrstvě se vlákna zvednou: lehce přejeď papírem 240, oprášit a druhá vrstva. Díly natírej vleže na latích, nejdřív jednu stranu a čelo, po zaschnutí druhou.</li>'+
   '<li><b>Natřít</b> (pohledové): čela všech dílů, horní i spodní plochy polic, oba boky příček, vnější strana a čelo boků soklu S1, S2 a líc lišty S5.</li>'+
-  '<li><b>Nenatírat</b>, stačí brousit: zadní hrany všech dílů (ke zdi), strana K09 k obkladu a K20 ke zdi (tam jsou i staré díry v desce), spodní plocha K01 (leží na soklu, jsou tam staré díry), horní plocha K26 (pod stropem, není vidět), S3 a S4 celé, vnitřní strany soklu. Do děr pro kolíky barvu nezatírej (kolíky se do nich lepí).</li>'+
+  '<li><b>Nenatírat</b>, stačí brousit: zadní hrany všech dílů (ke zdi), strana K09 k obkladu (tam jsou staré díry v desce), K20 ke zdi, spodní plocha K01 (leží na soklu, jsou tam staré díry), horní plocha K26 (pod stropem, není vidět), S3 a S4 celé, vnitřní strany soklu. Do děr pro kolíky barvu nezatírej (kolíky se do nich lepí).</li>'+
   '<li>Nech nátěr vytvrdnout podle návodu, než začneš montovat. Knihy dávej až po úplném vytvrzení, jinak se mohou přilepit.</li></ol>';
 });
 add("Sokl","Sestav sokl S1–S5",()=>{
@@ -426,7 +426,7 @@ add("Sokl","Sestav sokl S1–S5",()=>{
   '<li><b>Úchyt:</b> do spodní hrany S5 vyřízni přímočarou pilou '+G.mag.notch_w+' × '+G.mag.notch_h+' mm, střed '+G.mag.notch_x+' mm od levého konce (mezi S1 a S3, uprostřed by překážela S3), a zabrus. Prsty pod lištu, táhnout k sobě.</li>'+
   '<li><b>Boky vpředu:</b> bez pevné lišty drží přední konce S1 a S2 jen K01. Do každého boku dej zevnitř malý úhelník (asi 20 × 20) <b>těsně pod horní hranu, asi 80 mm za čelem K01</b>, tedy nad a za dorazem magnetu. Po položení K01 se zespodu přišroubuje do K01 (přístup otevřenou přední stranou, vruty nejvýš 16 mm).</li>'+
   '<li><b>Výřez v S1</b> pro prodlužku: vzadu u podlahy (u zdi) vyřízni přímočarou pilou 70 × 70 mm. Vyřízni ho před sestavením, hrany zabrus. Prodlužka se vejde do soklu mezi S1 a S3 (prostor '+nf(PBY.S3.x0-PBY.S1.x1)+' × '+nf(PBY.S3.B)+' × 140 mm), kabely vedou výřezem ven k zásuvce ve zdi, k lampičce a nabíječce.</li>'+
-  '<li><b>Do podlahy nevrtat</b> (topení). Krabici vyrovnej vodováhou podložkami pod boky, horní hrany všech dílů ve stejné výšce '+nf(PBY.S1.L)+' mm.</li></ol>'+
+  '<li><b>Do podlahy nevrtat</b> (topení). Krabici vyrovnej vodováhou podložkami pod boky, horní hrany všech dílů ve stejné rovině. <b>Podložky nejvýš asi 15 mm:</b> o tolik se celá knihovna zvedne a pod stropem je jen '+nf(H-PBY.K02.z1)+' mm na zvednutí rámu a 20 mm na zasunutí horní desky.</li></ol>'+
   '<div class="parts">'+["S1","S2","S3","S4","S5"].map(id=>partCard(PBY[id])).join("")+'</div>';
 });
 add("Spodní rám","Sešroubuj K01 + K02 + K03 + K04 a postav je na sokl",()=>{
@@ -437,11 +437,11 @@ add("Spodní rám","Sešroubuj K01 + K02 + K03 + K04 a postav je na sokl",()=>{
   '<li>Na zemi polož K02, K03, K04 vedle sebe na zadní hranu (čely nahoru). K01 přilož k jejich spodním koncům a čela všech srovnej k lati. <b>Spodní konce</b> (podle značek z vrtání děr) jsou u K01.</li>'+
   '<li>Rozestupy: K03 levou plochou '+nf(PBY.K03.x0-PBY.K01.x0)+' mm od levého konce K01, K04 končí zároveň s pravým koncem K01. Nejlíp to ověříš odřezkem 317 mm jako distanční kostkou mezi díly.</li>'+
   '<li>Stáhni svěrkou, <b>předvrtej skrz K01</b> do čela každého svislého dílu (3 mm, pak K01 převrtej 5 mm a zahlub) a zašroubuj 2 vruty 4,5 × 50 (60 a 190 mm od čela).</li>'+
-  '<li><b>Dočasné rozpěrky:</b> mezi K02 a K04 vlož police <b>K14</b> (do výšky '+nf(PBY.K14.za0-PBY.K02.za0)+' mm od spodku K02, kde bude) a <b>K18</b> asi 15 cm pod horní konce. Každou stáhni pásem kolem K02 a K04 (pod pás karton, ať neotlačí hrany). Rám je pak tuhý obdélník a vruty dole se při zvedání nevylomí.</li>'+
-  '<li><b>Zvednutí:</b> jeden drží nohou a rukama K01, aby neujela, druhý zvedá horní konec a postupuje rukama dolů, až rám stojí. Rám má '+nf(PBY.K02.L+19)+' mm, při překlápění projde (strop '+nf(H)+'). Pak ho ve dvou zvedni na sokl a zasuň ke zdi: nad rámem zbývají jen '+nf(H-PBY.K02.z1)+' mm, zvedej jen o kousek víc než výšku soklu.</li>'+
+  '<li><b>Dočasné rozpěrky:</b> do děr pro <b>K14</b> a <b>K18</b> v K02 a K04 vlep kolíky (můžou zůstat napořád) a obě police na ně nasaď na jejich místa ('+nf(PBY.K14.za0-PBY.K02.za0)+' a '+nf(PBY.K18.za0-PBY.K02.za0)+' mm od spodku K02). U každé stáhni K02 a K04 pásem (pod pás karton, ať neotlačí hrany). Rám je pak tuhý obdélník a vruty dole se při zvedání nevylomí.</li>'+
+  '<li><b>Zvednutí:</b> jeden drží nohou a rukama K01, aby neujela, druhý zvedá horní konec a postupuje rukama dolů, až rám stojí. Rám má '+nf(PBY.K02.L+19)+' mm, při překlápění projde (strop '+nf(H)+'). Ve stojící poloze <b>pásy sundej</b>: police K14 a K18 teď sedí na kolících a drží rozteč samy, a pás by vedl i za rámem mezi ním a zdí. Pak rám ve dvou zvedni na sokl a zasuň ke zdi: nad rámem zbývají jen '+nf(H-PBY.K02.z1)+' mm (míň o podložky pod soklem), zvedej jen o kousek víc než výšku soklu.</li>'+
   '<li><b>Hned ukotvit, teprve pak pustit:</b> jeden drží rám u zdi svisle (vodováha na čela K02 a K04 i z boku), druhý přišroubuje <b>úhelník nahoře na K02 a na K04</b> přes sádrokarton do dřeva. Pak ještě <b>druhý úhelník v půlce výšky</b> (vzadu v rohu přihrádky nad K07, schová se za knihy). Teprve pak rám pustit.</li>'+
-  '<li>K01 přišroubuj k soklu <b>zespodu do úhelníků</b>: 2 na zadní spojce S4 a po jednom vpředu na S1 a S2. Přístup je otevřenou přední stranou soklu (lišta S5 ještě není). Vruty nejvýš 16 mm, ať nevyjdou nahoře. Shora do S4 šroubovat nejde, je jen 9 mm od zdi.</li>'+
-  '<li>Pásy a rozpěrky sundej, až budou vložené police K05–K07 (kroky 7 a 8). Rozpěrku K14 nejpozději před postavením K08, ta pod ni přesně zapadne. K14 a K18 se pak vrátí na svá místa.</li></ol>'+
+  '<li>K01 přišroubuj k soklu <b>zespodu do úhelníků</b>: 2 na zadní spojce S4 a po jednom vpředu na S1 a S2. Přístup je otevřenou přední stranou soklu (lišta S5 ještě není). Uvnitř je jen 140 mm na výšku, aku vrtačka se tam svisle nevejde: šroubuj ručně krátkým šroubovákem (nebo úhlovým nástavcem). Vruty 3,5 × 16 jdou do smrku i bez předvrtání a nevyjdou nahoře. Shora do S4 šroubovat nejde, je jen 9 mm od zdi.</li>'+
+  '<li>Police K14 a K18 nech na kolících. Před postavením K08 (krok 8) K14 vyndej, K08 pod ní přesně zapadne, a pak ji vrať zpátky.</li></ol>'+
   '<div class="parts">'+ids.map(id=>partCard(PBY[id])).join("")+'</div>';
 });
 // generic level steps
@@ -471,10 +471,11 @@ levels.forEach(g=>{
       steps.push("<b>"+sid+"</b> hned po položení přišroubuj <b>shora skrz polici</b> do čela "+q.id+" pod ní (spoj A"+(jj?", "+jj.id:"")+"): čela srovnej k lati, předvrtej 3 mm skrz polici do "+q.id+", polici převrtej 5 mm, zahlub a 2 vruty 4,5 × 50. Musí to být dřív, než na "+sid+" postavíš další díl.");}));
     verts.filter(id=>id!=="K09"&&id!=="K20").forEach(id=>{const p=PBY[id];
       if(/pod ní je další příčka/.test(p.ends[0]))steps.push("<b>"+id+"</b> postav na "+/na (K\d+)/.exec(p.ends[0])[1]+" přesně nad příčku pod ní, čelo k lati, a přichyť <b>úhelníkem vzadu</b> v přihrádce.");
-      else if(/zespodu/.test(p.ends[0]))steps.push("<b>"+id+"</b> postav na "+/na (K\d+)/.exec(p.ends[0])[1]+", čelo k lati, stáhni svěrkou a <b>zespodu přes polici</b> předvrtej a zašroubuj 2 vruty (spoj A).");
+      else if(/zespodu/.test(p.ends[0])){const base=/na (K\d+)/.exec(p.ends[0])[1], sp=MAIN.filter(q=>q.o==="H"&&q.ends.some(e=>new RegExp("v boku dílu "+id+"\\b").test(e))), lv=sp.length?Math.min(...sp.map(q=>q.za0)):null, sp1=sp.filter(q=>q.za0===lv).map(q=>q.id);
+        steps.push("<b>"+id+"</b> postav na "+base+", čelo k lati. <b>Vodorovná poloha:</b> levou plochou "+nf(p.x0)+" mm od obkladu"+(sp1.length?". Police vedle ("+sp1.join(" a ")+") mají vůli jen 1 mm, takže polohu urči tak, že je vložíš nasucho na kolíky jako distanční, ":", ")+"stáhni svěrkou a <b>zespodu přes polici</b> předvrtej a zašroubuj 2 vruty (spoj A).");}
       if(/úhelník vzadu/.test(p.ends[1]))steps.push(id+" nahoře přichyť úhelníkem do zadní stěny (přes sádrokarton do dřeva).");
     });
-    if(ids.includes("K26"))steps.push("<b>Horní deska K26</b> jako poslední: zasuň zepředu o pár mm výš nad svislými díly a nad kolíky v K20, pak ji spusť: vlevo dolehne na K09, vpravo kolíky v K20 zapadnou do drážek. Zespodu přichyť úhelníky u zadní hrany ke všem svislým dílům pod ní.");
+    if(ids.includes("K26"))steps.push("<b>Horní deska K26</b> jako poslední: zasuň zepředu o pár mm výš nad svislými díly a nad kolíky v K20, pak ji spusť: vlevo dolehne na K09, vpravo kolíky v K20 zapadnou do drážek. <b>Dotlač ji vpravo až ke K20</b> (u obkladu zůstane mezera 5 mm), jinak by kolíky zapadly jen napůl. Zespodu přichyť úhelníky u zadní hrany ke všem svislým dílům pod ní.");
     steps.push("Kontrola: čela v jedné rovině (lať přes celou šířku), přihrádky pravoúhlé (úhlopříčky stejné).");
     return '<div class="figs">'+figs+'</div><ol class="do">'+steps.map(s=>'<li>'+s+'</li>').join("")+'</ol><div class="parts">'+ids.map(id=>partCard(PBY[id])).join("")+'</div>';
   });
