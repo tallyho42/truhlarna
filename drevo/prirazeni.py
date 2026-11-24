@@ -257,6 +257,7 @@ HOLE_IDS = {h['id'] for h in holes}
 # zbytek dopočítá optimalizace.
 PIN = {
     'K10': 'D08-3', 'K14': 'B01',   # 2026-11-24 prohozeno
+    'K18': 'D08-2', 'K07': 'B02',   # 2026-11-24 prohozeno
 }
 def pin(strips):
     for pid, sid in PIN.items():

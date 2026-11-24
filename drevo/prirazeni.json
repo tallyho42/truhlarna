@@ -294,7 +294,7 @@
    "x1": 1401.7142857142858,
    "z0": 829.7142857142857,
    "z1": 848.7142857142857,
-   "src": "D08-2",
+   "src": "B02",
    "ends": [
     "dosedá na 2 podpěrky 5 mm v boku dílu K02",
     "dosedá na 2 podpěrky 5 mm v boku dílu K04"
@@ -305,12 +305,12 @@
    "strip": 0,
    "off": 0,
    "srcinfo": {
-    "id": "D08-2",
-    "loc": "vlevo vzadu pod střechou",
+    "id": "B02",
+    "loc": "vlevo dole pod střechou",
     "typ": "3vrstvá deska",
     "th": 19,
-    "L": 1000,
-    "Wd": 250,
+    "L": 1005,
+    "Wd": 401,
     "vady": ""
    },
    "cutL": null,
@@ -674,7 +674,7 @@
    "x1": 1401.7142857142858,
    "z0": 1864.2857142857142,
    "z1": 1883.2857142857142,
-   "src": "B02",
+   "src": "D08-2",
    "ends": [
     "dosedá na 2 podpěrky 5 mm v boku dílu K02",
     "dosedá na 2 podpěrky 5 mm v boku dílu K04"
@@ -685,12 +685,12 @@
    "strip": 0,
    "off": 0,
    "srcinfo": {
-    "id": "B02",
-    "loc": "vlevo dole pod střechou",
+    "id": "D08-2",
+    "loc": "vlevo vzadu pod střechou",
     "typ": "3vrstvá deska",
     "th": 19,
-    "L": 1005,
-    "Wd": 401,
+    "L": 1000,
+    "Wd": 250,
     "vady": ""
    },
    "cutL": null,
@@ -1584,7 +1584,7 @@
      "y": 0,
      "w": 250,
      "items": [
-      "K18",
+      "K07",
       "K25"
      ]
     }
@@ -1645,7 +1645,7 @@
      "y": 0,
      "w": 250,
      "items": [
-      "K07",
+      "K18",
       "K05"
      ]
     }

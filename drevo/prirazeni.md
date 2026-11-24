@@ -23,14 +23,14 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
 |---|---|---|---|---|
 | B01 | 850 × 310 | 1: 250 mm | K14 (653) | 193 mm |
-| B02 | 1005 × 401 | 1: 250 mm | K18 (653), K25 (326) | 18 mm |
+| B02 | 1005 × 401 | 1: 250 mm | K07 (653), K25 (326) | 18 mm |
 
 ### Vlevo vzadu pod střechou
 
 | Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
 |---|---|---|---|---|
 | D08-1 | 1000 × 250 | 1: 250 mm | K24 (930) | 66 mm |
-| D08-2 | 1000 × 250 | 1: 250 mm | K07 (653), K05 (317) | 22 mm |
+| D08-2 | 1000 × 250 | 1: 250 mm | K18 (653), K05 (317) | 22 mm |
 | D08-3 | 1000 × 250 | 1: 250 mm | K10 (711) | 285 mm |
 
 ### Vpravo dole pod střechou
@@ -69,7 +69,7 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | K04 | Pravý bok hlavní části | 2395 × 250 | D03 | stojí na K01 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
 | K05 | Police | 317 × 250 | D08-2 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K03 |
 | K06 | Police | 317 × 250 | A07 | dosedá na 2 podpěrky 5 mm v boku dílu K03 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
-| K07 | Police | 653 × 250 | D08-2 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K07 | Police | 653 × 250 | B02 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
 | K08 | Svislá příčka | 671 × 250 | B08 | stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce) / pod K14 (spoj A: 2 vruty shora skrz polici) |
 | K09 | Levý bok (u obkladu) | 1379 × 250 | D02 + A01 | visí na vrutech do stěny; do boku dosedá K10 (podpěrky) / pod K26 (úhelník vzadu) |
 | K10 | Police nad křeslem | 711 × 250 | D08-3 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K02 |
@@ -80,7 +80,7 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | K15 | Svislá příčka | 1016 × 250 | D02 | stojí na K13 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
 | K16 | Police | 346 × 250 | A03 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K15 |
 | K17 | Police | 346 × 250 | A09 | dosedá na 2 podpěrky 5 mm v boku dílu K15 / dosedá na 2 podpěrky 5 mm v boku dílu K02 |
-| K18 | Police | 653 × 250 | B02 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K18 | Police | 653 × 250 | D08-2 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
 | K19 | Svislá příčka | 671 × 250 | D01 | stojí na K18 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
 | K20 | Boční díl mostu (u pravé stěny) | 364 × 250 | A09 | visí na vrutech do stěny; do boku dosedá K24 (podpěrky) / končí v rovině desky; do boku dosedá K26 (podpěrky) |
 | K21 | Police | 346 × 250 | A10 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K15 |
