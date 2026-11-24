@@ -122,6 +122,7 @@ ol.steps{margin:0;padding-left:1.3em;display:grid;gap:8px;max-width:78ch}
 .jp.hl .pill{stroke:#111;stroke-width:2.5px;vector-effect:non-scaling-stroke}
 .jk{display:inline-block;color:#fff;border-radius:4px;padding:1px 7px;font-family:var(--label);font-size:.88rem;letter-spacing:.02em;white-space:nowrap}
 tr[data-jid]{cursor:pointer}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:baseline}
 </style>
 
 <div class="wrap">
@@ -258,6 +259,7 @@ tr[data-jid]{cursor:pointer}
     <h2>Díly</h2>
     <p class="muted">Rozměry v mm, hloubka 250, tloušťka 19. Délka je vždy po letech. Díly ke stěně jsou o 5 mm kratší kvůli vůli, police na podpěrkách o 1 mm kratší než světlost.</p>
   </div>
+  <div class="legend" id="cutlegend"></div>
   <div class="scroll"><table id="cut"></table></div>
 </section>
 
@@ -356,6 +358,10 @@ function txt(parent,x,y,s,attrs){const e=el("text",Object.assign({x:x,y:y},attrs
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const BOOK=["#1F2A44","#2D5D7B","#B3362C","#E9E5DA","#1C1C1E","#3A7D7C","#D2A142","#5E4A78","#8C2F39","#F3F0E7","#4A6FA5","#2F3033","#B85C38","#557A5C","#C8C2B4","#0F4C5C","#D8D2C2"];
 const SPRUCE="#E4C896", SPRUCE_MID="#CDA56C", WALL="#EFEDE8";
+// barvy dílů: vodorovné (police), svislé (boky a příčky), sokl; PCL = světlejší pro výkres spojů
+const PC={H:"#E8B96A",V:"#86B3A2",S:"#C9B8A0"}, PCL={H:"#F2D9A6",V:"#C4DDD3",S:"#E2D8CA"};
+const PNAME={H:"vodorovné díly (police)",V:"svislé díly (boky, příčky)",S:"sokl"};
+const pcLegend=c=>["H","V","S"].map(k=>'<span><i style="background:'+c[k]+'"></i>'+PNAME[k]+'</span>').join("");
 let MODE="parts";
 
 /* ---------- ELEVATION ---------- */
@@ -404,6 +410,7 @@ function drawElev(){
     const pad=1.3; // wider hit area for thin boards
     el("rect",p.o==="H"?{x:x0,y:Y(z1)-pad,width:w,height:h+2*pad,fill:"transparent"}:{x:x0-pad,y:Y(z1),width:w+2*pad,height:h,fill:"transparent"},g);
     let fill=p.src?SPRUCE:BUYC;
+    if(P_)fill=PC[p.o]||SPRUCE;
     
     if(!P_&&p.id==="S5")fill="#D2B283";
     el("rect",{class:"m",x:x0,y:Y(z1),width:w,height:h,fill:fill,stroke:P_?"#6B5536":"#A8834F","stroke-width":P_?.25:.12},g);
@@ -684,7 +691,7 @@ function drawJoints(){
   if(!JOINTS.length)return;
   document.getElementById("jlast").textContent=JOINTS[JOINTS.length-1].id.slice(1);
   const cnt={};JOINTS.forEach(j=>cnt[j.kind]=(cnt[j.kind]||0)+1);
-  document.getElementById("jlegend").innerHTML=Object.keys(JK).filter(k=>cnt[k]).map(k=>'<span><i style="background:'+JK[k][1]+'"></i>'+JK[k][0]+' ('+cnt[k]+')</span>').join("");
+  document.getElementById("jlegend").innerHTML=Object.keys(JK).filter(k=>cnt[k]).map(k=>'<span><i style="background:'+JK[k][1]+';border-radius:50%"></i>'+JK[k][0]+' ('+cnt[k]+')</span>').join("")+'<span style="flex-basis:100%;height:0"></span>'+pcLegend(PCL);
   // --- pohled zepředu ---
   const svg=document.getElementById("jsvg"); svg.innerHTML="";
   const Y=z=>H-z, vx=-12, vy=-8, vw=W+24, vh=H+16;
@@ -704,7 +711,7 @@ function drawJoints(){
     if(p.o==="G")return;
     const x0=p.x0/10,x1=p.x1/10,z0=p.z0/10,z1=p.z1/10, hid=p.o==="S"&&p.hidden;
     const g=el("g",{class:"pc","data-id":p.id},pg);
-    el("rect",{class:"m",x:x0,y:Y(z1),width:x1-x0,height:z1-z0,fill:hid?"none":"#EADFC8",stroke:"#B39A70","stroke-width":.2,"stroke-dasharray":hid?"1 .8":"none"},g);
+    el("rect",{class:"m",x:x0,y:Y(z1),width:x1-x0,height:z1-z0,fill:hid?"none":PCL[p.o],stroke:"#9C8A6A","stroke-width":.2,"stroke-dasharray":hid?"1 .8":"none"},g);
   });
   const lg=el("g",Object.assign({},lab,{"text-anchor":"middle"}),svg);
   PARTS.forEach(p=>{
@@ -724,9 +731,9 @@ function drawJoints(){
   el("rect",{x:bx0,y:-60,width:bw,height:Dm+120,fill:"#F4F3EF"},ss);
   el("rect",{x:bx0,y:-30,width:bw,height:30,fill:"#DCD9D2"},ss);
   txt(ss,bx0+12,-10,"zadní zeď",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":22,fill:"#8A8578"});
-  el("rect",{x:K1.x0,y:0,width:K1.x1-K1.x0,height:Dm,fill:"none",stroke:"#B39A70","stroke-width":2,"stroke-dasharray":"10 7"},ss);
+  el("rect",{x:K1.x0,y:0,width:K1.x1-K1.x0,height:Dm,fill:"none",stroke:PC.H,"stroke-width":2,"stroke-dasharray":"10 7"},ss);
   txt(ss,(K1.x0+K1.x1)/2,Dm+30,"čelo K01 (K01 leží navrch, tady je jen obrys)",{"text-anchor":"middle","font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":22,fill:"#8A8578"});
-  const B=(x0,x1,y0,y1,id)=>{const g=el("g",{class:"pc","data-id":id},ss);el("rect",{class:"m",x:x0,y:y0,width:x1-x0,height:y1-y0,fill:"#EADFC8",stroke:"#B39A70","stroke-width":2},g);};
+  const B=(x0,x1,y0,y1,id)=>{const g=el("g",{class:"pc","data-id":id},ss);el("rect",{class:"m",x:x0,y:y0,width:x1-x0,height:y1-y0,fill:PCL.S,stroke:"#9C8A6A","stroke-width":2},g);};
   const yS5=Dm-30-G.t;
   B(S1.x0,S1.x1,0,Dm-30,"S1"); B(S2.x0,S2.x1,0,Dm-30,"S2"); B(S4.x0,S4.x1,0,G.t,"S4"); B(S5.x0,S5.x1,yS5,yS5+G.t,"S5"); B(S3.x0,S3.x1,G.t,G.t+S3.B,"S3");
   const sl={"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":22,fill:"#7A6342","text-anchor":"middle","pointer-events":"none"};
@@ -741,10 +748,11 @@ function drawJoints(){
 
 /* ---------- CUT LIST ---------- */
 function renderCut(){
+  document.getElementById("cutlegend").innerHTML=pcLegend(PC);
   const rows=PARTS.filter(p=>p.o!=="G");
   const endL=p=>p.o==="V"?["dole","nahoře"]:["vlevo","vpravo"];
   document.getElementById("cut").innerHTML="<thead><tr><th>Díl</th><th>Název</th><th class='r'>Délka × šířka</th><th>Spoje</th></tr></thead><tbody>"+
-    rows.map(p=>"<tr data-id='"+p.id+"'><td><b>"+p.id+"</b></td><td>"+esc(p.name)+(p.kind==="SP18"?" <span class='muted'>(spárovka 18)</span>":"")+"</td><td class='r'>"+nf(p.L)+" × "+nf(p.B)+"</td><td class='muted'>"+
+    rows.map(p=>"<tr data-id='"+p.id+"'><td style='white-space:nowrap'><i class='sw' style='background:"+(PC[p.o]||SPRUCE)+"' title='"+(PNAME[p.o]||"")+"'></i><b>"+p.id+"</b></td><td>"+esc(p.name)+(p.kind==="SP18"?" <span class='muted'>(spárovka 18)</span>":"")+"</td><td class='r'>"+nf(p.L)+" × "+nf(p.B)+"</td><td class='muted'>"+
       (p.o==="S"||p.o==="G"?esc(p.ends.join(" · ")):"<span>"+endL(p)[0]+":</span> "+esc(p.ends[0])+"<br><span>"+endL(p)[1]+":</span> "+esc(p.ends[1]))+"</td></tr>").join("")+
     "<tr class='total'><td colspan='2'>Celkem "+rows.length+" dílů</td><td class='r'>"+f1(rows.reduce((a,p)=>a+p.L*p.B,0)/1e6)+" m²</td><td></td></tr></tbody>";
 }
@@ -777,7 +785,7 @@ function renderText(){
     "<p><b>Díly:</b> popisek je číslo dílu. Najeď na díl a uvidíš rozměr a spoje. Díly jsou číslované odspodu v pořadí montáže.</p>"+
     "<p><b>Mřížka:</b> 4 sloupce × 7 řad a horní řada nad dveřmi až k pravé stěně. Za křeslem chybí 2 sloupce × 3 řady (výklenek "+f1(NOOK_R)+" × "+f1(NOOK_TOP)+" cm). Aby měl výklenek 73 cm, jsou přihrádky nad křeslem o 3 cm širší ("+f1(G.CW[0]/10)+" × "+f1(sh)+" cm), vpravo zůstávají až k zemi 2 čtverce "+f1(sw)+" × "+f1(sh)+" cm. Knihovna je proto o 6 cm širší a k otevřeným dveřím zbývá "+f1(DOOR_FREE-MAIN_R)+" cm. Pravý bok hlavní části i příčka vedle výklenku jdou v jednom kuse od spodní police až pod horní desku. Pod stropem zůstávají 2 cm.</p>";
   const legend=MODE==="parts"
-    ? '<span><i style="background:'+SPRUCE+'"></i>díly K01–K26 a sokl S1–S5 (S3 a S4 jsou schované za lištou)</span>'
+    ? pcLegend(PC)+'<span class="muted">S3 a S4 jsou schované za lištou</span>'
     : '<span><i style="background:#E4C896"></i>smrk z půdy</span><span><i style="background:#EFEDE8;border:1px solid #CFCAC1"></i>bílá stěna (bez zad)</span><span><i style="background:#FF8A7A"></i>volná zóna dveří</span>';
   document.getElementById("legend").innerHTML=legend;
   const checks=[
