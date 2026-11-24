@@ -13,6 +13,17 @@
    "center": 1.0,
    "visible": 2
   },
+  "mag": {
+   "d": "15–16",
+   "th": 5,
+   "from_end": 20,
+   "z": 67,
+   "block_w": 40,
+   "block_h": 80,
+   "notch_w": 60,
+   "notch_h": 15,
+   "felt": 3
+  },
   "W": 2370,
   "H": 2593,
   "t": 19,
@@ -1144,12 +1155,12 @@
    "z1": 140,
    "src": "C03",
    "ends": [
-    "mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou",
-    "pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)"
+    "stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01",
+    "odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3"
    ],
    "grain": "léta vodorovně",
    "hidden": false,
-   "note": "Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.",
+   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15–16 × 5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Uprostřed zespodu úchyt (výřez 60 × 15 mm).",
    "strip": 0,
    "off": 657,
    "srcinfo": {
@@ -2053,9 +2064,9 @@
   {
    "a": "S5",
    "b": "S1",
-   "kind": "angle",
-   "what": "S5 čelní lišta → S1",
-   "now": "2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)",
+   "kind": "magnet",
+   "what": "S5 čelní lišta → doraz na S1",
+   "now": "magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S1), 20 mm od konce S5, 67 mm od spodní hrany S5",
    "x": 749.0,
    "z": 210.5,
    "mx": 809.0,
@@ -2072,9 +2083,9 @@
   {
    "a": "S5",
    "b": "S2",
-   "kind": "angle",
-   "what": "S5 čelní lišta → S2",
-   "now": "2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)",
+   "kind": "magnet",
+   "what": "S5 čelní lišta → doraz na S2",
+   "now": "magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S2), 20 mm od konce S5, 67 mm od spodní hrany S5",
    "x": 1401.7,
    "z": 210.5,
    "mx": 1341.7,
@@ -2093,7 +2104,7 @@
    "b": "S5",
    "kind": "rest",
    "what": "S3 → S5",
-   "now": "jen dosedá, bez spoje",
+   "now": "čelo S3 je prostřední doraz lišty, jen dosedá",
    "x": 1075.4,
    "z": 201,
    "mx": 1075.4,
@@ -2110,9 +2121,9 @@
   {
    "a": "K01",
    "b": "S1",
-   "kind": "rest",
+   "kind": "angle",
    "what": "K01 leží na S1",
-   "now": "jen leží (tíha jde tlakem do podlahy), bez spoje",
+   "now": "leží (tíha jde tlakem do podlahy); vpředu malý úhelník zevnitř z S1 nahoru do K01, ať bok drží i bez lišty",
    "x": 739.5,
    "z": 110,
    "mx": 739.5,
@@ -2148,9 +2159,9 @@
   {
    "a": "K01",
    "b": "S2",
-   "kind": "rest",
+   "kind": "angle",
    "what": "K01 leží na S2",
-   "now": "jen leží, bez spoje",
+   "now": "leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty",
    "x": 1411.2,
    "z": 110,
    "mx": 1411.2,

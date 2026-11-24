@@ -93,7 +93,7 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | S2 | Sokl: pravý bok (pod K04) | 140 × 220 | B10 | stojí na podlaze (nevrtat, vyrovnat podložkami) / nese K01, nad ním stojí K04 |
 | S3 | Sokl: střední podpěra (pod K03) | 140 × 182 | C03 | stojí na podlaze / nese K01 pod příčkou K03 |
 | S4 | Sokl: zadní spojka | 653 × 100 | C03 | mezi boky soklu u zdi, nahoře / do boků zevnitř úhelníky |
-| S5 | Sokl: čelní lišta | 653 × 135 | C03 | mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou / pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne) |
+| S5 | Sokl: čelní lišta | 653 × 135 | C03 | stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01 / odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3 |
 | K09.1 | Levý bok (u obkladu), kus 1/2 | 1044 × 250 | D02 | slepit s ostatními kusy do jedné desky / kolíky 8 × 35 + lepidlo, spoj ve výšce police |
 | K09.2 | Levý bok (u obkladu), kus 2/2 | 335 × 250 | A01 | slepit s ostatními kusy do jedné desky / kolíky 8 × 35 + lepidlo, spoj ve výšce police |
 

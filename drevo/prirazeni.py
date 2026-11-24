@@ -187,6 +187,8 @@ for p in P:
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
 
+# Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety cca Ø 15–16 × 5 (přesně změřit).
+MAG = dict(d='15–16', th=5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, felt=3)
 # sokl: pevná krabice pod sloupci 3–4. Boky soklu stojí přesně pod K02 a K04,
 # čelní lišta mezi nimi zapuštěná 30 mm, vzadu spojka u zdi, uprostřed podpěra pod K03.
 xa, xb = xl(2), xl(K)                    # levá hrana levého a pravého boku soklu
@@ -209,13 +211,13 @@ SOKL = [
          ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.'),
     dict(id='S5', o='S', name='Sokl: čelní lišta', L=round(xb - xa - t), B=SOKL_H - 5, kind='3S19',
          x0=xa + t, x1=xb, z0=5, z1=SOKL_H, hidden=False, grain='léta vodorovně',
-         ends=['mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou', 'pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)'],
-         note='Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.'),
+         ends=['stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01', 'odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3'],
+         note=f"Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø {MAG['d']} × {MAG['th']} zapuštěné v dírách {MAG['from_end']} mm od konců a {MAG['z']} mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Uprostřed zespodu úchyt (výřez {MAG['notch_w']} × {MAG['notch_h']} mm)."),
 ]
 
 # ---- spoje (X01…): každý styk dvou dílů, styk se stěnou a spoje soklu ----
 # Číslováno v pořadí montáže: sokl, pak odspodu nahoru a zleva doprava.
-# kind: pins = kolíky Ø 6 (spoj B), screw = vruty skrz, angle = úhelník, open = nevyřešeno, wall = do stěny, rest = jen leží/dosedá
+# kind: magnet = magnety (lišta soklu), pins = kolíky Ø 6 (spoj B), screw = vruty skrz, angle = úhelník, open = nevyřešeno, wall = do stěny, rest = jen leží/dosedá
 JOINTS = []
 PBYID = {q['id']: q for q in P}
 def _J(a, b, kind, what, now, x, z, mx, mz, view='front', pts=None):
@@ -277,12 +279,12 @@ def _S(a, b, kind, what, now, x, y, mx, my, pts=None):
 _S('S4', 'S1', 'angle', 'S4 zadní spojka → S1', '2 malé úhelníky zevnitř', s1x, t / 2, s1x + 60, 55)
 _S('S4', 'S2', 'angle', 'S4 zadní spojka → S2', '2 malé úhelníky zevnitř', s2x, t / 2, s2x - 60, 55)
 _S('S3', 'S4', 'angle', 'S3 střední podpěra → S4', 'úhelník ke spojce', s3x, t, s3x, 60)
-_S('S5', 'S1', 'angle', 'S5 čelní lišta → S1', '2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)', s1x, yS5 + t / 2, s1x + 60, yS5 - 40)
-_S('S5', 'S2', 'angle', 'S5 čelní lišta → S2', '2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)', s2x, yS5 + t / 2, s2x - 60, yS5 - 40)
-_S('S3', 'S5', 'rest', 'S3 → S5', 'jen dosedá, bez spoje', s3x, yS5, s3x, yS5 - 42)
-_S('K01', 'S1', 'rest', 'K01 leží na S1', 'jen leží (tíha jde tlakem do podlahy), bez spoje', _s['S1']['x0'] + t / 2, 110, _s['S1']['x0'] + t / 2, 110)
+_S('S5', 'S1', 'magnet', 'S5 čelní lišta → doraz na S1', f"magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S1), {MAG['from_end']} mm od konce S5, {MAG['z']} mm od spodní hrany S5", s1x, yS5 + t / 2, s1x + 60, yS5 - 40)
+_S('S5', 'S2', 'magnet', 'S5 čelní lišta → doraz na S2', f"magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S2), {MAG['from_end']} mm od konce S5, {MAG['z']} mm od spodní hrany S5", s2x, yS5 + t / 2, s2x - 60, yS5 - 40)
+_S('S3', 'S5', 'rest', 'S3 → S5', 'čelo S3 je prostřední doraz lišty, jen dosedá', s3x, yS5, s3x, yS5 - 42)
+_S('K01', 'S1', 'angle', 'K01 leží na S1', 'leží (tíha jde tlakem do podlahy); vpředu malý úhelník zevnitř z S1 nahoru do K01, ať bok drží i bez lišty', _s['S1']['x0'] + t / 2, 110, _s['S1']['x0'] + t / 2, 110)
 _S('K01', 'S3', 'rest', 'K01 leží na S3', 'jen leží, bez spoje', s3x, 110, s3x, 110)
-_S('K01', 'S2', 'rest', 'K01 leží na S2', 'jen leží, bez spoje', _s['S2']['x0'] + t / 2, 110, _s['S2']['x0'] + t / 2, 110)
+_S('K01', 'S2', 'angle', 'K01 leží na S2', 'leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty', _s['S2']['x0'] + t / 2, 110, _s['S2']['x0'] + t / 2, 110)
 _x01 = PBYID['K01']['x0']
 _S('K01', 'S4', 'screw', 'K01 → S4 zadní spojka', '2 vruty 4,5 × 50 shora skrz K01 do S4, 9 mm od zadní hrany',
    (s1x + s3x) / 2, 9, (s1x + _s['S3']['x0']) / 2, 62, pts=[((s1x + _s['S3']['x0']) / 2, 9), ((_s['S3']['x1'] + s2x) / 2, 9)])
@@ -460,7 +462,7 @@ used = sorted(strips)
 unused = [s for s in STOCK if s['id'] not in strips]
 
 out = dict(
-    geo=dict(kolik=KOLIK, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
+    geo=dict(kolik=KOLIK, mag=MAG, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
     pattern={f"{j},{k}": v for (j, k), v in A.items()},
     parts=[{k: p[k] for k in ('id', 'o', 'name', 'L', 'B', 'kind', 'x0', 'x1', 'z0', 'z1', 'src', 'ends', 'grain', 'hidden', 'note')
             if k in p} | {'strip': p.get('strip'), 'off': p.get('off'), 'srcinfo': p.get('srcinfo'), 'cutL': p.get('cutL'), 'cutB': p.get('cutB'), 'segments': p.get('segments'), 'parent': p.get('parent')} for p in ALL],
