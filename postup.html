@@ -1,0 +1,519 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postup stavby</title>
+<meta name="description" content="Pracovní postup stavby knihovny krok za krokem: desky z půdy, řezání, lepení, příprava dílů a montáž odspodu nahoru">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#F2F2EF; --surface:#FFFFFF; --ink:#222326; --muted:#65686C; --line:#DAD8D2;
+  --accent:#9C6A31; --accent-soft:#F1E4D2; --ok:#2F6B40; --ok-soft:#E0EEE3; --warn-bg:#FFF2D9; --warn-ink:#6E4205; --chip:#E7E5E0;
+  --cur:#E0801F; --cur-ink:#7A3F08; --done:#E6D3AE; --done-ink:#A88958; --fig:#FBFAF7;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --label:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#141517; --surface:#1D1E21; --ink:#ECEAE5; --muted:#A4A39E; --line:#33353A;
+    --accent:#D9A566; --accent-soft:#3A2D1C; --ok:#8FCB9E; --ok-soft:#1D3024; --warn-bg:#3A2B12; --warn-ink:#F2CF8E; --chip:#2A2C30;
+    --fig:#F4F2EC;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141517; --surface:#1D1E21; --ink:#ECEAE5; --muted:#A4A39E; --line:#33353A;
+  --accent:#D9A566; --accent-soft:#3A2D1C; --ok:#8FCB9E; --ok-soft:#1D3024; --warn-bg:#3A2B12; --warn-ink:#F2CF8E; --chip:#2A2C30;
+  --fig:#F4F2EC;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:20px 64px;display:grid;gap:22px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.12}
+h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0;max-width:72ch}
+.eyebrow{font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+nav.steps{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+nav.steps button{flex:0 0 auto;font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;display:flex;gap:6px;align-items:baseline;white-space:nowrap}
+nav.steps button b{font-family:var(--label);font-size:1rem}
+nav.steps button[aria-current="step"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav.steps button.done:not([aria-current="step"]){background:var(--ok-soft);color:var(--ok);border-color:transparent}
+nav.steps button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stephead{display:grid;gap:6px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px;align-items:start}
+.fig{background:var(--fig);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px;color:#222326}
+.fig.wide{grid-column:1/-1}
+.fig.el{grid-column:1/-1}
+.fig.el svg{max-height:640px;width:auto;max-width:100%;margin:0 auto}
+.fig svg{display:block;width:100%;height:auto}
+.fig .cap{font-size:.85rem;color:#65686C}
+.body{display:grid;gap:14px}
+ol.do{margin:0;padding-left:1.4em;display:grid;gap:10px;max-width:80ch}
+ol.do li::marker{font-family:var(--label);font-weight:600;color:var(--accent)}
+ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.note{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 14px;font-size:.95rem;max-width:80ch}
+.parts{display:grid;gap:10px}
+.part{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--cur);border-radius:10px;padding:10px 14px;display:grid;gap:3px;font-size:.94rem}
+.part .t{font-family:var(--label);font-size:1.1rem;font-weight:600;letter-spacing:.02em}
+.part .k{color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--label);text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.loc{display:grid;gap:8px}
+.loc h3{display:flex;gap:8px;align-items:center}
+.loc h3 i{width:12px;height:12px;border-radius:3px;display:inline-block}
+label.chk{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}
+label.chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--ok)}
+label.chk b{font-family:var(--label);font-size:1.05rem}
+label.chk.on{background:var(--ok-soft)}
+.stocks{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+.sk{background:var(--fig);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px;max-width:100%;color:#222326}
+.sk .h{font-size:.88rem}
+.sk .h b{font-family:var(--label);font-size:1.02rem}
+.sk svg{display:block;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pager button{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 16px;cursor:pointer;max-width:48%}
+.pager button:disabled{opacity:.4;cursor:default}
+.pager button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+  <header class="stephead">
+    <div class="eyebrow">Knihovna do pracovny · návrh v4</div>
+    <h1>Postup stavby</h1>
+    <p class="muted">Krok za krokem, odspodu nahoru. Oranžově je to, co děláš v daném kroku, béžově to, co už stojí. Rozměry jsou v mm. Díly mají čísla podle pořadí montáže, podrobnosti ke každému dílu jsou v <a href="knihovna.html">knihovna.html</a>.</p>
+  </header>
+  <nav class="steps" id="nav" aria-label="Kroky"></nav>
+  <main id="step" class="body" tabindex="-1"></main>
+  <div class="pager"><button type="button" id="prev">← Předchozí</button><button type="button" id="next">Další →</button></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const DATA=/*DATA*/{"geo": {"W": 2370, "H": 2593, "t": 19, "TOPGAP": 20, "PLINTH": 140, "D": 250, "N": 7, "K": 4, "R": 7, "sw": 316.85714285714283, "sh": 325.85714285714283, "KERF": 4, "XL": [0.0, 365.0, 730.0, 1065.857142857143, 1401.7142857142858, 1708.4285714285716, 2015.1428571428573, 2351.0], "CW": [346.0, 346.0, 316.85714285714283, 316.85714285714283, 287.71428571428567, 287.71428571428567, 316.85714285714283], "NOOK": 730}, "pattern": {"0,7": "H", "1,7": "H", "2,7": "H", "3,7": "H", "4,7": "H", "6,7": "H", "7,7": "V", "0,6": "V", "1,6": "V", "2,6": "V", "3,6": "V", "4,6": "V", "6,6": "H", "7,6": "V", "0,5": "V", "1,5": "V", "2,5": "V", "3,5": "H", "4,5": "V", "0,4": "V", "1,4": "H", "2,4": "V", "3,4": "H", "4,4": "V", "0,3": "V", "2,3": "V", "3,3": "V", "4,3": "V", "2,2": "V", "3,2": "H", "4,2": "V", "2,1": "V", "3,1": "V", "4,1": "V", "2,0": "H", "3,0": "H", "4,0": "H"}, "parts": [{"id": "K01", "o": "H", "name": "Spodní police (na soklu)", "L": 691, "B": 250, "kind": "3S19", "x0": 730.0, "x1": 1420.7142857142858, "z0": 140.0, "z1": 159.0, "src": "A18", "ends": ["nese K02 (spoj A: vruty skrz)", "nese K04 (spoj A: vruty skrz)"], "grain": "léta vodorovně (podél délky)", "hidden": true, "note": "Leží celou plochou na soklu. Těsný řez: z desky A18 zbývá jen 9 mm, řezat přesně.", "strip": 0, "off": 0, "srcinfo": {"id": "A18", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 360, "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K02", "o": "V", "name": "Svislá příčka", "L": 2395, "B": 250, "kind": "3S19", "x0": 730.0, "x1": 749.0, "z0": 159.0, "z1": 2554.0, "src": "D03", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.", "strip": 0, "off": 0, "srcinfo": {"id": "D03", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K03", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 159.0, "z1": 829.7142857142857, "src": "A19", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K07 (spoj A: 2 vruty shora skrz polici)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A19", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 420, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K04", "o": "V", "name": "Pravý bok hlavní části", "L": 2395, "B": 250, "kind": "3S19", "x0": 1401.7142857142858, "x1": 1420.7142857142858, "z0": 159.0, "z1": 2554.0, "src": "D03", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.", "strip": 1, "off": 0, "srcinfo": {"id": "D03", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K05", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 484.85714285714283, "z1": 503.85714285714283, "src": "D08-2", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K03"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "D08-2", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K06", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 484.85714285714283, "z1": 503.85714285714283, "src": "D08-3", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K03", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "D08-3", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K07", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 829.7142857142857, "z1": 848.7142857142857, "src": "D08-2", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D08-2", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K08", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 848.7142857142857, "z1": 1519.4285714285713, "src": "B08", "ends": ["stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce)", "pod K14 (spoj A: 2 vruty shora skrz polici)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "B08", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 252, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K09", "o": "V", "name": "Levý bok (u obkladu)", "L": 1379, "B": 250, "kind": "3S19", "x0": 0.0, "x1": 19.0, "z0": 1174.5714285714284, "z1": 2554.0, "src": "D02 + A01", "ends": ["visí na vrutech do stěny; do boku dosedá K10 (podpěrky)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "Jedna deska slepená předem z 2 kusů (1044 + 335 mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na podpěrky.", "strip": null, "off": null, "srcinfo": null, "cutL": null, "cutB": null, "segments": ["K09.1", "K09.2"], "parent": null}, {"id": "K10", "o": "H", "name": "Police nad křeslem", "L": 711, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 730.0, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "B01", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "Na přední hraně je čtecí lampa (husí krk 24 V).", "strip": 0, "off": 0, "srcinfo": {"id": "B01", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 850, "Wd": 310, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K11", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "A04", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K08"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A04", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 350, "Wd": 320, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K12", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "A05", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K08", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A05", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 440, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K13", "o": "H", "name": "Police", "L": 711, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 730.0, "z0": 1519.4285714285713, "z1": 1538.4285714285713, "src": "D01", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D01", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K14", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 1519.4285714285713, "z1": 1538.4285714285713, "src": "D08-3", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D08-3", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K15", "o": "V", "name": "Svislá příčka", "L": 1016, "B": 250, "kind": "3S19", "x0": 365.0, "x1": 384.0, "z0": 1538.4285714285713, "z1": 2554.0, "src": "D02", "ends": ["stojí na K13 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "D02", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K16", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 365.0, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "A03", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K15"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A03", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 365, "Wd": 314, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K17", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 384.0, "x1": 730.0, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "A09", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K15", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "A09", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K18", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "B02", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "B02", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K19", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 1883.2857142857142, "z1": 2554.0, "src": "D01", "ends": ["stojí na K18 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "D01", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K20", "o": "V", "name": "Boční díl mostu (u pravé stěny)", "L": 364, "B": 250, "kind": "3S19", "x0": 2351.0, "x1": 2370.0, "z0": 2209.142857142857, "z1": 2573.0, "src": "A09", "ends": ["visí na vrutech do stěny; do boku dosedá K24 (podpěrky)", "končí v rovině desky; do boku dosedá K26 (podpěrky)"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.", "strip": 0, "off": 0, "srcinfo": {"id": "A09", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K21", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 365.0, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A10", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K15"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K22", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A06", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K19"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A06", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 442, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K23", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A02", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K19", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A02", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K24", "o": "H", "name": "Dno mostu nad dveřmi", "L": 930, "B": 250, "kind": "3S19", "x0": 1420.7142857142858, "x1": 2351.0, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "D08-1", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K04", "dosedá na 2 podpěrky 5 mm v boku dílu K20"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "Nese most nad dveřmi. Leží na pravém boku hlavní části, pravým koncem dosedá na podpěrky v bočním dílu mostu. Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).", "strip": 0, "off": 0, "srcinfo": {"id": "D08-1", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K25", "o": "V", "name": "Svislá příčka", "L": 326, "B": 250, "kind": "3S19", "x0": 2015.1428571428573, "x1": 2034.1428571428573, "z0": 2228.142857142857, "z1": 2554.0, "src": "B02", "ends": ["stojí na K24 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "B02", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K26", "o": "H", "name": "Horní deska", "L": 2346, "B": 250, "kind": "3S19", "x0": 0.0, "x1": 2351.0, "z0": 2554.0, "z1": 2573.0, "src": "C04+C05", "ends": ["k obkladu, leží na K09 (úhelník zespodu)", "dosedá na 2 podpěrky 5 mm v boku dílu K20"], "grain": "léta vodorovně (podél délky)", "hidden": true, "note": "Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.", "strip": 0, "off": 0, "srcinfo": {"id": "C04+C05", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 320, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S1", "o": "S", "name": "Sokl: levý bok (pod K02)", "L": 140, "B": 220, "kind": "3S19", "x0": 730.0, "x1": 749.0, "z0": 0, "z1": 140, "src": "B10", "ends": ["stojí na podlaze (nevrtat, vyrovnat podložkami)", "nese K01, nad ním stojí K02"], "grain": "léta svisle", "hidden": false, "note": "Pohledový: je vidět z výklenku pro křeslo. Vpředu končí 30 mm za čelem K01. Vzadu u podlahy výřez 70 × 70 mm (u zdi) pro kabel prodlužky, lampičky a nabíječky.", "strip": 0, "off": 0, "srcinfo": {"id": "B10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S2", "o": "S", "name": "Sokl: pravý bok (pod K04)", "L": 140, "B": 220, "kind": "3S19", "x0": 1401.7142857142858, "x1": 1420.7142857142858, "z0": 0, "z1": 140, "src": "B10", "ends": ["stojí na podlaze (nevrtat, vyrovnat podložkami)", "nese K01, nad ním stojí K04"], "grain": "léta svisle", "hidden": false, "note": "Pohledový: je vidět ze strany od dveří. Vpředu končí 30 mm za čelem K01.", "strip": 0, "off": 144, "srcinfo": {"id": "B10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S3", "o": "S", "name": "Sokl: střední podpěra (pod K03)", "L": 140, "B": 201, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 0, "z1": 140, "src": "C03", "ends": ["stojí na podlaze", "nese K01 pod příčkou K03"], "grain": "libovolně (skrytý díl, z C03 léta vodorovně)", "hidden": true, "note": "Skrytá za čelní lištou. Z C03 se řeže otočená (201 po letech × 140), u skrytého dílu na směru let nezáleží.", "strip": 0, "off": 1314, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": 201, "cutB": 140, "segments": null, "parent": null}, {"id": "S4", "o": "S", "name": "Sokl: zadní spojka", "L": 653, "B": 100, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 40, "z1": 140, "src": "C03", "ends": ["mezi boky soklu u zdi, nahoře", "do boků zevnitř úhelníky"], "grain": "léta vodorovně", "hidden": true, "note": "Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.", "strip": 0, "off": 0, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S5", "o": "S", "name": "Sokl: čelní lišta", "L": 653, "B": 135, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 5, "z1": 140, "src": "C03", "ends": ["mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou", "pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)"], "grain": "léta vodorovně", "hidden": false, "note": "Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.", "strip": 0, "off": 657, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K09.1", "o": "G", "name": "Levý bok (u obkladu), kus 1/2", "L": 1044, "B": 250, "kind": "3S19", "src": "D02", "ends": ["slepit s ostatními kusy do jedné desky", "kolíky 8 × 35 + lepidlo, spoj ve výšce police"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D02", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": "K09"}, {"id": "K09.2", "o": "G", "name": "Levý bok (u obkladu), kus 2/2", "L": 335, "B": 250, "kind": "3S19", "src": "A01", "ends": ["slepit s ostatními kusy do jedné desky", "kolíky 8 × 35 + lepidlo, spoj ve výšce police"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A01", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 384, "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, "cutL": null, "cutB": null, "segments": null, "parent": "K09"}], "stock": {"C04+C05": {"id": "C04+C05", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 320, "vady": "", "loc": "vpravo dole pod střechou", "note": "slepit C04 a C05 podélně (lepidlo D3 + kolíky 8 mm po ~300 mm, svěrky), pak oříznout na 250", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K26"]}]}, "A01": {"id": "A01", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 384, "vady": "vyvrtané díry z jedné strany, druhá strana ok", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K09.2"]}]}, "A18": {"id": "A18", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 360, "vady": "vyvrtané díry z jedné strany, druhá strana ok", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K01"]}]}, "D01": {"id": "D01", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K13"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K19"]}]}, "D02": {"id": "D02", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K09.1"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K15"]}]}, "D03": {"id": "D03", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K02"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K04"]}]}, "A02": {"id": "A02", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 401, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K23"]}]}, "A03": {"id": "A03", "typ": "3vrstvá deska", "th": 19, "L": 365, "Wd": 314, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K16"]}]}, "A04": {"id": "A04", "typ": "3vrstvá deska", "th": 19, "L": 350, "Wd": 320, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K11"]}]}, "A05": {"id": "A05", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 440, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K12"]}]}, "A06": {"id": "A06", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 442, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K22"]}]}, "A09": {"id": "A09", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K20"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K17"]}]}, "A10": {"id": "A10", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K21"]}]}, "A19": {"id": "A19", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 420, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K03"]}]}, "B01": {"id": "B01", "typ": "3vrstvá deska", "th": 19, "L": 850, "Wd": 310, "vady": "", "loc": "vlevo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K10"]}]}, "B02": {"id": "B02", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": "", "loc": "vlevo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K18", "K25"]}]}, "B08": {"id": "B08", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 252, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K08"]}]}, "D08-1": {"id": "D08-1", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K24"]}]}, "D08-2": {"id": "D08-2", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K07", "K05"]}]}, "D08-3": {"id": "D08-3", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K14", "K06"]}]}, "B10": {"id": "B10", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 220, "items": ["S1", "S2"]}]}, "C03": {"id": "C03", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": "", "loc": "vpravo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 185, "items": ["S4", "S5", "S3"]}]}}, "unused": [{"id": "D04", "typ": "spárovka", "th": 22, "L": 2530, "Wd": 630, "loc": "vlevo pod střechou", "vady": ""}, {"id": "D05", "typ": "spárovka", "th": 28, "L": 2295, "Wd": 600, "loc": "vlevo pod střechou", "vady": ""}, {"id": "D06", "typ": "spárovka", "th": 28, "L": 1095, "Wd": 374, "loc": "vlevo pod střechou", "vady": ""}, {"id": "A07", "typ": "3vrstvá deska", "th": 19, "L": 363, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A08", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 382, "loc": "vpravo v šuplících", "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, {"id": "A11", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 507, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A12", "typ": "3vrstvá deska", "th": 19, "L": 493, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A13", "typ": "3vrstvá deska", "th": 19, "L": 493, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A14", "typ": "3vrstvá deska", "th": 19, "L": 495, "Wd": 366, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A15", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 401, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A16", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A17", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B03", "typ": "3vrstvá deska", "th": 19, "L": 264, "Wd": 411, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B04", "typ": "3vrstvá deska", "th": 19, "L": 411, "Wd": 420, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B05", "typ": "3vrstvá deska", "th": 19, "L": 515, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B06", "typ": "3vrstvá deska", "th": 19, "L": 520, "Wd": 366, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B07", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 358, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B09", "typ": "3vrstvá deska", "th": 19, "L": 551, "Wd": 274, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B11", "typ": "3vrstvá deska", "th": 19, "L": 497, "Wd": 581, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B12", "typ": "3vrstvá deska", "th": 19, "L": 637, "Wd": 325, "loc": "vpravo v šuplících", "vady": ""}, {"id": "C01", "typ": "3vrstvá deska", "th": 19, "L": 304, "Wd": 2040, "loc": "vpravo dole pod střechou", "vady": ""}, {"id": "D07-1", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-2", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-3", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-4", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-5", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-6", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-7", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-8", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-9", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}], "buy": [], "counts": {"dowels": 16, "dowel_joints": 8, "pins": 62, "pin_ends": 31, "angle_top": 6, "verts": 9, "parts": 26, "sokl": 5}}/*END*/;
+const NS="http://www.w3.org/2000/svg";
+const G=DATA.geo, W=G.W, H=G.H, t=G.t, D=G.D, R=G.R, K=G.K, PLINTH=G.PLINTH, XL=G.XL;
+const sh=G.sh, zb=k=>PLINTH+k*(sh+t);
+const PARTS=DATA.parts, PBY={}; PARTS.forEach(p=>PBY[p.id]=p);
+const MAIN=PARTS.filter(p=>/^K\d+$/.test(p.id));
+const SOKL=PARTS.filter(p=>p.o==="S");
+const LOC_ORDER=["vlevo pod střechou","vlevo dole pod střechou","vlevo vzadu pod střechou","vpravo dole pod střechou","vpravo v šuplících"];
+const LOC={"vlevo pod střechou":"#E09A4C","vlevo dole pod střechou":"#7FA6D0","vlevo vzadu pod střechou":"#C48BB8","vpravo dole pod střechou":"#C7BC62","vpravo v šuplících":"#86BD86"};
+const PIN_BELOW=7;   // střed díry podpěrky pod spodní plochou police
+const nf=v=>Math.round(v).toLocaleString("cs-CZ");
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function el(tag,a,parent){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(parent)parent.appendChild(e);return e;}
+function txt(parent,x,y,s,a){const e=el("text",Object.assign({x,y},a||{}),parent);e.textContent=s;return e;}
+const locOf=p=>p.srcinfo?p.srcinfo.loc:(p.segments&&PBY[p.segments[0]].srcinfo?PBY[p.segments[0]].srcinfo.loc:"");
+const srcTxt=p=>p.segments?"slepený z "+p.segments.map(s=>PBY[s].src).join(" + "):(p.src?"z "+p.src:"koupit");
+const LBL="Barlow Condensed, Arial Narrow, sans-serif";
+
+/* ---------- assembly groups ---------- */
+function groupOf(p){ // úroveň, na které se díl montuje
+  const g=(p.z0-PLINTH)/(sh+t); return Math.floor(g+0.1);
+}
+const ORDER=MAIN.map(p=>p.id);
+const byGroup={}; MAIN.forEach(p=>{const g=groupOf(p);(byGroup[g]=byGroup[g]||[]).push(p.id);});
+
+/* ---------- elevation ---------- */
+function elev(cur,opt){
+  opt=opt||{};
+  const curSet=new Set(cur), idx=Math.min(...cur.map(id=>ORDER.indexOf(id)).filter(i=>i>=0).concat([999]));
+  const done=new Set(opt.done||ORDER.filter((id,i)=>i<idx&&!curSet.has(id)));
+  const pad=90, Y=z=>H-z;
+  const svg=el("svg",{viewBox:(-pad-40)+" -40 "+(W+2*pad+40)+" "+(H+110),role:"img","aria-label":"Pohled zepředu, díly tohoto kroku oranžově"});
+  el("rect",{x:0,y:0,width:W,height:H,fill:"#EFEDE8"},svg);
+  el("rect",{x:-40,y:0,width:40,height:H,fill:"#D9B887"},svg);
+  el("rect",{x:W,y:0,width:25,height:H,fill:"#DAD6CE"},svg);
+  el("rect",{x:-40,y:H,width:W+65,height:14,fill:"#D9CCB5"},svg);
+  el("rect",{x:1480,y:Y(2119),width:W-1485,height:2119,fill:"none",stroke:"#B9B3A8","stroke-width":4,"stroke-dasharray":"18 12"},svg);
+  txt(svg,(1480+W)/2,Y(1050),"dveře",{"text-anchor":"middle","font-family":LBL,"font-size":46,fill:"#9A958C"});
+  const ss=opt.sokl||"done";
+  SOKL.forEach(p=>{
+    if(p.hidden)return;
+    if(p.id==="S5"&&!opt.showLista)return;
+    const st=ss==="cur"?"cur":ss==="done"?"done":"future";
+    part(svg,p,st,Y,opt.labels!==false&&st==="cur");
+  });
+  MAIN.forEach(p=>{
+    const st=curSet.has(p.id)?"cur":done.has(p.id)?"done":"future";
+    part(svg,p,st,Y,st==="cur"&&opt.labels!==false);
+  });
+  if(opt.showLista===false){}
+  txt(svg,-20,Y(H/2),"obklad",{"text-anchor":"middle","font-family":LBL,"font-size":40,fill:"#8A6A42",transform:"rotate(-90 -20 "+Y(H/2)+")"});
+  return svg;
+}
+function part(svg,p,st,Y,label){
+  const x0=p.x0,x1=p.x1,z0=p.z0,z1=p.z1,w=x1-x0,h=z1-z0;
+  const a=st==="cur"?{fill:"#E0801F",stroke:"#7A3F08","stroke-width":9}:st==="done"?{fill:"#E6D3AE",stroke:"#A88958","stroke-width":3}:{fill:"none",stroke:"#C9C3B8","stroke-width":3,"stroke-dasharray":"12 9"};
+  el("rect",Object.assign({x:x0,y:Y(z1),width:w,height:h},a),svg);
+  if(p.segments&&st!=="future"){let z=z0;p.segments.slice(0,-1).forEach(s=>{z+=PBY[s].L;el("line",{x1:x0-6,x2:x1+6,y1:Y(z),y2:Y(z),stroke:"#7A3F08","stroke-width":4,"stroke-dasharray":"8 5"},svg);});}
+  if(label){
+    const fs=78, s=p.id;
+    if(p.o==="V"){const cx=(x0+x1)/2, cy=Y((z0+z1)/2);
+      txt(svg,cx,cy+fs*.35,s,{"text-anchor":"middle","font-family":LBL,"font-size":fs,"font-weight":600,fill:"#5A2E05",stroke:"#FBFAF7","stroke-width":16,"paint-order":"stroke",transform:"rotate(-90 "+cx+" "+cy+")"});}
+    else txt(svg,(x0+x1)/2,Y(z1)-12,s,{"text-anchor":"middle","font-family":LBL,"font-size":fs,"font-weight":600,fill:"#5A2E05",stroke:"#FBFAF7","stroke-width":16,"paint-order":"stroke"});
+  }
+}
+
+/* ---------- detail figures (static drawings, px) ---------- */
+const WOOD='fill="#E4C896" stroke="#9C7A48" stroke-width="1.5"', WOOD2='fill="#EBD7AE" stroke="#9C7A48" stroke-width="1.5"';
+const T=(x,y,s,o)=>'<text x="'+x+'" y="'+y+'" font-family="'+LBL+'" font-size="'+((o&&o.fs)||14)+'" fill="'+((o&&o.fill)||"#43454A")+'"'+(o&&o.anchor?' text-anchor="'+o.anchor+'"':'')+(o&&o.w?' font-weight="600"':'')+'>'+s+'</text>';
+const arrowDefs='<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#43454A"/></marker><pattern id="hh" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#B9B5AD" stroke-width="2"/></pattern></defs>';
+const dim=(x1,y1,x2,y2,s,o)=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#43454A" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>'+T((x1+x2)/2+((o&&o.dx)||0),(y1+y2)/2+((o&&o.dy)||-5),s,{anchor:"middle",fs:13});
+const svgw=(vb,inner,label)=>'<svg viewBox="'+vb+'" role="img" aria-label="'+esc(label)+'">'+arrowDefs+inner+'</svg>';
+function fig(svg,cap,wide){return '<div class="fig'+(wide===true?" wide":wide?" "+wide:"")+'">'+svg+(cap?'<div class="cap">'+cap+'</div>':'')+'</div>';}
+
+const FIG={
+pins:()=>fig(svgw("0 0 520 250",
+  // side view of a vertical board face (depth horizontal)
+  '<rect x="30" y="30" width="250" height="190" '+WOOD2+'/>'+T(155,22,"bok svislého dílu (pohled z boku)",{anchor:"middle"})+
+  '<rect x="30" y="92" width="250" height="19" '+WOOD+' opacity=".55" stroke-dasharray="5 4"/>'+T(155,106,"police",{anchor:"middle",fs:12})+
+  '<circle cx="60" cy="118" r="5" fill="#fff" stroke="#43454A" stroke-width="1.5"/><circle cx="250" cy="118" r="5" fill="#fff" stroke="#43454A" stroke-width="1.5"/>'+
+  dim(30,150,60,150,"30")+dim(250,150,280,150,"30")+T(30,244,"čelo",{fs:13,w:1})+T(280,244,"zeď",{fs:13,anchor:"end"})+
+  '<line x1="290" y1="111" x2="290" y2="118" stroke="#43454A"/>'+T(296,121,"7 mm pod polici",{fs:13})+
+  // template
+  '<rect x="340" y="60" width="160" height="40" '+WOOD+'/><rect x="340" y="100" width="160" height="8" fill="#9C7A48"/>'+
+  '<circle cx="360" cy="80" r="5" fill="#fff" stroke="#43454A" stroke-width="1.5"/><circle cx="480" cy="80" r="5" fill="#fff" stroke="#43454A" stroke-width="1.5"/>'+
+  T(420,50,"šablona z odřezku",{anchor:"middle"})+T(420,128,"díry Ø 5, 30 mm od konců",{anchor:"middle",fs:13})+T(420,146,"lišta = doraz na čelo",{anchor:"middle",fs:13})+
+  '<rect x="395" y="160" width="50" height="10" rx="2" fill="#5A5D63"/>'+T(420,190,"podpěrka 5 mm, díra 10 mm hluboká",{anchor:"middle",fs:13}),"Díry pro podpěrky"),
+  "Podpěrky (spoj B): dvě díry Ø 5 mm na každý konec police, 30 mm od čela a od zadní hrany, střed 7 mm pod spodní plochou police."),
+screwA:()=>fig(svgw("0 0 520 260",
+  '<rect x="60" y="100" width="300" height="24" '+WOOD+'/><rect x="190" y="124" width="24" height="120" '+WOOD+'/>'+
+  '<rect x="30" y="60" width="16" height="190" fill="#C8B28A" stroke="#8A6D42"/>'+T(38,52,"lať",{anchor:"middle"})+
+  '<path d="M46 150 h40 v-8 h10 v24 h-10 v-8 h-40z" fill="#5A5D63"/>'+T(100,178,"svěrka",{fs:13})+
+  '<line x1="202" y1="30" x2="202" y2="96" stroke="#43454A" stroke-width="2" marker-end="url(#ar)"/>'+T(210,40,"vrták 3 mm skrz polici do čela příčky",{fs:13})+
+  '<line x1="202" y1="100" x2="202" y2="170" stroke="#7A3F08" stroke-width="3" stroke-dasharray="4 3"/>'+
+  '<path d="M195 100 L209 100 L204 107 L200 107z" fill="#7A3F08"/>'+
+  T(372,110,"police (průběžná)",{fs:13})+T(222,220,"příčka",{fs:13})+
+  T(372,140,"vruty 4,5 × 50,",{fs:13})+T(372,156,"60 a 190 mm od čela",{fs:13})+T(372,172,"hlavu zapustit",{fs:13}),"Spoj A"),
+  "Spoj A: díly srovnej čely k lati, stáhni svěrkou, předvrtej skrz průběžnou desku do čela druhého dílu a zašroubuj. Díry se vrtají přes oba díly najednou, takže vždy sedí."),
+angle:()=>fig(svgw("0 0 520 250",
+  '<rect x="410" y="10" width="14" height="230" fill="#F4F2EC" stroke="#8A8C90"/><rect x="424" y="10" width="70" height="230" fill="url(#hh)" stroke="#8A6D42"/>'+
+  T(417,248,"SDK",{anchor:"middle",fs:12})+T(459,248,"dřevo",{anchor:"middle",fs:12})+
+  '<rect x="160" y="40" width="250" height="24" '+WOOD+'/>'+T(170,32,"horní hrana svislého dílu / police",{fs:13})+
+  '<rect x="160" y="64" width="250" height="160" '+WOOD2+'/>'+T(170,150,"svislý díl (pohled z boku)",{fs:13})+
+  '<path d="M370 70 h36 v36 h-6 v-30 h-30z" fill="#5A5D63"/>'+
+  '<line x1="385" y1="84" x2="380" y2="92" stroke="#43454A"/>'+
+  '<line x1="404" y1="88" x2="486" y2="88" stroke="#7A3F08" stroke-width="4"/>'+T(300,120,"úhelník 40 × 40",{fs:13})+
+  T(300,200,"vrut 5 × 80–100 přes",{fs:13})+T(300,216,"sádrokarton do dřeva",{fs:13})+'<line x1="370" y1="196" x2="450" y2="92" stroke="#43454A" stroke-width="1" marker-end="url(#ar)"/>'+T(160,244,"čelo ←",{fs:13,w:1}),"Úhelník do zadní stěny"),
+  "Kotvení do zadní stěny: malý úhelník u zadní hrany, do dílu krátký vrut, do stěny dlouhý vrut přes sádrokarton až do dřeva."),
+stacked:()=>fig(svgw("0 0 520 230",
+  '<rect x="60" y="100" width="300" height="24" '+WOOD+'/><rect x="190" y="124" width="24" height="100" '+WOOD2+'/><rect x="190" y="6" width="24" height="94" '+WOOD+'/>'+
+  '<path d="M214 70 h26 v30 h-4 v-26 h-22z" fill="#5A5D63"/>'+T(248,82,"úhelník vzadu v přihrádce",{fs:13})+T(248,98,"(za knihami)",{fs:13})+
+  T(372,116,"police",{fs:13})+T(222,200,"příčka pod ní (už stojí)",{fs:13})+T(222,24,"nová příčka",{fs:13}),"Příčka nad příčkou"),
+  "Když pod polici stojí další příčka, zespodu šroubovat nejde. Novou příčku srovnej čelem k lati a přichyť úhelníkem u zadní hrany."),
+};
+function figLying(){
+  const sc=.16, L2=PBY.K02.L, L4=PBY.K04.L, L1=PBY.K01.L;
+  const x0=40,y0=40;
+  let s='<rect x="'+x0+'" y="'+y0+'" width="'+(19*sc*3)+'" height="'+(L1*sc)+'" '+WOOD+'/>';
+  s+=T(x0,y0-8,"K01 (spodní police)",{fs:13});
+  const vx=x0+19*sc*3;
+  [["K02",PBY.K02,0],["K03",PBY.K03,PBY.K03.x0-PBY.K01.x0],["K04",PBY.K04,PBY.K04.x0-PBY.K01.x0]].forEach(([id,p,off])=>{
+    s+='<rect x="'+vx+'" y="'+(y0+off*sc)+'" width="'+(p.L*sc)+'" height="'+(19*sc*3)+'" '+WOOD2+'/>'+T(vx+p.L*sc/2,y0+off*sc+19*sc*3+14,id+" · "+nf(p.L),{anchor:"middle",fs:13});
+  });
+  s+='<line x1="'+(x0-20)+'" y1="'+(y0-20)+'" x2="'+(x0-20)+'" y2="'+(y0+L1*sc+20)+'" stroke="#8A6D42" stroke-width="5"/>'+T(x0-26,y0+L1*sc/2,"lať (čela)",{fs:13,anchor:"end"});
+  s+=T(vx+10,y0+L1*sc+50,"naležato na zemi, zadní hranou dolů, čela nahoru k lati · vruty skrz K01 do čel K02, K03, K04",{fs:13});
+  return fig(svgw("0 0 520 "+(y0+L1*sc+70),s,"Rám naležato"),"Spodní rám se sešroubuje naležato. Pod K01 bude sokl, zespodu by se k ní už nedalo dostat.");
+}
+function figGlueTop(){
+  const s='<rect x="20" y="40" width="480" height="48" '+WOOD+'/><rect x="20" y="88" width="480" height="48" '+WOOD2+'/>'+
+  T(30,60,"C04 · 2500 × 160",{fs:13})+T(30,128,"C05 · 2500 × 160",{fs:13})+
+  [80,170,260,350,440].map(x=>'<rect x="'+(x-3)+'" y="74" width="6" height="28" fill="#6B4A2E"/>').join("")+
+  [60,250,440].map(x=>'<path d="M'+(x-6)+' 24 v130 h12 v-130z" fill="#5A5D63" opacity=".85"/>').join("")+
+  '<line x1="20" y1="61" x2="500" y2="61" stroke="#C0392B" stroke-width="2" stroke-dasharray="8 5"/>'+T(505,66,"",{})+
+  T(20,176,"kolíky 8 × 35 po ~30 cm do hran, lepidlo D3, svěrky střídavě shora a zespodu",{fs:13})+
+  T(20,194,"po zaschnutí uříznout na šířku 250 (červená čára) → spára 160 mm od čela",{fs:13})+
+  T(20,212,"z toho pak K26 = "+nf(PBY.K26.L)+" mm",{fs:13,w:1});
+  return fig(svgw("0 0 520 222",s,"Slepení horní desky"),"K26: dva úzké pruhy slepit podélně.");
+}
+function figGlueSide(){
+  const p=PBY.K09, sc=.33, x0=20;
+  let s='', x=x0;
+  p.segments.forEach((sid,i)=>{const q=PBY[sid];s+='<rect x="'+x+'" y="50" width="'+(q.L*sc)+'" height="'+(D*sc)+'" '+(i%2?WOOD2:WOOD)+'/>'+T(x+q.L*sc/2,50+D*sc/2+5,sid+" · "+q.src+" · "+nf(q.L),{anchor:"middle",fs:13});
+    x+=q.L*sc; if(i<p.segments.length-1)[50,125,200].forEach(d=>{s+='<rect x="'+(x-8)+'" y="'+(50+d*sc-2)+'" width="16" height="4" fill="#6B4A2E"/>';});});
+  s+='<rect x="'+(x0-14)+'" y="40" width="10" height="'+(D*sc+20)+'" fill="#8A6D42"/><rect x="'+(x+4)+'" y="40" width="10" height="'+(D*sc+20)+'" fill="#8A6D42"/>';
+  s+='<path d="M'+(x+16)+' 60 l14 20 l-14 20z" fill="#5A5D63"/>';
+  s+='<line x1="'+x0+'" y1="'+(50+D*sc+14)+'" x2="'+x+'" y2="'+(50+D*sc+14)+'" stroke="#8A6D42" stroke-width="5"/>'+T(x0,50+D*sc+34,"lať = čela v jedné rovině",{fs:13});
+  s+=T(x0,24,"levý bok K09 = "+nf(p.L)+" mm, léta podél délky, díry desek dolů (k obkladu)",{fs:13,w:1});
+  s+=T(x0,50+D*sc+54,"3 kolíky 8 × 35 do každého spoje (50, 125, 200 mm od čela), lepidlo, stáhnout mezi dorazy klínem",{fs:13});
+  return fig(svgw("0 0 "+(x+60)+" "+(50+D*sc+64),s,"Slepení levého boku"),"K09: kusy slepit na tupo za sebou. Spoje vyjdou přesně za konci polic.",true);
+}
+function figSokl(){
+  const sc=.55, x0=30, S1=PBY.S1, S2=PBY.S2, S3=PBY.S3, S4=PBY.S4, S5=PBY.S5, L=S2.x1-S1.x0, dx=v=>x0+(v-S1.x0)*sc;
+  const fy=40, fh=140*sc, ground=fy+19*sc+fh;
+  let s=T(x0,fy-22,"pohled zepředu",{fs:13,w:1});
+  s+='<rect x="'+dx(S1.x0)+'" y="'+fy+'" width="'+(L*sc)+'" height="'+(19*sc)+'" fill="none" stroke="#9C7A48" stroke-dasharray="6 4"/>'+T(dx(S1.x0)+4,fy-5,"K01 přijde navrch",{fs:12});
+  s+='<rect x="'+dx(S3.x0)+'" y="'+(fy+19*sc)+'" width="'+(19*sc)+'" height="'+fh+'" fill="none" stroke="#7A3F08" stroke-dasharray="5 4"/>';
+  s+='<rect x="'+dx(S5.x0)+'" y="'+(fy+19*sc)+'" width="'+((S5.x1-S5.x0)*sc)+'" height="'+(135*sc)+'" fill="#F0B070" fill-opacity=".85" stroke="#7A3F08"/>'+T(dx((S5.x0+S5.x1)/2),fy+19*sc+fh/2+5,"S5 čelní lišta (o 30 mm vzadu)",{anchor:"middle",fs:13,w:1});
+  [S1,S2].forEach(q=>{s+='<rect x="'+dx(q.x0)+'" y="'+(fy+19*sc)+'" width="'+(19*sc)+'" height="'+fh+'" fill="#E0801F" stroke="#7A3F08"/>'+T(dx(q.x0)+19*sc/2,ground+16,q.id,{anchor:"middle",fs:13,w:1});});
+  s+=T(dx(S3.x0)+19*sc/2,ground+16,"S3",{anchor:"middle",fs:12});
+  s+='<line x1="10" y1="'+ground+'" x2="'+(dx(S2.x1)+40)+'" y2="'+ground+'" stroke="#8A8C90" stroke-width="3"/>';
+  s+=T(dx(S1.x0)-6,fy+30,"K02",{anchor:"end",fs:12})+T(dx(S2.x1)+6,fy+30,"K04",{fs:12});
+  // plan
+  const py=ground+60, dz=v=>py+v*sc;
+  s+=T(x0,py-10,"půdorys (zeď nahoře)",{fs:13,w:1});
+  s+='<line x1="10" y1="'+py+'" x2="'+(dx(S2.x1)+40)+'" y2="'+py+'" stroke="#8A8C90" stroke-width="4"/>';
+  s+='<rect x="'+dx(S1.x0)+'" y="'+py+'" width="'+(L*sc)+'" height="'+(D*sc)+'" fill="none" stroke="#9C7A48" stroke-dasharray="6 4"/>';
+  [S1,S2].forEach(q=>{s+='<rect x="'+dx(q.x0)+'" y="'+py+'" width="'+(19*sc)+'" height="'+(q.B*sc)+'" fill="#E0801F" stroke="#7A3F08"/>';});
+  s+='<rect x="'+dx(S4.x0)+'" y="'+py+'" width="'+((S4.x1-S4.x0)*sc)+'" height="'+(18*sc)+'" fill="#EBD7AE" stroke="#9C7A48"/>'+T(dx((S4.x0+S4.x1)/2),py+18*sc+14,"S4 zadní spojka (u zdi)",{anchor:"middle",fs:12});
+  s+='<rect x="'+dx(S3.x0)+'" y="'+dz(18)+'" width="'+(19*sc)+'" height="'+(S3.B*sc)+'" fill="none" stroke="#7A3F08" stroke-dasharray="5 4"/>';
+  s+='<rect x="'+dx(S5.x0)+'" y="'+dz(D-30-19)+'" width="'+((S5.x1-S5.x0)*sc)+'" height="'+(19*sc)+'" fill="#F0B070" stroke="#7A3F08"/>';
+  s+=dim(dx(S2.x1)+16,dz(D-30),dx(S2.x1)+16,dz(D),"30",{dx:14,dy:4});
+  s+=T(dx(S2.x1)+24,dz(D)+14,"čelo K01",{fs:12});
+  // bok S1 z boku s výřezem
+  const sy=dz(D)+60, sx=x0, k=.55;
+  s+=T(sx,sy-10,"S1 z boku (zeď vlevo)",{fs:13,w:1});
+  s+='<path d="M'+sx+' '+sy+' h'+(S1.B*k)+' v'+(140*k)+' h'+(-(S1.B-70)*k)+' v'+(-70*k)+' h'+(-70*k)+'z" fill="#E0801F" stroke="#7A3F08"/>';
+  s+='<line x1="'+(sx-6)+'" y1="'+(sy-10)+'" x2="'+(sx-6)+'" y2="'+(sy+140*k+6)+'" stroke="#8A8C90" stroke-width="4"/>';
+  s+=dim(sx,sy+140*k+16,sx+70*k,sy+140*k+16,"70",{dy:14})+dim(sx+70*k+14,sy+70*k,sx+70*k+14,sy+140*k,"70",{dx:16,dy:4});
+  s+=T(sx+S1.B*k+12,sy+30,"výřez 70 × 70 vzadu u podlahy",{fs:12})+T(sx+S1.B*k+12,sy+46,"pro kabel prodlužky v soklu",{fs:12});
+  return fig(svgw("0 0 "+(dx(S2.x1)+90)+" "+(dz(D)+60+140*.55+50),s,"Sokl"),"Sokl je pevná krabice: boky S1 a S2 stojí přesně pod K02 a K04, čelní lišta S5 je mezi nimi o 30 mm vzadu, vzadu u zdi spojka S4, uprostřed podpěra S3 pod K03. Spojuje se zevnitř úhelníky.");
+}
+function figBridge(){
+  const s='<rect x="440" y="10" width="14" height="220" fill="#F4F2EC" stroke="#8A8C90"/><rect x="454" y="10" width="56" height="220" fill="url(#hh)" stroke="#8A6D42"/>'+T(447,244,"SDK",{anchor:"middle",fs:12})+T(482,244,"dřevo",{anchor:"middle",fs:12})+
+  '<rect x="160" y="110" width="280" height="24" '+WOOD+'/>'+T(170,102,"dno mostu (pohled z boku)",{fs:13})+
+  '<line x1="330" y1="122" x2="500" y2="122" stroke="#5A5D63" stroke-width="8"/><rect x="452" y="108" width="8" height="28" fill="#5A5D63"/>'+
+  T(300,160,"skrytý nosič: příruba na vruty do dřeva,",{fs:13})+T(300,176,"trn zasunutý do díry v zadní hraně dna",{fs:13})+T(160,244,"čelo ←",{fs:13,w:1});
+  return fig(svgw("0 0 520 250",s,"Nosič mostu"),"Pod dno mostu 2 skryté nosiče přes sádrokarton do dřeva. Boční díl mostu se šroubuje do sádrokartonu (kovové hmoždinky).");
+}
+function figTop(){
+  const s='<rect x="20" y="20" width="480" height="10" fill="#DAD6CE"/>'+T(26,16,"strop",{fs:12})+
+  '<rect x="20" y="50" width="480" height="20" '+WOOD+'/>'+T(30,64,"K26 horní deska",{fs:13,w:1})+
+  [60,200,340,470].map(x=>'<rect x="'+x+'" y="70" width="16" height="120" '+WOOD2+'/>').join("")+
+  '<line x1="260" y1="36" x2="260" y2="44" stroke="#43454A"/>'+T(268,43,"20 mm",{fs:12})+
+  '<path d="M76 72 h16 v4 h-12 v12 h-4z" fill="#5A5D63"/><path d="M216 72 h16 v4 h-12 v12 h-4z" fill="#5A5D63"/>'+
+  T(20,214,"deska se zasune zepředu přes hotové svislé díly a zespodu se přichytí úhelníky u zadní hrany",{fs:13});
+  return fig(svgw("0 0 520 222",s,"Horní deska"),"Pod stropem jsou jen 2 cm, proto horní deska jako poslední a bez šroubování shora.");
+}
+/* ---------- helpers for instructions ---------- */
+function partCard(p){
+  const L=p.o==="V"?["dole","nahoře"]:["vlevo","vpravo"];
+  return '<div class="part"><div class="t">'+p.id+' · '+esc(p.name)+' <span class="k">'+nf(p.L)+' × '+nf(p.B)+' · '+esc(srcTxt(p))+'</span></div>'+
+    (p.ends&&p.o!=="S"?'<div><span class="k">'+L[0]+':</span> '+esc(p.ends[0])+'</div><div><span class="k">'+L[1]+':</span> '+esc(p.ends[1])+'</div>':'')+
+    (p.note?'<div class="k">'+esc(p.note)+'</div>':'')+'</div>';
+}
+function jointsIn(ids){
+  const s=ids.map(id=>PBY[id]).map(p=>(p.ends||[]).join(" ")).join(" ");
+  return {pins:/podpěrk/.test(s),screw:/vruty/.test(s),stacked:/pod ní je další příčka/.test(s),angleTop:/úhelník/.test(s)};
+}
+function pinTable(){
+  // for every vertical: where shelves rest on pins
+  const rows={};
+  MAIN.filter(p=>p.o==="H").forEach(sp=>{
+    sp.ends.forEach((e,side)=>{
+      const m=/v boku dílu (K\d+)/.exec(e); if(!m)return;
+      const v=PBY[m[1]];
+      (rows[v.id]=rows[v.id]||[]).push({h:sp.z0-v.z0-PIN_BELOW,face:side===0?"pravá":"levá",shelf:sp.id});
+    });
+  });
+  return '<div class="scroll"><table><thead><tr><th>Svislý díl</th><th>Délka</th><th>Díry pro podpěrky: výška středu od spodního konce dílu</th></tr></thead><tbody>'+
+    Object.keys(rows).sort((a,b)=>ORDER.indexOf(a)-ORDER.indexOf(b)).map(id=>{const v=PBY[id];
+      return '<tr><td><b>'+id+'</b> '+esc(v.name)+'</td><td>'+nf(v.L)+'</td><td>'+rows[id].sort((a,b)=>a.h-b.h).map(r=>'<b>'+nf(r.h)+'</b> '+r.face+' strana (pro '+r.shelf+')').join('<br>')+'</td></tr>';}).join("")+'</tbody></table></div>';
+}
+
+/* ---------- steps ---------- */
+const STEPS=[];
+const add=(short,title,render)=>STEPS.push({short,title,render});
+
+add("Desky z půdy","Najdi a snes desky z půdy",()=>{
+  const S=Object.values(DATA.stock);
+  let figs='<div class="figs"><div class="fig wide">'+stockOverview(S)+'<div class="cap">Desky v měřítku, barva = kde leží. Uvnitř čísla dílů, které se z nich uříznou.</div></div></div>';
+  let list=LOC_ORDER.map(loc=>{
+    const L=S.filter(s=>s.loc===loc).sort((a,b)=>a.id.localeCompare(b.id,"cs",{numeric:true})); if(!L.length)return "";
+    return '<div class="loc"><h3><i style="background:'+LOC[loc]+'"></i>'+esc(loc.charAt(0).toUpperCase()+loc.slice(1))+'</h3>'+
+      L.map(s=>{const items=s.strips.flatMap(st=>st.items);const key="chk-"+s.id;
+        return '<label class="chk" data-k="'+key+'"><input type="checkbox" data-k="'+key+'"><span><b>'+esc(s.id)+'</b> '+nf(s.L)+' × '+nf(s.Wd)+' mm'+(s.vady?' · <span class="muted">'+esc(s.vady)+'</span>':'')+(s.note?'<br><span class="muted">'+esc(s.note)+'</span>':'')+'<br>díly: '+items.map(i=>PBY[i]&&PBY[i].parent?i+' (část '+PBY[i].parent+')':i).join(", ")+'</span></label>';}).join("")+'</div>';
+  }).join("");
+  return figs+'<ol class="do"><li>Snes z půdy desky ze seznamu níže a odškrtávej. Stav se ukládá v tomhle prohlížeči.</li><li>Každou desku na místě <b>přeměř</b> (délka, šířka, pravoúhlost rohů). Kdyby něco nesedělo, napiš mi a přepočítám přiřazení.</li><li>Změř <b>vlhkoměrem</b> aspoň největší desky (D02, D03, C04, C05), limit 10–12 %. Nechte je pár dní aklimatizovat v pracovně.</li><li>Na každou desku napiš tužkou její ID a šipku <b>„léta“</b> (směr let na vrchní vrstvě).</li></ol>'+
+    '<div style="display:grid;gap:14px">'+list+'</div>'+
+    '<p class="muted">Rezerva (nepoužité): '+DATA.unused.map(s=>esc(s.id)).join(", ")+'. Vezmi dolů aspoň pár kusů na zkušební řezy a vzorky povrchu.</p>';
+});
+add("Řezání","Nařež díly",()=>{
+  return '<div class="figs"><div class="fig wide"><div class="stocks">'+cutPlans()+'</div><div class="cap">Plán řezu každé desky. U horní hrany dílu je délka (vždy po letech, vodorovně jako „léta ⟷“), u levé hrany šířka. Nejdřív pruhy podél let, pak délky. Šrafovaně odpad.</div></div></div>'+
+  '<ol class="do"><li><b>Pravítko:</b> rovná deska z rezervy (třeba C01, 2 m) přitažená svěrkami. Okružní pila jede podél ní, vzdálenost pravítka od čáry = vzdálenost kotouče od hrany patky pily (změř jednou na odřezku).</li>'+
+  '<li><b>Kotouč jemný</b> (48+ zubů), pohledovou stranou <b>dolů</b> (okružní pila trhá horní stranu), na řez lepicí páska.</li>'+
+  '<li><b>Nejdřív podélné pruhy 250 mm</b> (tam, kde je deska širší). Všechny pruhy řež se stejným nastavením, ať mají všechny díly stejnou hloubku. Čistou tovární hranu nech jako <b>čelo</b>.</li>'+
+  '<li><b>Pak délky.</b> Díl ke stěně je v plánu už o 5 mm kratší. Nejdřív si změř skutečnou světlost na místě, hlavně u dílů na podpěrkách (o 1 mm kratší než světlost mezi boky).</li>'+
+  '<li>Na každý díl napiš <b>číslo (K..)</b>, šipku <b>„čelo“</b> a u svislých <b>„nahoru“</b>.</li>'+
+  '<li>Těsné řezy (v desce zbývá jen pár mm): '+MAIN.concat(PARTS.filter(p=>p.parent)).filter(p=>/Těsný/.test(p.note||"")).map(p=>'<b>'+p.id+'</b> z '+esc(p.src)).join(", ")+'. Měř dvakrát, řež jednou.</li>'+
+  '<li>C04 a C05 teď neřež na šířku, nejdřív se slepí (další krok).</li></ol>';
+});
+add("Lepení K26 a K09","Slep horní desku K26 a levý bok K09",()=>{
+  return '<div class="figs">'+figGlueTop()+figGlueSide()+'</div>'+
+  '<ol class="do"><li><b>K26 (horní deska):</b> hrany C04 a C05, které se potkají, srovnej hoblíkem nebo jedním řezem podél pravítka, aby dosedly bez mezery.</li>'+
+  '<li>Do obou hran vyvrtej kolíkovačkou díry 8 mm po ~30 cm. Tady přesnost v hloubce nevadí, díry jen musí sedět proti sobě: přilož pruhy k sobě, udělej tužkou čárky přes spáru a vrtej na čárkách.</li>'+
+  '<li>Lepidlo do děr i tence na hrany, kolíky, stáhnout svěrkami (střídavě shora a zespodu, pod svěrky proklady, ať se deska neprohne). Přebytek setřít vlhkým hadrem. Schnout do druhého dne.</li>'+
+  '<li>Po zaschnutí uřízni K26 na šířku 250 (spára vyjde 160 mm od čela) a na délku '+nf(PBY.K26.L)+'.</li>'+
+  '<li><b>K09 (levý bok):</b> kusy '+PBY.K09.segments.join(", ")+' polož za sebou na rovnou podložku, <b>díry desek dolů</b> (tahle strana půjde k obkladu), čela k lati.</li>'+
+  '<li>Do čel každého spoje 3 díry 8 mm (50, 125, 200 mm od čela), kolíkovačka na čelo. Stejně jako u K26: kusy k sobě, čárky přes spáru, vrtat na čárkách.</li>'+
+  '<li>Lepidlo, kolíky, stáhnout. Na 1,4 m délku nejspíš nemáš svěrku: přišroubuj na podložku dva dorazy a dotlač klínem.</li>'+
+  '<li>Po zaschnutí zkontroluj celkovou délku '+nf(PBY.K09.L)+' mm a případně zarovnej konce.</li></ol>';
+});
+add("Vrtání děr","Vyvrtej díry pro podpěrky",()=>{
+  return '<div class="figs">'+FIG.pins()+'</div>'+
+  '<ol class="do"><li><b>Díry pro podpěrky</b> vrtej teď v dílně, na ležícím dílu, ještě před broušením (vytržená vlákna kolem děr se pak zabrousí). Výšky jsou v tabulce, měřené od <b>spodního konce</b> dílu ke středu díry. „Pravá strana“ = strana dílu, která bude vpravo, když se na něj díváš zepředu.</li>'+
+  '<li>Udělej si šablonu z odřezku 250 mm s lištou na doraz: 2 díry Ø 5 mm, 30 mm od konců. Lištu opři o čelo dílu, střed děr na čáru výšky, vrtat s dorazem 10 mm.</li>'+
+  '<li>Každý díl si hned označ tužkou na skrytou zadní hranu (číslo dílu a šipka nahoru), ať se při broušení a natírání nespletou.</li>'+
+  '<li>Zkus jednu podpěrku do každé díry: má jít ztuha, ale bez kladiva.</li></ol>'+pinTable();
+});
+add("Broušení a nátěr","Vybrus a natři pohledové strany Ciranovou Hardwaxoil",()=>{
+  const PAINT='stroke="#E0801F" stroke-width="5" stroke-linecap="round"', RAW='stroke="#8A8C90" stroke-width="2" stroke-dasharray="5 4"';
+  const svg=svgw("0 0 520 260",
+    T(150,22,"police v řezu (zepředu dozadu)",{anchor:"middle"})+
+    '<rect x="30" y="50" width="240" height="30" '+WOOD+'/>'+
+    '<line x1="30" y1="50" x2="270" y2="50" '+PAINT+'/><line x1="30" y1="80" x2="270" y2="80" '+PAINT+'/><line x1="30" y1="50" x2="30" y2="80" '+PAINT+'/>'+
+    '<line x1="270" y1="44" x2="270" y2="86" '+RAW+'/>'+T(30,104,"čelo",{fs:13,w:1})+T(270,104,"zeď",{fs:13,anchor:"end"})+
+    T(150,44,"horní plocha",{anchor:"middle",fs:12})+T(150,96,"spodní plocha",{anchor:"middle",fs:12})+
+    T(340,22,"svislý díl v řezu",{anchor:"middle"})+
+    '<rect x="325" y="40" width="30" height="190" '+WOOD2+'/>'+
+    '<line x1="325" y1="40" x2="325" y2="230" '+PAINT+'/><line x1="355" y1="40" x2="355" y2="230" '+PAINT+'/><line x1="325" y1="40" x2="355" y2="40" '+PAINT+'/>'+
+    '<line x1="319" y1="230" x2="361" y2="230" '+RAW+'/>'+T(340,250,"zeď",{fs:13,anchor:"middle"})+T(370,52,"čelo",{fs:13,w:1})+
+    '<line x1="400" y1="150" x2="440" y2="150" '+PAINT+'/>'+T(448,155,"natřít",{fs:13})+
+    '<line x1="400" y1="180" x2="440" y2="180" '+RAW+'/>'+T(448,185,"jen brousit",{fs:13})+
+    T(30,150,"Přihrádky jsou bez zadní stěny:",{fs:13})+T(30,168,"police je vidět shora i zespodu,",{fs:13})+T(30,186,"příčky z obou boků. Natírá se tedy",{fs:13})+T(30,204,"obojí a čelo, nenatírá se jen",{fs:13})+T(30,222,"zadní hrana a strany ke zdi.",{fs:13}),"Co natřít");
+  return '<div class="figs">'+fig(svg,"Oranžově plochy k natření, čárkovaně co zůstane jen broušené.")+'</div>'+
+  '<ol class="do"><li><b>Brousit</b> po letech: 120 → 180, hrany lehce srazit (stačí pár tahů papírem 180 na špalíku). Čela třívrstvých desek brus zvlášť pečlivě, jsou nejvíc vidět. Prach pak vysaj a otři vlhkým hadrem.</li>'+
+  '<li><b>Ciranova Hardwaxoil Natural White 5485</b> (stejná jako ve zbytku domu, stará plechovka, ~3 l stačí). Před použitím důkladně rozmíchej ode dna (bílý pigment se usazuje) a přeceď přes punčochu nebo sítko. Míchej i průběžně při natírání, ať je odstín na všech dílech stejný.</li>'+
+  '<li><b>Natírat</b> v tenkých vrstvách podle návodu na plechovce, přebytek setřít, ať nezůstanou lesklé mapy. Po první vrstvě se vlákna zvednou: lehce přejeď papírem 240, oprášit a druhá vrstva. Díly natírej vleže na latích, nejdřív jednu stranu a čelo, po zaschnutí druhou.</li>'+
+  '<li><b>Natřít</b> (pohledové): čela všech dílů, horní i spodní plochy polic, oba boky příček, vnější strana a čelo boků soklu S1, S2 a líc lišty S5.</li>'+
+  '<li><b>Nenatírat</b>, stačí brousit: zadní hrany všech dílů (ke zdi), strana K09 k obkladu a K20 ke zdi (tam jsou i díry z A01), spodní plocha K01 (leží na soklu, díry z A18), horní plocha K26 (pod stropem, není vidět), S3 a S4 celé, vnitřní strany soklu. Do děr pro podpěrky barvu nezatírej.</li>'+
+  '<li>Nech nátěr vytvrdnout podle návodu, než začneš montovat. Knihy dávej až po úplném vytvrzení, jinak se mohou přilepit.</li></ol>';
+});
+add("Sokl","Sestav sokl S1–S5",()=>{
+  const s=elev([], {sokl:"cur",showLista:true});
+  return '<div class="figs">'+fig(s.outerHTML,"Pohled zepředu: sokl pod sloupci 3–4.","el")+figSokl()+'</div>'+
+  '<ol class="do"><li>Boky <b>S1</b> a <b>S2</b> ('+nf(PBY.S1.L)+' × '+nf(PBY.S1.B)+', třívrstvá z '+esc(PBY.S1.src)+') postav na podlahu zadní hranou ke zdi: S1 ve '+nf(PBY.S1.x0)+' mm od obkladu, S2 ve '+nf(PBY.S2.x0)+' mm. Jsou přesně pod budoucími K02 a K04, takže tíha jde rovnou do podlahy. Oba jsou vidět (z výklenku a od dveří), pohledovou stranou ven.</li>'+
+  '<li><b>S4 zadní spojka</b> ('+nf(PBY.S4.L)+' × '+nf(PBY.S4.B)+') mezi boky nahoru ke zdi, přichytit zevnitř 2 malými úhelníky do každého boku.</li>'+
+  '<li><b>S3 střední podpěra</b> pod budoucí K03 ('+nf(PBY.S3.x0)+' mm od obkladu), úhelníkem ke spojce.</li>'+
+  '<li><b>S5 čelní lišta</b> ('+nf(PBY.S5.L)+' × '+nf(PBY.S5.B)+') mezi boky, 30 mm za přední hranou K01 (tj. zarovnat s předními hranami boků), 5 mm nad podlahou. Buď pevně (zevnitř 2 úhelníky do každého boku), nebo na magnetech. S magnety se dostaneš k prodlužce a můžeš přepojovat zástrčky. U pevné lišty musí být všechno zapojené předem a výřezem 7 × 7 cm se pak ven vedou jen kabely.</li>'+
+  '<li><b>Výřez v S1</b> pro prodlužku: vzadu u podlahy (u zdi) vyřízni přímočarou pilou 70 × 70 mm. Vyřízni ho před sestavením, hrany zabrus. Prodlužka se vejde do soklu mezi S1 a S3 (prostor '+nf(PBY.S3.x0-PBY.S1.x1)+' × '+nf(PBY.S3.B)+' × 135 mm), kabely vedou výřezem ven k zásuvce ve zdi, k lampičce a nabíječce.</li>'+
+  '<li><b>Do podlahy nevrtat</b> (topení). Krabici vyrovnej vodováhou podložkami pod boky, horní hrany všech dílů ve stejné výšce '+nf(PBY.S1.L)+' mm.</li></ol>'+
+  '<div class="parts">'+["S1","S2","S3","S4","S5"].map(id=>partCard(PBY[id])).join("")+'</div>';
+});
+add("Spodní rám","Sešroubuj K01 + K02 + K03 + K04 a postav je na sokl",()=>{
+  const ids=["K01","K02","K03","K04"];
+  return '<div class="figs">'+fig(elev(ids).outerHTML,"Spodní police K01 nese obě dlouhé desky K02, K04 a příčku K03.","el")+figLying()+FIG.screwA()+FIG.angle()+'</div>'+
+  '<ol class="do"><li>Na zemi polož K02, K03, K04 vedle sebe na zadní hranu (čely nahoru). K01 přilož k jejich spodním koncům a čela všech srovnej k lati.</li>'+
+  '<li>Rozestupy: K03 levou plochou '+nf(PBY.K03.x0-PBY.K01.x0)+' mm od levého konce K01, K04 končí zároveň s pravým koncem K01. Nejlíp to ověříš odřezkem 317 mm jako distanční kostkou mezi díly.</li>'+
+  '<li>Stáhni svěrkou, <b>předvrtej skrz K01</b> do čela každého svislého dílu (3 mm, v K01 zahloubit) a zašroubuj 2 vruty 4,5 × 50 (60 a 190 mm od čela).</li>'+
+  '<li>Rám postav (ve dvou, K02 je 2,4 m) a polož na sokl, zadní hranou ke zdi. Na výšku se vejde: rám má '+nf(PBY.K02.z1)+' mm, strop '+nf(H)+'.</li>'+
+  '<li>Vyrovnej do svislice (vodováha na K02 a K04 zepředu i z boku) a <b>nahoře přichyť K02 a K04 úhelníkem</b> dlouhým vrutem přes sádrokarton do dřeva. K01 přišroubuj k soklu <b>shora 2 vruty 4,5 × 50 do zadní spojky S4</b>: uprostřed obou přihrádek ('+nf(19+PBY.K05.L/2)+' a '+nf(PBY.K06.x0-PBY.K01.x0+PBY.K06.L/2)+' mm od levého konce K01), <b>9 mm od zadní hrany</b>. Předvrtat 3 mm skrz K01, zahloubit. Víc šroubů není potřeba: rám na soklu leží vlastní tíhou a nahoře ho drží úhelníky do stěny, vruty jen brání posunutí.</li></ol>'+
+  '<div class="parts">'+ids.map(id=>partCard(PBY[id])).join("")+'</div>';
+});
+// generic level steps
+const levels=Object.keys(byGroup).map(Number).sort((a,b)=>a-b).filter(g=>g>0);
+const levelTitles={3:"Levý bok a police nad křeslem",6:"Most nad dveřmi a horní řada",7:"Horní deska"};
+levels.forEach(g=>{
+  const ids=byGroup[g].filter(id=>!["K01","K02","K03","K04"].includes(id));
+  if(!ids.length)return;
+  const range=ids.length>1?ids[0]+"–"+ids[ids.length-1]:ids[0];
+  const title=(levelTitles[g]?levelTitles[g]+": ":"Police a příčky ")+ids.join(", ");
+  add(levelTitles[g]||range,title,()=>{
+    const j=jointsIn(ids);
+    let figs=fig(elev(ids).outerHTML,"Tento krok: "+ids.join(", ")+".","el");
+    if(ids.includes("K20")||ids.some(id=>/Dno mostu/.test(PBY[id].name)))figs+=figBridge();
+    if(ids.includes("K26"))figs+=figTop();
+    if(j.pins)figs+=FIG.pins();
+    if(j.screw)figs+=FIG.screwA();
+    if(j.stacked)figs+=FIG.stacked();
+    if(j.angleTop&&!ids.includes("K26"))figs+=FIG.angle();
+    const shelves=ids.filter(id=>PBY[id].o==="H"), verts=ids.filter(id=>PBY[id].o==="V");
+    let steps=[];
+    if(ids.includes("K09"))steps.push("<b>Nejdřív levý bok K09:</b> přilož k obkladu, spodní konec ve výšce "+nf(PBY.K09.z0)+" mm nad podlahou (podlož ho dvěma kousky latě na zemi), čelo do roviny s K02 (dlouhá lať přes obě čela). Přišroubuj 6–8 dlouhými vruty přes obklad do dřevěné stěny, hlavy zapustit, ať nepřekáží policím.");
+    if(ids.includes("K20"))steps.push("<b>Boční díl mostu K20</b> přišroubuj do pravé stěny (sádrokarton, kovové hmoždinky, ideálně do profilu), spodní konec ve výšce "+nf(PBY.K20.z0)+" mm, čelo v rovině s K04. Díry pro podpěrky už má z dílny.");
+    if(ids.some(id=>/Dno mostu/.test(PBY[id].name)))steps.push("<b>Nosiče mostu:</b> 2 skryté nosiče přes sádrokarton do dřeva, přesně ve výšce spodní plochy dna mostu. Do zadní hrany dna vyvrtej díry pro trny (stejné rozteče jako nosiče, přenes je přiložením).");
+    if(shelves.length)steps.push("<b>Police</b> "+shelves.join(", ")+": zasuň podpěrky do připravených děr a polici zasuň zepředu. Čelo srovnej s čely sousedních dílů. Zezadu ji přichyť malým úhelníkem do zdi.");
+    verts.filter(id=>id!=="K09"&&id!=="K20").forEach(id=>{const p=PBY[id];
+      if(/pod ní je další příčka/.test(p.ends[0]))steps.push("<b>"+id+"</b> postav na "+/na (K\d+)/.exec(p.ends[0])[1]+" přesně nad příčku pod ní, čelo k lati, a přichyť <b>úhelníkem vzadu</b> v přihrádce.");
+      else if(/zespodu/.test(p.ends[0]))steps.push("<b>"+id+"</b> postav na "+/na (K\d+)/.exec(p.ends[0])[1]+", čelo k lati, stáhni svěrkou a <b>zespodu přes polici</b> předvrtej a zašroubuj 2 vruty (spoj A).");
+      if(/shora/.test(p.ends[1]))steps.push("Až bude nad "+id+" ležet "+/pod (K\d+)/.exec(p.ends[1])[1]+", zašroubuj ji <b>shora skrz polici</b> do "+id+" (spoj A).");
+      if(/úhelník vzadu/.test(p.ends[1]))steps.push(id+" nahoře přichyť úhelníkem do zadní stěny (přes sádrokarton do dřeva).");
+    });
+    if(ids.includes("K26"))steps.push("<b>Horní deska K26</b> jako poslední: zasuň zepředu přes hotové svislé díly, vlevo dolehne na K09, vpravo na podpěrky v K20. Zespodu přichyť úhelníky u zadní hrany ke všem svislým dílům pod ní.");
+    steps.push("Kontrola: čela v jedné rovině (lať přes celou šířku), přihrádky pravoúhlé (úhlopříčky stejné).");
+    return '<div class="figs">'+figs+'</div><ol class="do">'+steps.map(s=>'<li>'+s+'</li>').join("")+'</ol><div class="parts">'+ids.map(id=>partCard(PBY[id])).join("")+'</div>';
+  });
+});
+add("Dokončení","Kontrola a dokončení",()=>{
+  const s=elev([], {done:ORDER, sokl:"done", showLista:true, labels:false});
+  return '<div class="figs">'+fig(s.outerHTML,"Hotovo. Zbývá dotáhnout, lampa a knihy.","el")+'</div>'+
+  '<ol class="do"><li>Dotáhni všechny úhelníky do zadní stěny a zkontroluj, že knihovna nikde nehoupe.</li>'+
+  '<li>Čela v jedné rovině (dlouhá lať přes celou šířku), případné přesahy lehce zabrousit a zatřít.</li>'+
+  '<li>Hlavy vrutů na viditelných místech zakryj smrkovými čepy 10 mm, pokud chceš.</li>'+
+  '<li>Dveře otevři až na zarážku: nic nesmí drhnout, mezera ke knihovně ~5,5 cm.</li>'+
+  '<li>Čtecí lampu (samostatnou, s vlastním kabelem do prodlužky) přišroubuj na přední hranu police nad křeslem K10.</li>'+
+  '<li>Most nad dveřmi zatěžuj postupně a sleduj průhyb. Pak knihy.</li></ol>';
+});
+
+/* ---------- stock drawings ---------- */
+function stockOverview(S){
+  const sc=.12, gap=44; let x=10, y=20, rowH=0, maxW=1180, s='';
+  const list=S.slice().sort((a,b)=>LOC_ORDER.indexOf(a.loc)-LOC_ORDER.indexOf(b.loc)||b.L*b.Wd-a.L*a.Wd);
+  list.forEach(st=>{
+    const w=st.L*sc, h=st.Wd*sc;
+    if(x+w>maxW){x=10;y+=rowH+34;rowH=0;}
+    s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+(LOC[st.loc]||"#E4C896")+'" stroke="#6B5536" stroke-width="1"/>'+
+      T(x,y+h+14,st.id+" · "+nf(st.L)+"×"+nf(st.Wd),{fs:12});
+    const items=st.strips.flatMap(q=>q.items);
+    s+=T(x+4,y+13,items.join(" "),{fs:11,fill:"#2B2118"});
+    x+=w+gap; rowH=Math.max(rowH,h);
+  });
+  return svgw("0 0 "+(maxW+20)+" "+(y+rowH+30),s,"Desky z půdy v měřítku");
+}
+function cutPlans(){
+  const S=Object.values(DATA.stock).sort((a,b)=>LOC_ORDER.indexOf(a.loc)-LOC_ORDER.indexOf(b.loc)||a.id.localeCompare(b.id,"cs",{numeric:true}));
+  const sc=.27;
+  return S.map(s=>{
+    const pad=16, top=46, vw=s.L+2*pad, vh=s.Wd+top+pad, hid="h"+s.id.replace(/\W/g,"");
+    let g='<defs><pattern id="'+hid+'" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="18" stroke="#C9B38E" stroke-width="3"/></pattern></defs>'+
+      '<rect x="0" y="0" width="'+s.L+'" height="'+s.Wd+'" fill="#F3E6CF"/><rect x="0" y="0" width="'+s.L+'" height="'+s.Wd+'" fill="url(#'+hid+')"/><rect x="0" y="0" width="'+s.L+'" height="'+s.Wd+'" fill="none" stroke="#9C7A48" stroke-width="3"/>'+
+      '<text x="0" y="-14" font-family="'+LBL+'" font-size="44" fill="#65686C">léta ⟷</text>';
+    s.strips.forEach(st=>st.items.forEach(pid=>{const p=PBY[pid], w=p.cutL||p.L, h=p.cutB||p.B, x=p.off, y=st.y;
+      const fs=Math.min(58,Math.max(28,Math.min(h,w)*.24)), fd=Math.min(46,Math.max(26,Math.min(h,w)*.19));
+      g+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+(LOC[s.loc]||"#E4C896")+'" stroke="#6B5536" stroke-width="3"/>';
+      for(let k=1;k<4;k++)g+='<line x1="'+(x+8)+'" x2="'+(x+w-8)+'" y1="'+(y+h*k/4)+'" y2="'+(y+h*k/4)+'" stroke="#6B5536" stroke-opacity=".18" stroke-width="3"/>';
+      // délka (po letech) u horní hrany, šířka u levé hrany
+      g+='<text x="'+(x+w/2)+'" y="'+(y+fd+6)+'" text-anchor="middle" font-family="'+LBL+'" font-size="'+fd+'" fill="#2B2118" stroke="#FBFAF7" stroke-width="7" paint-order="stroke">'+nf(w)+'</text>';
+      const lx=x+fd*.9+6, ly=y+h/2;
+      g+='<text x="'+lx+'" y="'+ly+'" text-anchor="middle" font-family="'+LBL+'" font-size="'+fd+'" fill="#2B2118" stroke="#FBFAF7" stroke-width="7" paint-order="stroke" transform="rotate(-90 '+lx+' '+ly+')">'+nf(h)+'</text>';
+      g+='<text x="'+(x+w/2+fd*.4)+'" y="'+(y+h/2+fs*.55)+'" text-anchor="middle" font-family="'+LBL+'" font-size="'+fs+'" font-weight="600" fill="#2B2118">'+pid+'</text>';}));
+    return '<div class="sk"><div class="h"><b>'+esc(s.id)+'</b> '+nf(s.L)+' × '+nf(s.Wd)+(s.vady?' · '+esc(s.vady):'')+'</div><svg viewBox="'+(-pad)+' '+(-top)+' '+vw+' '+vh+'" width="'+Math.round(vw*sc)+'" height="'+Math.round(vh*sc)+'" role="img" aria-label="Plán řezu '+esc(s.id)+'">'+g+'</svg></div>';
+  }).join("");
+}
+
+/* ---------- navigation ---------- */
+const nav=document.getElementById("nav"), main=document.getElementById("step");
+let cur=0;
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+nav.innerHTML=STEPS.map((s,i)=>'<button type="button" data-i="'+i+'"><b>'+(i+1)+'</b>'+esc(s.short)+'</button>').join("");
+function show(i,focus){
+  cur=Math.max(0,Math.min(STEPS.length-1,i));
+  const s=STEPS[cur];
+  main.innerHTML='<div class="stephead"><div class="eyebrow">Krok '+(cur+1)+' z '+STEPS.length+'</div><h2>'+esc(s.title)+'</h2></div>'+s.render();
+  nav.querySelectorAll("button").forEach((b,k)=>{b.toggleAttribute("aria-current",k===cur);if(k===cur)b.setAttribute("aria-current","step");b.classList.toggle("done",k<cur);});
+  const b=nav.querySelector('[data-i="'+cur+'"]'); if(b&&b.scrollIntoView)b.scrollIntoView({block:"nearest",inline:"center"});
+  document.getElementById("prev").disabled=cur===0; document.getElementById("next").disabled=cur===STEPS.length-1;
+  document.getElementById("prev").textContent=cur>0?"← "+(cur)+". "+STEPS[cur-1].short:"← Předchozí";
+  document.getElementById("next").textContent=cur<STEPS.length-1?(cur+2)+". "+STEPS[cur+1].short+" →":"Další →";
+  if(location.hash!=="#krok-"+(cur+1))history.replaceState(null,"","#krok-"+(cur+1));
+  store("postup-krok",String(cur));
+  main.querySelectorAll("input[type=checkbox][data-k]").forEach(c=>{c.checked=store(c.dataset.k)==="1";c.closest("label").classList.toggle("on",c.checked);
+    c.addEventListener("change",()=>{store(c.dataset.k,c.checked?"1":"0");c.closest("label").classList.toggle("on",c.checked);});});
+  if(focus){window.scrollTo({top:0});main.focus({preventScroll:true});}
+}
+nav.addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b)show(+b.dataset.i,true);});
+document.getElementById("prev").addEventListener("click",()=>show(cur-1,true));
+document.getElementById("next").addEventListener("click",()=>show(cur+1,true));
+document.addEventListener("keydown",e=>{if(e.target.closest("input,textarea"))return;if(e.key==="ArrowRight")show(cur+1,true);if(e.key==="ArrowLeft")show(cur-1,true);});
+const m=/#krok-(\d+)/.exec(location.hash);
+show(m?+m[1]-1:(+store("postup-krok")||0),false);
+})();
+</script>

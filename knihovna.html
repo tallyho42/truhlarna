@@ -1,0 +1,716 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knihovna z půdy</title>
+<meta name="description" content="Návrh v4: smrková knihovna 25 cm hluboká, celá z třívrstvých desek z půdy, s plánem řezů a spoji">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#F2F2EF; --surface:#FFFFFF; --ink:#222326; --muted:#65686C; --line:#DAD8D2;
+  --accent:#9C6A31; --accent-soft:#F1E4D2; --leaf:#3D6A4C; --leaf-soft:#E2ECE4;
+  --ok:#2F6B40; --ok-soft:#E0EEE3; --warn-bg:#FFF2D9; --warn-ink:#6E4205; --chip:#E7E5E0;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --label:"Barlow Condensed", "Arial Narrow", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#141517; --surface:#1D1E21; --ink:#ECEAE5; --muted:#A4A39E; --line:#33353A;
+    --accent:#D9A566; --accent-soft:#3A2D1C; --leaf:#86B895; --leaf-soft:#1E2E23;
+    --ok:#8FCB9E; --ok-soft:#1D3024; --warn-bg:#3A2B12; --warn-ink:#F2CF8E; --chip:#2A2C30;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141517; --surface:#1D1E21; --ink:#ECEAE5; --muted:#A4A39E; --line:#33353A;
+  --accent:#D9A566; --accent-soft:#3A2D1C; --leaf:#86B895; --leaf-soft:#1E2E23;
+  --ok:#8FCB9E; --ok-soft:#1D3024; --warn-bg:#3A2B12; --warn-ink:#F2CF8E; --chip:#2A2C30;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:grid;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.45rem,3vw,1.9rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+section{display:grid;gap:20px}
+.head{display:grid;gap:12px}
+.lead{font-size:1.12rem;max-width:64ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:6px}
+.fact{border-top:2px solid var(--ink);padding-top:10px;display:grid;gap:2px}
+.fact b{font-family:var(--display);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.fact span{color:var(--muted);font-size:.93rem}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:14px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;background:var(--chip);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:.92rem;border:0;background:transparent;color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.88rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#elev{display:block;width:100%;min-width:640px;height:auto;border-radius:8px}
+#plan{display:block;width:100%;min-width:520px;height:auto}
+.summary{font-size:.95rem;display:grid;gap:6px}
+.twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
+@media (max-width:860px){.twocol{grid-template-columns:1fr}}
+.checks{display:grid;gap:10px}
+.check{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.check .ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ok-soft);color:var(--ok);font-weight:700;font-size:.9rem}
+.check.todo .ic{background:var(--warn-bg);color:var(--warn-ink)}
+.check b{display:block}
+.check span{font-size:.92rem;color:var(--muted)}
+.check .v{font-family:var(--label);font-size:1.15rem;font-weight:600;color:var(--ok);white-space:nowrap;font-variant-numeric:tabular-nums}
+.check.todo .v{color:var(--warn-ink)}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px 32px}
+.spec > div{display:grid;gap:6px;align-content:start}
+.spec p,.spec li{font-size:.97rem}
+ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--label);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right;white-space:nowrap}
+tr.total td{font-weight:600;border-bottom:2px solid var(--ink)}
+.chan{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.card .latin{font-style:italic;color:var(--muted);font-size:.9rem}
+.card p{font-size:.94rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--label);font-size:.85rem;letter-spacing:.03em;background:var(--leaf-soft);color:var(--leaf);padding:2px 8px;border-radius:4px}
+.tag.w{background:var(--accent-soft);color:var(--accent)}
+.bustcard{grid-template-columns:96px 1fr;gap:14px;align-items:start}
+.bustcard img{width:96px;height:auto;border-radius:6px;display:block}
+.note{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:14px 16px;font-size:.95rem}
+.sources{font-size:.85rem;color:var(--muted)}
+.sources a{color:inherit}
+#tip{position:fixed;z-index:20;max-width:340px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.86rem;line-height:1.45;box-shadow:0 6px 24px rgba(0,0,0,.18);pointer-events:none;display:grid;gap:4px}
+#tip[hidden]{display:none}
+#tip .id{font-family:var(--label);font-size:1.05rem;font-weight:600;letter-spacing:.02em}
+#tip .src{background:var(--ok-soft);color:var(--ok);border-radius:6px;padding:4px 7px}
+#tip .src.buy{background:var(--warn-bg);color:var(--warn-ink)}
+#tip .k{color:var(--muted)}
+.pc{cursor:pointer}
+.pc.hl .m{fill:#FFD08A;stroke:#D9480F;stroke-width:2.5px;vector-effect:non-scaling-stroke}
+tr.hl td{background:var(--accent-soft)}
+tr[data-id]{cursor:pointer}
+.stockgrp{display:grid;gap:12px}
+.stockgrp h3{display:flex;gap:10px;align-items:center}
+.stockgrp h3 i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.stocks{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px;max-width:100%}
+.sk .h{font-size:.9rem}
+.sk .h b{font-family:var(--label);font-size:1.05rem;letter-spacing:.02em}
+.sk .h span{color:var(--muted)}
+.sk svg{display:block;max-width:100%;height:auto}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--label);font-size:.9rem;background:var(--chip);border-radius:4px;padding:2px 8px}
+.joints{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px 32px}
+.joints > div{display:grid;gap:6px;align-content:start}
+.jfig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.jfig svg{display:block;width:100%;height:auto}
+ol.steps{margin:0;padding-left:1.3em;display:grid;gap:8px;max-width:78ch}
+.big{font-family:var(--display);font-size:1.4rem;font-weight:700}
+</style>
+
+<div class="wrap">
+
+<header class="head">
+  <div class="eyebrow">Návrh v4 · z desek z půdy</div>
+  <h1>Knihovna do pracovny</h1>
+  <p class="lead">Smrková knihovna pod strop, hluboká 25 cm, bez zadní stěny. Celá se dá postavit z třívrstvých desek z půdy, žádnou desku nemusíš kupovat. Za křeslem je vynechaných 6 přihrádek. Vznikne výklenek 73 × 118 cm a křeslo do něj šikmo zajede.</p>
+  <div class="facts" id="facts"></div>
+</header>
+
+<section id="navrh">
+  <div class="head">
+    <div class="eyebrow">Pohled na stěnu · najeď myší na desku</div>
+    <h2>Návrh</h2>
+  </div>
+  <div class="stage">
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Zobrazení" id="modes">
+        <button type="button" data-m="day" aria-pressed="false">Den</button>
+        <button type="button" data-m="parts" aria-pressed="true">Díly a odkud jsou</button>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="scroll"><svg id="elev" role="img" aria-label="Pohled na knihovnu zepředu, jednotlivé díly"></svg></div>
+    <div class="summary" id="summary"></div>
+  </div>
+</section>
+
+<section id="sklad">
+  <div class="head">
+    <div class="eyebrow">Sklad na půdě → díly</div>
+    <h2>Z čeho co uříznout</h2>
+    <p>Každá deska z půdy a díly, které se z ní uříznou. Nejdřív se podélně rozřízne na pruhy 250 mm (léta podél pruhu), pak se pruh zkrátí na díly. Prořez počítám 4 mm. Desky jsou seřazené podle toho, kde leží, ať je sneseš najednou. U horní hrany dílu je délka (po letech), u levé hrany šířka. Šrafovaně je odpad.</p>
+  </div>
+  <div id="stock" style="display:grid;gap:28px"></div>
+  <div class="stockgrp">
+    <h3>Nepoužité, zůstávají jako rezerva</h3>
+    <p class="muted" style="font-size:.93rem">Náhrada při chybném řezu a materiál na vzorky povrchu, takže rezervní desku kupovat nemusíš.</p>
+    <div class="chips" id="unused"></div>
+  </div>
+</section>
+
+<section id="spoje">
+  <div class="head">
+    <div class="eyebrow">Konstrukce</div>
+    <h2>Spoje, které zvládneš vrtačkou</h2>
+    <p>V každém křížení je jeden díl průběžný a druhý do něj jen dosedá. Proto stačí krátké díly a jdou nařezat z desek z půdy. Dlouhé jsou jen horní deska (slepená z C04 + C05), dvě desky po 2395 mm z D03 (příčka u výklenku a pravý bok, obě od spodní police až pod horní desku) a levý bok slepený ze 2 kusů. Staví se přímo na místě, odspodu nahoru, v pořadí čísel dílů. Stačí na to jen dva druhy spojů.</p>
+  </div>
+  <div class="jfig">
+    <svg viewBox="0 0 640 262" role="img" aria-label="Dva typy spojů: police přes příčku na vruty skrz, police mezi příčkami na podpěrkách">
+      <g fill="#E4C896" stroke="#9C7A48" stroke-width="1">
+        <rect x="140" y="10" width="24" height="96"/><rect x="30" y="106" width="250" height="24"/><rect x="140" y="130" width="24" height="100"/>
+        <rect x="468" y="10" width="24" height="220"/><rect x="350" y="106" width="118" height="24"/><rect x="492" y="106" width="118" height="24"/>
+      </g>
+      <g fill="none" stroke="#CDA56C" stroke-width="3"><line x1="30" y1="118" x2="280" y2="118"/><line x1="152" y1="10" x2="152" y2="106"/><line x1="152" y1="130" x2="152" y2="230"/><line x1="480" y1="10" x2="480" y2="230"/><line x1="350" y1="118" x2="468" y2="118"/><line x1="492" y1="118" x2="610" y2="118"/></g>
+      <rect x="147" y="115" width="10" height="44" rx="3" fill="#6B4A2E"/>
+      <rect x="147" y="77" width="10" height="44" rx="3" fill="none" stroke="#6B4A2E" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <rect x="455" y="131" width="13" height="6" rx="2" fill="#5A5D63"/><rect x="492" y="131" width="13" height="6" rx="2" fill="#5A5D63"/>
+      <g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-size="15" fill="var(--ink)">
+        <text x="155" y="252" text-anchor="middle">A · police přechází přes příčku</text>
+        <text x="480" y="252" text-anchor="middle">B · příčka prochází, police leží na podpěrkách</text>
+      </g>
+      <g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-size="13" fill="var(--muted)">
+        <text x="172" y="175">vrut 4,5 × 50 skrz, předvrtaný</text>
+        <text x="172" y="72">horní vrut posunutý do hloubky</text>
+        <text x="505" y="160">podpěrka 5 mm</text>
+        <text x="330" y="160">podpěrka 5 mm</text>
+      </g>
+    </svg>
+  </div>
+  <div class="joints">
+    <div>
+      <h3>A · Vruty skrz, bez měření <span class="muted" id="cA"></span></h3>
+      <ul>
+        <li>Jen tam, kde svislý díl stojí na polici nebo ji nese. Svislé díly jsou co nejdelší, takže takových míst je málo a většina polic leží na podpěrkách (B).</li>
+        <li>Postup: oba díly srovnej čely k lati, stáhni svěrkou a <b>předvrtej skrz průběžnou desku do čela druhého dílu najednou</b> (3 mm, v průběžné desce 5 mm a zahloubit). Díry tak nemůžou nesedět. Pak 2 vruty 4,5 × 50 mm, 60 a 190 mm od čela.</li>
+        <li>Když pod policí stojí další příčka (K08 nad K03), zespodu šroubovat nejde: horní příčku srovnej k lati a přichyť úhelníkem vzadu v přihrádce. Spodní rám K01 + K02 + K03 + K04 se šroubuje naležato ještě na zemi, pod K01 je pak sokl. Podrobně v <a href="postup.html">postup.html</a>.</li>
+        <li>Hlavy jsou na horní ploše police pod knihami nebo zespodu. Kdo chce, zakryje je smrkovým čepem 10 mm (zahloubit Forstnerem 10 mm, čep zalepit a zabrousit).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>B · Podpěrky 5 mm <span class="muted" id="cB"></span></h3>
+      <ul>
+        <li>Police mezi dvěma průběžnými díly jen leží na ocelových kolíčcích, jako v běžné skříni. Zasune se zepředu a nic se nemusí trefovat.</li>
+        <li>Díra 5 mm, hloubka 10 mm, 30 mm od přední i zadní hrany, těsně pod polici. Vrtat přes šablonu z odřezku s dírami a s dorazem na vrtáku.</li>
+        <li>Polici uříznout o 1 mm kratší, než je světlost. Proti vysunutí ji zezadu zajistí malý úhelník do zdi, schovaný za knihami.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Horní řada a kotvení</h3>
+      <ul>
+        <li>Pod stropem jsou jen 2 cm, shora se tam nedá šroubovat. Svislé díly horní řady se postaví dřív, horní deska se pak zasune zepředu a připevní zespodu úhelníky u zadní hrany (<span id="cT"></span> spojů).</li>
+        <li><b>Zadní stěna</b> je sádrokarton s dřevem za ním. Úhelníky se šroubují dlouhým vrutem (5 × 80–100 mm) přes sádrokarton až do dřeva. Minimum je úhelník nahoře na K02, lépe i na pravém boku a příčce nad křeslem.</li>
+        <li><b>Levý bok</b> se předem slepí z kusů do jedné desky (kolíky 8 mm + lepidlo, spoje ve výšce polic) a celý se přišroubuje přes obklad do dřevěné stěny. Police vlevo do něj dosedají na podpěrky, k obkladu nesahají.</li>
+        <li><b>Boční díl mostu</b> se šroubuje přímo do sádrokartonu pravé stěny (kovové hmoždinky do SDK, nejlépe do profilu), bez úhelníku. Dno mostu i horní deska do něj dosedají z boku na podpěrky.</li>
+        <li>Most: 2 skryté nosiče polic (ocelové trny s přírubou) přišroubované přes sádrokarton do dřeva za ním. Dno mostu má v zadní hraně 2 díry a nasune se na ně.</li>
+        <li>Do podlahy se nevrtá (topení). Sokl stojí volně, vyrovná se podložkami.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="head" style="margin-top:8px">
+    <h3>Postup</h3>
+  </div>
+  <ol class="steps">
+    <li><b>Řezání.</b> Okružní pilou podél rovného pravítka. Jako pravítko poslouží rovná deska z rezervy, třeba C01 (2 m), přitažená svěrkami. Kotouč jemný (48+ zubů), pohledovou stranou dolů, na řez lepicí páska proti vytrhávání. Nejdřív pruhy 250 mm, pak délky. Desky s dírami (A01, A08, A18) jsou přiřazené na díly se skrytou stranou: díry dej ke zdi, k obkladu nebo dolů na sokl.</li>
+    <li><b>Horní deska.</b> C04 a C05 (2500 × 160) slepit podélně: srovnat hrany, kolíky 8 mm po ~30 cm, lepidlo D3, stáhnout svěrkami přes proklady, aby se deska neprohnula. Po zaschnutí oříznout na šířku 250 mm tak, aby spára vyšla blíž k zadní hraně. Spára bude jen na horní straně u stropu a zespodu, kde ji skoro není vidět.</li>
+    <li><b>Levý bok.</b> Kusy levého boku srovnej na rovné ploše čely k lati, do spojů 3 kolíky 8 × 35 mm (kolíkovačka, díry do čel obou kusů, měřené od čela) + lepidlo a stáhni svěrkami přes celou délku. Díry desek jdou na stranu k obkladu. Spoje vycházejí přesně ve výšce polic, jejich konec je zakryje.</li>
+    <li><b>Vrtání děr.</b> Vyvrtat díry pro podpěrky (spoj A se vrtá až při montáži, společně).</li>
+    <li><b>Broušení a nátěr.</b> Vybrousit, natřít Ciranovou Hardwaxoil Natural White (rozmíchat ode dna, přecedit) pohledové strany ještě před montáží, v přihrádkách se to dělá špatně. Zadní hrany a strany ke zdi jen brousit.</li>
+    <li><b>Sokl</b> S1–S5 sešroubovat jako pevnou krabici pod sloupci 3–4 (boky přesně pod K02 a K04), vyrovnat podložkami.</li>
+    <li><b>Stavba po číslech.</b> Čísla dílů jdou odspodu nahoru, v pořadí montáže. Spoj A vrtáš a šroubuješ až na místě, když díl stojí srovnaný k lati. Každý díl hned přichytit úhelníkem ke zdi. Slepený levý bok přišroubovat přes obklad dřív, než do něj zasuneš police.</li>
+    <li><b>Most:</b> přišroubovat boční díl do pravé stěny, nosiče (trny) přes sádrokarton do dřeva, nasunout dno mostu (leží na pravém boku a na podpěrkách), pak svislé díly horní řady.</li>
+    <li><b>Horní deska</b> jako poslední díl, zasunout zepředu a přichytit úhelníky.</li>
+    <li><b>Dokončení:</b> dotáhnout úhelníky, čtecí lampa na polici nad křeslem, knihy.</li>
+  </ol>
+</section>
+
+<section id="kolize">
+  <div class="twocol">
+    <div class="head">
+      <div class="eyebrow">Dveře a křeslo</div>
+      <h2>Kontrola kolize</h2>
+      <p>Dveře se otáčí kolem pantu u zadní stěny a knihovně jsou nejblíž až v plně otevřené poloze, 147,6 cm od obkladu. Knihovna končí dřív, takže nekoliduje v žádné poloze dveří. Křeslo stojí šikmo a zadním rohem zajede do výklenku pod policí nad křeslem.</p>
+      <div class="checks" id="checks"></div>
+    </div>
+    <div class="stage">
+      <div class="scroll"><svg id="plan" role="img" aria-label="Půdorys: knihovna, šikmé křeslo a oblouk dveří"></svg></div>
+      <p class="muted" style="font-size:.88rem">Půdorys u podlahy. Nad výklenkem pro křeslo (od 118 cm) knihovna pokračuje.</p>
+    </div>
+  </div>
+</section>
+
+<section id="kusovnik">
+  <div class="head">
+    <div class="eyebrow">Kusovník</div>
+    <h2>Díly a odkud je vzít</h2>
+    <p class="muted">Rozměry v mm, hloubka 250, tloušťka 19. Délka je vždy po letech. Díly ke stěně jsou o 5 mm kratší kvůli vůli. Před řezáním změř skutečnou světlost na místě.</p>
+  </div>
+  <div class="scroll"><table id="cut"></table></div>
+</section>
+
+<section id="obsah">
+  <div class="head">
+    <div class="eyebrow">Obsah polic</div>
+    <h2>Busta, lampa a rostliny</h2>
+  </div>
+  <div class="cards">
+    <div class="card bustcard">
+      <img src="data:image/jpeg;base64,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" alt="Bronzová busta na dřevěném podstavci" width="300" height="421">
+      <div style="display:grid;gap:6px">
+        <h3>Busta</h3>
+        <div class="tags"><span class="tag w">2. sloupec zleva</span><span class="tag w">2 přihrádky nad sebou</span></div>
+        <p>Horní dvě přihrádky 2. sloupce jsou spojené, světlost 31,7 × 67,4 cm, hloubka 25 cm. Busta (40 × 20 cm) se vejde s rezervou.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Čtecí lampa</h3>
+      <div class="tags"><span class="tag w">police nad křeslem</span><span class="tag w">24 V</span></div>
+      <p>Samostatná lampa s vlastním kabelem do prodlužky (husí krk nebo klip) na přední hraně police nad křeslem (~118 cm). Svítí přes rameno do klína.</p>
+    </div>
+    <div class="card">
+      <h3>Potos</h3><div class="latin">Epipremnum aureum</div>
+      <div class="tags"><span class="tag">převislý</span><span class="tag">snese stín</span><span class="tag w">2 ks</span></div>
+      <p>Nahoře v 1. sloupci a ve dvojité přihrádce vpravo uprostřed. Zalévat, až proschne horní 2–3 cm substrátu.</p>
+    </div>
+    <div class="card">
+      <h3>Zamiokulkas</h3><div class="latin">Zamioculcas zamiifolia</div>
+      <div class="tags"><span class="tag">vzpřímený</span><span class="tag">snese stín</span><span class="tag w">1 ks, nad dveřmi</span></div>
+      <p>Nad dveře patří jen vzpřímená rostlina, převislé šlahouny by zachytávaly křídlo. Zalévat jednou za 2–4 týdny.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rozpocet">
+  <div class="head">
+    <div class="eyebrow">Rozpočet</div>
+    <h2>Co se kupuje</h2>
+    <p class="muted">Desky nic nestojí a práci děláš sám. Zbývá spojovací materiál, drobné nářadí a povrch. Knihovna je bez LED. Ceny jsou orientační.</p>
+  </div>
+  <div class="scroll"><table id="budget"></table></div>
+</section>
+
+</div>
+<div id="tip" hidden></div>
+
+<script>
+(function(){
+"use strict";
+const DATA=/*DATA*/{"geo": {"W": 2370, "H": 2593, "t": 19, "TOPGAP": 20, "PLINTH": 140, "D": 250, "N": 7, "K": 4, "R": 7, "sw": 316.85714285714283, "sh": 325.85714285714283, "KERF": 4, "XL": [0.0, 365.0, 730.0, 1065.857142857143, 1401.7142857142858, 1708.4285714285716, 2015.1428571428573, 2351.0], "CW": [346.0, 346.0, 316.85714285714283, 316.85714285714283, 287.71428571428567, 287.71428571428567, 316.85714285714283], "NOOK": 730}, "pattern": {"0,7": "H", "1,7": "H", "2,7": "H", "3,7": "H", "4,7": "H", "6,7": "H", "7,7": "V", "0,6": "V", "1,6": "V", "2,6": "V", "3,6": "V", "4,6": "V", "6,6": "H", "7,6": "V", "0,5": "V", "1,5": "V", "2,5": "V", "3,5": "H", "4,5": "V", "0,4": "V", "1,4": "H", "2,4": "V", "3,4": "H", "4,4": "V", "0,3": "V", "2,3": "V", "3,3": "V", "4,3": "V", "2,2": "V", "3,2": "H", "4,2": "V", "2,1": "V", "3,1": "V", "4,1": "V", "2,0": "H", "3,0": "H", "4,0": "H"}, "parts": [{"id": "K01", "o": "H", "name": "Spodní police (na soklu)", "L": 691, "B": 250, "kind": "3S19", "x0": 730.0, "x1": 1420.7142857142858, "z0": 140.0, "z1": 159.0, "src": "A18", "ends": ["nese K02 (spoj A: vruty skrz)", "nese K04 (spoj A: vruty skrz)"], "grain": "léta vodorovně (podél délky)", "hidden": true, "note": "Leží celou plochou na soklu. Těsný řez: z desky A18 zbývá jen 9 mm, řezat přesně.", "strip": 0, "off": 0, "srcinfo": {"id": "A18", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 360, "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K02", "o": "V", "name": "Svislá příčka", "L": 2395, "B": 250, "kind": "3S19", "x0": 730.0, "x1": 749.0, "z0": 159.0, "z1": 2554.0, "src": "D03", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.", "strip": 0, "off": 0, "srcinfo": {"id": "D03", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K03", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 159.0, "z1": 829.7142857142857, "src": "A19", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K07 (spoj A: 2 vruty shora skrz polici)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A19", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 420, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K04", "o": "V", "name": "Pravý bok hlavní části", "L": 2395, "B": 250, "kind": "3S19", "x0": 1401.7142857142858, "x1": 1420.7142857142858, "z0": 159.0, "z1": 2554.0, "src": "D03", "ends": ["stojí na K01 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.", "strip": 1, "off": 0, "srcinfo": {"id": "D03", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K05", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 484.85714285714283, "z1": 503.85714285714283, "src": "D08-2", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K03"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "D08-2", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K06", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 484.85714285714283, "z1": 503.85714285714283, "src": "D08-3", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K03", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "D08-3", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K07", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 829.7142857142857, "z1": 848.7142857142857, "src": "D08-2", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D08-2", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K08", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 848.7142857142857, "z1": 1519.4285714285713, "src": "B08", "ends": ["stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce)", "pod K14 (spoj A: 2 vruty shora skrz polici)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "B08", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 252, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K09", "o": "V", "name": "Levý bok (u obkladu)", "L": 1379, "B": 250, "kind": "3S19", "x0": 0.0, "x1": 19.0, "z0": 1174.5714285714284, "z1": 2554.0, "src": "D02 + A01", "ends": ["visí na vrutech do stěny; do boku dosedá K10 (podpěrky)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "Jedna deska slepená předem z 2 kusů (1044 + 335 mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na podpěrky.", "strip": null, "off": null, "srcinfo": null, "cutL": null, "cutB": null, "segments": ["K09.1", "K09.2"], "parent": null}, {"id": "K10", "o": "H", "name": "Police nad křeslem", "L": 711, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 730.0, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "B01", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "Na přední hraně je čtecí lampa (husí krk 24 V).", "strip": 0, "off": 0, "srcinfo": {"id": "B01", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 850, "Wd": 310, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K11", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "A04", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K08"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A04", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 350, "Wd": 320, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K12", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 1174.5714285714284, "z1": 1193.5714285714284, "src": "A05", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K08", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A05", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 440, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K13", "o": "H", "name": "Police", "L": 711, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 730.0, "z0": 1519.4285714285713, "z1": 1538.4285714285713, "src": "D01", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D01", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K14", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 1519.4285714285713, "z1": 1538.4285714285713, "src": "D08-3", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D08-3", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K15", "o": "V", "name": "Svislá příčka", "L": 1016, "B": 250, "kind": "3S19", "x0": 365.0, "x1": 384.0, "z0": 1538.4285714285713, "z1": 2554.0, "src": "D02", "ends": ["stojí na K13 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "D02", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K16", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 365.0, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "A03", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K15"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A03", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 365, "Wd": 314, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K17", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 384.0, "x1": 730.0, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "A09", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K15", "dosedá na 2 podpěrky 5 mm v boku dílu K02"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "A09", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K18", "o": "H", "name": "Police", "L": 653, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 1864.2857142857142, "z1": 1883.2857142857142, "src": "B02", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "B02", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K19", "o": "V", "name": "Svislá příčka", "L": 671, "B": 250, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 1883.2857142857142, "z1": 2554.0, "src": "D01", "ends": ["stojí na K18 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 1, "off": 0, "srcinfo": {"id": "D01", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K20", "o": "V", "name": "Boční díl mostu (u pravé stěny)", "L": 364, "B": 250, "kind": "3S19", "x0": 2351.0, "x1": 2370.0, "z0": 2209.142857142857, "z1": 2573.0, "src": "A09", "ends": ["visí na vrutech do stěny; do boku dosedá K24 (podpěrky)", "končí v rovině desky; do boku dosedá K26 (podpěrky)"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.", "strip": 0, "off": 0, "srcinfo": {"id": "A09", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K21", "o": "H", "name": "Police", "L": 346, "B": 250, "kind": "3S19", "x0": 19.0, "x1": 365.0, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A10", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K09", "dosedá na 2 podpěrky 5 mm v boku dílu K15"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K22", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 749.0, "x1": 1065.857142857143, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A06", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K02", "dosedá na 2 podpěrky 5 mm v boku dílu K19"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A06", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 442, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K23", "o": "H", "name": "Police", "L": 317, "B": 250, "kind": "3S19", "x0": 1084.857142857143, "x1": 1401.7142857142858, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "A02", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K19", "dosedá na 2 podpěrky 5 mm v boku dílu K04"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A02", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K24", "o": "H", "name": "Dno mostu nad dveřmi", "L": 930, "B": 250, "kind": "3S19", "x0": 1420.7142857142858, "x1": 2351.0, "z0": 2209.142857142857, "z1": 2228.142857142857, "src": "D08-1", "ends": ["dosedá na 2 podpěrky 5 mm v boku dílu K04", "dosedá na 2 podpěrky 5 mm v boku dílu K20"], "grain": "léta vodorovně (podél délky)", "hidden": false, "note": "Nese most nad dveřmi. Leží na pravém boku hlavní části, pravým koncem dosedá na podpěrky v bočním dílu mostu. Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).", "strip": 0, "off": 0, "srcinfo": {"id": "D08-1", "loc": "vlevo vzadu pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K25", "o": "V", "name": "Svislá příčka", "L": 326, "B": 250, "kind": "3S19", "x0": 2015.1428571428573, "x1": 2034.1428571428573, "z0": 2228.142857142857, "z1": 2554.0, "src": "B02", "ends": ["stojí na K24 (spoj A: 2 vruty zespodu skrz polici)", "pod K26 (úhelník vzadu)"], "grain": "léta svisle (podél výšky)", "hidden": false, "note": "", "strip": 0, "off": 657, "srcinfo": {"id": "B02", "loc": "vlevo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K26", "o": "H", "name": "Horní deska", "L": 2346, "B": 250, "kind": "3S19", "x0": 0.0, "x1": 2351.0, "z0": 2554.0, "z1": 2573.0, "src": "C04+C05", "ends": ["k obkladu, leží na K09 (úhelník zespodu)", "dosedá na 2 podpěrky 5 mm v boku dílu K20"], "grain": "léta vodorovně (podél délky)", "hidden": true, "note": "Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.", "strip": 0, "off": 0, "srcinfo": {"id": "C04+C05", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 320, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S1", "o": "S", "name": "Sokl: levý bok (pod K02)", "L": 140, "B": 220, "kind": "3S19", "x0": 730.0, "x1": 749.0, "z0": 0, "z1": 140, "src": "B10", "ends": ["stojí na podlaze (nevrtat, vyrovnat podložkami)", "nese K01, nad ním stojí K02"], "grain": "léta svisle", "hidden": false, "note": "Pohledový: je vidět z výklenku pro křeslo. Vpředu končí 30 mm za čelem K01. Vzadu u podlahy výřez 70 × 70 mm (u zdi) pro kabel prodlužky, lampičky a nabíječky.", "strip": 0, "off": 0, "srcinfo": {"id": "B10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S2", "o": "S", "name": "Sokl: pravý bok (pod K04)", "L": 140, "B": 220, "kind": "3S19", "x0": 1401.7142857142858, "x1": 1420.7142857142858, "z0": 0, "z1": 140, "src": "B10", "ends": ["stojí na podlaze (nevrtat, vyrovnat podložkami)", "nese K01, nad ním stojí K04"], "grain": "léta svisle", "hidden": false, "note": "Pohledový: je vidět ze strany od dveří. Vpředu končí 30 mm za čelem K01.", "strip": 0, "off": 144, "srcinfo": {"id": "B10", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S3", "o": "S", "name": "Sokl: střední podpěra (pod K03)", "L": 140, "B": 201, "kind": "3S19", "x0": 1065.857142857143, "x1": 1084.857142857143, "z0": 0, "z1": 140, "src": "C03", "ends": ["stojí na podlaze", "nese K01 pod příčkou K03"], "grain": "libovolně (skrytý díl, z C03 léta vodorovně)", "hidden": true, "note": "Skrytá za čelní lištou. Z C03 se řeže otočená (201 po letech × 140), u skrytého dílu na směru let nezáleží.", "strip": 0, "off": 1314, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": 201, "cutB": 140, "segments": null, "parent": null}, {"id": "S4", "o": "S", "name": "Sokl: zadní spojka", "L": 653, "B": 100, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 40, "z1": 140, "src": "C03", "ends": ["mezi boky soklu u zdi, nahoře", "do boků zevnitř úhelníky"], "grain": "léta vodorovně", "hidden": true, "note": "Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.", "strip": 0, "off": 0, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "S5", "o": "S", "name": "Sokl: čelní lišta", "L": 653, "B": 135, "kind": "3S19", "x0": 749.0, "x1": 1401.7142857142858, "z0": 5, "z1": 140, "src": "C03", "ends": ["mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou", "pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)"], "grain": "léta vodorovně", "hidden": false, "note": "Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.", "strip": 0, "off": 657, "srcinfo": {"id": "C03", "loc": "vpravo dole pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": null}, {"id": "K09.1", "o": "G", "name": "Levý bok (u obkladu), kus 1/2", "L": 1044, "B": 250, "kind": "3S19", "src": "D02", "ends": ["slepit s ostatními kusy do jedné desky", "kolíky 8 × 35 + lepidlo, spoj ve výšce police"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "D02", "loc": "vlevo pod střechou", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": ""}, "cutL": null, "cutB": null, "segments": null, "parent": "K09"}, {"id": "K09.2", "o": "G", "name": "Levý bok (u obkladu), kus 2/2", "L": 335, "B": 250, "kind": "3S19", "src": "A01", "ends": ["slepit s ostatními kusy do jedné desky", "kolíky 8 × 35 + lepidlo, spoj ve výšce police"], "grain": "léta svisle (podél výšky)", "hidden": true, "note": "", "strip": 0, "off": 0, "srcinfo": {"id": "A01", "loc": "vpravo v šuplících", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 384, "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, "cutL": null, "cutB": null, "segments": null, "parent": "K09"}], "stock": {"C04+C05": {"id": "C04+C05", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 320, "vady": "", "loc": "vpravo dole pod střechou", "note": "slepit C04 a C05 podélně (lepidlo D3 + kolíky 8 mm po ~300 mm, svěrky), pak oříznout na 250", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K26"]}]}, "A01": {"id": "A01", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 384, "vady": "vyvrtané díry z jedné strany, druhá strana ok", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K09.2"]}]}, "A18": {"id": "A18", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 360, "vady": "vyvrtané díry z jedné strany, druhá strana ok", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K01"]}]}, "D01": {"id": "D01", "typ": "3vrstvá deska", "th": 19, "L": 860, "Wd": 650, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K13"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K19"]}]}, "D02": {"id": "D02", "typ": "3vrstvá deska", "th": 19, "L": 1285, "Wd": 580, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K09.1"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K15"]}]}, "D03": {"id": "D03", "typ": "3vrstvá deska", "th": 19, "L": 2400, "Wd": 600, "vady": "", "loc": "vlevo pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K02"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K04"]}]}, "A02": {"id": "A02", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 401, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K23"]}]}, "A03": {"id": "A03", "typ": "3vrstvá deska", "th": 19, "L": 365, "Wd": 314, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K16"]}]}, "A04": {"id": "A04", "typ": "3vrstvá deska", "th": 19, "L": 350, "Wd": 320, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K11"]}]}, "A05": {"id": "A05", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 440, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K12"]}]}, "A06": {"id": "A06", "typ": "3vrstvá deska", "th": 19, "L": 360, "Wd": 442, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K22"]}]}, "A09": {"id": "A09", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K20"]}, {"idx": 1, "y": 254, "w": 250, "items": ["K17"]}]}, "A10": {"id": "A10", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 520, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K21"]}]}, "A19": {"id": "A19", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 420, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K03"]}]}, "B01": {"id": "B01", "typ": "3vrstvá deska", "th": 19, "L": 850, "Wd": 310, "vady": "", "loc": "vlevo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K10"]}]}, "B02": {"id": "B02", "typ": "3vrstvá deska", "th": 19, "L": 1005, "Wd": 401, "vady": "", "loc": "vlevo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K18", "K25"]}]}, "B08": {"id": "B08", "typ": "3vrstvá deska", "th": 19, "L": 700, "Wd": 252, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K08"]}]}, "D08-1": {"id": "D08-1", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K24"]}]}, "D08-2": {"id": "D08-2", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K07", "K05"]}]}, "D08-3": {"id": "D08-3", "typ": "3vrstvá deska", "th": 19, "L": 1000, "Wd": 250, "vady": "", "loc": "vlevo vzadu pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 250, "items": ["K14", "K06"]}]}, "B10": {"id": "B10", "typ": "3vrstvá deska", "th": 19, "L": 491, "Wd": 273, "vady": "", "loc": "vpravo v šuplících", "note": "", "strips": [{"idx": 0, "y": 0, "w": 220, "items": ["S1", "S2"]}]}, "C03": {"id": "C03", "typ": "3vrstvá deska", "th": 19, "L": 2500, "Wd": 185, "vady": "", "loc": "vpravo dole pod střechou", "note": "", "strips": [{"idx": 0, "y": 0, "w": 185, "items": ["S4", "S5", "S3"]}]}}, "unused": [{"id": "D04", "typ": "spárovka", "th": 22, "L": 2530, "Wd": 630, "loc": "vlevo pod střechou", "vady": ""}, {"id": "D05", "typ": "spárovka", "th": 28, "L": 2295, "Wd": 600, "loc": "vlevo pod střechou", "vady": ""}, {"id": "D06", "typ": "spárovka", "th": 28, "L": 1095, "Wd": 374, "loc": "vlevo pod střechou", "vady": ""}, {"id": "A07", "typ": "3vrstvá deska", "th": 19, "L": 363, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A08", "typ": "3vrstvá deska", "th": 19, "L": 362, "Wd": 382, "loc": "vpravo v šuplících", "vady": "vyvrtané díry z jedné strany, druhá strana ok"}, {"id": "A11", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 507, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A12", "typ": "3vrstvá deska", "th": 19, "L": 493, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A13", "typ": "3vrstvá deska", "th": 19, "L": 493, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A14", "typ": "3vrstvá deska", "th": 19, "L": 495, "Wd": 366, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A15", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 401, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A16", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "A17", "typ": "3vrstvá deska", "th": 19, "L": 531, "Wd": 400, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B03", "typ": "3vrstvá deska", "th": 19, "L": 264, "Wd": 411, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B04", "typ": "3vrstvá deska", "th": 19, "L": 411, "Wd": 420, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B05", "typ": "3vrstvá deska", "th": 19, "L": 515, "Wd": 367, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B06", "typ": "3vrstvá deska", "th": 19, "L": 520, "Wd": 366, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B07", "typ": "3vrstvá deska", "th": 19, "L": 400, "Wd": 358, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B09", "typ": "3vrstvá deska", "th": 19, "L": 551, "Wd": 274, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B11", "typ": "3vrstvá deska", "th": 19, "L": 497, "Wd": 581, "loc": "vpravo v šuplících", "vady": ""}, {"id": "B12", "typ": "3vrstvá deska", "th": 19, "L": 637, "Wd": 325, "loc": "vpravo v šuplících", "vady": ""}, {"id": "C01", "typ": "3vrstvá deska", "th": 19, "L": 304, "Wd": 2040, "loc": "vpravo dole pod střechou", "vady": ""}, {"id": "D07-1", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-2", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-3", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-4", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-5", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-6", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-7", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-8", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}, {"id": "D07-9", "typ": "spárovka", "th": 18, "L": 800, "Wd": 250, "loc": "vlevo vzadu pod střechou", "vady": ""}], "buy": [], "counts": {"dowels": 16, "dowel_joints": 8, "pins": 62, "pin_ends": 31, "angle_top": 6, "verts": 9, "parts": 26, "sokl": 5}}/*END*/;
+const NS="http://www.w3.org/2000/svg";
+const G=DATA.geo;
+const W=G.W/10, H=G.H/10, t=G.t/10, TOPGAP=G.TOPGAP/10, PLINTH=G.PLINTH/10, D=G.D/10, N=G.N, K=G.K, R=G.R;
+const DOOR_FREE=147.6, ABOVE_DOOR=47.4, HINGE_D=12;
+const DOOR_TOP=H-ABOVE_DOOR, HTOP=H-TOPGAP;
+const sw=G.sw/10, sh=G.sh/10;
+const xl=j=>G.XL[j]/10, zb=k=>PLINTH+k*(sh+t);
+const cx0=c=>xl(c-1)+t, cx1=c=>xl(c), rz0=r=>zb(r-1)+t, rz1=r=>zb(r);
+const MAIN_R=xl(K)+t, BRIDGE_Z=zb(6), NOOK_R=xl(2), NOOK_TOP=zb(3);
+const LEAF_PIVOT=W-2, LEAF=LEAF_PIVOT-DOOR_FREE;
+/* ---- grid ---- */
+const exists=(c,r)=>c>=1&&r>=1&&r<=R&&(c<=K?!(c<=2&&r<=3):(c<=N&&r===R));
+const OMIT_H={"6,2":1}, OMIT_V={"1,4":1,"3,5":1,"5,7":1};
+const Hp=(k,c)=>{ if(!exists(c,k)&&!exists(c,k+1))return false; if(c>K&&k<6)return false; return !OMIT_H[k+","+c]; };
+const Vp=(j,r)=>{ if(!exists(j,r)&&!exists(j+1,r))return false; return !OMIT_V[j+","+r]; };
+const id=(c,r)=>c+","+r, par={};
+const find=a=>par[a]===a?a:(par[a]=find(par[a]));
+const uni=(a,b)=>{par[find(a)]=find(b);};
+for(let c=1;c<=N;c++)for(let r=1;r<=R;r++)if(exists(c,r))par[id(c,r)]=id(c,r);
+for(let c=1;c<=N;c++)for(let r=1;r<=R;r++){ if(!exists(c,r))continue;
+  if(exists(c+1,r)&&!Vp(c,r))uni(id(c,r),id(c+1,r));
+  if(exists(c,r+1)&&!Hp(r,c))uni(id(c,r),id(c,r+1)); }
+const groups={};
+for(const k in par){const g=find(k);const [c,r]=k.split(",").map(Number);(groups[g]=groups[g]||[]).push([c,r]);}
+const cells=Object.values(groups).map(sq=>{const cs=sq.map(q=>q[0]),rs=sq.map(q=>q[1]);const c0=Math.min(...cs),c1=Math.max(...cs),r0=Math.min(...rs),r1=Math.max(...rs);
+  return {c0,c1,r0,r1,x:cx0(c0),w:cx1(c1)-cx0(c0),z:rz0(r0),h:rz1(r1)-rz0(r0),sq:sq.map(q=>q.join(","))};});
+const TYPE={"2,6":"bust","1,7":"potos","3,5":"potos","7,7":"zamio"};
+cells.forEach(c=>{c.type="books";for(const k in TYPE)if(c.sq.includes(k))c.type=TYPE[k];});
+cells.sort((a,b)=>a.r0-b.r0||a.c0-b.c0);
+/* ---- parts ---- */
+const PARTS=DATA.parts, PBY={}; PARTS.forEach(p=>PBY[p.id]=p);
+const locOf=p=>p.srcinfo?p.srcinfo.loc:(p.segments&&PBY[p.segments[0]].srcinfo?PBY[p.segments[0]].srcinfo.loc:"");
+const related=pid=>{const p=PBY[pid];if(!p)return[pid];if(p.segments)return[pid].concat(p.segments);if(p.parent)return[pid,p.parent];return[pid];};
+const LOC_ORDER=["vlevo pod střechou","vlevo dole pod střechou","vlevo vzadu pod střechou","vpravo dole pod střechou","vpravo v šuplících"];
+const LOC={"vlevo pod střechou":"#E09A4C","vlevo dole pod střechou":"#7FA6D0","vlevo vzadu pod střechou":"#C48BB8","vpravo dole pod střechou":"#C7BC62","vpravo v šuplících":"#86BD86"};
+const BUYC="#9DB7D5";
+
+const f1=v=>(Math.round(v*10)/10).toLocaleString("cs-CZ",{minimumFractionDigits:1,maximumFractionDigits:1});
+const r0=v=>Math.round(v);
+const nf=v=>Math.round(v).toLocaleString("cs-CZ");
+const kc=v=>(Math.round(v/100)*100).toLocaleString("cs-CZ")+" Kč";
+function rng(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let q=Math.imul(a^a>>>15,1|a);q=q+Math.imul(q^q>>>7,61|q)^q;return((q^q>>>14)>>>0)/4294967296;};}
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(parent,x,y,s,attrs){const e=el("text",Object.assign({x:x,y:y},attrs||{}),parent);e.textContent=s;return e;}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const BOOK=["#1F2A44","#2D5D7B","#B3362C","#E9E5DA","#1C1C1E","#3A7D7C","#D2A142","#5E4A78","#8C2F39","#F3F0E7","#4A6FA5","#2F3033","#B85C38","#557A5C","#C8C2B4","#0F4C5C","#D8D2C2"];
+const SPRUCE="#E4C896", SPRUCE_MID="#CDA56C", WALL="#EFEDE8";
+let MODE="parts";
+
+/* ---------- ELEVATION ---------- */
+function drawElev(){
+  const svg=document.getElementById("elev"); svg.innerHTML="";
+  const Y=z=>H-z, N_=MODE==="night", P_=MODE==="parts";
+  const vx=-40, vy=-24, vw=W+40+30, vh=H+24+34;
+  svg.setAttribute("viewBox",vx+" "+vy+" "+vw+" "+vh);
+  const ink=N_?"#D8D3C8":"#43454A", faint=N_?"#9A958C":"#7E8084", halo=N_?"#0F1013":"#F4F3EF";
+  const defs=el("defs",{},svg);
+  defs.innerHTML=
+   '<linearGradient id="mcell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset=".6" stop-color="#2a2a2a"/><stop offset="1" stop-color="#555"/></linearGradient>'+
+   '<radialGradient id="mlamp"><stop offset="0" stop-color="#000"/><stop offset=".6" stop-color="#000" stop-opacity=".6"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'+
+   '<linearGradient id="warm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFBE62" stop-opacity=".45"/><stop offset="1" stop-color="#FFA640" stop-opacity=".04"/></linearGradient>'+
+   '<linearGradient id="bustg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB870" stop-opacity=".55"/><stop offset="1" stop-color="#FF9A4A" stop-opacity=".05"/></linearGradient>'+
+   '<radialGradient id="lampglow"><stop offset="0" stop-color="#FFC878" stop-opacity=".5"/><stop offset="1" stop-color="#FFC878" stop-opacity="0"/></radialGradient>'+
+   '<linearGradient id="bronze" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3B2718"/><stop offset=".55" stop-color="#6E4A2E"/><stop offset="1" stop-color="#3F2A1A"/></linearGradient>'+
+   '<filter id="blur" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation=".7"/></filter>'+
+   '<pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="'+(N_?"#555":"#B9B5AD")+'" stroke-width="1"/></pattern>';
+  el("rect",{x:vx,y:vy,width:vw,height:vh,fill:N_?"#0F1013":"#F4F3EF"},svg);
+  const sc=el("g",{},svg);
+  el("rect",{x:-14,y:-5,width:W+20,height:5,fill:"#E6E4DF"},sc);
+  el("rect",{x:0,y:0,width:W,height:H,fill:WALL},sc);
+  el("rect",{x:-14,y:0,width:14,height:H,fill:"#D9B887"},sc);
+  const gr=rng(7);for(let i=0;i<9;i++){const x=-13+gr()*12;el("line",{x1:x,y1:0,x2:x+gr()*1.2-.6,y2:H,stroke:"#C39E6C","stroke-width":.25},sc);}
+  for(let i=0;i<16;i++)el("circle",{cx:-13+gr()*12,cy:gr()*H,r:.35+gr()*.4,fill:"#A98253"},sc);
+  el("rect",{x:W,y:-5,width:6,height:H+5,fill:"url(#hatch)"},sc);
+  el("rect",{x:-14,y:H,width:W+20,height:5,fill:"#D9CCB5"},sc);
+  el("rect",{x:MAIN_R,y:Y(BRIDGE_Z),width:W-MAIN_R,height:BRIDGE_Z,fill:"#FF6B5B","fill-opacity":N_?.05:.07},sc);
+  el("rect",{x:DOOR_FREE,y:Y(DOOR_TOP),width:LEAF,height:DOOR_TOP-.5,fill:"#2F3033","fill-opacity":N_?.3:.06,stroke:N_?"#8A8C90":"#55575C","stroke-width":.4,"stroke-dasharray":"2.5 1.5"},sc);
+  el("rect",{x:DOOR_FREE+5,y:Y(106),width:1.4,height:6,fill:N_?"#8A8C90":"#55575C"},sc);
+  // plinth recess shadow (cols 3-4)
+  el("rect",{x:NOOK_R,y:Y(PLINTH),width:MAIN_R-NOOK_R,height:PLINTH,fill:"#BE9A68"},sc);
+  const plants=[];
+  if(!P_)cells.forEach((c,i)=>{
+    if(c.type==="books")drawBooks(sc,c,i*37+5,Y,{});
+    else if(c.type==="bust")drawBust(sc,c,Y);
+    else{const side=(c.w>40||(c.type==="zamio"&&c.h<40))?"left":"none";drawBooks(sc,c,i*37+9,Y,{side:side});plants.push(c);}
+  });
+  // structure: one element per part
+  const struct=el("g",{},sc);
+  PARTS.forEach(p=>{
+    if((p.o==="S"&&p.hidden)||p.o==="G")return;
+    const x0=p.x0/10,x1=p.x1/10,z0=p.z0/10,z1=p.z1/10,w=x1-x0,h=z1-z0;
+    const g=el("g",{class:"pc","data-id":p.id},struct);
+    const pad=1.3; // wider hit area for thin boards
+    el("rect",p.o==="H"?{x:x0,y:Y(z1)-pad,width:w,height:h+2*pad,fill:"transparent"}:{x:x0-pad,y:Y(z1),width:w+2*pad,height:h,fill:"transparent"},g);
+    let fill=p.src?SPRUCE:BUYC;
+    if(P_&&p.src)fill=LOC[locOf(p)]||SPRUCE;
+    if(!P_&&p.id==="S5")fill="#D2B283";
+    el("rect",{class:"m",x:x0,y:Y(z1),width:w,height:h,fill:fill,stroke:P_?"#6B5536":"#A8834F","stroke-width":P_?.25:.12},g);
+    if(!P_&&p.id!=="S5"){
+      if(p.o==="H")el("rect",{x:x0+.3,y:Y(z1)+.65,width:w-.6,height:.6,fill:SPRUCE_MID,"pointer-events":"none"},g);
+      else el("rect",{x:x0+.65,y:Y(z1)+.3,width:.6,height:h-.6,fill:SPRUCE_MID,"pointer-events":"none"},g);
+    }
+  });
+  PARTS.filter(p=>p.segments).forEach(p=>{let z=p.z0;p.segments.slice(0,-1).forEach(sid=>{z+=PBY[sid].L;el("line",{x1:p.x0/10,x2:p.x1/10,y1:Y(z/10),y2:Y(z/10),stroke:"#6B5536","stroke-width":.25,"stroke-dasharray":".8 .5","pointer-events":"none"},struct);});});
+  if(!P_)plants.forEach((c,i)=>drawPlant(sc,c,c.type,Y,i));
+  if(N_){
+    const mask=el("mask",{id:"nm",maskUnits:"userSpaceOnUse",x:vx,y:vy,width:vw,height:vh},defs);
+    el("rect",{x:vx,y:vy,width:vw,height:vh,fill:"#fff"},mask);
+    cells.forEach(c=>el("rect",{x:c.x,y:Y(c.z+c.h),width:c.w,height:c.h+.3,fill:"url(#mcell)"},mask));
+    el("ellipse",{cx:lampPos().sx,cy:Y(128),rx:34,ry:30,fill:"url(#mlamp)"},mask);
+    el("rect",{x:vx,y:vy,width:vw,height:vh,fill:"#07080B","fill-opacity":.85,mask:"url(#nm)","pointer-events":"none"},svg);
+    const glow=el("g",{"pointer-events":"none"},svg);
+    cells.forEach(c=>{el("rect",{x:c.x,y:Y(c.z+c.h),width:c.w,height:c.h,fill:c.type==="bust"?"url(#bustg)":"url(#warm)"},glow);
+      el("rect",{x:c.x+1,y:Y(c.z+c.h)+.05,width:c.w-2,height:.6,fill:"#FFF1CF",filter:"url(#blur)"},glow);});
+    el("ellipse",{cx:lampPos().sx,cy:Y(120),rx:22,ry:20,fill:"url(#lampglow)"},glow);
+  }
+  drawChair(svg,Y,N_);
+  if(!P_)drawLamp(svg,Y,N_);
+  // part labels
+  if(P_){
+    const lg=el("g",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":3.9,fill:"#2B2118",stroke:"#F4F3EF","stroke-width":.9,"paint-order":"stroke","pointer-events":"none","text-anchor":"middle"},svg);
+    PARTS.forEach(p=>{
+      if((p.o==="S"&&p.hidden)||p.o==="G")return;
+      const x0=p.x0/10,x1=p.x1/10,z0=p.z0/10,z1=p.z1/10;
+      const s=p.id+" · "+(p.src?p.src.replace(/-\d+$/,""):"koupit");
+      if(p.o==="V"){const cx=(x0+x1)/2, cy=Y((z0+z1)/2);txt(lg,cx,cy+1.1,s,{transform:"rotate(-90 "+cx+" "+cy+")"});}
+      else txt(lg,(x0+x1)/2,Y(z1)-1.2+(p.id==="S5"?8:0),s);
+    });
+  }
+  // dimensions
+  const dim=el("g",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":4.4,fill:ink,"pointer-events":"none"},svg);
+  const L=(x1,y1,x2,y2)=>el("line",{x1,y1,x2,y2,stroke:ink,"stroke-width":.3},dim);
+  function hdim(x0,x1,y,label){L(x0,y,x1,y);L(x0,y-2,x0,y+2);L(x1,y-2,x1,y+2);txt(dim,(x0+x1)/2,y-1.5,label,{"text-anchor":"middle"});}
+  function vdim(x,z0,z1,label,side){L(x,Y(z0),x,Y(z1));L(x-2,Y(z0),x+2,Y(z0));L(x-2,Y(z1),x+2,Y(z1));const tx=x+(side==="r"?2.4:-1.8),ty=(Y(z0)+Y(z1))/2;txt(dim,tx,ty,label,{"text-anchor":"middle",transform:"rotate(-90 "+tx+" "+ty+")",stroke:halo,"stroke-width":1.1,"paint-order":"stroke"});}
+  hdim(0,W,-13,"stěna "+f1(W)+" cm");
+  hdim(0,MAIN_R,H+13,"knihovna "+f1(MAIN_R));
+  hdim(MAIN_R,DOOR_FREE,H+13,f1(DOOR_FREE-MAIN_R));
+  hdim(DOOR_FREE,W,H+13,"otevřené křídlo");
+  hdim(0,DOOR_FREE,H+24,"od obkladu k otevřeným dveřím "+f1(DOOR_FREE)+" (změřeno)");
+  vdim(-22,0,H,"strop "+f1(H));
+  vdim(-31,0,DOOR_TOP,"horní hrana dveří "+f1(DOOR_TOP));
+  vdim(W-6,DOOR_TOP,BRIDGE_Z,"",'r');
+  const lab=el("g",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":4.1,fill:faint,stroke:halo,"stroke-width":1.1,"paint-order":"stroke","stroke-linejoin":"round","pointer-events":"none"},svg);
+  txt(lab,W-9.5,Y((DOOR_TOP+BRIDGE_Z)/2)+1.4,"rezerva "+f1(BRIDGE_Z-DOOR_TOP),{"text-anchor":"end",fill:ink});
+  el("line",{x1:MAIN_R,y1:Y(DOOR_TOP),x2:W,y2:Y(DOOR_TOP),stroke:faint,"stroke-width":.3,"stroke-dasharray":"1 1","pointer-events":"none"},svg);
+  txt(lab,(DOOR_FREE+W)/2,Y(DOOR_TOP/2),"otevřené křídlo",{"text-anchor":"middle"});
+  txt(lab,(DOOR_FREE+W)/2,Y(DOOR_TOP/2)+5.2,"sem nic nezasahuje",{"text-anchor":"middle"});
+  txt(lab,W+10,Y(H/2),"pravá stěna",{"text-anchor":"middle",transform:"rotate(90 "+(W+10)+" "+Y(H/2)+")"});
+  txt(lab,-7,Y(H/2),"dřevěný obklad",{"text-anchor":"middle",fill:N_?"#9A8163":"#8A6A42",transform:"rotate(-90 -7 "+Y(H/2)+")"});
+  txt(lab,MAIN_R+3,Y(HTOP)-1.6,"mezera ke stropu "+f1(TOPGAP),{"text-anchor":"start"});
+  if(!P_){const bc=cells.find(c=>c.type==="bust");txt(lab,bc.x+bc.w/2,Y(bc.z+bc.h)+5,"busta",{"text-anchor":"middle",fill:N_?"#E8D3B4":"#6B4A2E"});}
+}
+
+function drawBooks(parent,cell,seed,Y,opt){
+  const R_=rng(seed*97+11), g=el("g",{"pointer-events":"none"},parent);
+  const x0=cell.x+.5, x1=cell.x+cell.w-.5, zb0=cell.z, maxH=Math.min(cell.h-2.2,30);
+  let from=x0, to=x1;
+  if(opt.side==="left")to=cell.x+cell.w*.46;
+  if(opt.side==="none"){return;}
+  if(R_()<.3&&to-from>22){const sw_=13+R_()*5, cnt=3+Math.floor(R_()*4);let z=zb0;const atRight=R_()<.5;
+    for(let i=0;i<cnt;i++){const th=2+R_()*1.5,w=sw_-R_()*2.5;const xx=atRight?to-w:from;el("rect",{x:xx,y:Y(z+th),width:w,height:th-.15,fill:BOOK[Math.floor(R_()*BOOK.length)]},g);z+=th;}
+    if(atRight)to-=sw_+1;else from+=sw_+1;}
+  let x=from;
+  while(x<to-1.6){
+    const w=1.8+R_()*2.6; let h=(cell.h>40?19+R_()*9:17+R_()*4.5); h=Math.min(h,maxH);
+    if(x+w>to)break;
+    el("rect",{x:x,y:Y(zb0+h),width:w,height:h,fill:BOOK[Math.floor(R_()*BOOK.length)]},g);
+    if(R_()<.35)el("rect",{x:x,y:Y(zb0+h*.78),width:w,height:.5,fill:"#fff","fill-opacity":.35},g);
+    x+=w+.08;
+  }
+  if(to-x>1.5){const lw=to-x;const lean=Math.min(lw,4);el("rect",{x:x,y:Y(zb0+17),width:lean,height:17,fill:BOOK[Math.floor(R_()*BOOK.length)],transform:"rotate(8 "+x+" "+Y(zb0)+")"},g);}
+}
+
+function drawPlant(parent,cell,type,Y,idx){
+  const g=el("g",{"pointer-events":"none"},parent), R_=rng(idx*13+5);
+  const wide=cell.w>40, big=cell.h>40;
+  const cx=(wide||(type==="zamio"&&!big))?cell.x+cell.w*.73:cell.x+cell.w/2, zb0=cell.z;
+  const potW=type==="zamio"?(big?17:11):13, potH=type==="zamio"?(big?15:9):11;
+  const potC=["#E7E2D8","#2A2B2E","#B8724F","#6F7A6C"][idx%4];
+  const leaf=(x,z,rx,ry,rot,c)=>el("ellipse",{cx:x,cy:Y(z),rx:rx,ry:ry,transform:"rotate("+rot+" "+x+" "+Y(z)+")",fill:c},g);
+  const potTop=zb0+potH;
+  if(type==="potos"){
+    const col=["#4E7F45","#D9DDC8","#3F6B3C","#6A9A4E"];
+    for(let v=0;v<3;v++){
+      const dir=v===0?-1:1, len=(v===1?48:32)+R_()*14;
+      const exX=cell.x+(dir<0?2+R_()*3:cell.w-2-R_()*3), sx=cx+(v-1)*4;
+      el("path",{d:"M"+sx+" "+Y(potTop)+" Q"+exX+" "+Y(potTop+2)+" "+exX+" "+Y(zb0+1)+" T"+(exX+dir*R_()*2)+" "+Y(zb0-len),fill:"none",stroke:"#4C6E3A","stroke-width":.35},g);
+      for(let k=0;k<7;k++){const q=k/7;const z=zb0-len*q;const x=exX+dir*(Math.sin(q*6+v)*1.6);leaf(x+(k%2?1.4:-1.4),z,1.9,1.3,(k%2?30:-30),col[k%4]);}
+    }
+    for(let k=0;k<10;k++)leaf(cx-7+R_()*14,potTop+1+R_()*6,2.6,1.7,R_()*80-40,col[k%4]);
+  }else{
+    const n=big?8:5;
+    for(let s=0;s<n;s++){const a=-30+s*(60/(n-1))+R_()*4, len=Math.min(cell.h-potH-3,(big?30:13)+R_()*(big?14:6));
+      const ex=cx+Math.sin(a*Math.PI/180)*len, ez=potTop+Math.cos(a*Math.PI/180)*len;
+      el("line",{x1:cx,y1:Y(potTop),x2:ex,y2:Y(ez),stroke:"#2F5A33","stroke-width":.4},g);
+      const m=big?7:4;for(let k=1;k<m;k++){const q=k/m;const x=cx+(ex-cx)*q,z=potTop+(ez-potTop)*q;const s2=big?2:1.5;leaf(x-1.3,z,s2,s2*.5,a-35,"#2F6A36");leaf(x+1.3,z,s2,s2*.5,a+35,"#3B7A40");}}
+  }
+  el("path",{d:"M"+(cx-potW/2)+" "+Y(potTop)+" L"+(cx+potW/2)+" "+Y(potTop)+" L"+(cx+potW/2-1.6)+" "+Y(zb0)+" L"+(cx-potW/2+1.6)+" "+Y(zb0)+"Z",fill:potC,stroke:"rgba(0,0,0,.18)","stroke-width":.25},g);
+}
+
+function drawBust(parent,cell,Y){
+  const g=el("g",{"pointer-events":"none"},parent), cx=cell.x+cell.w/2, z=cell.z;
+  el("rect",{x:cx-6,y:Y(z+7.5),width:12,height:7.5,fill:"#8A5530"},g);
+  el("rect",{x:cx-6,y:Y(z+7.5),width:12,height:1,fill:"#A56A3E"},g);
+  el("rect",{x:cx+.4,y:Y(z+12.2),width:.7,height:4.8,fill:"#C9CED4"},g);
+  const P=[[-2,28],[2,27.5],[3,24],[5,20],[7.5,15],[8.8,9],[7,3],[3,0],[-2,1],[-3,6],[-4.5,9],[-7,11],[-8.5,15],[-9,19],[-7,23],[-6,26]];
+  const base=z+11.8;
+  el("path",{d:"M"+P.map(p=>(cx+p[0]+0.5)+" "+Y(base+p[1])).join(" L")+"Z",fill:"url(#bronze)",stroke:"#2A1B10","stroke-width":.25,"stroke-linejoin":"round"},g);
+  el("ellipse",{cx:cx-1,cy:Y(base+19),rx:1.6,ry:.8,fill:"#2A1B10"},g);
+  el("path",{d:"M"+(cx+4)+" "+Y(base+18)+" L"+(cx+6.5)+" "+Y(base+12.5)+" L"+(cx+4)+" "+Y(base+11.5),fill:"none",stroke:"#2A1B10","stroke-width":.35},g);
+  el("path",{d:"M"+(cx+.5)+" "+Y(base+8.2)+" Q"+(cx+3)+" "+Y(base+7.3)+" "+(cx+5.5)+" "+Y(base+8.2),fill:"none",stroke:"#2A1B10","stroke-width":.35},g);
+  for(let i=0;i<7;i++)el("path",{d:"M"+(cx-2+i*1.2)+" "+Y(base+6)+" q .6 -2 0 -4",fill:"none",stroke:"#3A2616","stroke-width":.25},g);
+}
+
+function lampPos(){const mx=48;return {mx:mx,mz:NOOK_TOP+t,sx:mx-12,sz:146};}
+function drawLamp(svg,Y,N_){
+  const p=lampPos(), c=N_?"#0B0B0C":"#1F2022", g=el("g",{"pointer-events":"none"},svg);
+  el("rect",{x:p.mx-2,y:Y(p.mz+1.4),width:4,height:1.4,rx:.4,fill:c},g);
+  el("path",{d:"M"+p.mx+" "+Y(p.mz+1.4)+" C"+p.mx+" "+Y(p.mz+22)+" "+(p.sx+6)+" "+Y(p.sz+10)+" "+(p.sx+1.5)+" "+Y(p.sz+1.5),fill:"none",stroke:c,"stroke-width":.9,"stroke-linecap":"round"},g);
+  el("path",{d:"M"+(p.sx-3)+" "+Y(p.sz+2)+" L"+(p.sx+3)+" "+Y(p.sz+2)+" L"+(p.sx+2)+" "+Y(p.sz-2)+" L"+(p.sx-2)+" "+Y(p.sz-2)+"Z",fill:c},g);
+  if(N_)el("ellipse",{cx:p.sx,cy:Y(p.sz-2.1),rx:2.2,ry:.6,fill:"#FFE2A8"},g);
+}
+function drawChair(svg,Y,N_){
+  // front view of the chair turned ~20°: drawn as a dashed outline so the parts behind stay readable
+  const g=el("g",{"pointer-events":"none"},svg), line=N_?"#8E877A":"#9A9181";
+  const x0=2, s=1.12, P=[[0,6],[0,60],[5,64.5],[7,64.5],[7,90],[13,99],[41,101],[69,99],[75,90],[75,64.5],[77,64.5],[82,60],[82,6]];
+  el("path",{d:"M"+P.map(q=>(x0+q[0]*s)+" "+Y(q[1])).join(" L")+"Z",fill:N_?"#4C4841":"#E3DDD0","fill-opacity":MODE==="parts"?.18:.55,stroke:line,"stroke-width":.45,"stroke-dasharray":"2 1.2","stroke-linejoin":"round"},g);
+  txt(g,x0+41*s,Y(30),"křeslo šikmo",{"text-anchor":"middle","font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":4.1,fill:N_?"#A9A294":"#7D7667"});
+}
+
+/* ---------- PLAN ---------- */
+function drawPlan(){
+  const svg=document.getElementById("plan"); svg.innerHTML="";
+  const depth=170, wallT=14;
+  svg.setAttribute("viewBox",(-30)+" "+(-26)+" "+(W+30+34)+" "+(depth+26+12));
+  const cs=getComputedStyle(document.documentElement);
+  const ink=cs.getPropertyValue("--ink").trim()||"#222", muted=cs.getPropertyValue("--muted").trim()||"#666", ok=cs.getPropertyValue("--ok").trim()||"#2F6B40";
+  const defs=el("defs",{},svg);
+  defs.innerHTML='<pattern id="ph" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="3" stroke="'+muted+'" stroke-width=".6"/></pattern>';
+  el("rect",{x:-wallT,y:-wallT,width:W+2*wallT,height:wallT,fill:"url(#ph)"},svg);
+  el("rect",{x:-wallT,y:0,width:wallT,height:depth,fill:"url(#ph)"},svg);
+  el("rect",{x:-3,y:0,width:3,height:depth,fill:"#D9B887"},svg);
+  const hy=HINGE_D, px=LEAF_PIVOT;
+  el("rect",{x:W,y:0,width:wallT,height:hy-3,fill:"url(#ph)"},svg);
+  el("rect",{x:W,y:hy+LEAF+3,width:wallT,height:depth-(hy+LEAF+3),fill:"url(#ph)"},svg);
+  el("rect",{x:W,y:hy-3,width:wallT,height:3,fill:"#2A2B2E"},svg);
+  el("rect",{x:W,y:hy+LEAF,width:wallT,height:3,fill:"#2A2B2E"},svg);
+  // library at floor: cols 3-4 solid, nook (cols 1-2) only above the chair
+  el("rect",{x:NOOK_R,y:0,width:MAIN_R-NOOK_R,height:D,fill:"#E4C896",stroke:"#9C7A48","stroke-width":.5},svg);
+  el("rect",{x:0,y:0,width:NOOK_R,height:D,fill:"#E4C896","fill-opacity":.18,stroke:"#9C7A48","stroke-width":.4,"stroke-dasharray":"2 1.5"},svg);
+  el("rect",{x:MAIN_R,y:0,width:W-MAIN_R,height:D,fill:"#E4C896","fill-opacity":.25,stroke:"#9C7A48","stroke-width":.4,"stroke-dasharray":"2 1.5"},svg);
+  // door
+  el("path",{d:"M"+DOOR_FREE+" "+(hy+2)+" A"+LEAF+" "+LEAF+" 0 0 0 "+px+" "+(hy+2+LEAF),fill:"none",stroke:muted,"stroke-width":.35,"stroke-dasharray":"1.5 1.5"},svg);
+  el("line",{x1:px+1.5,y1:hy,x2:px+1.5,y2:hy+LEAF,stroke:muted,"stroke-width":.5,"stroke-dasharray":"1 1"},svg);
+  el("rect",{x:DOOR_FREE,y:hy,width:LEAF,height:4,fill:"#2A2B2E"},svg);
+  el("rect",{x:DOOR_FREE+4,y:hy-5,width:1.2,height:5,fill:"#2A2B2E"},svg);
+  el("circle",{cx:DOOR_FREE+12,cy:1.2,r:1.2,fill:"#2A2B2E"},svg);
+  // chair Strandmon 82 x 96, turned 20°, back corner in the nook
+  const cg=el("g",{transform:"translate(60 73) rotate(28)"},svg);
+  el("rect",{x:-41,y:-48,width:82,height:96,rx:10,fill:"#E3DDD0",stroke:"#BDB5A4","stroke-width":.5},cg);
+  el("rect",{x:-35,y:-46,width:70,height:18,rx:6,fill:"#D6CFBF"},cg);
+  const L=el("g",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":4.6,fill:ink},svg);
+  txt(L,(NOOK_R+MAIN_R)/2,D/2+1.6,"knihovna · 25 cm",{"text-anchor":"middle",fill:"#3A2A16"});
+  txt(L,NOOK_R/2,-4,"nad křeslem od "+f1(NOOK_TOP)+" cm",{"text-anchor":"middle",fill:muted});
+  txt(L,(MAIN_R+W)/2,-4,"most nad dveřmi (od "+f1(BRIDGE_Z)+" cm)",{"text-anchor":"middle",fill:muted});
+  txt(L,(DOOR_FREE+px)/2,hy+11,"otevřené křídlo",{"text-anchor":"middle"});
+  txt(L,56,86,"křeslo",{"text-anchor":"middle",fill:"#6B6456"});
+  txt(L,W+wallT+2,hy+LEAF/2,"dveře",{"text-anchor":"start",fill:muted,transform:"rotate(90 "+(W+wallT+2)+" "+(hy+LEAF/2)+")"});
+  const yy=D+12;
+  el("line",{x1:MAIN_R,y1:yy,x2:DOOR_FREE,y2:yy,stroke:ok,"stroke-width":.5},svg);
+  [MAIN_R,DOOR_FREE].forEach(x=>el("line",{x1:x,y1:yy-2,x2:x,y2:yy+2,stroke:ok,"stroke-width":.5},svg));
+  el("line",{x1:DOOR_FREE,y1:hy+4,x2:DOOR_FREE,y2:yy+2,stroke:ok,"stroke-width":.3,"stroke-dasharray":"1 1"},svg);
+  el("line",{x1:MAIN_R,y1:D,x2:MAIN_R,y2:yy+2,stroke:ok,"stroke-width":.3,"stroke-dasharray":"1 1"},svg);
+  txt(L,(MAIN_R+DOOR_FREE)/2,yy+6.5,"rezerva "+f1(DOOR_FREE-MAIN_R)+" cm",{"text-anchor":"middle",fill:ok});
+  el("line",{x1:-wallT,y1:depth,x2:W+wallT,y2:depth,stroke:muted,"stroke-width":.4,"stroke-dasharray":"4 2"},svg);
+  txt(L,W-30,depth+6,"místnost pokračuje (≈ 5 m)",{"text-anchor":"middle",fill:muted,"font-size":4});
+}
+
+/* ---------- TOOLTIP + HIGHLIGHT ---------- */
+const tip=document.getElementById("tip");
+function srcLine(p){
+  if(p.segments)return '<div class="src">Slepit z '+p.segments.length+' kusů z půdy:<br>'+p.segments.map(sid=>{const q=PBY[sid];return '<b>'+esc(q.src||'koupit')+'</b> '+nf(q.L)+' mm'+(q.srcinfo?' · '+esc(q.srcinfo.loc)+(q.srcinfo.vady?' · '+esc(q.srcinfo.vady)+' → k obkladu':''):'');}).join('<br>')+'</div>';
+  if(!p.src)return '<div class="src buy"><b>Koupit</b> · nový díl</div>';
+  const s=p.srcinfo, st=DATA.stock[p.src];
+  const strip=st&&st.strips.length>1?", pruh "+(p.strip+1)+" z "+st.strips.length:"";
+  return '<div class="src">Z půdy: <b>'+esc(s.id)+'</b> · '+(s.typ==="spárovka"?"spárovka "+s.th+" mm":"3vrstvá "+s.th+" mm")+', '+nf(s.L)+' × '+nf(s.Wd)+strip+(p.off?", od "+nf(p.off)+" mm":"")+'<br><span class="k">leží</span> '+esc(s.loc)+(s.vady?'<br><span class="k">vady</span> '+esc(s.vady)+(p.hidden?" → na skrytou stranu":""):"")+(st&&st.note?'<br>'+esc(st.note):'')+'</div>';
+}
+function tipHTML(p){
+  const endL=p.o==="V"?["dole","nahoře"]:(p.o==="H"?["vlevo","vpravo"]:["",""]);
+  const th=p.kind==="SP18"?18:19;
+  let h='<div class="id">'+esc(p.id)+' · '+esc(p.name)+'</div>'+
+    '<div>'+nf(p.L)+' × '+nf(p.B)+' × '+th+' mm · '+(p.kind==="SP18"?"spárovka":"3vrstvá deska")+' smrk, '+esc(p.grain)+'</div>'+srcLine(p);
+  if(p.ends&&p.o!=="S"&&p.o!=="G")h+='<div><span class="k">'+endL[0]+':</span> '+esc(p.ends[0])+'<br><span class="k">'+endL[1]+':</span> '+esc(p.ends[1])+'</div>';
+  else if(p.ends)h+='<div class="k">'+esc(p.ends.join(" · "))+'</div>';
+  if(p.note)h+='<div class="k">'+esc(p.note)+'</div>';
+  return h;
+}
+function moveTip(e){const pad=14;const r=tip.getBoundingClientRect();let x=e.clientX+pad,y=e.clientY+pad;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-pad; if(y+r.height>innerHeight-8)y=e.clientY-r.height-pad;
+  tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px";}
+function hl(pid,on){document.querySelectorAll('[data-id="'+pid+'"]').forEach(n=>n.classList.toggle("hl",on));}
+let cur=null;
+function enter(pid,e){ if(cur!==pid){ if(cur)related(cur).forEach(x=>hl(x,false)); cur=pid; related(pid).forEach(x=>hl(x,true)); tip.innerHTML=tipHTML(PBY[pid]); tip.hidden=false; } moveTip(e); }
+function leave(){ if(cur)related(cur).forEach(x=>hl(x,false)); cur=null; tip.hidden=true; }
+const target=e=>{const n=e.target&&e.target.closest?e.target.closest("[data-id]"):null;return n?n.getAttribute("data-id"):null;};
+document.addEventListener("pointermove",e=>{ if(e.pointerType==="touch")return; const pid=target(e); if(pid&&PBY[pid])enter(pid,e); else if(cur)leave(); });
+document.addEventListener("pointerdown",e=>{ if(e.pointerType!=="touch")return; const pid=target(e); if(pid&&PBY[pid])enter(pid,e); else leave(); });
+window.addEventListener("scroll",()=>{ if(cur)leave(); },{passive:true});
+
+/* ---------- STOCK / CUT PLANS ---------- */
+function renderStock(){
+  const S=Object.values(DATA.stock).sort((a,b)=>LOC_ORDER.indexOf(a.loc)-LOC_ORDER.indexOf(b.loc)||a.id.localeCompare(b.id,"cs",{numeric:true}));
+  const host=document.getElementById("stock"); host.innerHTML="";
+  const sc=0.27;
+  LOC_ORDER.forEach(loc=>{
+    const list=S.filter(s=>s.loc===loc); if(!list.length)return;
+    const grp=document.createElement("div"); grp.className="stockgrp";
+    const n=list.reduce((a,s)=>a+s.strips.reduce((b,st)=>b+st.items.length,0),0);
+    grp.innerHTML='<h3><i style="background:'+LOC[loc]+'"></i>'+esc(loc.charAt(0).toUpperCase()+loc.slice(1))+' <span class="muted" style="font-weight:400;font-size:.95rem">· '+list.length+' '+(list.length===1?"deska":list.length<5?"desky":"desek")+', '+n+' '+(n===1?"díl":n<5?"díly":"dílů")+'</span></h3>';
+    const wrap=document.createElement("div"); wrap.className="stocks"; grp.appendChild(wrap);
+    list.forEach(s=>{
+      const card=document.createElement("div"); card.className="sk";
+      card.innerHTML='<div class="h"><b>'+esc(s.id)+'</b> <span>'+nf(s.L)+' × '+nf(s.Wd)+' mm · '+(s.typ==="spárovka"?"spárovka "+s.th:"3vrstvá "+s.th)+' mm'+(s.vady?' · '+esc(s.vady):'')+'</span>'+(s.note?'<br><span style="color:var(--accent)">'+esc(s.note)+'</span>':'')+'</div>';
+      const pad=16, top=46, vw=s.L+2*pad, vh=s.Wd+top+pad;
+      const svg=el("svg",{viewBox:(-pad)+" "+(-top)+" "+vw+" "+vh,width:Math.round(vw*sc),height:Math.round(vh*sc),role:"img","aria-label":"Plán řezu desky "+s.id});
+      const hid="h"+s.id.replace(/\W/g,"");
+      el("defs",{},svg).innerHTML='<pattern id="'+hid+'" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="18" stroke="#C9B38E" stroke-width="3"/></pattern>';
+      el("rect",{x:0,y:0,width:s.L,height:s.Wd,fill:"#F3E6CF"},svg);
+      el("rect",{x:0,y:0,width:s.L,height:s.Wd,fill:"url(#"+hid+")"},svg);
+      el("rect",{x:0,y:0,width:s.L,height:s.Wd,fill:"none",stroke:"#9C7A48","stroke-width":3},svg);
+      txt(svg,0,-14,"léta ⟷",{"font-family":"Barlow Condensed, Arial Narrow, sans-serif","font-size":44,fill:"var(--muted)"});
+      s.strips.forEach(st=>st.items.forEach(pid=>{
+        const p=PBY[pid]; const g=el("g",{class:"pc","data-id":pid},svg);
+        const w=p.cutL||p.L, h=p.cutB||p.B, x=p.off, y=st.y, F="Barlow Condensed, Arial Narrow, sans-serif";
+        el("rect",{class:"m",x:x,y:y,width:w,height:h,fill:LOC[s.loc]||SPRUCE,stroke:"#6B5536","stroke-width":3},g);
+        for(let k=1;k<4;k++)el("line",{x1:x+8,x2:x+w-8,y1:y+h*k/4,y2:y+h*k/4,stroke:"#6B5536","stroke-opacity":.18,"stroke-width":3,"pointer-events":"none"},g);
+        const fs=Math.min(58,Math.max(28,Math.min(h,w)*.24)), fd=Math.min(46,Math.max(26,Math.min(h,w)*.19));
+        const lab={"font-family":F,"font-size":fd,fill:"#2B2118",stroke:"#FBFAF7","stroke-width":7,"paint-order":"stroke","pointer-events":"none","text-anchor":"middle"};
+        txt(g,x+w/2,y+fd+6,nf(w),lab);
+        const lx=x+fd*.9+6, ly=y+h/2;
+        txt(g,lx,ly,nf(h),Object.assign({transform:"rotate(-90 "+lx+" "+ly+")"},lab));
+        txt(g,x+w/2+fd*.4,y+h/2+fs*.55,pid,{"text-anchor":"middle","font-family":F,"font-size":fs,"font-weight":600,fill:"#2B2118","pointer-events":"none"});
+      }));
+      card.appendChild(svg); wrap.appendChild(card);
+    });
+    host.appendChild(grp);
+  });
+  document.getElementById("unused").innerHTML=DATA.unused.map(s=>'<span class="chip" title="'+esc(s.loc)+'">'+esc(s.id)+' · '+nf(s.L)+' × '+nf(s.Wd)+(s.typ==="spárovka"?" · sp. "+s.th:"")+'</span>').join("");
+}
+
+/* ---------- CUT LIST ---------- */
+function renderCut(){
+  const rows=PARTS;
+  const endL=p=>p.o==="V"?["dole","nahoře"]:["vlevo","vpravo"];
+  document.getElementById("cut").innerHTML="<thead><tr><th>Díl</th><th>Název</th><th class='r'>Délka × šířka</th><th>Z desky</th><th>Kde leží</th><th>Spoje</th></tr></thead><tbody>"+
+    rows.map(p=>"<tr data-id='"+p.id+"'><td><b>"+p.id+"</b></td><td>"+esc(p.name)+(p.kind==="SP18"?" <span class='muted'>(spárovka 18)</span>":"")+"</td><td class='r'>"+nf(p.L)+" × "+nf(p.B)+"</td><td>"+(p.src?"<b>"+esc(p.src)+"</b>":"<b>koupit</b>")+"</td><td>"+(p.src?esc(locOf(p)):"")+"</td><td class='muted'>"+
+      (p.o==="S"||p.o==="G"?esc(p.ends.join(" · ")):"<span>"+endL(p)[0]+":</span> "+esc(p.ends[0])+"<br><span>"+endL(p)[1]+":</span> "+esc(p.ends[1]))+"</td></tr>").join("")+
+    "<tr class='total'><td colspan='2'>Celkem "+rows.filter(p=>p.o!=="G").length+" dílů</td><td class='r'>"+f1(rows.filter(p=>p.o!=="G").reduce((a,p)=>a+p.L*p.B,0)/1e6)+" m²</td><td colspan='3'>ke koupi "+DATA.buy.length+" dílů · použito "+Object.keys(DATA.stock).length+" desek z půdy</td></tr></tbody>";
+}
+
+function renderBudget(){
+  const C=DATA.counts, area=PARTS.filter(p=>p.o!=="G").reduce((a,p)=>a+2*p.L*p.B,0)/1e6;
+  const rows=[
+    ["Třívrstvé desky","vše z půdy ("+Object.keys(DATA.stock).length+" desek), "+DATA.unused.length+" kusů zůstává jako rezerva",0,0],
+    ["Spojovací materiál",C.dowels+" vrutů 4,5 × 50 na spoj A, "+C.pins+" podpěrek 5 mm, ~50 úhelníků, vruty, hmoždinky, kolíky a lepidlo na slepení horní desky",1500,3000],
+    ["Kotvení mostu","2× závitová tyč M10, chemická kotva",400,800],
+    ["Drobné nářadí","vrták 5 mm s dorazem, vrták 3 mm, záhlubník, drážkovací fréza 8 mm, jemný pilový kotouč",800,2000],
+    ["Povrch","olej nebo lak podle obkladu, "+f1(area)+" m² ploch, 2 vrstvy",800,2000],
+    ["Rostliny a obaly","2× potos, 1× zamiokulkas",1000,2500],
+  ];
+  const lo=rows.reduce((a,r)=>a+r[2],0), hi=rows.reduce((a,r)=>a+r[3],0);
+  document.getElementById("budget").innerHTML="<thead><tr><th>Položka</th><th>Rozsah</th><th class='r'>Orientačně</th></tr></thead><tbody>"+
+    rows.map(r=>"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td class='r'>"+(r[3]?kc(r[2])+" – "+kc(r[3]):"0 Kč")+"</td></tr>").join("")+
+    "<tr class='total'><td>Celkem</td><td></td><td class='r'>"+kc(lo)+" – "+kc(hi)+"</td></tr></tbody>";
+}
+
+/* ---------- TEXT ---------- */
+function renderText(){
+  const C=DATA.counts, merged=cells.filter(c=>c.sq.length>1).length;
+  document.getElementById("facts").innerHTML=
+    '<div class="fact"><b>'+C.parts+' dílů + sokl</b><span>všechny z desek z půdy, ke koupi '+DATA.buy.length+'</span></div>'+
+    '<div class="fact"><b>Hloubka 25 cm</b><span>stěna '+f1(W)+' × '+f1(H)+' cm, 2 cm pod strop</span></div>'+
+    '<div class="fact"><b>Výklenek '+f1(NOOK_R)+' × '+f1(NOOK_TOP)+' cm</b><span>za křeslem vynecháno 6 přihrádek, '+cells.length+' zbývá</span></div>'+
+    '<div class="fact"><b>0 kolizí s dveřmi</b><span>rezerva '+f1(DOOR_FREE-MAIN_R)+' cm do strany, '+f1(BRIDGE_Z-DOOR_TOP)+' cm nad dveřmi</span></div>';
+  document.getElementById("summary").innerHTML=
+    "<p><b>Díly a odkud jsou:</b> barva ukazuje, kde deska na půdě leží. Popisek říká číslo dílu a desku, ze které se uřízne. Najeď na díl a uvidíš rozměr, spoje a přesné místo v desce. Díly jsou číslované odspodu v pořadí montáže.</p>"+
+    "<p><b>Mřížka:</b> 4 sloupce × 7 řad a horní řada nad dveřmi až k pravé stěně. Za křeslem chybí 2 sloupce × 3 řady (výklenek "+f1(NOOK_R)+" × "+f1(NOOK_TOP)+" cm). Aby měl výklenek 73 cm, jsou přihrádky nad křeslem o 3 cm širší ("+f1(G.CW[0]/10)+" × "+f1(sh)+" cm), vpravo zůstávají až k zemi 2 čtverce "+f1(sw)+" × "+f1(sh)+" cm. Knihovna je proto o 6 cm širší a k otevřeným dveřím zbývá "+f1(DOOR_FREE-MAIN_R)+" cm. Pravý bok hlavní části i příčka vedle výklenku jdou v jednom kuse od spodní police až pod horní desku. Pod stropem zůstávají 2 cm.</p>";
+  const legend=MODE==="parts"
+    ? LOC_ORDER.filter(l=>PARTS.some(p=>locOf(p)===l)).map(l=>'<span><i style="background:'+LOC[l]+'"></i>'+esc(l)+'</span>').join("")+'<span><i style="background:'+BUYC+'"></i>koupit ('+DATA.buy.length+')</span>'
+    : '<span><i style="background:#E4C896"></i>smrk z půdy</span><span><i style="background:#EFEDE8;border:1px solid #CFCAC1"></i>bílá stěna (bez zad)</span><span><i style="background:#FF8A7A"></i>volná zóna dveří</span>';
+  document.getElementById("legend").innerHTML=legend;
+  const checks=[
+    ["ok","Do strany: knihovna vs. otevřené křídlo","Pravý bok "+f1(MAIN_R)+" cm, hrana křídla "+f1(DOOR_FREE)+" cm od obkladu.","+"+f1(DOOR_FREE-MAIN_R)+" cm"],
+    ["ok","Během otvírání","Křídlo je knihovně nejblíž až v plně otevřené poloze, hloubka knihovny nehraje roli.","vždy ≥ "+f1(DOOR_FREE-MAIN_R)],
+    ["ok","Nad dveřmi","Horní hrana dveří "+f1(DOOR_TOP)+" cm, spodek mostu "+f1(BRIDGE_Z)+" cm.","+"+f1(BRIDGE_Z-DOOR_TOP)+" cm"],
+    ["ok","Křeslo","Výklenek "+f1(NOOK_R)+" × "+f1(NOOK_TOP)+" cm. Otočené o ~28° zajede zadním rohem ~14 cm do výklenku, opěradlo (101 cm) je pod policí.","+"+f1(NOOK_TOP-101)+" cm"],
+    ["todo","Ověřit na místě","Zarážka dveří v otevřené poloze, horní hrana zárubně pod 220 cm, skutečná šířka výklenku pro křeslo.","3 věci"]
+  ];
+  document.getElementById("checks").innerHTML=checks.map(c=>'<div class="check'+(c[0]==="todo"?" todo":"")+'"><div class="ic">'+(c[0]==="ok"?"✓":"!")+'</div><div><b>'+c[1]+'</b><span>'+c[2]+'</span></div><div class="v">'+c[3]+'</div></div>').join("");
+  document.getElementById("cA").textContent="· "+C.dowel_joints+" míst, "+C.dowels+" vrutů";
+  document.getElementById("cB").textContent="· "+C.pin_ends+" konců polic, "+C.pins+" podpěrek";
+  document.getElementById("cT").textContent=C.angle_top;
+}
+
+document.querySelectorAll("#modes button").forEach(b=>b.addEventListener("click",()=>{MODE=b.dataset.m;document.querySelectorAll("#modes button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));leave();drawElev();renderText();}));
+if(window.matchMedia){const mq=window.matchMedia("(prefers-color-scheme: dark)");mq.addEventListener&&mq.addEventListener("change",drawPlan);}
+renderText(); drawElev(); drawPlan(); renderStock(); renderCut(); renderBudget();
+})();
+</script>

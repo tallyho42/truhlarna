@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+# fotky a obrázky jen lokálně
+input/
+drevo/fotky/
+navrh-gemini/
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.webp
+*.gif

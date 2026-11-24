@@ -1,0 +1,101 @@
+# Přiřazení dílů k deskám z půdy
+
+Generováno skriptem `drevo/prirazeni.py` z `inventar.csv`. Návrh: `knihovna.html`.
+Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je vždy po letech.
+
+**Ke koupi: 0 dílů.** Použito 22 desek z půdy, 30 kusů zůstává jako rezerva.
+
+## Co snést z půdy a jak nařezat
+
+### Vlevo pod střechou
+
+| Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
+|---|---|---|---|---|
+| D01 | 860 × 650 | 1: 250 mm | K13 (711) | 145 mm |
+| D01 | 860 × 650 | 2: 250 mm | K19 (671) | 185 mm |
+| D02 | 1285 × 580 | 1: 250 mm | K09.1 (1044) | 237 mm |
+| D02 | 1285 × 580 | 2: 250 mm | K15 (1016) | 265 mm |
+| D03 | 2400 × 600 | 1: 250 mm | K02 (2395) | 1 mm |
+| D03 | 2400 × 600 | 2: 250 mm | K04 (2395) | 1 mm |
+
+### Vlevo dole pod střechou
+
+| Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
+|---|---|---|---|---|
+| B01 | 850 × 310 | 1: 250 mm | K10 (711) | 135 mm |
+| B02 | 1005 × 401 | 1: 250 mm | K18 (653), K25 (326) | 18 mm |
+
+### Vlevo vzadu pod střechou
+
+| Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
+|---|---|---|---|---|
+| D08-1 | 1000 × 250 | 1: 250 mm | K24 (930) | 66 mm |
+| D08-2 | 1000 × 250 | 1: 250 mm | K07 (653), K05 (317) | 22 mm |
+| D08-3 | 1000 × 250 | 1: 250 mm | K14 (653), K06 (317) | 22 mm |
+
+### Vpravo dole pod střechou
+
+| Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
+|---|---|---|---|---|
+| C03 | 2500 × 185 | 1: 185 mm | S4 (653), S5 (653), S3 (201) | 981 mm |
+| C04+C05 | 2500 × 320 | 1: 250 mm | K26 (2346) | 150 mm |
+
+### Vpravo v šuplících
+
+| Deska | Rozměr | Pruh | Díly (délka) | Odpad v pruhu |
+|---|---|---|---|---|
+| A01 | 362 × 384 · vyvrtané díry z jedné strany, druhá strana ok | 1: 250 mm | K09.2 (335) | 23 mm |
+| A02 | 362 × 401 | 1: 250 mm | K23 (317) | 41 mm |
+| A03 | 365 × 314 | 1: 250 mm | K16 (346) | 15 mm |
+| A04 | 350 × 320 | 1: 250 mm | K11 (317) | 29 mm |
+| A05 | 360 × 440 | 1: 250 mm | K12 (317) | 39 mm |
+| A06 | 360 × 442 | 1: 250 mm | K22 (317) | 39 mm |
+| A09 | 400 × 520 | 1: 250 mm | K20 (364) | 32 mm |
+| A09 | 400 × 520 | 2: 250 mm | K17 (346) | 50 mm |
+| A10 | 400 × 520 | 1: 250 mm | K21 (346) | 50 mm |
+| A18 | 700 × 360 · vyvrtané díry z jedné strany, druhá strana ok | 1: 250 mm | K01 (691) | 5 mm |
+| A19 | 700 × 420 | 1: 250 mm | K03 (671) | 25 mm |
+| B08 | 700 × 252 | 1: 250 mm | K08 (671) | 25 mm |
+| B10 | 491 × 273 | 1: 220 mm | S1 (140), S2 (140) | 203 mm |
+
+## Díly
+
+| Díl | Název | Délka × šířka | Z desky | Spoje |
+|---|---|---|---|---|
+| K01 | Spodní police (na soklu) | 691 × 250 | A18 | nese K02 (spoj A: vruty skrz) / nese K04 (spoj A: vruty skrz) |
+| K02 | Svislá příčka | 2395 × 250 | D03 | stojí na K01 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K03 | Svislá příčka | 671 × 250 | A19 | stojí na K01 (spoj A: 2 vruty zespodu skrz polici) / pod K07 (spoj A: 2 vruty shora skrz polici) |
+| K04 | Pravý bok hlavní části | 2395 × 250 | D03 | stojí na K01 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K05 | Police | 317 × 250 | D08-2 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K03 |
+| K06 | Police | 317 × 250 | D08-3 | dosedá na 2 podpěrky 5 mm v boku dílu K03 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K07 | Police | 653 × 250 | D08-2 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K08 | Svislá příčka | 671 × 250 | B08 | stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce) / pod K14 (spoj A: 2 vruty shora skrz polici) |
+| K09 | Levý bok (u obkladu) | 1379 × 250 | D02 + A01 | visí na vrutech do stěny; do boku dosedá K10 (podpěrky) / pod K26 (úhelník vzadu) |
+| K10 | Police nad křeslem | 711 × 250 | B01 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K02 |
+| K11 | Police | 317 × 250 | A04 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K08 |
+| K12 | Police | 317 × 250 | A05 | dosedá na 2 podpěrky 5 mm v boku dílu K08 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K13 | Police | 711 × 250 | D01 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K02 |
+| K14 | Police | 653 × 250 | D08-3 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K15 | Svislá příčka | 1016 × 250 | D02 | stojí na K13 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K16 | Police | 346 × 250 | A03 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K15 |
+| K17 | Police | 346 × 250 | A09 | dosedá na 2 podpěrky 5 mm v boku dílu K15 / dosedá na 2 podpěrky 5 mm v boku dílu K02 |
+| K18 | Police | 653 × 250 | B02 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K19 | Svislá příčka | 671 × 250 | D01 | stojí na K18 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K20 | Boční díl mostu (u pravé stěny) | 364 × 250 | A09 | visí na vrutech do stěny; do boku dosedá K24 (podpěrky) / končí v rovině desky; do boku dosedá K26 (podpěrky) |
+| K21 | Police | 346 × 250 | A10 | dosedá na 2 podpěrky 5 mm v boku dílu K09 / dosedá na 2 podpěrky 5 mm v boku dílu K15 |
+| K22 | Police | 317 × 250 | A06 | dosedá na 2 podpěrky 5 mm v boku dílu K02 / dosedá na 2 podpěrky 5 mm v boku dílu K19 |
+| K23 | Police | 317 × 250 | A02 | dosedá na 2 podpěrky 5 mm v boku dílu K19 / dosedá na 2 podpěrky 5 mm v boku dílu K04 |
+| K24 | Dno mostu nad dveřmi | 930 × 250 | D08-1 | dosedá na 2 podpěrky 5 mm v boku dílu K04 / dosedá na 2 podpěrky 5 mm v boku dílu K20 |
+| K25 | Svislá příčka | 326 × 250 | B02 | stojí na K24 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K26 | Horní deska | 2346 × 250 | C04+C05 | k obkladu, leží na K09 (úhelník zespodu) / dosedá na 2 podpěrky 5 mm v boku dílu K20 |
+| S1 | Sokl: levý bok (pod K02) | 140 × 220 | B10 | stojí na podlaze (nevrtat, vyrovnat podložkami) / nese K01, nad ním stojí K02 |
+| S2 | Sokl: pravý bok (pod K04) | 140 × 220 | B10 | stojí na podlaze (nevrtat, vyrovnat podložkami) / nese K01, nad ním stojí K04 |
+| S3 | Sokl: střední podpěra (pod K03) | 140 × 201 | C03 | stojí na podlaze / nese K01 pod příčkou K03 |
+| S4 | Sokl: zadní spojka | 653 × 100 | C03 | mezi boky soklu u zdi, nahoře / do boků zevnitř úhelníky |
+| S5 | Sokl: čelní lišta | 653 × 135 | C03 | mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou / pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne) |
+| K09.1 | Levý bok (u obkladu), kus 1/2 | 1044 × 250 | D02 | slepit s ostatními kusy do jedné desky / kolíky 8 × 35 + lepidlo, spoj ve výšce police |
+| K09.2 | Levý bok (u obkladu), kus 2/2 | 335 × 250 | A01 | slepit s ostatními kusy do jedné desky / kolíky 8 × 35 + lepidlo, spoj ve výšce police |
+
+## Rezerva (nepoužito)
+
+D04 (2530 × 630, spárovka 22), D05 (2295 × 600, spárovka 28), D06 (1095 × 374, spárovka 28), A07 (363 × 400), A08 (362 × 382), A11 (400 × 507), A12 (493 × 367), A13 (493 × 367), A14 (495 × 366), A15 (531 × 401), A16 (531 × 400), A17 (531 × 400), B03 (264 × 411), B04 (411 × 420), B05 (515 × 367), B06 (520 × 366), B07 (400 × 358), B09 (551 × 274), B11 (497 × 581), B12 (637 × 325), C01 (304 × 2040), D07-1 (800 × 250, spárovka 18), D07-2 (800 × 250, spárovka 18), D07-3 (800 × 250, spárovka 18), D07-4 (800 × 250, spárovka 18), D07-5 (800 × 250, spárovka 18), D07-6 (800 × 250, spárovka 18), D07-7 (800 × 250, spárovka 18), D07-8 (800 × 250, spárovka 18), D07-9 (800 × 250, spárovka 18)

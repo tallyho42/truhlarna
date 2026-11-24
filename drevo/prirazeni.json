@@ -1,0 +1,1982 @@
+{
+ "geo": {
+  "W": 2370,
+  "H": 2593,
+  "t": 19,
+  "TOPGAP": 20,
+  "PLINTH": 140,
+  "D": 250,
+  "N": 7,
+  "K": 4,
+  "R": 7,
+  "sw": 316.85714285714283,
+  "sh": 325.85714285714283,
+  "KERF": 4,
+  "XL": [
+   0.0,
+   365.0,
+   730.0,
+   1065.857142857143,
+   1401.7142857142858,
+   1708.4285714285716,
+   2015.1428571428573,
+   2351.0
+  ],
+  "CW": [
+   346.0,
+   346.0,
+   316.85714285714283,
+   316.85714285714283,
+   287.71428571428567,
+   287.71428571428567,
+   316.85714285714283
+  ],
+  "NOOK": 730
+ },
+ "pattern": {
+  "0,7": "H",
+  "1,7": "H",
+  "2,7": "H",
+  "3,7": "H",
+  "4,7": "H",
+  "6,7": "H",
+  "7,7": "V",
+  "0,6": "V",
+  "1,6": "V",
+  "2,6": "V",
+  "3,6": "V",
+  "4,6": "V",
+  "6,6": "H",
+  "7,6": "V",
+  "0,5": "V",
+  "1,5": "V",
+  "2,5": "V",
+  "3,5": "H",
+  "4,5": "V",
+  "0,4": "V",
+  "1,4": "H",
+  "2,4": "V",
+  "3,4": "H",
+  "4,4": "V",
+  "0,3": "V",
+  "2,3": "V",
+  "3,3": "V",
+  "4,3": "V",
+  "2,2": "V",
+  "3,2": "H",
+  "4,2": "V",
+  "2,1": "V",
+  "3,1": "V",
+  "4,1": "V",
+  "2,0": "H",
+  "3,0": "H",
+  "4,0": "H"
+ },
+ "parts": [
+  {
+   "id": "K01",
+   "o": "H",
+   "name": "Spodní police (na soklu)",
+   "L": 691,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 730.0,
+   "x1": 1420.7142857142858,
+   "z0": 140.0,
+   "z1": 159.0,
+   "src": "A18",
+   "ends": [
+    "nese K02 (spoj A: vruty skrz)",
+    "nese K04 (spoj A: vruty skrz)"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": true,
+   "note": "Leží celou plochou na soklu. Těsný řez: z desky A18 zbývá jen 9 mm, řezat přesně.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A18",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 700,
+    "Wd": 360,
+    "vady": "vyvrtané díry z jedné strany, druhá strana ok"
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K02",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 2395,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 730.0,
+   "x1": 749.0,
+   "z0": 159.0,
+   "z1": 2554.0,
+   "src": "D03",
+   "ends": [
+    "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D03",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2400,
+    "Wd": 600,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K03",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 671,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1065.857142857143,
+   "x1": 1084.857142857143,
+   "z0": 159.0,
+   "z1": 829.7142857142857,
+   "src": "A19",
+   "ends": [
+    "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K07 (spoj A: 2 vruty shora skrz polici)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A19",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 700,
+    "Wd": 420,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K04",
+   "o": "V",
+   "name": "Pravý bok hlavní části",
+   "L": 2395,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1401.7142857142858,
+   "x1": 1420.7142857142858,
+   "z0": 159.0,
+   "z1": 2554.0,
+   "src": "D03",
+   "ends": [
+    "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.",
+   "strip": 1,
+   "off": 0,
+   "srcinfo": {
+    "id": "D03",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2400,
+    "Wd": 600,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K05",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1065.857142857143,
+   "z0": 484.85714285714283,
+   "z1": 503.85714285714283,
+   "src": "D08-2",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K03"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 657,
+   "srcinfo": {
+    "id": "D08-2",
+    "loc": "vlevo vzadu pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1000,
+    "Wd": 250,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K06",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1084.857142857143,
+   "x1": 1401.7142857142858,
+   "z0": 484.85714285714283,
+   "z1": 503.85714285714283,
+   "src": "D08-3",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K03",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 657,
+   "srcinfo": {
+    "id": "D08-3",
+    "loc": "vlevo vzadu pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1000,
+    "Wd": 250,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K07",
+   "o": "H",
+   "name": "Police",
+   "L": 653,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1401.7142857142858,
+   "z0": 829.7142857142857,
+   "z1": 848.7142857142857,
+   "src": "D08-2",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D08-2",
+    "loc": "vlevo vzadu pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1000,
+    "Wd": 250,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K08",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 671,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1065.857142857143,
+   "x1": 1084.857142857143,
+   "z0": 848.7142857142857,
+   "z1": 1519.4285714285713,
+   "src": "B08",
+   "ends": [
+    "stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce)",
+    "pod K14 (spoj A: 2 vruty shora skrz polici)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "B08",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 700,
+    "Wd": 252,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K09",
+   "o": "V",
+   "name": "Levý bok (u obkladu)",
+   "L": 1379,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 0.0,
+   "x1": 19.0,
+   "z0": 1174.5714285714284,
+   "z1": 2554.0,
+   "src": "D02 + A01",
+   "ends": [
+    "visí na vrutech do stěny; do boku dosedá K10 (podpěrky)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": true,
+   "note": "Jedna deska slepená předem z 2 kusů (1044 + 335 mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na podpěrky.",
+   "strip": null,
+   "off": null,
+   "srcinfo": null,
+   "cutL": null,
+   "cutB": null,
+   "segments": [
+    "K09.1",
+    "K09.2"
+   ],
+   "parent": null
+  },
+  {
+   "id": "K10",
+   "o": "H",
+   "name": "Police nad křeslem",
+   "L": 711,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 19.0,
+   "x1": 730.0,
+   "z0": 1174.5714285714284,
+   "z1": 1193.5714285714284,
+   "src": "B01",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "Na přední hraně je čtecí lampa (husí krk 24 V).",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "B01",
+    "loc": "vlevo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 850,
+    "Wd": 310,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K11",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1065.857142857143,
+   "z0": 1174.5714285714284,
+   "z1": 1193.5714285714284,
+   "src": "A04",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K08"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A04",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 350,
+    "Wd": 320,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K12",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1084.857142857143,
+   "x1": 1401.7142857142858,
+   "z0": 1174.5714285714284,
+   "z1": 1193.5714285714284,
+   "src": "A05",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K08",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A05",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 360,
+    "Wd": 440,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K13",
+   "o": "H",
+   "name": "Police",
+   "L": 711,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 19.0,
+   "x1": 730.0,
+   "z0": 1519.4285714285713,
+   "z1": 1538.4285714285713,
+   "src": "D01",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D01",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 860,
+    "Wd": 650,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K14",
+   "o": "H",
+   "name": "Police",
+   "L": 653,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1401.7142857142858,
+   "z0": 1519.4285714285713,
+   "z1": 1538.4285714285713,
+   "src": "D08-3",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D08-3",
+    "loc": "vlevo vzadu pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1000,
+    "Wd": 250,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K15",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 1016,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 365.0,
+   "x1": 384.0,
+   "z0": 1538.4285714285713,
+   "z1": 2554.0,
+   "src": "D02",
+   "ends": [
+    "stojí na K13 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "",
+   "strip": 1,
+   "off": 0,
+   "srcinfo": {
+    "id": "D02",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1285,
+    "Wd": 580,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K16",
+   "o": "H",
+   "name": "Police",
+   "L": 346,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 19.0,
+   "x1": 365.0,
+   "z0": 1864.2857142857142,
+   "z1": 1883.2857142857142,
+   "src": "A03",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K15"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A03",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 365,
+    "Wd": 314,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K17",
+   "o": "H",
+   "name": "Police",
+   "L": 346,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 384.0,
+   "x1": 730.0,
+   "z0": 1864.2857142857142,
+   "z1": 1883.2857142857142,
+   "src": "A09",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K15",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 1,
+   "off": 0,
+   "srcinfo": {
+    "id": "A09",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 400,
+    "Wd": 520,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K18",
+   "o": "H",
+   "name": "Police",
+   "L": 653,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1401.7142857142858,
+   "z0": 1864.2857142857142,
+   "z1": 1883.2857142857142,
+   "src": "B02",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "B02",
+    "loc": "vlevo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1005,
+    "Wd": 401,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K19",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 671,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1065.857142857143,
+   "x1": 1084.857142857143,
+   "z0": 1883.2857142857142,
+   "z1": 2554.0,
+   "src": "D01",
+   "ends": [
+    "stojí na K18 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "",
+   "strip": 1,
+   "off": 0,
+   "srcinfo": {
+    "id": "D01",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 860,
+    "Wd": 650,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K20",
+   "o": "V",
+   "name": "Boční díl mostu (u pravé stěny)",
+   "L": 364,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 2351.0,
+   "x1": 2370.0,
+   "z0": 2209.142857142857,
+   "z1": 2573.0,
+   "src": "A09",
+   "ends": [
+    "visí na vrutech do stěny; do boku dosedá K24 (podpěrky)",
+    "končí v rovině desky; do boku dosedá K26 (podpěrky)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": true,
+   "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A09",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 400,
+    "Wd": 520,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K21",
+   "o": "H",
+   "name": "Police",
+   "L": 346,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 19.0,
+   "x1": 365.0,
+   "z0": 2209.142857142857,
+   "z1": 2228.142857142857,
+   "src": "A10",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K15"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A10",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 400,
+    "Wd": 520,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K22",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1065.857142857143,
+   "z0": 2209.142857142857,
+   "z1": 2228.142857142857,
+   "src": "A06",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K19"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A06",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 360,
+    "Wd": 442,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K23",
+   "o": "H",
+   "name": "Police",
+   "L": 317,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1084.857142857143,
+   "x1": 1401.7142857142858,
+   "z0": 2209.142857142857,
+   "z1": 2228.142857142857,
+   "src": "A02",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K19",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A02",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 362,
+    "Wd": 401,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K24",
+   "o": "H",
+   "name": "Dno mostu nad dveřmi",
+   "L": 930,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 1420.7142857142858,
+   "x1": 2351.0,
+   "z0": 2209.142857142857,
+   "z1": 2228.142857142857,
+   "src": "D08-1",
+   "ends": [
+    "dosedá na 2 podpěrky 5 mm v boku dílu K04",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K20"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": false,
+   "note": "Nese most nad dveřmi. Leží na pravém boku hlavní části, pravým koncem dosedá na podpěrky v bočním dílu mostu. Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D08-1",
+    "loc": "vlevo vzadu pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1000,
+    "Wd": 250,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K25",
+   "o": "V",
+   "name": "Svislá příčka",
+   "L": 326,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 2015.1428571428573,
+   "x1": 2034.1428571428573,
+   "z0": 2228.142857142857,
+   "z1": 2554.0,
+   "src": "B02",
+   "ends": [
+    "stojí na K24 (spoj A: 2 vruty zespodu skrz polici)",
+    "pod K26 (úhelník vzadu)"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": false,
+   "note": "",
+   "strip": 0,
+   "off": 657,
+   "srcinfo": {
+    "id": "B02",
+    "loc": "vlevo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1005,
+    "Wd": 401,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K26",
+   "o": "H",
+   "name": "Horní deska",
+   "L": 2346,
+   "B": 250,
+   "kind": "3S19",
+   "x0": 0.0,
+   "x1": 2351.0,
+   "z0": 2554.0,
+   "z1": 2573.0,
+   "src": "C04+C05",
+   "ends": [
+    "k obkladu, leží na K09 (úhelník zespodu)",
+    "dosedá na 2 podpěrky 5 mm v boku dílu K20"
+   ],
+   "grain": "léta vodorovně (podél délky)",
+   "hidden": true,
+   "note": "Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "C04+C05",
+    "loc": "vpravo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2500,
+    "Wd": 320,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "S1",
+   "o": "S",
+   "name": "Sokl: levý bok (pod K02)",
+   "L": 140,
+   "B": 220,
+   "kind": "3S19",
+   "x0": 730.0,
+   "x1": 749.0,
+   "z0": 0,
+   "z1": 140,
+   "src": "B10",
+   "ends": [
+    "stojí na podlaze (nevrtat, vyrovnat podložkami)",
+    "nese K01, nad ním stojí K02"
+   ],
+   "grain": "léta svisle",
+   "hidden": false,
+   "note": "Pohledový: je vidět z výklenku pro křeslo. Vpředu končí 30 mm za čelem K01. Vzadu u podlahy výřez 70 × 70 mm (u zdi) pro kabel prodlužky, lampičky a nabíječky.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "B10",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 491,
+    "Wd": 273,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "S2",
+   "o": "S",
+   "name": "Sokl: pravý bok (pod K04)",
+   "L": 140,
+   "B": 220,
+   "kind": "3S19",
+   "x0": 1401.7142857142858,
+   "x1": 1420.7142857142858,
+   "z0": 0,
+   "z1": 140,
+   "src": "B10",
+   "ends": [
+    "stojí na podlaze (nevrtat, vyrovnat podložkami)",
+    "nese K01, nad ním stojí K04"
+   ],
+   "grain": "léta svisle",
+   "hidden": false,
+   "note": "Pohledový: je vidět ze strany od dveří. Vpředu končí 30 mm za čelem K01.",
+   "strip": 0,
+   "off": 144,
+   "srcinfo": {
+    "id": "B10",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 491,
+    "Wd": 273,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "S3",
+   "o": "S",
+   "name": "Sokl: střední podpěra (pod K03)",
+   "L": 140,
+   "B": 201,
+   "kind": "3S19",
+   "x0": 1065.857142857143,
+   "x1": 1084.857142857143,
+   "z0": 0,
+   "z1": 140,
+   "src": "C03",
+   "ends": [
+    "stojí na podlaze",
+    "nese K01 pod příčkou K03"
+   ],
+   "grain": "libovolně (skrytý díl, z C03 léta vodorovně)",
+   "hidden": true,
+   "note": "Skrytá za čelní lištou. Z C03 se řeže otočená (201 po letech × 140), u skrytého dílu na směru let nezáleží.",
+   "strip": 0,
+   "off": 1314,
+   "srcinfo": {
+    "id": "C03",
+    "loc": "vpravo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2500,
+    "Wd": 185,
+    "vady": ""
+   },
+   "cutL": 201,
+   "cutB": 140,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "S4",
+   "o": "S",
+   "name": "Sokl: zadní spojka",
+   "L": 653,
+   "B": 100,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1401.7142857142858,
+   "z0": 40,
+   "z1": 140,
+   "src": "C03",
+   "ends": [
+    "mezi boky soklu u zdi, nahoře",
+    "do boků zevnitř úhelníky"
+   ],
+   "grain": "léta vodorovně",
+   "hidden": true,
+   "note": "Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "C03",
+    "loc": "vpravo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2500,
+    "Wd": 185,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "S5",
+   "o": "S",
+   "name": "Sokl: čelní lišta",
+   "L": 653,
+   "B": 135,
+   "kind": "3S19",
+   "x0": 749.0,
+   "x1": 1401.7142857142858,
+   "z0": 5,
+   "z1": 140,
+   "src": "C03",
+   "ends": [
+    "mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou",
+    "pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)"
+   ],
+   "grain": "léta vodorovně",
+   "hidden": false,
+   "note": "Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.",
+   "strip": 0,
+   "off": 657,
+   "srcinfo": {
+    "id": "C03",
+    "loc": "vpravo dole pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 2500,
+    "Wd": 185,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": null
+  },
+  {
+   "id": "K09.1",
+   "o": "G",
+   "name": "Levý bok (u obkladu), kus 1/2",
+   "L": 1044,
+   "B": 250,
+   "kind": "3S19",
+   "src": "D02",
+   "ends": [
+    "slepit s ostatními kusy do jedné desky",
+    "kolíky 8 × 35 + lepidlo, spoj ve výšce police"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": true,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "D02",
+    "loc": "vlevo pod střechou",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 1285,
+    "Wd": 580,
+    "vady": ""
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": "K09"
+  },
+  {
+   "id": "K09.2",
+   "o": "G",
+   "name": "Levý bok (u obkladu), kus 2/2",
+   "L": 335,
+   "B": 250,
+   "kind": "3S19",
+   "src": "A01",
+   "ends": [
+    "slepit s ostatními kusy do jedné desky",
+    "kolíky 8 × 35 + lepidlo, spoj ve výšce police"
+   ],
+   "grain": "léta svisle (podél výšky)",
+   "hidden": true,
+   "note": "",
+   "strip": 0,
+   "off": 0,
+   "srcinfo": {
+    "id": "A01",
+    "loc": "vpravo v šuplících",
+    "typ": "3vrstvá deska",
+    "th": 19,
+    "L": 362,
+    "Wd": 384,
+    "vady": "vyvrtané díry z jedné strany, druhá strana ok"
+   },
+   "cutL": null,
+   "cutB": null,
+   "segments": null,
+   "parent": "K09"
+  }
+ ],
+ "stock": {
+  "C04+C05": {
+   "id": "C04+C05",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 2500,
+   "Wd": 320,
+   "vady": "",
+   "loc": "vpravo dole pod střechou",
+   "note": "slepit C04 a C05 podélně (lepidlo D3 + kolíky 8 mm po ~300 mm, svěrky), pak oříznout na 250",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K26"
+     ]
+    }
+   ]
+  },
+  "A01": {
+   "id": "A01",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 362,
+   "Wd": 384,
+   "vady": "vyvrtané díry z jedné strany, druhá strana ok",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K09.2"
+     ]
+    }
+   ]
+  },
+  "A18": {
+   "id": "A18",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 700,
+   "Wd": 360,
+   "vady": "vyvrtané díry z jedné strany, druhá strana ok",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K01"
+     ]
+    }
+   ]
+  },
+  "D01": {
+   "id": "D01",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 860,
+   "Wd": 650,
+   "vady": "",
+   "loc": "vlevo pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K13"
+     ]
+    },
+    {
+     "idx": 1,
+     "y": 254,
+     "w": 250,
+     "items": [
+      "K19"
+     ]
+    }
+   ]
+  },
+  "D02": {
+   "id": "D02",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 1285,
+   "Wd": 580,
+   "vady": "",
+   "loc": "vlevo pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K09.1"
+     ]
+    },
+    {
+     "idx": 1,
+     "y": 254,
+     "w": 250,
+     "items": [
+      "K15"
+     ]
+    }
+   ]
+  },
+  "D03": {
+   "id": "D03",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 2400,
+   "Wd": 600,
+   "vady": "",
+   "loc": "vlevo pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K02"
+     ]
+    },
+    {
+     "idx": 1,
+     "y": 254,
+     "w": 250,
+     "items": [
+      "K04"
+     ]
+    }
+   ]
+  },
+  "A02": {
+   "id": "A02",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 362,
+   "Wd": 401,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K23"
+     ]
+    }
+   ]
+  },
+  "A03": {
+   "id": "A03",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 365,
+   "Wd": 314,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K16"
+     ]
+    }
+   ]
+  },
+  "A04": {
+   "id": "A04",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 350,
+   "Wd": 320,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K11"
+     ]
+    }
+   ]
+  },
+  "A05": {
+   "id": "A05",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 360,
+   "Wd": 440,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K12"
+     ]
+    }
+   ]
+  },
+  "A06": {
+   "id": "A06",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 360,
+   "Wd": 442,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K22"
+     ]
+    }
+   ]
+  },
+  "A09": {
+   "id": "A09",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 400,
+   "Wd": 520,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K20"
+     ]
+    },
+    {
+     "idx": 1,
+     "y": 254,
+     "w": 250,
+     "items": [
+      "K17"
+     ]
+    }
+   ]
+  },
+  "A10": {
+   "id": "A10",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 400,
+   "Wd": 520,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K21"
+     ]
+    }
+   ]
+  },
+  "A19": {
+   "id": "A19",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 700,
+   "Wd": 420,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K03"
+     ]
+    }
+   ]
+  },
+  "B01": {
+   "id": "B01",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 850,
+   "Wd": 310,
+   "vady": "",
+   "loc": "vlevo dole pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K10"
+     ]
+    }
+   ]
+  },
+  "B02": {
+   "id": "B02",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 1005,
+   "Wd": 401,
+   "vady": "",
+   "loc": "vlevo dole pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K18",
+      "K25"
+     ]
+    }
+   ]
+  },
+  "B08": {
+   "id": "B08",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 700,
+   "Wd": 252,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K08"
+     ]
+    }
+   ]
+  },
+  "D08-1": {
+   "id": "D08-1",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 1000,
+   "Wd": 250,
+   "vady": "",
+   "loc": "vlevo vzadu pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K24"
+     ]
+    }
+   ]
+  },
+  "D08-2": {
+   "id": "D08-2",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 1000,
+   "Wd": 250,
+   "vady": "",
+   "loc": "vlevo vzadu pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K07",
+      "K05"
+     ]
+    }
+   ]
+  },
+  "D08-3": {
+   "id": "D08-3",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 1000,
+   "Wd": 250,
+   "vady": "",
+   "loc": "vlevo vzadu pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 250,
+     "items": [
+      "K14",
+      "K06"
+     ]
+    }
+   ]
+  },
+  "B10": {
+   "id": "B10",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 491,
+   "Wd": 273,
+   "vady": "",
+   "loc": "vpravo v šuplících",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 220,
+     "items": [
+      "S1",
+      "S2"
+     ]
+    }
+   ]
+  },
+  "C03": {
+   "id": "C03",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 2500,
+   "Wd": 185,
+   "vady": "",
+   "loc": "vpravo dole pod střechou",
+   "note": "",
+   "strips": [
+    {
+     "idx": 0,
+     "y": 0,
+     "w": 185,
+     "items": [
+      "S4",
+      "S5",
+      "S3"
+     ]
+    }
+   ]
+  }
+ },
+ "unused": [
+  {
+   "id": "D04",
+   "typ": "spárovka",
+   "th": 22,
+   "L": 2530,
+   "Wd": 630,
+   "loc": "vlevo pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D05",
+   "typ": "spárovka",
+   "th": 28,
+   "L": 2295,
+   "Wd": 600,
+   "loc": "vlevo pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D06",
+   "typ": "spárovka",
+   "th": 28,
+   "L": 1095,
+   "Wd": 374,
+   "loc": "vlevo pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "A07",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 363,
+   "Wd": 400,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A08",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 362,
+   "Wd": 382,
+   "loc": "vpravo v šuplících",
+   "vady": "vyvrtané díry z jedné strany, druhá strana ok"
+  },
+  {
+   "id": "A11",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 400,
+   "Wd": 507,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A12",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 493,
+   "Wd": 367,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A13",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 493,
+   "Wd": 367,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A14",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 495,
+   "Wd": 366,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A15",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 531,
+   "Wd": 401,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A16",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 531,
+   "Wd": 400,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "A17",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 531,
+   "Wd": 400,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B03",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 264,
+   "Wd": 411,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B04",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 411,
+   "Wd": 420,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B05",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 515,
+   "Wd": 367,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B06",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 520,
+   "Wd": 366,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B07",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 400,
+   "Wd": 358,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B09",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 551,
+   "Wd": 274,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B11",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 497,
+   "Wd": 581,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "B12",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 637,
+   "Wd": 325,
+   "loc": "vpravo v šuplících",
+   "vady": ""
+  },
+  {
+   "id": "C01",
+   "typ": "3vrstvá deska",
+   "th": 19,
+   "L": 304,
+   "Wd": 2040,
+   "loc": "vpravo dole pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-1",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-2",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-3",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-4",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-5",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-6",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-7",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-8",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  },
+  {
+   "id": "D07-9",
+   "typ": "spárovka",
+   "th": 18,
+   "L": 800,
+   "Wd": 250,
+   "loc": "vlevo vzadu pod střechou",
+   "vady": ""
+  }
+ ],
+ "buy": [],
+ "counts": {
+  "dowels": 16,
+  "dowel_joints": 8,
+  "pins": 62,
+  "pin_ends": 31,
+  "angle_top": 6,
+  "verts": 9,
+  "parts": 26,
+  "sokl": 5
+ }
+}

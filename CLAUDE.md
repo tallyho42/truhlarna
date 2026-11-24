@@ -1,0 +1,160 @@
+# Knihovna do pracovny
+
+Projekt: vestavěná smrková knihovna do Přemkovy pracovny (rodinný dům, Řisuty). Navrženo v chatu s Claudem, tady pokračujeme stavbou.
+
+Komunikace česky, stručně, akčně. Oslovení „Přemku“. Postup MVP: nejdřív nejjednodušší funkční verze, automatizovat až když je potřeba. Výstupy jako samostatné Markdown/HTML/CSV soubory bez závislostí.
+
+## Git a publikace
+
+Repo: https://github.com/tallyho42/truhlarna (veřejné, GitHub Pages z větve `main`, kořen).
+
+**Po každé změně souborů automaticky commit a push** (bez ptaní). Pak Přemkovi napsat, co se commitlo, a vždy vypsat URL obou stránek:
+- https://tallyho42.github.io/truhlarna/knihovna.html
+- https://tallyho42.github.io/truhlarna/postup.html
+
+Pages se po pushi obnoví do ~1 min.
+
+## Soubory
+
+- `knihovna.html`: **aktuální návrh (v4)**, hloubka 250, vše z desek z půdy. Výkres s najetím myší na díl (rozměr, zdroj, spoje), plány řezů desek, spoje, montáž, kusovník. Data vkládá `drevo/prirazeni.py` mezi `/*DATA*/…/*END*/`.
+- `postup.html`: pracovní postup krok za krokem (desky z půdy, řezání, lepení K26 a K09, vrtání děr pro podpěrky s výškami, broušení a nátěr pohledových stran, sokl, spodní rám, úrovně odspodu, dokončení). Kroky a obrázky se generují z dat, která vkládá `prirazeni.py`.
+- `drevo/prirazeni.py`: **zdroj pravdy pro rozměry a přiřazení** (geometrie, vzor křížení `PATTERN`, přiřazení k deskám). Po změně inventáře nebo návrhu spustit `python3 drevo/prirazeni.py`, přepíše `prirazeni.json`, `prirazeni.md` a data v HTML.
+- `input/`: fotky místnosti (IMG_0506–0508) a busty (IMG_0509).
+- `navrh-gemini/`: AI vizualizace z Gemini. Jen inspirace, některé mají chybně dveře v zadní stěně.
+- `gemini-prompt.md`: aktuální prompt pro vizualizaci.
+- `drevo/`: databáze dřeva z půdy (fáze 1).
+
+## Místnost (změřeno)
+
+| Rozměr | Hodnota |
+|---|---|
+| Šířka zadní stěny (od dřevěného obkladu k pravé stěně) | 237,0 cm |
+| Výška místnosti | 259,3 cm |
+| Od obkladu k hraně plně otevřeného křídla | 147,6 cm |
+| Od horní hrany dveří ke stropu | 47,4 cm → horní hrana dveří 211,9 cm |
+| Hloubka místnosti | cca 5 m |
+
+- Levá stěna: smrkový obklad (sukovitý, světlý).
+- Dveře: černé, bezfalcové, v **pravé boční stěně**, pant u zadní stěny. Otevírají se do místnosti a plně otevřené leží rovnoběžně se zadní stěnou, cca 12 cm od ní (odhad z fotky), přes pravých ~90 cm stěny. Klika je na volném konci křídla a v otevřené poloze míří ke zdi.
+- Okno je naproti knihovně přes celou šířku, orientace východ, málo světla.
+- Elektřina: prodlužka 230 V na zemi za křeslem. Pravděpodobně podlahové topení (termostat u dveří), do podlahy nevrtat.
+- Zůstává: křeslo typu IKEA Strandmon (~82 × 96 × 101 cm) v levém rohu u obkladu. Mizí: stará bílá knihovna, stojací lampa, kytara.
+
+## Tvrdá omezení
+
+1. **Žádná kolize s dveřmi.** Nic pod horní řadou nesmí zasahovat do pásu od 147,6 cm vpravo. Ve v4 končí knihovna na 142,1 cm (rezerva 5,5 cm, Přemkovi stačí ≥ 5 cm). Pod horní řadou nad dveřmi zůstává jen stěna.
+2. Horní řada nad dveřmi: spodní hrana 220,9 cm (v4), tedy 9,0 cm nad dveřmi.
+3. Nad dveřmi žádné převislé rostliny.
+4. Přihrádky čtvercové, uspořádání nepravidelné (některé příčky vynechané). Výjimka ve v4: sloupce 1–2 nad křeslem jsou 34,6 × 32,7 cm kvůli výklenku 73 cm.
+5. Bez zadní stěny: prosvítá bílá zeď.
+6. Materiál smrk 19 mm, povrch sladěný s obkladem vlevo.
+
+## Původní návrh v3 (nahrazen v4, viz Fáze 2)
+
+- Materiál: smrková **třívrstvá deska 19 mm** (biodeska / 3S deska, kvalita B/C kvůli sukům jako obklad). Skutečné CLT se v 19 mm nevyrábí. Pohledové hrany se třemi vrstvami, hloubka 300 mm.
+- Mřížka: 7 sloupců přes celou šířku, přihrádka 31,7 × 32,7 cm (světlost), deska 1,9 cm.
+  - Hlavní část: sloupce 1–4 × 7 řad, šířka 136,2 cm, od podlahy do 258,3 cm (1 cm pod strop).
+  - Sokl 14 cm, zapuštěný 3 cm, čelní lišta na magnetech; skrývá zdroj a stmívač.
+  - Horní řada pokračuje přes sloupce 5–7 až k pravé stěně (most nad dveřmi).
+- Spojené přihrádky (sloupce zleva, řady **shora**):
+  - sloupec 2, řady 1–2: **busta** (bronzový fragment tváře na tyčce a dřevěném podstavci, 40 × 20 cm), vlastní LED okruh,
+  - řada 3, sloupce 3–4: dvojitá, potos + knihy,
+  - řada 4, sloupce 1–2: dvojitá nad křeslem, na přední hraně spodní police (výška ~118 cm) je čtecí lampa (husí krk 24 V),
+  - horní řada, sloupce 5–6: dvojitá nad dveřmi; sloupec 7 malý zamiokulkas + knihy.
+- Obsah: všechny přihrádky plné, hlavně knihy (paperbacky). Rostliny jen dva druhy: potos 2× (sloupec 1 řada 1, dvojitá v řadě 3), zamiokulkas 1× (nad dveřmi). Spodní polovina jen knihy.
+- LED: COB 24 V, teplá bílá, v zápustném hliníkovém profilu zafrézovaném do spodní strany police 3 cm od čela (vybrané díly viz „LED – nákupní seznam“; drážka pro profil V4 cca 15,5 × 6,5 mm). Kabely drážkou 8 × 8 mm v zadní hraně desek. Zdroj Mean Well 24 V v soklu, 4kanálový stmívač (např. Shelly Plus RGBW PM): 1 knihy, 2 rostliny (časovač), 3 busta, 4 čtecí lampa. Celkem ~50 W.
+- Kotvení: skryté úhelníky každého boku a příčky do zadní zdi; pod most 2 ocelové trny do zdi; boční díl mostu přišroubovat do pravé stěny.
+
+## Kusovník v3 (mm, hloubka 300, tl. 19; aktuální je v `drevo/prirazeni.md`)
+
+Vodorovné desky průběžné, svislé příčky mezi nimi krátké. Průběžné jsou levý bok a pravý bok hlavní části.
+
+| Díl | ks | Délka | Šířka | Poznámka |
+|---|---|---|---|---|
+| Levý bok (u obkladu) | 1 | 2583 | 300 | od podlahy ke stropu |
+| Pravý bok hlavní části | 1 | 2218 | 300 | od podlahy pod desku mostu |
+| Boční díl mostu | 1 | 365 | 300 | do pravé stěny |
+| Spodní police | 1 | 1324 | 300 | přes 4 sloupce |
+| Police | 5 | 1324 | 300 | přes 4 sloupce |
+| Police | 1 | 317 | 300 | 1 sloupec (vedle busty) |
+| Police + dno mostu | 1 | 1660 | 300 | přes 5 sloupců |
+| Horní deska | 1 | 2332 | 300 | přes 7 sloupců |
+| Svislá příčka | 17 | 327 | 300 | |
+| Svislá příčka | 2 | 674 | 300 | přes 2 řady (u busty) |
+| Sokl – čelní lišta | 1 | 1324 | 130 | |
+| Sokl – podpěra | 2 | 140 | 270 | |
+
+Celkem 34 dílů, 7,5 m². Vejde se do 1 desky 5000 × 2050 (6 pruhů po 300 mm) bez rezervy, proto počítat s rezervou (+1 deska 2500 × 2050). Rozměry před řezáním ověřit na místě.
+
+Orientační rozpočet 45–76 tis. Kč (deska 12–15 tis., truhlář 25–45 tis., LED 6,5–12,5 tis., rostliny 1–2,5 tis.).
+
+## LED – zrušeno (2026-11-23)
+
+Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopLux COB 24 V, profil V4, MiBoxer) i plán kabeláže (drážky, stoupačka, hvězda ze soklu) neplatí, žádné drážky se nefrézují. Čtecí lampa nad křeslem je samostatná s vlastním kabelem do prodlužky.
+
+## Otevřené body
+
+- Ověřit horní hranu zárubně na pravé stěně (musí být pod 220 cm).
+- Zarážka dveří v plně otevřené poloze.
+- Povrch: Ciranova Hardwaxoil Natural White 5485 (jako zbytek domu), použije se 5 let stará plechovka bez testu. Plechovka asi 5 l (prodává se 1 l a 5 l), zbývá ~60 % = ~3 l; knihovna ~15 m² na 2 vrstvy potřebuje ~1,5 l, stačí. Před použitím rozmíchat ode dna a přecedit.
+
+---
+
+## Fáze 1: databáze dřeva z půdy
+
+Cíl: z fotek zjistit a uložit, jaké dřevo je na půdě.
+
+**Stav: hotovo.** Všechny relevantní kusy Přemek změřil ručně (bez fotek) a jsou v `inventar.csv`. Nezapsané zbyly jen menší spárovky (max. 400 × 800) a drobné odřezky CLT, pro knihovnu nepodstatné.
+
+Struktura:
+```
+drevo/
+  fotky/            # originály od Přemka, nepřejmenovávat ani neupravovat
+  inventar.csv      # zdroj pravdy, jeden řádek = jeden kus nebo balík stejných kusů
+  prehled.md        # generovaný souhrn (co a kolik), přepsat po každé změně
+```
+
+Sloupce `inventar.csv`:
+`id, fotky, typ, druh, delka_mm, sirka_mm, tloustka_mm, ks, stav, vady, vlhkost, pouzitelnost, jistota, overeno, umisteni, poznamka`
+
+- `umisteni`: kde kus leží na půdě, doslova jak ho Přemek napíše. A- a B-panely jsou „vpravo v šuplících“, pokud neřekne jinak.
+
+- `id`: D01, D02… (velké desky a spárovky), A01, A02… (menší CLT panely). Ideálně štítek z malířské pásky na kusu.
+- Kvalita je A/B a druh smrk, pokud Přemek v poznámce neuvede jinak.
+- `delka_mm` = rozměr **po letech** (u A-panelů „výška“), `sirka_mm` = napříč letům („šířka“). Přemek zadává šířka × výška.
+- `typ`: prkno / fošna / hranol / lať / palubka / spárovka / 3vrstvá deska / OSB / překližka / DTD / jiné
+- `druh`: smrk / borovice / modřín / jedle / dub / buk / neurčeno…
+- `stav`: suché / vlhké / neznámo; `vady`: suky, trhliny, hniloba, červotoč, zkroucení, barvené…
+- `jistota`: vysoká / střední / nízká (rozpoznání z fotky)
+- `overeno`: ano, když Přemek údaj potvrdil nebo změřil
+
+Pravidla:
+- Rozměry z fotky jen když je na ní metr nebo známé měřítko. Jinak odhad s `jistota=nízká` a doptat se.
+- Druh dřeva z fotky je často nejistý (smrk vs. jedle vs. borovice). Napsat jistotu a co by pomohlo (fotka čela, detail letokruhů, vůně/pryskyřice).
+- Nic neslučovat ani nemazat bez potvrzení. Po každé dávce fotek ukázat tabulku nových řádků a zeptat se na nejisté údaje.
+
+Doporučení pro focení: ke každému kusu nebo balíku štítek s ID, svinovací metr položený podél, 1 celkový záběr + 1 čelo (tloušťka a vrstvy) + detail vad. U balíku vyfotit čelo, aby šly spočítat kusy.
+
+## Fáze 2: co použít a co dokoupit
+
+**Stav: hotovo (2026-09-27), návrh v4.** Změny oproti v3 na Přemkovo přání:
+- Hloubka **250 mm** (místo 300).
+- Za křeslem vynechané sloupce 1–2, řady 1–3 odspodu (6 přihrádek). **Výklenek musí mít aspoň 73 cm na šířku a 100 cm na výšku** (má 73,0 × 117,5). Vpravo od něj jsou až k zemi 2 čtvercové přihrádky.
+- Proto nestejné sloupce (`CW` v `prirazeni.py`): 1–2 světlost 34,6 cm (nad křeslem), 3–4 a 7 čtverec 31,7, dvojitá nad dveřmi 59,4. Knihovna končí na 142,1 cm, k otevřeným dveřím 5,5 cm.
+- Křeslo stojí šikmo (~28°), zadním rohem zajede ~14 cm do výklenku. Levý bok začíná až nad výklenkem a visí na vrutech přes obklad do zdi.
+- **Sokl** jen pod sloupci 3–4, pevná krabice (bez magnetů): boky S1/S2 (3S 19, 140 × 220, oba z B10, pohledové; C02 se na půdě nenašla) stojí přesně pod K02 a K04, čelní lišta S5 mezi nimi zapuštěná 30 mm, vzadu spojka S4, uprostřed podpěra S3 pod K03 (S5, S4 i S3 z jednoho pruhu C03, S3 otočená, zbyde 981 mm), vše zevnitř úhelníky. K01 leží na soklu (tíhu nese tlakem přes S1/S2/S3) a přišroubuje se jen 2 vruty shora do zadní spojky S4. V soklu bude prodlužka se zásuvkou pro lampičku a nabíječku: v S1 vzadu u podlahy výřez 70 × 70 mm na kabely. Čelní lišta S5 pevně nebo na magnetech, Přemek ještě rozhodne (s magnety jde k prodlužce přepojovat). Do podlahy se nevrtá, vyrovnat podložkami.
+- **Pravý bok hlavní části** a **příčka u výklenku** jsou z jednoho kusu, **oba 2395 mm z D03** (2 pruhy, v každém zbývá 5 mm), stojí na spodní polici a jdou až pod horní desku. Dno mostu do pravého boku dosedá z boku na podpěrky. Kvůli příčce je **mezera ke stropu 2 cm**, knihovna končí na 257,3 cm.
+- **Svislé díly co nejdelší** (Přemek nechce přesné kolíkování): příčka vpravo dole 2 díly, příčka nad křeslem 1 kus (1016). Většina polic leží na podpěrkách.
+- **Levý bok = jedna deska 1379 mm slepená předem** z co nejméně kusů (vyšly 2: D02 1044 + A01 335, díry A01 k obkladu), kolíky 8 mm + lepidlo, spoje ve výšce polic. Celá se přišroubuje přes obklad do dřevěné stěny, police vlevo (nad křeslem až po horní řadu) do ní dosedají na podpěrky a k obkladu nesahají. V `prirazeni.py` jako `composite`, kusy `K09.1…`.
+- **Boční díl mostu** se šroubuje přímo do sádrokartonu pravé stěny (bez úhelníku), dno mostu i horní deska do něj dosedají z boku na podpěrky.
+- Díly jsou číslované odspodu nahoru a zleva doprava = pořadí montáže (Přemek to tak chce držet).
+- Konstrukce z krátkých dílů: v každém křížení je jeden díl průběžný (`PATTERN` v `prirazeni.py`, vybraný optimalizací, aby se nic nekupovalo). 26 dílů + sokl, **0 ke koupi**, 30 kusů rezerva. Horní deska se slepí z C04 + C05 (Přemek souhlasí).
+- Spoje (Přemek má aku vrtačku, okružní a přímočarou pilu, frézku, brusku, svěrky, nemá stolní pilu): A) svislý díl stojí na polici / nese ji = 2 vruty 4,5 × 50 skrz, díly srovnat k lati a předvrtat společně (žádné měření, kolíky zamítnuty jako moc přesné), B) police mezi průběžnými díly = podpěrky 5 mm + úhelník vzadu do zdi. Horní řada bez kolíků (pod stropem 2 cm), horní deska se zasune zepředu a přichytí úhelníky. Staví se na místě odspodu v pořadí čísel dílů.
+- Poškozené desky (A01, A08, A18) jsou na dílech se skrytou stranou. Přiřazení drží v pruhu rezervu ≥ 15 mm, kde to jde. Výjimka: K02 a K04 z D03 a K01 z A18 (rezerva 5 mm).
+- Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (minimum úhelník nahoře na K02). Pod dno mostu 2 skryté nosiče do dřeva.
+- Kvalita: vše A/B z půdy (původní návrh počítal s B/C kvůli sukům jako obklad).
+
+- Porovnat inventář s kusovníkem výše.
+- Kritéria: vlhkost ≤ 10–12 % pro nábytek do vytápěné místnosti (změřit vlhkoměrem), bez hniloby a červotoče, rovné, dost dlouhé a tlusté po hoblování na 19 mm.
+- Návrh počítá s třívrstvou deskou. Masivní prkna z půdy jde slepit do spárovky, ale nebudou mít vzhled tří vrstev a víc pracují. Proto zvážit, co jde použít na pohledové díly a co jen na skryté (sokl, podpěry, zkušební vzorky povrchu).
+- Výstup: `drevo/prirazeni.md` (který kus → který díl, kolik odpadu) a `drevo/nakup.md` (co dokoupit, množství, orientační cena, kde).
