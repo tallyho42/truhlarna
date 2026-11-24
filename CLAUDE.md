@@ -98,6 +98,12 @@ Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopL
 - **ID desek z půdy (D03, A09, C04…) se dál nikde nezobrazují**, jen díly K* a S* a spoje X*. V `prirazeni.py` je `CUT_DONE = True`, přiřazení k deskám zůstává jen v datech a v `drevo/prirazeni.md` jako archiv řezání.
 - **Spoje** jsou očíslované X01–X59 (`JOINTS` v `prirazeni.py`, generované z geometrie): X01–X10 sokl, pak odspodu nahoru a zleva doprava. Přemek je promýšlí, spoje jsou za něj otevřené. Nečíslované: lepené spoje v K09/K26 a úhelníky vzadu do zadní stěny.
 
+## Nářadí
+
+- Frézka: **Makita DRT50Z**, aku kombinovaná 18 V LXT (bez stolu). Standardně kleština 6 mm (dle trhu i 1/4"), **8 mm jde s dokoupenou kleštinou** (kužel 763670-8 + matice), 8 mm je maximum.
+- Okružní pila: **Makita DHS661ZJU**, aku bezuhlíková 18 V (165 mm).
+- Dál: aku vrtačka, přímočará pila, bruska, svěrky. Nemá stolní pilu.
+
 ## Otevřené body
 
 - **Spoje K10–K09 a K24–K20:** K09 i K20 končí dole v rovině spodku police, kterou mají nést, takže podpěrky nejdou. Díly jsou už nařezané (rozměry se nemění), spoj se dořeší: kolíky, nebo úhelník shora (asi K24).
