@@ -5,7 +5,8 @@
    "hole": 10,
    "out": 10,
    "slot_w": 6,
-   "slot_l": 12,
+   "slot_w2": 8,
+   "slot_l": 14,
    "slot_d": 4,
    "edge_r": 30,
    "edge_l": 60,
@@ -22,6 +23,7 @@
    "block_h": 80,
    "notch_w": 60,
    "notch_h": 15,
+   "notch_x": 160,
    "felt": 3
   },
   "W": 2370,
@@ -108,6 +110,7 @@
    "x1": 1420.7142857142858,
    "z0": 140.0,
    "z1": 159.0,
+   "za0": 140,
    "src": "A18",
    "ends": [
     "nese K02 (spoj A: vruty skrz)",
@@ -143,6 +146,7 @@
    "x1": 749.0,
    "z0": 159.0,
    "z1": 2554.0,
+   "za0": 159,
    "src": "D03",
    "ends": [
     "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
@@ -178,6 +182,7 @@
    "x1": 1084.857142857143,
    "z0": 159.0,
    "z1": 829.7142857142857,
+   "za0": 159,
    "src": "A19",
    "ends": [
     "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
@@ -213,6 +218,7 @@
    "x1": 1420.7142857142858,
    "z0": 159.0,
    "z1": 2554.0,
+   "za0": 159,
    "src": "D03",
    "ends": [
     "stojí na K01 (spoj A: 2 vruty zespodu skrz polici)",
@@ -248,6 +254,7 @@
    "x1": 1065.857142857143,
    "z0": 484.85714285714283,
    "z1": 503.85714285714283,
+   "za0": 485.0,
    "src": "D08-2",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -283,6 +290,7 @@
    "x1": 1401.7142857142858,
    "z0": 484.85714285714283,
    "z1": 503.85714285714283,
+   "za0": 485.0,
    "src": "A07",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K03",
@@ -318,6 +326,7 @@
    "x1": 1401.7142857142858,
    "z0": 829.7142857142857,
    "z1": 848.7142857142857,
+   "za0": 830,
    "src": "B02",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -353,6 +362,7 @@
    "x1": 1084.857142857143,
    "z0": 848.7142857142857,
    "z1": 1519.4285714285713,
+   "za0": 849,
    "src": "B08",
    "ends": [
     "stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce)",
@@ -388,6 +398,7 @@
    "x1": 19.0,
    "z0": 1174.5714285714284,
    "z1": 2554.0,
+   "za0": 1175.0,
    "src": "D02 + A01",
    "ends": [
     "visí na vrutech do stěny; spodní konec v rovině spodku K10 (spoj se dořeší: kolíky nebo úhelník)",
@@ -418,6 +429,7 @@
    "x1": 730.0,
    "z0": 1174.5714285714284,
    "z1": 1193.5714285714284,
+   "za0": 1175.0,
    "src": "D08-3",
    "ends": [
     "spoj s K09 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník",
@@ -453,6 +465,7 @@
    "x1": 1065.857142857143,
    "z0": 1174.5714285714284,
    "z1": 1193.5714285714284,
+   "za0": 1175.0,
    "src": "A04",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -488,6 +501,7 @@
    "x1": 1401.7142857142858,
    "z0": 1174.5714285714284,
    "z1": 1193.5714285714284,
+   "za0": 1175.0,
    "src": "A05",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K08",
@@ -523,6 +537,7 @@
    "x1": 730.0,
    "z0": 1519.4285714285713,
    "z1": 1538.4285714285713,
+   "za0": 1520,
    "src": "D01",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K09",
@@ -558,6 +573,7 @@
    "x1": 1401.7142857142858,
    "z0": 1519.4285714285713,
    "z1": 1538.4285714285713,
+   "za0": 1520,
    "src": "B01",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -593,6 +609,7 @@
    "x1": 384.0,
    "z0": 1538.4285714285713,
    "z1": 2554.0,
+   "za0": 1539,
    "src": "D02",
    "ends": [
     "stojí na K13 (spoj A: 2 vruty zespodu skrz polici)",
@@ -600,7 +617,7 @@
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": false,
-   "note": "",
+   "note": "Je o 1 mm delší, než je místo pod K26: horní konec zabrus o 1 mm.",
    "strip": 1,
    "off": 0,
    "srcinfo": {
@@ -628,6 +645,7 @@
    "x1": 365.0,
    "z0": 1864.2857142857142,
    "z1": 1883.2857142857142,
+   "za0": 1864.0,
    "src": "A03",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K09",
@@ -663,6 +681,7 @@
    "x1": 730.0,
    "z0": 1864.2857142857142,
    "z1": 1883.2857142857142,
+   "za0": 1864.0,
    "src": "A09",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K15",
@@ -698,6 +717,7 @@
    "x1": 1401.7142857142858,
    "z0": 1864.2857142857142,
    "z1": 1883.2857142857142,
+   "za0": 1864.0,
    "src": "D08-2",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -733,6 +753,7 @@
    "x1": 1084.857142857143,
    "z0": 1883.2857142857142,
    "z1": 2554.0,
+   "za0": 1883.0,
    "src": "D01",
    "ends": [
     "stojí na K18 (spoj A: 2 vruty zespodu skrz polici)",
@@ -768,6 +789,7 @@
    "x1": 2370.0,
    "z0": 2209.142857142857,
    "z1": 2573.0,
+   "za0": 2209.0,
    "src": "A09",
    "ends": [
     "visí na vrutech do stěny; spodní konec v rovině spodku K24 (spoj se dořeší: kolíky nebo úhelník)",
@@ -803,6 +825,7 @@
    "x1": 365.0,
    "z0": 2209.142857142857,
    "z1": 2228.142857142857,
+   "za0": 2209.0,
    "src": "A10",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K09",
@@ -838,6 +861,7 @@
    "x1": 1065.857142857143,
    "z0": 2209.142857142857,
    "z1": 2228.142857142857,
+   "za0": 2209.0,
    "src": "A06",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K02",
@@ -873,6 +897,7 @@
    "x1": 1401.7142857142858,
    "z0": 2209.142857142857,
    "z1": 2228.142857142857,
+   "za0": 2209.0,
    "src": "A02",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K19",
@@ -908,6 +933,7 @@
    "x1": 2351.0,
    "z0": 2209.142857142857,
    "z1": 2228.142857142857,
+   "za0": 2209.0,
    "src": "D08-1",
    "ends": [
     "dosedá na 2 kolíky Ø 6 v boku dílu K04",
@@ -915,7 +941,7 @@
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).",
+   "note": "Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Původně navíc 2 skryté nosiče s trny do zadní hrany: to ale nejde dohromady s kolíky (K24 se na trny nasouvá vodorovně, na kolíky se spouští shora) a díry pro trny v 19mm hraně jsou slabé. Kotvení mostu do zadní stěny se dořeší.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -943,6 +969,7 @@
    "x1": 2034.1428571428573,
    "z0": 2228.142857142857,
    "z1": 2554.0,
+   "za0": 2228.0,
    "src": "B02",
    "ends": [
     "stojí na K24 (spoj A: 2 vruty zespodu skrz polici)",
@@ -978,6 +1005,7 @@
    "x1": 2351.0,
    "z0": 2554.0,
    "z1": 2573.0,
+   "za0": 2554,
    "src": "C04+C05",
    "ends": [
     "k obkladu, leží na K09 (úhelník zespodu)",
@@ -1088,11 +1116,11 @@
     "stojí na podlaze",
     "nese K01 pod příčkou K03"
    ],
-   "grain": "libovolně (skrytý díl, z C03 léta vodorovně)",
+   "grain": "libovolně (skrytý díl)",
    "hidden": true,
    "note": "Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto 182 = 250 − 30 − 2 × 19).",
    "strip": 0,
-   "off": 1314,
+   "off": 1312,
    "srcinfo": {
     "id": "C03",
     "loc": "vpravo dole pod střechou",
@@ -1146,13 +1174,13 @@
    "id": "S5",
    "o": "S",
    "name": "Sokl: čelní lišta",
-   "L": 653,
+   "L": 651,
    "B": 135,
    "kind": "3S19",
-   "x0": 749.0,
-   "x1": 1401.7142857142858,
-   "z0": 5,
-   "z1": 140,
+   "x0": 750.0,
+   "x1": 1400.7142857142858,
+   "z0": 3,
+   "z1": 138,
    "src": "C03",
    "ends": [
     "stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01",
@@ -1160,7 +1188,7 @@
    ],
    "grain": "léta vodorovně",
    "hidden": false,
-   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15–16 × 5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Uprostřed zespodu úchyt (výřez 60 × 15 mm).",
+   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15–16 × 5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez 60 × 15 mm, střed 160 mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit.",
    "strip": 0,
    "off": 657,
    "srcinfo": {
@@ -2260,7 +2288,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K05 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K05 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K05 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 494.4,
    "mx": 804.0,
@@ -2272,14 +2300,16 @@
      494.4
     ]
    ],
-   "id": "X14"
+   "side": 0,
+   "id": "X14",
+   "hole": 327
   },
   {
    "a": "K05",
    "b": "K03",
    "kind": "pins",
    "what": "K05 pravý konec → bok K03 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K03 (levá strana, 60 mm od čela a od zadní hrany), v K05 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K03 (levá strana, 60 mm od čela a od zadní hrany), v K05 zespodu 2 drážky 8 × 14 × 4",
    "x": 1065.9,
    "z": 494.4,
    "mx": 1010.9,
@@ -2291,14 +2321,16 @@
      494.4
     ]
    ],
-   "id": "X15"
+   "side": 1,
+   "id": "X15",
+   "hole": 327
   },
   {
    "a": "K06",
    "b": "K03",
    "kind": "pins",
    "what": "K06 levý konec → bok K03 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K03 (pravá strana, 30 mm od čela a od zadní hrany), v K06 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K03 (pravá strana, 30 mm od čela a od zadní hrany), v K06 zespodu 2 drážky 6 × 14 × 4",
    "x": 1084.9,
    "z": 494.4,
    "mx": 1139.9,
@@ -2310,14 +2342,16 @@
      494.4
     ]
    ],
-   "id": "X16"
+   "side": 0,
+   "id": "X16",
+   "hole": 327
   },
   {
    "a": "K06",
    "b": "K04",
    "kind": "pins",
    "what": "K06 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K06 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K06 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 494.4,
    "mx": 1346.7,
@@ -2329,7 +2363,9 @@
      494.4
     ]
    ],
-   "id": "X17"
+   "side": 1,
+   "id": "X17",
+   "hole": 327
   },
   {
    "a": "K03",
@@ -2355,7 +2391,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K07 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K07 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K07 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 839.2,
    "mx": 804.0,
@@ -2367,14 +2403,16 @@
      839.2
     ]
    ],
-   "id": "X19"
+   "side": 0,
+   "id": "X19",
+   "hole": 672
   },
   {
    "a": "K07",
    "b": "K04",
    "kind": "pins",
    "what": "K07 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K07 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K07 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 839.2,
    "mx": 1346.7,
@@ -2386,7 +2424,9 @@
      839.2
     ]
    ],
-   "id": "X20"
+   "side": 1,
+   "id": "X20",
+   "hole": 672
   },
   {
    "a": "K08",
@@ -2443,6 +2483,7 @@
      1184.1
     ]
    ],
+   "side": 0,
    "id": "X23"
   },
   {
@@ -2450,7 +2491,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K10 pravý konec → bok K02 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K10 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K10 zespodu 2 drážky 8 × 14 × 4",
    "x": 730.0,
    "z": 1184.1,
    "mx": 675.0,
@@ -2462,14 +2503,16 @@
      1184.1
     ]
    ],
-   "id": "X24"
+   "side": 1,
+   "id": "X24",
+   "hole": 1017
   },
   {
    "a": "K11",
    "b": "K02",
    "kind": "pins",
    "what": "K11 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K11 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K11 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 1184.1,
    "mx": 804.0,
@@ -2481,14 +2524,16 @@
      1184.1
     ]
    ],
-   "id": "X25"
+   "side": 0,
+   "id": "X25",
+   "hole": 1017
   },
   {
    "a": "K11",
    "b": "K08",
    "kind": "pins",
    "what": "K11 pravý konec → bok K08 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K08 (levá strana, 60 mm od čela a od zadní hrany), v K11 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K08 (levá strana, 60 mm od čela a od zadní hrany), v K11 zespodu 2 drážky 8 × 14 × 4",
    "x": 1065.9,
    "z": 1184.1,
    "mx": 1010.9,
@@ -2500,14 +2545,16 @@
      1184.1
     ]
    ],
-   "id": "X26"
+   "side": 1,
+   "id": "X26",
+   "hole": 327
   },
   {
    "a": "K12",
    "b": "K08",
    "kind": "pins",
    "what": "K12 levý konec → bok K08 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K08 (pravá strana, 30 mm od čela a od zadní hrany), v K12 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K08 (pravá strana, 30 mm od čela a od zadní hrany), v K12 zespodu 2 drážky 6 × 14 × 4",
    "x": 1084.9,
    "z": 1184.1,
    "mx": 1139.9,
@@ -2519,14 +2566,16 @@
      1184.1
     ]
    ],
-   "id": "X27"
+   "side": 0,
+   "id": "X27",
+   "hole": 327
   },
   {
    "a": "K12",
    "b": "K04",
    "kind": "pins",
    "what": "K12 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K12 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K12 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 1184.1,
    "mx": 1346.7,
@@ -2538,7 +2587,9 @@
      1184.1
     ]
    ],
-   "id": "X28"
+   "side": 1,
+   "id": "X28",
+   "hole": 1017
   },
   {
    "a": "K08",
@@ -2564,7 +2615,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K13 levý konec → bok K09 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K13 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K13 zespodu 2 drážky 6 × 14 × 4",
    "x": 19.0,
    "z": 1528.9,
    "mx": 74.0,
@@ -2576,14 +2627,16 @@
      1528.9
     ]
    ],
-   "id": "X30"
+   "side": 0,
+   "id": "X30",
+   "hole": 346
   },
   {
    "a": "K13",
    "b": "K02",
    "kind": "pins",
    "what": "K13 pravý konec → bok K02 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K13 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K13 zespodu 2 drážky 8 × 14 × 4",
    "x": 730.0,
    "z": 1528.9,
    "mx": 675.0,
@@ -2595,14 +2648,16 @@
      1528.9
     ]
    ],
-   "id": "X31"
+   "side": 1,
+   "id": "X31",
+   "hole": 1362
   },
   {
    "a": "K14",
    "b": "K02",
    "kind": "pins",
    "what": "K14 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K14 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K14 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 1528.9,
    "mx": 804.0,
@@ -2614,14 +2669,16 @@
      1528.9
     ]
    ],
-   "id": "X32"
+   "side": 0,
+   "id": "X32",
+   "hole": 1362
   },
   {
    "a": "K14",
    "b": "K04",
    "kind": "pins",
    "what": "K14 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K14 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K14 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 1528.9,
    "mx": 1346.7,
@@ -2633,7 +2690,9 @@
      1528.9
     ]
    ],
-   "id": "X33"
+   "side": 1,
+   "id": "X33",
+   "hole": 1362
   },
   {
    "a": "K15",
@@ -2659,7 +2718,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K16 levý konec → bok K09 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K16 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K16 zespodu 2 drážky 6 × 14 × 4",
    "x": 19.0,
    "z": 1873.8,
    "mx": 74.0,
@@ -2671,14 +2730,16 @@
      1873.8
     ]
    ],
-   "id": "X35"
+   "side": 0,
+   "id": "X35",
+   "hole": 690
   },
   {
    "a": "K16",
    "b": "K15",
    "kind": "pins",
    "what": "K16 pravý konec → bok K15 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K16 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K16 zespodu 2 drážky 8 × 14 × 4",
    "x": 365.0,
    "z": 1873.8,
    "mx": 310.0,
@@ -2690,14 +2751,16 @@
      1873.8
     ]
    ],
-   "id": "X36"
+   "side": 1,
+   "id": "X36",
+   "hole": 326
   },
   {
    "a": "K17",
    "b": "K15",
    "kind": "pins",
    "what": "K17 levý konec → bok K15 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K15 (pravá strana, 30 mm od čela a od zadní hrany), v K17 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (pravá strana, 30 mm od čela a od zadní hrany), v K17 zespodu 2 drážky 6 × 14 × 4",
    "x": 384.0,
    "z": 1873.8,
    "mx": 439.0,
@@ -2709,14 +2772,16 @@
      1873.8
     ]
    ],
-   "id": "X37"
+   "side": 0,
+   "id": "X37",
+   "hole": 326
   },
   {
    "a": "K17",
    "b": "K02",
    "kind": "pins",
    "what": "K17 pravý konec → bok K02 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K17 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K17 zespodu 2 drážky 8 × 14 × 4",
    "x": 730.0,
    "z": 1873.8,
    "mx": 675.0,
@@ -2728,14 +2793,16 @@
      1873.8
     ]
    ],
-   "id": "X38"
+   "side": 1,
+   "id": "X38",
+   "hole": 1706
   },
   {
    "a": "K18",
    "b": "K02",
    "kind": "pins",
    "what": "K18 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K18 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K18 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 1873.8,
    "mx": 804.0,
@@ -2747,14 +2814,16 @@
      1873.8
     ]
    ],
-   "id": "X39"
+   "side": 0,
+   "id": "X39",
+   "hole": 1706
   },
   {
    "a": "K18",
    "b": "K04",
    "kind": "pins",
    "what": "K18 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K18 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K18 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 1873.8,
    "mx": 1346.7,
@@ -2766,7 +2835,9 @@
      1873.8
     ]
    ],
-   "id": "X40"
+   "side": 1,
+   "id": "X40",
+   "hole": 1706
   },
   {
    "a": "K19",
@@ -2811,7 +2882,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K21 levý konec → bok K09 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K21 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K21 zespodu 2 drážky 6 × 14 × 4",
    "x": 19.0,
    "z": 2218.6,
    "mx": 74.0,
@@ -2823,14 +2894,16 @@
      2218.6
     ]
    ],
-   "id": "X43"
+   "side": 0,
+   "id": "X43",
+   "hole": 1035
   },
   {
    "a": "K21",
    "b": "K15",
    "kind": "pins",
    "what": "K21 pravý konec → bok K15 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K21 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K21 zespodu 2 drážky 8 × 14 × 4",
    "x": 365.0,
    "z": 2218.6,
    "mx": 310.0,
@@ -2842,14 +2915,16 @@
      2218.6
     ]
    ],
-   "id": "X44"
+   "side": 1,
+   "id": "X44",
+   "hole": 671
   },
   {
    "a": "K22",
    "b": "K02",
    "kind": "pins",
    "what": "K22 levý konec → bok K02 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K22 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K22 zespodu 2 drážky 6 × 14 × 4",
    "x": 749.0,
    "z": 2218.6,
    "mx": 804.0,
@@ -2861,14 +2936,16 @@
      2218.6
     ]
    ],
-   "id": "X45"
+   "side": 0,
+   "id": "X45",
+   "hole": 2051
   },
   {
    "a": "K22",
    "b": "K19",
    "kind": "pins",
    "what": "K22 pravý konec → bok K19 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K19 (levá strana, 60 mm od čela a od zadní hrany), v K22 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K19 (levá strana, 60 mm od čela a od zadní hrany), v K22 zespodu 2 drážky 8 × 14 × 4",
    "x": 1065.9,
    "z": 2218.6,
    "mx": 1010.9,
@@ -2880,14 +2957,16 @@
      2218.6
     ]
    ],
-   "id": "X46"
+   "side": 1,
+   "id": "X46",
+   "hole": 327
   },
   {
    "a": "K23",
    "b": "K19",
    "kind": "pins",
    "what": "K23 levý konec → bok K19 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K19 (pravá strana, 30 mm od čela a od zadní hrany), v K23 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K19 (pravá strana, 30 mm od čela a od zadní hrany), v K23 zespodu 2 drážky 6 × 14 × 4",
    "x": 1084.9,
    "z": 2218.6,
    "mx": 1139.9,
@@ -2899,14 +2978,16 @@
      2218.6
     ]
    ],
-   "id": "X47"
+   "side": 0,
+   "id": "X47",
+   "hole": 327
   },
   {
    "a": "K23",
    "b": "K04",
    "kind": "pins",
    "what": "K23 pravý konec → bok K04 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K23 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K23 zespodu 2 drážky 8 × 14 × 4",
    "x": 1401.7,
    "z": 2218.6,
    "mx": 1346.7,
@@ -2918,14 +2999,16 @@
      2218.6
     ]
    ],
-   "id": "X48"
+   "side": 1,
+   "id": "X48",
+   "hole": 2051
   },
   {
    "a": "K24",
    "b": "K04",
    "kind": "pins",
    "what": "K24 levý konec → bok K04 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (pravá strana, 30 mm od čela a od zadní hrany), v K24 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (pravá strana, 30 mm od čela a od zadní hrany), v K24 zespodu 2 drážky 6 × 14 × 4",
    "x": 1420.7,
    "z": 2218.6,
    "mx": 1475.7,
@@ -2937,14 +3020,16 @@
      2218.6
     ]
    ],
-   "id": "X49"
+   "side": 0,
+   "id": "X49",
+   "hole": 2051
   },
   {
    "a": "K24",
    "b": "zadní stěna",
-   "kind": "wall",
+   "kind": "open",
    "what": "K24 → zadní stěna",
-   "now": "2 skryté nosiče s trnem přes sádrokarton do dřeva, trny do děr v zadní hraně K24",
+   "now": "nevyřešeno: skryté nosiče s trny nejdou dohromady s kolíky (na trny se K24 nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Možnost: v levém konci K24 drážka od zadní hrany až k přednímu kolíku, nebo jiné kotvení (úhelník, lišta pod K24)",
    "x": 1885.9,
    "z": 2218.6,
    "mx": 1717.9,
@@ -2979,6 +3064,7 @@
      2218.6
     ]
    ],
+   "side": 1,
    "id": "X51"
   },
   {
@@ -3119,7 +3205,7 @@
    "b": "K20",
    "kind": "pins",
    "what": "K26 pravý konec → bok K20 (levá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K20 (levá strana, 60 mm od čela a od zadní hrany), v K26 zespodu 2 drážky",
+   "now": "2 dřevěné kolíky Ø 6 v boku K20 (levá strana, 60 mm od čela a od zadní hrany), v K26 zespodu 2 drážky 8 × 14 × 4",
    "x": 2351.0,
    "z": 2563.5,
    "mx": 2296.0,
@@ -3131,7 +3217,9 @@
      2563.5
     ]
    ],
-   "id": "X59"
+   "side": 1,
+   "id": "X59",
+   "hole": 346
   }
  ],
  "counts": {

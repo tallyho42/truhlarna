@@ -30,12 +30,12 @@ CUT_DONE = True                         # všechno nařezáno (2026-11-24): ID d
 PINGAP = 1                              # police na kolících z obou stran: o 1 mm kratší než světlost (aby šla zasunout)
 # Spoj B (2026-11-24): dřevěné kolíky Ø 6 v boku svislého dílu, police na nich leží a má zespodu na konci drážku,
 # do které kolík zapadne (zbyde vidět jen kousek). Nic se nesmí provrtat skrz 19mm desku.
-KOLIK = dict(d=6, hole=10, out=10, slot_w=6, slot_l=12, slot_d=4, edge_r=30, edge_l=60)
+KOLIK = dict(d=6, hole=10, out=10, slot_w=6, slot_w2=8, slot_l=14, slot_d=4, edge_r=30, edge_l=60)   # slot_w2 = šířka drážek na pravém konci police (vůle)
 KOLIK['length'] = KOLIK['hole'] + KOLIK['out']                  # délka kolíku
 KOLIK['center'] = KOLIK['slot_d'] - KOLIK['d'] / 2               # střed díry nad spodní plochou police
 KOLIK['visible'] = KOLIK['d'] - KOLIK['slot_d']                  # kolik kolíku kouká pod policí
 assert KOLIK['hole'] <= t - 7 and KOLIK['slot_d'] <= t - 10, 'díra nebo drážka by šla moc hluboko'
-assert KOLIK['slot_l'] >= KOLIK['out'] + PINGAP / 2 + 1, 'drážka kratší než vyčnívající kolík'
+assert KOLIK['slot_l'] - KOLIK['slot_w'] / 2 >= KOLIK['out'] - PINGAP / 2 + 1, 'drážka (plná šířka bez zaobleného konce) kratší než vyčnívající kolík'
 assert KOLIK['edge_l'] - KOLIK['edge_r'] > KOLIK['d'] + 6, 'díry z obou stran by se potkaly'
 
 def exists(c, r):                       # přihrádka sloupec c, řada r (odspodu)
@@ -181,14 +181,14 @@ for p in P:
     p['ends'] = [end_text(p, 0), end_text(p, 1)]
     p['note'] = ''
     if p['o'] == 'H' and p['k'] == 0: p['note'] = 'Leží celou plochou na soklu.'
-    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).'
+    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Původně navíc 2 skryté nosiče s trny do zadní hrany: to ale nejde dohromady s kolíky (K24 se na trny nasouvá vodorovně, na kolíky se spouští shora) a díry pro trny v 19mm hraně jsou slabé. Kotvení mostu do zadní stěny se dořeší.'
     if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník.'
     if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).')
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
 
 # Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety cca Ø 15–16 × 5 (přesně změřit).
-MAG = dict(d='15–16', th=5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, felt=3)
+MAG = dict(d='15–16', th=5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, notch_x=160, felt=3)
 # sokl: pevná krabice pod sloupci 3–4. Boky soklu stojí přesně pod K02 a K04,
 # čelní lišta mezi nimi zapuštěná 30 mm, vzadu spojka u zdi, uprostřed podpěra pod K03.
 xa, xb = xl(2), xl(K)                    # levá hrana levého a pravého boku soklu
@@ -203,16 +203,16 @@ SOKL = [
          ends=['stojí na podlaze (nevrtat, vyrovnat podložkami)', 'nese K01, nad ním stojí K04'],
          note='Pohledový: je vidět ze strany od dveří. Vpředu končí 30 mm za čelem K01.'),
     dict(id='S3', o='S', name='Sokl: střední podpěra (pod K03)', L=SOKL_H, B=D - SOKL_ZAP - 2 * t, kind='3S19',
-         x0=xl(3), x1=xl(3) + t, z0=0, z1=SOKL_H, hidden=True, grain='libovolně (skrytý díl, z C03 léta vodorovně)',
+         x0=xl(3), x1=xl(3) + t, z0=0, z1=SOKL_H, hidden=True, grain='libovolně (skrytý díl)',
          cutL=D - SOKL_ZAP - 2 * t, cutB=SOKL_H,
          ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note=f'Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto {D - SOKL_ZAP - 2 * t} = 250 − 30 − 2 × 19).'),
     dict(id='S4', o='S', name='Sokl: zadní spojka', L=round(xb - xa - t), B=100, kind='3S19',
          x0=xa + t, x1=xb, z0=SOKL_H - 100, z1=SOKL_H, hidden=True, grain='léta vodorovně',
          ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.'),
-    dict(id='S5', o='S', name='Sokl: čelní lišta', L=round(xb - xa - t), B=SOKL_H - 5, kind='3S19',
-         x0=xa + t, x1=xb, z0=5, z1=SOKL_H, hidden=False, grain='léta vodorovně',
+    dict(id='S5', o='S', name='Sokl: čelní lišta', L=round(xb - xa - t - 2), B=SOKL_H - 5, kind='3S19',
+         x0=xa + t + 1, x1=xb - 1, z0=MAG['felt'], z1=MAG['felt'] + SOKL_H - 5, hidden=False, grain='léta vodorovně',
          ends=['stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01', 'odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3'],
-         note=f"Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø {MAG['d']} × {MAG['th']} zapuštěné v dírách {MAG['from_end']} mm od konců a {MAG['z']} mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Uprostřed zespodu úchyt (výřez {MAG['notch_w']} × {MAG['notch_h']} mm)."),
+         note=f"Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø {MAG['d']} × {MAG['th']} zapuštěné v dírách {MAG['from_end']} mm od konců a {MAG['z']} mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez {MAG['notch_w']} × {MAG['notch_h']} mm, střed {MAG['notch_x']} mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit."),
 ]
 
 # ---- spoje (X01…): každý styk dvou dílů, styk se stěnou a spoje soklu ----
@@ -235,9 +235,10 @@ for p in P:
         fx = p['x0'] if side == 0 else p['x1']
         what = f"{p['id']} {'levý' if side == 0 else 'pravý'} konec → bok {v['id']} ({'pravá' if side == 0 else 'levá'} strana)"
         now = (f"nevyřešeno: {v['id']} končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)" if flush else
-               f"2 dřevěné kolíky Ø 6 v boku {v['id']} ({'pravá' if side == 0 else 'levá'} strana, {KOLIK['edge_r'] if side == 0 else KOLIK['edge_l']} mm od čela a od zadní hrany), v {p['id']} zespodu 2 drážky")
+               f"2 dřevěné kolíky Ø 6 v boku {v['id']} ({'pravá' if side == 0 else 'levá'} strana, {KOLIK['edge_r'] if side == 0 else KOLIK['edge_l']} mm od čela a od zadní hrany), v {p['id']} zespodu 2 drážky {KOLIK['slot_w'] if side == 0 else KOLIK['slot_w2']} × {KOLIK['slot_l']} × {KOLIK['slot_d']}")
         mz = zb(k) - 28 if k == R else zb(k) + t + 28
         _J(p['id'], v['id'], 'open' if flush else 'pins', what, now, fx, zb(k) + t / 2, fx + (OFF if side == 0 else -OFF), mz)
+        JOINTS[-1]['side'] = side
 for q in P:
     if q['o'] != 'V': continue
     j = q['j']; cx = xl(j) + t / 2
@@ -264,7 +265,7 @@ _J('K09', 'obklad', 'wall', 'K09 → obklad a dřevěná stěna', '6–8 dlouhý
    0, k09['z0'], t + OFF + 20, (zb(4) + t + zb(5)) / 2, pts=[(t / 2, (zb(4) + t + zb(5)) / 2)])
 _J('K20', 'pravá stěna', 'wall', 'K20 → pravá stěna (sádrokarton)', 'vruty s kovovými hmoždinkami do sádrokartonu, ideálně do profilu',
    W, k20['z0'], W - t - OFF, (zb(6) + t + zb(7)) / 2 + 20, pts=[(W - t / 2, (zb(6) + t + zb(7)) / 2 + 20)])
-_J(k24['id'], 'zadní stěna', 'wall', f"{k24['id']} → zadní stěna", f"2 skryté nosiče s trnem přes sádrokarton do dřeva, trny do děr v zadní hraně {k24['id']}",
+_J(k24['id'], 'zadní stěna', 'open', f"{k24['id']} → zadní stěna", f"nevyřešeno: skryté nosiče s trny nejdou dohromady s kolíky (na trny se K24 nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Možnost: v levém konci K24 drážka od zadní hrany až k přednímu kolíku, nebo jiné kotvení (úhelník, lišta pod K24)",
    (k24['x0'] + k24['x1']) / 2, zb(6) + t / 2, (k24['x0'] + xl(6)) / 2, zb(6) + t + 28,
    pts=[(k24['x0'] + k24['L'] / 3, zb(6) + t / 2), (k24['x0'] + 2 * k24['L'] / 3, zb(6) + t / 2)])
 JOINTS.sort(key=lambda d: (round(d['z']), d['x']))
@@ -290,6 +291,45 @@ _S('K01', 'S4', 'screw', 'K01 → S4 zadní spojka', '2 vruty 4,5 × 50 shora sk
    (s1x + s3x) / 2, 9, (s1x + _s['S3']['x0']) / 2, 62, pts=[((s1x + _s['S3']['x0']) / 2, 9), ((_s['S3']['x1'] + s2x) / 2, 9)])
 JOINTS = SJ + JOINTS
 for i, d in enumerate(JOINTS): d['id'] = f"X{i + 1:02d}"
+
+# ---- skutečné výšky z nařezaných délek (ZA = spodní hrana dílu nad podlahou, mm) ----
+# Díly jsou nařezané na celé mm, takže se výšky trochu liší od teoretické mřížky. Police se staví
+# odspodu: když pod polici stojí příčka, výšku určuje příčka (K03 → K07, K08 → K14); jinak díra pro kolík
+# v K02/K04 zaokrouhlená na mm. Všechny police v jedné úrovni mají stejnou výšku a díry v ostatních
+# svislých dílech se dopočítají z ní, takže všechno sedí na sebe.
+ZA, LEVEL = {}, {}
+def _shelves(k): return [q for q in P if q['o'] == 'H' and q['k'] == k]
+for q in P:
+    if q['o'] == 'V' and A.get((q['j'], q['k0'])) == 'H' and q['k0'] == 0: ZA[q['id']] = PLINTH + t
+ZA[P[0]['id']] = PLINTH                                   # K01 na soklu
+LEVEL[0] = PLINTH
+for k in range(1, R + 1):
+    stack = [ZA[q['id']] + q['L'] for h in _shelves(k) for q in P
+             if q['o'] == 'V' and q['id'] in ZA and abs(q['z1'] - h['z0']) < 1 and h['x0'] - 1 <= q['x0'] and q['x1'] <= h['x1'] + 1]
+    if k == R:
+        tops = [ZA[q['id']] + q['L'] for q in P if q['o'] == 'V' and q['id'] in ZA and abs(q['z1'] - zb(R)) < 1]
+        LEVEL[k] = max(set(tops), key=tops.count)          # horní deska leží na většině svislých dílů
+    elif stack:
+        LEVEL[k] = stack[0]
+    else:
+        ref = next(q for q in P if q['o'] == 'V' and q['id'] in ZA and q['z0'] - 1 <= zb(k) <= q['z1'] + 1)
+        LEVEL[k] = ZA[ref['id']] + round(zb(k) + KOLIK['center'] - ref['z0']) - KOLIK['center']
+    for h in _shelves(k): ZA[h['id']] = LEVEL[k]
+    for q in P:
+        if q['o'] != 'V' or q['id'] in ZA or abs(q['z0'] - zb(k)) > t + 1: continue
+        ZA[q['id']] = LEVEL[k] + (t if abs(q['z0'] - (zb(k) + t)) < 1 else 0)   # stojí na polici / visí v rovině jejího spodku
+assert len(ZA) == len(P), set(q['id'] for q in P) - set(ZA)
+for d_ in JOINTS:
+    if d_['kind'] == 'pins':
+        d_['hole'] = int(round(ZA[d_['a']] + KOLIK['center'] - ZA[d_['b']]))
+# svislé díly, které nahoře nedosednou přesně pod polici (zaokrouhlení délek)
+for q in P:
+    if q['o'] == 'V' and A.get((q['j'], q['k1'])) == 'H':
+        diff = ZA[q['id']] + q['L'] - LEVEL[q['k1']]
+        if abs(diff) >= 0.5:
+            q['note'] = (q.get('note', '') + (f" Je o {diff:g} mm delší, než je místo pod {next(h['id'] for h in _shelves(q['k1']) if h['x0'] - 1 <= q['x0'] <= h['x1'])}: horní konec zabrus o {diff:g} mm."
+                                               if diff > 0 else f" Pod {next(h['id'] for h in _shelves(q['k1']) if h['x0'] - 1 <= q['x0'] <= h['x1'])} zbude mezera {-diff:g} mm, nevadí.")).strip()
+for q in P: q['za0'] = ZA[q['id']]
 
 # ---- sklad ----
 STOCK = []
@@ -451,8 +491,9 @@ for sid, lst in strips.items():
 for d_ in JOINTS:
     if d_['kind'] != 'pins': continue
     sh_, v_ = PBYID[d_['a']], PBYID[d_['b']]
-    hc = sh_['z0'] + KOLIK['center'] - v_['z0']
+    hc = d_['hole']
     assert KOLIK['d'] / 2 + 5 <= hc <= v_['L'] - KOLIK['d'] / 2 - 5, (d_['id'], hc)
+    assert abs(hc - (sh_['z0'] + KOLIK['center'] - v_['z0'])) <= 1.5, (d_['id'], hc)
 # počty spojovacího materiálu
 dowel_joints = sum(1 for p in P if p['o'] == 'V' for e in p['ends'] if 'skrz' in e)
 pin_ends = sum(1 for p in P if p['o'] == 'H' for e in p['ends'] if 'dosedá na 2 kolíky' in e)
@@ -464,7 +505,7 @@ unused = [s for s in STOCK if s['id'] not in strips]
 out = dict(
     geo=dict(kolik=KOLIK, mag=MAG, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
     pattern={f"{j},{k}": v for (j, k), v in A.items()},
-    parts=[{k: p[k] for k in ('id', 'o', 'name', 'L', 'B', 'kind', 'x0', 'x1', 'z0', 'z1', 'src', 'ends', 'grain', 'hidden', 'note')
+    parts=[{k: p[k] for k in ('id', 'o', 'name', 'L', 'B', 'kind', 'x0', 'x1', 'z0', 'z1', 'za0', 'src', 'ends', 'grain', 'hidden', 'note')
             if k in p} | {'strip': p.get('strip'), 'off': p.get('off'), 'srcinfo': p.get('srcinfo'), 'cutL': p.get('cutL'), 'cutB': p.get('cutB'), 'segments': p.get('segments'), 'parent': p.get('parent')} for p in ALL],
     stock={sid: dict(**{k: by[sid][k] for k in ('id', 'typ', 'th', 'L', 'Wd', 'vady', 'loc', 'note')},
                      strips=[dict(idx=s['idx'], y=s['y'], w=s['w'], items=s['items']) for s in lst])
