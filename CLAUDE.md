@@ -45,7 +45,7 @@ Pages se po pushi obnoví do ~1 min.
 1. **Žádná kolize s dveřmi.** Nic pod horní řadou nesmí zasahovat do pásu od 147,6 cm vpravo. Ve v4 končí knihovna na 142,1 cm (rezerva 5,5 cm, Přemkovi stačí ≥ 5 cm). Pod horní řadou nad dveřmi zůstává jen stěna.
 2. Horní řada nad dveřmi: spodní hrana 220,9 cm (v4), tedy 9,0 cm nad dveřmi.
 3. Nad dveřmi žádné převislé rostliny.
-4. Přihrádky čtvercové, uspořádání nepravidelné (některé příčky vynechané). Výjimka ve v4: sloupce 1–2 nad křeslem jsou 34,6 × 32,7 cm kvůli výklenku 73 cm.
+4. Přihrádky čtvercové, uspořádání nepravidelné (některé příčky vynechané). Výjimka ve v4: sloupce 1–2 nad křeslem jsou 34,6 × 32,6 cm (ostatní 31,7 × 32,6) kvůli výklenku 73 cm.
 5. Bez zadní stěny: prosvítá bílá zeď.
 6. Materiál smrk 19 mm, povrch sladěný s obkladem vlevo.
 
@@ -93,6 +93,10 @@ Orientační rozpočet 45–76 tis. Kč (deska 12–15 tis., truhlář 25–45 t
 Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopLux COB 24 V, profil V4, MiBoxer) i plán kabeláže (drážky, stoupačka, hvězda ze soklu) neplatí, žádné drážky se nefrézují. Čtecí lampa nad křeslem je samostatná s vlastním kabelem do prodlužky.
 
 ## Otevřené body
+
+- **Spoje K10–K09 a K24–K20:** K09 i K20 končí dole v rovině spodku police, kterou mají nést, takže podpěrky nejdou. Díly jsou už nařezané (rozměry se nemění), spoj se dořeší: kolíky, nebo úhelník shora (asi K24).
+- **Typ podpěrek:** výšky děr počítají se středem 7 mm pod spodkem police (`PIN_BELOW` v `postup.html`). U rovného kolíčku Ø 5 by to bylo 2,5 mm (+4,5 mm u všech výšek). Do vybrání podpěrek nevrtat.
+- K24 nemá u pravé stěny vůli (řetěz obklad → K20 dává přesně 2370). Před montáží změřit šířku ve výšce 2,2 m.
 
 - Ověřit horní hranu zárubně na pravé stěně (musí být pod 220 cm).
 - Zarážka dveří v plně otevřené poloze.
@@ -146,9 +150,10 @@ Doporučení pro focení: ke každému kusu nebo balíku štítek s ID, svinovac
 - **Pravý bok hlavní části** a **příčka u výklenku** jsou z jednoho kusu, **oba 2395 mm z D03** (2 pruhy, v každém zbývá 5 mm), stojí na spodní polici a jdou až pod horní desku. Dno mostu do pravého boku dosedá z boku na podpěrky. Kvůli příčce je **mezera ke stropu 2 cm**, knihovna končí na 257,3 cm.
 - **Svislé díly co nejdelší** (Přemek nechce přesné kolíkování): příčka vpravo dole 2 díly, příčka nad křeslem 1 kus (1016). Většina polic leží na podpěrkách.
 - **Levý bok = jedna deska 1379 mm slepená předem** z co nejméně kusů (vyšly 2: D02 1044 + A01 335, díry A01 k obkladu), kolíky 8 mm + lepidlo, spoje ve výšce polic. Celá se přišroubuje přes obklad do dřevěné stěny, police vlevo (nad křeslem až po horní řadu) do ní dosedají na podpěrky a k obkladu nesahají. V `prirazeni.py` jako `composite`, kusy `K09.1…`.
-- **Boční díl mostu** se šroubuje přímo do sádrokartonu pravé stěny (bez úhelníku), dno mostu i horní deska do něj dosedají z boku na podpěrky.
+- **Boční díl mostu** se šroubuje přímo do sádrokartonu pravé stěny (bez úhelníku), horní deska do něj dosedá z boku na podpěrky. Dno mostu K24 ne: K20 končí v rovině spodku dna, spoj se dořeší (viz Otevřené body).
 - Díly jsou číslované odspodu nahoru a zleva doprava = pořadí montáže (Přemek to tak chce držet).
-- Konstrukce z krátkých dílů: v každém křížení je jeden díl průběžný (`PATTERN` v `prirazeni.py`, vybraný optimalizací, aby se nic nekupovalo). 26 dílů + sokl, **0 ke koupi**, 30 kusů rezerva. Horní deska se slepí z C04 + C05 (Přemek souhlasí).
+- Konstrukce z krátkých dílů: v každém křížení je jeden díl průběžný (`PATTERN` v `prirazeni.py`, vybraný optimalizací, aby se nic nekupovalo). 26 dílů + sokl, **0 ke koupi**, 29 kusů rezerva. Horní deska se slepí z C04 + C05 (Přemek souhlasí).
+- Police na podpěrkách z obou stran jsou o 1 mm kratší než světlost (`PINGAP`). Díry pro podpěrky: na pravé straně svislého dílu 30 mm od hran, na levé 60 mm, aby se díry z obou stran nepotkaly.
 - Spoje (Přemek má aku vrtačku, okružní a přímočarou pilu, frézku, brusku, svěrky, nemá stolní pilu): A) svislý díl stojí na polici / nese ji = 2 vruty 4,5 × 50 skrz, díly srovnat k lati a předvrtat společně (žádné měření, kolíky zamítnuty jako moc přesné), B) police mezi průběžnými díly = podpěrky 5 mm + úhelník vzadu do zdi. Horní řada bez kolíků (pod stropem 2 cm), horní deska se zasune zepředu a přichytí úhelníky. Staví se na místě odspodu v pořadí čísel dílů.
 - Poškozené desky (A01, A08, A18) jsou na dílech se skrytou stranou. Přiřazení drží v pruhu rezervu ≥ 15 mm, kde to jde. Výjimka: K02 a K04 z D03 a K01 z A18 (rezerva 5 mm).
 - Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (minimum úhelník nahoře na K02). Pod dno mostu 2 skryté nosiče do dřeva.

@@ -26,6 +26,7 @@ KERF = 4                                # prořez + začištění
 WALLGAP = 5                             # vůle u stěny
 SOKL_ZAP = 30                           # zapuštění soklu
 SAFE = 15                               # min. rezerva v pruhu, když to jde
+PINGAP = 1                              # police na podpěrkách z obou stran: o 1 mm kratší než světlost (aby šla zasunout)
 
 def exists(c, r):                       # přihrádka sloupec c, řada r (odspodu)
     if c < 1 or r < 1 or r > R: return False
@@ -107,7 +108,8 @@ for j in range(N + 1):
 for p in P:
     if p['o'] == 'H':
         walls = (p['x0'] < 1) + (p['x1'] > W - 1)
-        p['L'] = round(p['x1'] - p['x0'] - WALLGAP * walls)
+        pins = (not walls and A.get((p['j0'], p['k'])) == 'V' and A.get((p['j1'], p['k'])) == 'V')
+        p['L'] = round(p['x1'] - p['x0'] - WALLGAP * walls - PINGAP * pins)
         p['B'] = D
         k = p['k']
         p['name'] = ('Spodní police (na soklu)' if k == 0 else 'Horní deska' if k == R else
@@ -138,7 +140,9 @@ def end_text(p, side):
         x = xl(j) + t / 2
         vert = who(lambda q: q['o'] == 'V' and q['j'] == j and q['z0'] - 1 <= zb(k) + t / 2 <= q['z1'] + 1)
         if a == 'V':
-            s = f"dosedá na 2 podpěrky 5 mm v boku dílu {vert[0]}" if vert else "na podpěrkách"
+            flush = vert and abs(next(q for q in P if q['id'] == vert[0])['z0'] - zb(k)) < 1   # bok končí v rovině spodku police
+            s = (f"spoj s {vert[0]} se dořeší (bok končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník" if flush else
+                 f"dosedá na 2 podpěrky 5 mm v boku dílu {vert[0]}" if vert else "na podpěrkách")
         else:
             below = who(lambda q: q['o'] == 'V' and q['j'] == j and abs(q['z1'] - zb(k)) < 1)
             above = who(lambda q: q['o'] == 'V' and q['j'] == j and abs(q['z0'] - (zb(k) + t)) < 1)
@@ -154,6 +158,8 @@ def end_text(p, side):
             sh_ = who(lambda q: q['o'] == 'H' and q['k'] == k and (abs(q['x1'] - xl(j)) < 1 or abs(q['x0'] - (xl(j) + t)) < 1))
             base = ('stojí na soklu' if k == 0 and side == 0 else
                     'visí na vrutech do stěny' if side == 0 else 'končí v rovině desky')
+            if sh_ and side == 0 and k > 0:
+                return base + f"; spodní konec v rovině spodku {', '.join(sh_)} (spoj se dořeší: kolíky nebo úhelník)"
             return base + (f"; do boku dosedá {', '.join(sh_)} (podpěrky)" if sh_ else '')
         hz = who(lambda q: q['o'] == 'H' and q['k'] == k and q['x0'] - 1 <= xl(j) + t / 2 <= q['x1'] + 1)
         if side == 0:
@@ -165,8 +171,8 @@ for p in P:
     p['ends'] = [end_text(p, 0), end_text(p, 1)]
     p['note'] = ''
     if p['o'] == 'H' and p['k'] == 0: p['note'] = 'Leží celou plochou na soklu.'
-    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Leží na pravém boku hlavní části, pravým koncem dosedá na podpěrky v bočním dílu mostu. Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).'
-    if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (husí krk 24 V).'
+    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem dosedá na podpěrky v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).'
+    if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník.'
     if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.')
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
@@ -184,10 +190,10 @@ SOKL = [
          x0=xb, x1=xb + t, z0=0, z1=SOKL_H, hidden=False, grain='léta svisle',
          ends=['stojí na podlaze (nevrtat, vyrovnat podložkami)', 'nese K01, nad ním stojí K04'],
          note='Pohledový: je vidět ze strany od dveří. Vpředu končí 30 mm za čelem K01.'),
-    dict(id='S3', o='S', name='Sokl: střední podpěra (pod K03)', L=SOKL_H, B=D - SOKL_ZAP - t, kind='3S19',
+    dict(id='S3', o='S', name='Sokl: střední podpěra (pod K03)', L=SOKL_H, B=D - SOKL_ZAP - 2 * t, kind='3S19',
          x0=xl(3), x1=xl(3) + t, z0=0, z1=SOKL_H, hidden=True, grain='libovolně (skrytý díl, z C03 léta vodorovně)',
-         cutL=D - SOKL_ZAP - t, cutB=SOKL_H,
-         ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note='Skrytá za čelní lištou. Z C03 se řeže otočená (201 po letech × 140), u skrytého dílu na směru let nezáleží.'),
+         cutL=D - SOKL_ZAP - 2 * t, cutB=SOKL_H,
+         ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note=f'Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto {D - SOKL_ZAP - 2 * t} = 250 − 30 − 2 × 19). Z C03 se řeže otočená ({D - SOKL_ZAP - 2 * t} po letech × 140), u skrytého dílu na směru let nezáleží.'),
     dict(id='S4', o='S', name='Sokl: zadní spojka', L=round(xb - xa - t), B=100, kind='3S19',
          x0=xa + t, x1=xb, z0=SOKL_H - 100, z1=SOKL_H, hidden=True, grain='léta vodorovně',
          ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.'),
@@ -355,7 +361,7 @@ for sid, lst in strips.items():
 
 # počty spojovacího materiálu
 dowel_joints = sum(1 for p in P if p['o'] == 'V' for e in p['ends'] if 'skrz' in e)
-pin_ends = sum(1 for p in P if p['o'] == 'H' for e in p['ends'] if 'podpěrky' in e)
+pin_ends = sum(1 for p in P if p['o'] == 'H' for e in p['ends'] if 'dosedá na 2 podpěrky' in e)
 angle_top = sum(1 for p in P if p['o'] == 'V' and 'úhelník' in p['ends'][1])
 verts = [p for p in P if p['o'] == 'V']
 used = sorted(strips)
