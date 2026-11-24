@@ -91,7 +91,7 @@
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": true,
-   "note": "Leží celou plochou na soklu. Těsný řez: z desky A18 zbývá jen 9 mm, řezat přesně.",
+   "note": "Leží celou plochou na soklu.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -126,7 +126,7 @@
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": false,
-   "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.",
+   "note": "",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -196,7 +196,7 @@
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": false,
-   "note": "Těsný řez: z desky D03 zbývá jen 5 mm, řezat přesně.",
+   "note": "",
    "strip": 1,
    "off": 0,
    "srcinfo": {
@@ -1066,7 +1066,7 @@
    ],
    "grain": "libovolně (skrytý díl, z C03 léta vodorovně)",
    "hidden": true,
-   "note": "Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto 182 = 250 − 30 − 2 × 19). Z C03 se řeže otočená (182 po letech × 140), u skrytého dílu na směru let nezáleží.",
+   "note": "Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto 182 = 250 − 30 − 2 × 19).",
    "strip": 0,
    "off": 1314,
    "srcinfo": {
@@ -1979,6 +1979,1137 @@
   }
  ],
  "buy": [],
+ "joints": [
+  {
+   "a": "S4",
+   "b": "S1",
+   "kind": "angle",
+   "what": "S4 zadní spojka → S1",
+   "now": "2 malé úhelníky zevnitř",
+   "x": 749.0,
+   "z": 9.5,
+   "mx": 809.0,
+   "mz": 55,
+   "view": "sokl",
+   "pts": [
+    [
+     749.0,
+     9.5
+    ]
+   ],
+   "id": "X01"
+  },
+  {
+   "a": "S4",
+   "b": "S2",
+   "kind": "angle",
+   "what": "S4 zadní spojka → S2",
+   "now": "2 malé úhelníky zevnitř",
+   "x": 1401.7,
+   "z": 9.5,
+   "mx": 1341.7,
+   "mz": 55,
+   "view": "sokl",
+   "pts": [
+    [
+     1401.7,
+     9.5
+    ]
+   ],
+   "id": "X02"
+  },
+  {
+   "a": "S3",
+   "b": "S4",
+   "kind": "angle",
+   "what": "S3 střední podpěra → S4",
+   "now": "úhelník ke spojce",
+   "x": 1075.4,
+   "z": 19,
+   "mx": 1075.4,
+   "mz": 60,
+   "view": "sokl",
+   "pts": [
+    [
+     1075.4,
+     19
+    ]
+   ],
+   "id": "X03"
+  },
+  {
+   "a": "S5",
+   "b": "S1",
+   "kind": "angle",
+   "what": "S5 čelní lišta → S1",
+   "now": "2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)",
+   "x": 749.0,
+   "z": 210.5,
+   "mx": 809.0,
+   "mz": 161,
+   "view": "sokl",
+   "pts": [
+    [
+     749.0,
+     210.5
+    ]
+   ],
+   "id": "X04"
+  },
+  {
+   "a": "S5",
+   "b": "S2",
+   "kind": "angle",
+   "what": "S5 čelní lišta → S2",
+   "now": "2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)",
+   "x": 1401.7,
+   "z": 210.5,
+   "mx": 1341.7,
+   "mz": 161,
+   "view": "sokl",
+   "pts": [
+    [
+     1401.7,
+     210.5
+    ]
+   ],
+   "id": "X05"
+  },
+  {
+   "a": "S3",
+   "b": "S5",
+   "kind": "rest",
+   "what": "S3 → S5",
+   "now": "jen dosedá, bez spoje",
+   "x": 1075.4,
+   "z": 201,
+   "mx": 1075.4,
+   "mz": 159,
+   "view": "sokl",
+   "pts": [
+    [
+     1075.4,
+     201
+    ]
+   ],
+   "id": "X06"
+  },
+  {
+   "a": "K01",
+   "b": "S1",
+   "kind": "rest",
+   "what": "K01 leží na S1",
+   "now": "jen leží (tíha jde tlakem do podlahy), bez spoje",
+   "x": 739.5,
+   "z": 110,
+   "mx": 739.5,
+   "mz": 110,
+   "view": "sokl",
+   "pts": [
+    [
+     739.5,
+     110
+    ]
+   ],
+   "id": "X07"
+  },
+  {
+   "a": "K01",
+   "b": "S3",
+   "kind": "rest",
+   "what": "K01 leží na S3",
+   "now": "jen leží, bez spoje",
+   "x": 1075.4,
+   "z": 110,
+   "mx": 1075.4,
+   "mz": 110,
+   "view": "sokl",
+   "pts": [
+    [
+     1075.4,
+     110
+    ]
+   ],
+   "id": "X08"
+  },
+  {
+   "a": "K01",
+   "b": "S2",
+   "kind": "rest",
+   "what": "K01 leží na S2",
+   "now": "jen leží, bez spoje",
+   "x": 1411.2,
+   "z": 110,
+   "mx": 1411.2,
+   "mz": 110,
+   "view": "sokl",
+   "pts": [
+    [
+     1411.2,
+     110
+    ]
+   ],
+   "id": "X09"
+  },
+  {
+   "a": "K01",
+   "b": "S4",
+   "kind": "screw",
+   "what": "K01 → S4 zadní spojka",
+   "now": "2 vruty 4,5 × 50 shora skrz K01 do S4, 9 mm od zadní hrany",
+   "x": 912.2,
+   "z": 9,
+   "mx": 907.4,
+   "mz": 62,
+   "view": "sokl",
+   "pts": [
+    [
+     907.4,
+     9
+    ],
+    [
+     1243.3,
+     9
+    ]
+   ],
+   "id": "X10"
+  },
+  {
+   "a": "K02",
+   "b": "K01",
+   "kind": "screw",
+   "what": "K02 stojí na K01",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K01 do čela K02",
+   "x": 739.5,
+   "z": 159.0,
+   "mx": 739.5,
+   "mz": 187.0,
+   "view": "front",
+   "pts": [
+    [
+     739.5,
+     159.0
+    ]
+   ],
+   "id": "X11"
+  },
+  {
+   "a": "K03",
+   "b": "K01",
+   "kind": "screw",
+   "what": "K03 stojí na K01",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K01 do čela K03",
+   "x": 1075.4,
+   "z": 159.0,
+   "mx": 1075.4,
+   "mz": 187.0,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     159.0
+    ]
+   ],
+   "id": "X12"
+  },
+  {
+   "a": "K04",
+   "b": "K01",
+   "kind": "screw",
+   "what": "K04 stojí na K01",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K01 do čela K04",
+   "x": 1411.2,
+   "z": 159.0,
+   "mx": 1411.2,
+   "mz": 187.0,
+   "view": "front",
+   "pts": [
+    [
+     1411.2,
+     159.0
+    ]
+   ],
+   "id": "X13"
+  },
+  {
+   "a": "K05",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K05 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 494.4,
+   "mx": 804.0,
+   "mz": 531.9,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     494.4
+    ]
+   ],
+   "id": "X14"
+  },
+  {
+   "a": "K05",
+   "b": "K03",
+   "kind": "pins",
+   "what": "K05 pravý konec → bok K03 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K03, díry 60 mm od hran",
+   "x": 1065.9,
+   "z": 494.4,
+   "mx": 1010.9,
+   "mz": 531.9,
+   "view": "front",
+   "pts": [
+    [
+     1065.9,
+     494.4
+    ]
+   ],
+   "id": "X15"
+  },
+  {
+   "a": "K06",
+   "b": "K03",
+   "kind": "pins",
+   "what": "K06 levý konec → bok K03 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K03, díry 30 mm od hran",
+   "x": 1084.9,
+   "z": 494.4,
+   "mx": 1139.9,
+   "mz": 531.9,
+   "view": "front",
+   "pts": [
+    [
+     1084.9,
+     494.4
+    ]
+   ],
+   "id": "X16"
+  },
+  {
+   "a": "K06",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K06 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 494.4,
+   "mx": 1346.7,
+   "mz": 531.9,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     494.4
+    ]
+   ],
+   "id": "X17"
+  },
+  {
+   "a": "K03",
+   "b": "K07",
+   "kind": "screw",
+   "what": "K03 nahoře pod K07",
+   "now": "2 vruty 4,5 × 50 shora skrz K07 do čela K03",
+   "x": 1075.4,
+   "z": 829.7,
+   "mx": 1075.4,
+   "mz": 801.7,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     829.7
+    ]
+   ],
+   "id": "X18"
+  },
+  {
+   "a": "K07",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K07 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 839.2,
+   "mx": 804.0,
+   "mz": 876.7,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     839.2
+    ]
+   ],
+   "id": "X19"
+  },
+  {
+   "a": "K07",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K07 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 839.2,
+   "mx": 1346.7,
+   "mz": 876.7,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     839.2
+    ]
+   ],
+   "id": "X20"
+  },
+  {
+   "a": "K08",
+   "b": "K07",
+   "kind": "angle",
+   "what": "K08 stojí na K07",
+   "now": "pod K07 stojí K03, zespodu šroubovat nejde: úhelník vzadu v přihrádce",
+   "x": 1075.4,
+   "z": 848.7,
+   "mx": 1075.4,
+   "mz": 876.7,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     848.7
+    ]
+   ],
+   "id": "X21"
+  },
+  {
+   "a": "K09",
+   "b": "obklad",
+   "kind": "wall",
+   "what": "K09 → obklad a dřevěná stěna",
+   "now": "6–8 dlouhých vrutů přes obklad do dřevěné stěny, hlavy zapustit",
+   "x": 0,
+   "z": 1174.6,
+   "mx": 94,
+   "mz": 1701.4,
+   "view": "front",
+   "pts": [
+    [
+     9.5,
+     1701.4
+    ]
+   ],
+   "id": "X22"
+  },
+  {
+   "a": "K10",
+   "b": "K09",
+   "kind": "open",
+   "what": "K10 levý konec → bok K09 (pravá strana)",
+   "now": "nevyřešeno: K09 končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)",
+   "x": 19.0,
+   "z": 1184.1,
+   "mx": 74.0,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     19.0,
+     1184.1
+    ]
+   ],
+   "id": "X23"
+  },
+  {
+   "a": "K10",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K10 pravý konec → bok K02 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "x": 730.0,
+   "z": 1184.1,
+   "mx": 675.0,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     730.0,
+     1184.1
+    ]
+   ],
+   "id": "X24"
+  },
+  {
+   "a": "K11",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K11 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 1184.1,
+   "mx": 804.0,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     1184.1
+    ]
+   ],
+   "id": "X25"
+  },
+  {
+   "a": "K11",
+   "b": "K08",
+   "kind": "pins",
+   "what": "K11 pravý konec → bok K08 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K08, díry 60 mm od hran",
+   "x": 1065.9,
+   "z": 1184.1,
+   "mx": 1010.9,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     1065.9,
+     1184.1
+    ]
+   ],
+   "id": "X26"
+  },
+  {
+   "a": "K12",
+   "b": "K08",
+   "kind": "pins",
+   "what": "K12 levý konec → bok K08 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K08, díry 30 mm od hran",
+   "x": 1084.9,
+   "z": 1184.1,
+   "mx": 1139.9,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     1084.9,
+     1184.1
+    ]
+   ],
+   "id": "X27"
+  },
+  {
+   "a": "K12",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K12 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 1184.1,
+   "mx": 1346.7,
+   "mz": 1221.6,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     1184.1
+    ]
+   ],
+   "id": "X28"
+  },
+  {
+   "a": "K08",
+   "b": "K14",
+   "kind": "screw",
+   "what": "K08 nahoře pod K14",
+   "now": "2 vruty 4,5 × 50 shora skrz K14 do čela K08",
+   "x": 1075.4,
+   "z": 1519.4,
+   "mx": 1075.4,
+   "mz": 1491.4,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     1519.4
+    ]
+   ],
+   "id": "X29"
+  },
+  {
+   "a": "K13",
+   "b": "K09",
+   "kind": "pins",
+   "what": "K13 levý konec → bok K09 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "x": 19.0,
+   "z": 1528.9,
+   "mx": 74.0,
+   "mz": 1566.4,
+   "view": "front",
+   "pts": [
+    [
+     19.0,
+     1528.9
+    ]
+   ],
+   "id": "X30"
+  },
+  {
+   "a": "K13",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K13 pravý konec → bok K02 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "x": 730.0,
+   "z": 1528.9,
+   "mx": 675.0,
+   "mz": 1566.4,
+   "view": "front",
+   "pts": [
+    [
+     730.0,
+     1528.9
+    ]
+   ],
+   "id": "X31"
+  },
+  {
+   "a": "K14",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K14 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 1528.9,
+   "mx": 804.0,
+   "mz": 1566.4,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     1528.9
+    ]
+   ],
+   "id": "X32"
+  },
+  {
+   "a": "K14",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K14 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 1528.9,
+   "mx": 1346.7,
+   "mz": 1566.4,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     1528.9
+    ]
+   ],
+   "id": "X33"
+  },
+  {
+   "a": "K15",
+   "b": "K13",
+   "kind": "screw",
+   "what": "K15 stojí na K13",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K13 do čela K15",
+   "x": 374.5,
+   "z": 1538.4,
+   "mx": 374.5,
+   "mz": 1566.4,
+   "view": "front",
+   "pts": [
+    [
+     374.5,
+     1538.4
+    ]
+   ],
+   "id": "X34"
+  },
+  {
+   "a": "K16",
+   "b": "K09",
+   "kind": "pins",
+   "what": "K16 levý konec → bok K09 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "x": 19.0,
+   "z": 1873.8,
+   "mx": 74.0,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     19.0,
+     1873.8
+    ]
+   ],
+   "id": "X35"
+  },
+  {
+   "a": "K16",
+   "b": "K15",
+   "kind": "pins",
+   "what": "K16 pravý konec → bok K15 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K15, díry 60 mm od hran",
+   "x": 365.0,
+   "z": 1873.8,
+   "mx": 310.0,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     365.0,
+     1873.8
+    ]
+   ],
+   "id": "X36"
+  },
+  {
+   "a": "K17",
+   "b": "K15",
+   "kind": "pins",
+   "what": "K17 levý konec → bok K15 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K15, díry 30 mm od hran",
+   "x": 384.0,
+   "z": 1873.8,
+   "mx": 439.0,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     384.0,
+     1873.8
+    ]
+   ],
+   "id": "X37"
+  },
+  {
+   "a": "K17",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K17 pravý konec → bok K02 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "x": 730.0,
+   "z": 1873.8,
+   "mx": 675.0,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     730.0,
+     1873.8
+    ]
+   ],
+   "id": "X38"
+  },
+  {
+   "a": "K18",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K18 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 1873.8,
+   "mx": 804.0,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     1873.8
+    ]
+   ],
+   "id": "X39"
+  },
+  {
+   "a": "K18",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K18 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 1873.8,
+   "mx": 1346.7,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     1873.8
+    ]
+   ],
+   "id": "X40"
+  },
+  {
+   "a": "K19",
+   "b": "K18",
+   "kind": "screw",
+   "what": "K19 stojí na K18",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K18 do čela K19",
+   "x": 1075.4,
+   "z": 1883.3,
+   "mx": 1075.4,
+   "mz": 1911.3,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     1883.3
+    ]
+   ],
+   "id": "X41"
+  },
+  {
+   "a": "K20",
+   "b": "pravá stěna",
+   "kind": "wall",
+   "what": "K20 → pravá stěna (sádrokarton)",
+   "now": "vruty s kovovými hmoždinkami do sádrokartonu, ideálně do profilu",
+   "x": 2370,
+   "z": 2209.1,
+   "mx": 2296,
+   "mz": 2411.1,
+   "view": "front",
+   "pts": [
+    [
+     2360.5,
+     2411.1
+    ]
+   ],
+   "id": "X42"
+  },
+  {
+   "a": "K21",
+   "b": "K09",
+   "kind": "pins",
+   "what": "K21 levý konec → bok K09 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "x": 19.0,
+   "z": 2218.6,
+   "mx": 74.0,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     19.0,
+     2218.6
+    ]
+   ],
+   "id": "X43"
+  },
+  {
+   "a": "K21",
+   "b": "K15",
+   "kind": "pins",
+   "what": "K21 pravý konec → bok K15 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K15, díry 60 mm od hran",
+   "x": 365.0,
+   "z": 2218.6,
+   "mx": 310.0,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     365.0,
+     2218.6
+    ]
+   ],
+   "id": "X44"
+  },
+  {
+   "a": "K22",
+   "b": "K02",
+   "kind": "pins",
+   "what": "K22 levý konec → bok K02 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "x": 749.0,
+   "z": 2218.6,
+   "mx": 804.0,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     749.0,
+     2218.6
+    ]
+   ],
+   "id": "X45"
+  },
+  {
+   "a": "K22",
+   "b": "K19",
+   "kind": "pins",
+   "what": "K22 pravý konec → bok K19 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K19, díry 60 mm od hran",
+   "x": 1065.9,
+   "z": 2218.6,
+   "mx": 1010.9,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     1065.9,
+     2218.6
+    ]
+   ],
+   "id": "X46"
+  },
+  {
+   "a": "K23",
+   "b": "K19",
+   "kind": "pins",
+   "what": "K23 levý konec → bok K19 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K19, díry 30 mm od hran",
+   "x": 1084.9,
+   "z": 2218.6,
+   "mx": 1139.9,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     1084.9,
+     2218.6
+    ]
+   ],
+   "id": "X47"
+  },
+  {
+   "a": "K23",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K23 pravý konec → bok K04 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "x": 1401.7,
+   "z": 2218.6,
+   "mx": 1346.7,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     1401.7,
+     2218.6
+    ]
+   ],
+   "id": "X48"
+  },
+  {
+   "a": "K24",
+   "b": "K04",
+   "kind": "pins",
+   "what": "K24 levý konec → bok K04 (pravá strana)",
+   "now": "2 podpěrky Ø 5 v boku K04, díry 30 mm od hran",
+   "x": 1420.7,
+   "z": 2218.6,
+   "mx": 1475.7,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     1420.7,
+     2218.6
+    ]
+   ],
+   "id": "X49"
+  },
+  {
+   "a": "K24",
+   "b": "zadní stěna",
+   "kind": "wall",
+   "what": "K24 → zadní stěna",
+   "now": "2 skryté nosiče s trnem přes sádrokarton do dřeva, trny do děr v zadní hraně K24",
+   "x": 1885.9,
+   "z": 2218.6,
+   "mx": 1717.9,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     1730.4,
+     2218.6
+    ],
+    [
+     2040.0,
+     2218.6
+    ]
+   ],
+   "id": "X50"
+  },
+  {
+   "a": "K24",
+   "b": "K20",
+   "kind": "open",
+   "what": "K24 pravý konec → bok K20 (levá strana)",
+   "now": "nevyřešeno: K20 končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)",
+   "x": 2351.0,
+   "z": 2218.6,
+   "mx": 2296.0,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     2351.0,
+     2218.6
+    ]
+   ],
+   "id": "X51"
+  },
+  {
+   "a": "K25",
+   "b": "K24",
+   "kind": "screw",
+   "what": "K25 stojí na K24",
+   "now": "2 vruty 4,5 × 50 zespodu skrz K24 do čela K25",
+   "x": 2024.6,
+   "z": 2228.1,
+   "mx": 2024.6,
+   "mz": 2256.1,
+   "view": "front",
+   "pts": [
+    [
+     2024.6,
+     2228.1
+    ]
+   ],
+   "id": "X52"
+  },
+  {
+   "a": "K09",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K09 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 9.5,
+   "z": 2554.0,
+   "mx": 9.5,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     9.5,
+     2554.0
+    ]
+   ],
+   "id": "X53"
+  },
+  {
+   "a": "K15",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K15 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 374.5,
+   "z": 2554.0,
+   "mx": 374.5,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     374.5,
+     2554.0
+    ]
+   ],
+   "id": "X54"
+  },
+  {
+   "a": "K02",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K02 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 739.5,
+   "z": 2554.0,
+   "mx": 739.5,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     739.5,
+     2554.0
+    ]
+   ],
+   "id": "X55"
+  },
+  {
+   "a": "K19",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K19 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 1075.4,
+   "z": 2554.0,
+   "mx": 1075.4,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     1075.4,
+     2554.0
+    ]
+   ],
+   "id": "X56"
+  },
+  {
+   "a": "K04",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K04 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 1411.2,
+   "z": 2554.0,
+   "mx": 1411.2,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     1411.2,
+     2554.0
+    ]
+   ],
+   "id": "X57"
+  },
+  {
+   "a": "K25",
+   "b": "K26",
+   "kind": "angle",
+   "what": "K25 nahoře pod K26",
+   "now": "úhelník zespodu u zadní hrany (K26 se zasouvá zepředu, shora šroubovat nejde)",
+   "x": 2024.6,
+   "z": 2554.0,
+   "mx": 2024.6,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     2024.6,
+     2554.0
+    ]
+   ],
+   "id": "X58"
+  },
+  {
+   "a": "K26",
+   "b": "K20",
+   "kind": "pins",
+   "what": "K26 pravý konec → bok K20 (levá strana)",
+   "now": "2 podpěrky Ø 5 v boku K20, díry 60 mm od hran",
+   "x": 2351.0,
+   "z": 2563.5,
+   "mx": 2296.0,
+   "mz": 2526.0,
+   "view": "front",
+   "pts": [
+    [
+     2351.0,
+     2563.5
+    ]
+   ],
+   "id": "X59"
+  }
+ ],
  "counts": {
   "dowels": 16,
   "dowel_joints": 8,

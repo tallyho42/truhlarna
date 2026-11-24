@@ -26,6 +26,7 @@ KERF = 4                                # prořez + začištění
 WALLGAP = 5                             # vůle u stěny
 SOKL_ZAP = 30                           # zapuštění soklu
 SAFE = 15                               # min. rezerva v pruhu, když to jde
+CUT_DONE = True                         # všechno nařezáno (2026-11-24): ID desek z půdy se dál nikde nezobrazují
 PINGAP = 1                              # police na podpěrkách z obou stran: o 1 mm kratší než světlost (aby šla zasunout)
 
 def exists(c, r):                       # přihrádka sloupec c, řada r (odspodu)
@@ -193,7 +194,7 @@ SOKL = [
     dict(id='S3', o='S', name='Sokl: střední podpěra (pod K03)', L=SOKL_H, B=D - SOKL_ZAP - 2 * t, kind='3S19',
          x0=xl(3), x1=xl(3) + t, z0=0, z1=SOKL_H, hidden=True, grain='libovolně (skrytý díl, z C03 léta vodorovně)',
          cutL=D - SOKL_ZAP - 2 * t, cutB=SOKL_H,
-         ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note=f'Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto {D - SOKL_ZAP - 2 * t} = 250 − 30 − 2 × 19). Z C03 se řeže otočená ({D - SOKL_ZAP - 2 * t} po letech × 140), u skrytého dílu na směru let nezáleží.'),
+         ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note=f'Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto {D - SOKL_ZAP - 2 * t} = 250 − 30 − 2 × 19).'),
     dict(id='S4', o='S', name='Sokl: zadní spojka', L=round(xb - xa - t), B=100, kind='3S19',
          x0=xa + t, x1=xb, z0=SOKL_H - 100, z1=SOKL_H, hidden=True, grain='léta vodorovně',
          ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.'),
@@ -202,6 +203,82 @@ SOKL = [
          ends=['mezi boky soklu, zapuštěná 30 mm za čelem K01, 5 mm nad podlahou', 'pevně úhelníky zevnitř, nebo na magnetech (Přemek rozhodne)'],
          note='Pevná varianta: úhelníky zevnitř dřív, než se na sokl položí K01. Odnímatelná: magnety, pak jde k prodlužce v soklu.'),
 ]
+
+# ---- spoje (X01…): každý styk dvou dílů, styk se stěnou a spoje soklu ----
+# Číslováno v pořadí montáže: sokl, pak odspodu nahoru a zleva doprava.
+# kind: pins = podpěrky, screw = vruty skrz, angle = úhelník, open = nevyřešeno, wall = do stěny, rest = jen leží/dosedá
+JOINTS = []
+PBYID = {q['id']: q for q in P}
+def _J(a, b, kind, what, now, x, z, mx, mz, view='front', pts=None):
+    JOINTS.append(dict(a=a, b=b, kind=kind, what=what, now=now, x=round(x, 1), z=round(z, 1),
+                       mx=round(mx, 1), mz=round(mz, 1), view=view, pts=[[round(u, 1), round(v, 1)] for u, v in (pts or [(x, z)])]))
+OFF = 55     # odsazení štítku od místa spoje (mm)
+for p in P:
+    if p['o'] != 'H': continue
+    for side in (0, 1):
+        j = p['j0'] if side == 0 else p['j1']; k = p['k']
+        if (side == 0 and p['x0'] < 1) or (side == 1 and p['x1'] > W - 1): continue
+        if A.get((j, k)) != 'V': continue
+        v = next(q for q in P if q['o'] == 'V' and q['j'] == j and q['z0'] - 1 <= zb(k) + t / 2 <= q['z1'] + 1)
+        flush = abs(v['z0'] - zb(k)) < 1
+        fx = p['x0'] if side == 0 else p['x1']
+        what = f"{p['id']} {'levý' if side == 0 else 'pravý'} konec → bok {v['id']} ({'pravá' if side == 0 else 'levá'} strana)"
+        now = (f"nevyřešeno: {v['id']} končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)" if flush else
+               f"2 podpěrky Ø 5 v boku {v['id']}, díry {'30' if side == 0 else '60'} mm od hran")
+        mz = zb(k) - 28 if k == R else zb(k) + t + 28
+        _J(p['id'], v['id'], 'open' if flush else 'pins', what, now, fx, zb(k) + t / 2, fx + (OFF if side == 0 else -OFF), mz)
+for q in P:
+    if q['o'] != 'V': continue
+    j = q['j']; cx = xl(j) + t / 2
+    for side in (0, 1):
+        k = q['k0'] if side == 0 else q['k1']
+        if A.get((j, k)) == 'H':
+            h = next(r for r in P if r['o'] == 'H' and r['k'] == k and r['x0'] - 1 <= cx <= r['x1'] + 1)
+            if side == 0:
+                below = [r['id'] for r in P if r['o'] == 'V' and r['j'] == j and abs(r['z1'] - zb(k)) < 1]
+                if below:
+                    _J(q['id'], h['id'], 'angle', f"{q['id']} stojí na {h['id']}",
+                       f"pod {h['id']} stojí {below[0]}, zespodu šroubovat nejde: úhelník vzadu v přihrádce", cx, zb(k) + t, cx, zb(k) + t + 28)
+                else:
+                    _J(q['id'], h['id'], 'screw', f"{q['id']} stojí na {h['id']}",
+                       f"2 vruty 4,5 × 50 zespodu skrz {h['id']} do čela {q['id']}", cx, zb(k) + t, cx, zb(k) + t + 28)
+            else:
+                if k == R:
+                    _J(q['id'], h['id'], 'angle', f"{q['id']} nahoře pod {h['id']}", f"úhelník zespodu u zadní hrany ({h['id']} se zasouvá zepředu, shora šroubovat nejde)", cx, zb(k), cx, zb(k) - 28)
+                else:
+                    _J(q['id'], h['id'], 'screw', f"{q['id']} nahoře pod {h['id']}", f"2 vruty 4,5 × 50 shora skrz {h['id']} do čela {q['id']}", cx, zb(k), cx, zb(k) - 28)
+# styky se stěnami
+k09, k20, k24 = PBYID['K09'], PBYID['K20'], next(q for q in P if q['name'].startswith('Dno mostu'))
+_J('K09', 'obklad', 'wall', 'K09 → obklad a dřevěná stěna', '6–8 dlouhých vrutů přes obklad do dřevěné stěny, hlavy zapustit',
+   0, k09['z0'], t + OFF + 20, (zb(4) + t + zb(5)) / 2, pts=[(t / 2, (zb(4) + t + zb(5)) / 2)])
+_J('K20', 'pravá stěna', 'wall', 'K20 → pravá stěna (sádrokarton)', 'vruty s kovovými hmoždinkami do sádrokartonu, ideálně do profilu',
+   W, k20['z0'], W - t - OFF, (zb(6) + t + zb(7)) / 2 + 20, pts=[(W - t / 2, (zb(6) + t + zb(7)) / 2 + 20)])
+_J(k24['id'], 'zadní stěna', 'wall', f"{k24['id']} → zadní stěna", f"2 skryté nosiče s trnem přes sádrokarton do dřeva, trny do děr v zadní hraně {k24['id']}",
+   (k24['x0'] + k24['x1']) / 2, zb(6) + t / 2, (k24['x0'] + xl(6)) / 2, zb(6) + t + 28,
+   pts=[(k24['x0'] + k24['L'] / 3, zb(6) + t / 2), (k24['x0'] + 2 * k24['L'] / 3, zb(6) + t / 2)])
+JOINTS.sort(key=lambda d: (round(d['z']), d['x']))
+# sokl (půdorys: y = vzdálenost od zadní zdi)
+_s = {q['id']: q for q in SOKL}
+s1x, s2x, s3x = _s['S1']['x1'], _s['S2']['x0'], (_s['S3']['x0'] + _s['S3']['x1']) / 2
+yS5 = D - SOKL_ZAP - t          # zadní plocha čelní lišty
+SJ = []
+def _S(a, b, kind, what, now, x, y, mx, my, pts=None):
+    SJ.append(dict(a=a, b=b, kind=kind, what=what, now=now, x=round(x, 1), z=round(y, 1), mx=round(mx, 1), mz=round(my, 1), view='sokl',
+                   pts=[[round(u, 1), round(v, 1)] for u, v in (pts or [(x, y)])]))
+_S('S4', 'S1', 'angle', 'S4 zadní spojka → S1', '2 malé úhelníky zevnitř', s1x, t / 2, s1x + 60, 55)
+_S('S4', 'S2', 'angle', 'S4 zadní spojka → S2', '2 malé úhelníky zevnitř', s2x, t / 2, s2x - 60, 55)
+_S('S3', 'S4', 'angle', 'S3 střední podpěra → S4', 'úhelník ke spojce', s3x, t, s3x, 60)
+_S('S5', 'S1', 'angle', 'S5 čelní lišta → S1', '2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)', s1x, yS5 + t / 2, s1x + 60, yS5 - 40)
+_S('S5', 'S2', 'angle', 'S5 čelní lišta → S2', '2 úhelníky zevnitř, nebo magnety (odnímatelná lišta)', s2x, yS5 + t / 2, s2x - 60, yS5 - 40)
+_S('S3', 'S5', 'rest', 'S3 → S5', 'jen dosedá, bez spoje', s3x, yS5, s3x, yS5 - 42)
+_S('K01', 'S1', 'rest', 'K01 leží na S1', 'jen leží (tíha jde tlakem do podlahy), bez spoje', _s['S1']['x0'] + t / 2, 110, _s['S1']['x0'] + t / 2, 110)
+_S('K01', 'S3', 'rest', 'K01 leží na S3', 'jen leží, bez spoje', s3x, 110, s3x, 110)
+_S('K01', 'S2', 'rest', 'K01 leží na S2', 'jen leží, bez spoje', _s['S2']['x0'] + t / 2, 110, _s['S2']['x0'] + t / 2, 110)
+_x01 = PBYID['K01']['x0']
+_S('K01', 'S4', 'screw', 'K01 → S4 zadní spojka', '2 vruty 4,5 × 50 shora skrz K01 do S4, 9 mm od zadní hrany',
+   (s1x + s3x) / 2, 9, (s1x + _s['S3']['x0']) / 2, 62, pts=[((s1x + _s['S3']['x0']) / 2, 9), ((_s['S3']['x1'] + s2x) / 2, 9)])
+JOINTS = SJ + JOINTS
+for i, d in enumerate(JOINTS): d['id'] = f"X{i + 1:02d}"
 
 # ---- sklad ----
 STOCK = []
@@ -338,7 +415,7 @@ for sid in strips: strips[sid].sort(key=lambda s: s['idx'])
 ALL = P + SOKL + SEGS
 # těsné pruhy: upozornit v poznámce dílu
 _by_id = {q['id']: q for q in ALL}
-for sid, lst in strips.items():
+for sid, lst in (strips.items() if not CUT_DONE else []):
     for st in lst:
         slack = st['L'] - sum(_by_id[i].get('cutL', _by_id[i]['L']) + KERF for i in st['items']) + KERF
         if slack < SAFE:
@@ -377,6 +454,7 @@ out = dict(
            for sid, lst in strips.items()},
     unused=[{k: s[k] for k in ('id', 'typ', 'th', 'L', 'Wd', 'loc', 'vady')} for s in unused],
     buy=[p['id'] for p in buy],
+    joints=JOINTS,
     counts=dict(dowels=dowel_joints * 2, dowel_joints=dowel_joints, pins=pin_ends * 2, pin_ends=pin_ends,
                 angle_top=angle_top, verts=len(verts), parts=len(P), sokl=len(SOKL)),
 )

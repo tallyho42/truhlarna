@@ -16,8 +16,8 @@ Pages se po pushi obnoví do ~1 min.
 
 ## Soubory
 
-- `knihovna.html`: **aktuální návrh (v4)**, hloubka 250, vše z desek z půdy. Výkres s najetím myší na díl (rozměr, zdroj, spoje), plány řezů desek, spoje, montáž, kusovník. Data vkládá `drevo/prirazeni.py` mezi `/*DATA*/…/*END*/`.
-- `postup.html`: pracovní postup krok za krokem (desky z půdy, řezání, lepení K26 a K09, vrtání děr pro podpěrky s výškami, broušení a nátěr pohledových stran, sokl, spodní rám, úrovně odspodu, dokončení). Kroky a obrázky se generují z dat, která vkládá `prirazeni.py`.
+- `knihovna.html`: **aktuální návrh (v4)**, hloubka 250. Výkres s najetím myší na díl (rozměr, spoje), sekce Spoje s výkresem všech spojů X01–X59 (pohled zepředu + sokl shora + tabulka), kolize, kusovník. Data vkládá `drevo/prirazeni.py` mezi `/*DATA*/…/*END*/`.
+- `postup.html`: pracovní postup krok za krokem (lepení K26 a K09, vrtání děr pro podpěrky s výškami, broušení a nátěr, sokl, spodní rám, úrovně odspodu, dokončení). Kroky a obrázky se generují z dat, která vkládá `prirazeni.py`.
 - `drevo/prirazeni.py`: **zdroj pravdy pro rozměry a přiřazení** (geometrie, vzor křížení `PATTERN`, přiřazení k deskám). Po změně inventáře nebo návrhu spustit `python3 drevo/prirazeni.py`, přepíše `prirazeni.json`, `prirazeni.md` a data v HTML. Ruční prohození díl → deska (Přemek při řezání dává hezčí kusy na lepší místa) se zapisuje do `PIN` v `prirazeni.py`. Ostatní díly drží desku z minulého běhu (`PREV` z `prirazeni.json`), takže se nic už nařezaného nepřehází.
 - `input/`: fotky místnosti (IMG_0506–0508) a busty (IMG_0509).
 - `navrh-gemini/`: AI vizualizace z Gemini. Jen inspirace, některé mají chybně dveře v zadní stěně.
@@ -91,6 +91,12 @@ Orientační rozpočet 45–76 tis. Kč (deska 12–15 tis., truhlář 25–45 t
 ## LED – zrušeno (2026-11-23)
 
 Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopLux COB 24 V, profil V4, MiBoxer) i plán kabeláže (drážky, stoupačka, hvězda ze soklu) neplatí, žádné drážky se nefrézují. Čtecí lampa nad křeslem je samostatná s vlastním kabelem do prodlužky.
+
+## Stav stavby (Fáze 3)
+
+- **2026-11-24: všechny díly nařezané**, K26 a K09 slepené (schnou). Pak broušení a nátěr, zabere několik dní.
+- **ID desek z půdy (D03, A09, C04…) se dál nikde nezobrazují**, jen díly K* a S* a spoje X*. V `prirazeni.py` je `CUT_DONE = True`, přiřazení k deskám zůstává jen v datech a v `drevo/prirazeni.md` jako archiv řezání.
+- **Spoje** jsou očíslované X01–X59 (`JOINTS` v `prirazeni.py`, generované z geometrie): X01–X10 sokl, pak odspodu nahoru a zleva doprava. Přemek je promýšlí, spoje jsou za něj otevřené. Nečíslované: lepené spoje v K09/K26 a úhelníky vzadu do zadní stěny.
 
 ## Otevřené body
 
