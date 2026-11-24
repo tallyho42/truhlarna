@@ -219,10 +219,20 @@ def strips_of(s, width):
     n = (s['Wd'] + KERF) // (width + KERF)
     return [dict(stock=s['id'], idx=i, y=i * (width + KERF), w=width, L=s['L'], free=s['L'], items=[]) for i in range(n)]
 
+# Stabilita: díl zůstane na desce z minulého běhu, pokud se tam pořád vejde (Přemek už řeže).
+_prev_path = os.path.join(ROOT, 'drevo', 'prirazeni.json')
+PREV = {q['id']: q.get('src') for q in json.load(open(_prev_path, encoding='utf-8'))['parts']} if os.path.exists(_prev_path) else {}
+
 def place(pieces, stocks, width, prefer=None, strips=None):
     strips = strips if strips is not None else [x for s in stocks for x in strips_of(s, width)]
-    left = []
+    left, rest = [], []
     for p in sorted(pieces, key=lambda p: -p.get('cutL', p['L'])):
+        need = p.get('cutL', p['L']) + KERF
+        st = next((x for x in strips if x['stock'] == PREV.get(p['id']) and x['free'] >= need), None)
+        if not st: rest.append(p); continue
+        p['src'] = st['stock']; p['strip'] = st['idx']; p['off'] = st['L'] - st['free']
+        st['items'].append(p['id']); st['free'] -= need
+    for p in rest:
         need = p.get('cutL', p['L']) + KERF
         cand = [s for s in strips if s['free'] >= need]
         if prefer: cand = [s for s in cand if prefer(p, s)] or cand
@@ -243,6 +253,19 @@ st0, _ = place([p for p in P if p['name'] == 'Horní deska'], [by['C04+C05']], D
 for p in P: p['composite'] = p['o'] == 'V' and p['j'] == 0
 import copy, itertools
 HOLE_IDS = {h['id'] for h in holes}
+# Ruční přiřazení díl -> deska (Přemek prohazuje podle vad při řezání). Tyto díly se umístí první,
+# zbytek dopočítá optimalizace.
+PIN = {
+    'K10': 'D08-3', 'K14': 'B01',   # 2026-11-24 prohozeno
+}
+def pin(strips):
+    for pid, sid in PIN.items():
+        q = next(x for x in P if x['id'] == pid)
+        need = q.get('cutL', q['L']) + KERF
+        st = next((x for x in strips if x['stock'] == sid and x['free'] >= need), None)
+        assert st, f"{pid} ({q['L']} mm) se nevejde na {sid}"
+        q['src'] = sid; q['strip'] = st['idx']; q['off'] = st['L'] - st['free']
+        st['items'].append(pid); st['free'] -= need
 def run(segs):
     """Rozmístí díly na čerstvé pruhy; kusy slepeného boku přednostně na poškozené desky (skrytá strana)."""
     for q in P + segs:
@@ -250,6 +273,7 @@ def run(segs):
             for k in ('src', 'strip', 'off'): q.pop(k, None)
     hs = [x for s in holes for x in strips_of(s, D)]
     cs = [x for s in clean for x in strips_of(s, D)]
+    pin(hs + cs)
     _, b0 = place(segs, None, D, strips=hs + cs, prefer=lambda p, st: st['stock'] in HOLE_IDS)
     place([q for q in P if q['hidden'] and 'src' not in q and not q['composite'] and q['name'] != 'Horní deska'], None, D, strips=hs)
     _, b1 = place([q for q in P if 'src' not in q and not q['composite']], None, D, strips=cs)

@@ -18,7 +18,7 @@ Pages se po pushi obnoví do ~1 min.
 
 - `knihovna.html`: **aktuální návrh (v4)**, hloubka 250, vše z desek z půdy. Výkres s najetím myší na díl (rozměr, zdroj, spoje), plány řezů desek, spoje, montáž, kusovník. Data vkládá `drevo/prirazeni.py` mezi `/*DATA*/…/*END*/`.
 - `postup.html`: pracovní postup krok za krokem (desky z půdy, řezání, lepení K26 a K09, vrtání děr pro podpěrky s výškami, broušení a nátěr pohledových stran, sokl, spodní rám, úrovně odspodu, dokončení). Kroky a obrázky se generují z dat, která vkládá `prirazeni.py`.
-- `drevo/prirazeni.py`: **zdroj pravdy pro rozměry a přiřazení** (geometrie, vzor křížení `PATTERN`, přiřazení k deskám). Po změně inventáře nebo návrhu spustit `python3 drevo/prirazeni.py`, přepíše `prirazeni.json`, `prirazeni.md` a data v HTML.
+- `drevo/prirazeni.py`: **zdroj pravdy pro rozměry a přiřazení** (geometrie, vzor křížení `PATTERN`, přiřazení k deskám). Po změně inventáře nebo návrhu spustit `python3 drevo/prirazeni.py`, přepíše `prirazeni.json`, `prirazeni.md` a data v HTML. Ruční prohození díl → deska (Přemek při řezání dává hezčí kusy na lepší místa) se zapisuje do `PIN` v `prirazeni.py`. Ostatní díly drží desku z minulého běhu (`PREV` z `prirazeni.json`), takže se nic už nařezaného nepřehází.
 - `input/`: fotky místnosti (IMG_0506–0508) a busty (IMG_0509).
 - `navrh-gemini/`: AI vizualizace z Gemini. Jen inspirace, některé mají chybně dveře v zadní stěně.
 - `gemini-prompt.md`: aktuální prompt pro vizualizaci.
