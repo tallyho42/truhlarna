@@ -100,7 +100,7 @@ Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopL
 
 ## Nářadí
 
-- Frézka: **Makita DRT50Z**, aku kombinovaná 18 V LXT (bez stolu). Standardně kleština 6 mm (dle trhu i 1/4"), **8 mm jde s dokoupenou kleštinou** (kužel 763670-8 + matice), 8 mm je maximum.
+- Frézka: **Makita DRT50Z**, aku kombinovaná 18 V LXT (bez stolu). Standardně kleština 6 mm (dle trhu i 1/4"), **8 mm jde s dokoupenou kleštinou** (kužel Makita 763618-5, matice z původní 6mm se použije dál; nejlevněji kamody.cz 99 Kč, 2026-11-24), 8 mm je maximum.
 - Okružní pila: **Makita DHS661ZJU**, aku bezuhlíková 18 V (165 mm).
 - Dál: aku vrtačka, přímočará pila, bruska, svěrky. Nemá stolní pilu.
 
