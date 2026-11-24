@@ -1,5 +1,18 @@
 {
  "geo": {
+  "kolik": {
+   "d": 6,
+   "hole": 10,
+   "out": 10,
+   "slot_w": 6,
+   "slot_l": 12,
+   "slot_d": 4,
+   "edge_r": 30,
+   "edge_l": 60,
+   "length": 20,
+   "center": 1.0,
+   "visible": 2
+  },
   "W": 2370,
   "H": 2593,
   "t": 19,
@@ -226,8 +239,8 @@
    "z1": 503.85714285714283,
    "src": "D08-2",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K03"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K03"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -261,8 +274,8 @@
    "z1": 503.85714285714283,
    "src": "A07",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K03",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K03",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -296,8 +309,8 @@
    "z1": 848.7142857142857,
    "src": "B02",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -371,7 +384,7 @@
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": true,
-   "note": "Jedna deska slepená předem z 2 kusů (1044 + 335 mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na podpěrky.",
+   "note": "Jedna deska slepená předem z 2 kusů (1044 + 335 mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na kolíky.",
    "strip": null,
    "off": null,
    "srcinfo": null,
@@ -396,12 +409,12 @@
    "z1": 1193.5714285714284,
    "src": "D08-3",
    "ends": [
-    "spoj s K09 se dořeší (bok končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+    "spoj s K09 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník.",
+   "note": "Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -431,8 +444,8 @@
    "z1": 1193.5714285714284,
    "src": "A04",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K08"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K08"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -466,8 +479,8 @@
    "z1": 1193.5714285714284,
    "src": "A05",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K08",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K08",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -501,8 +514,8 @@
    "z1": 1538.4285714285713,
    "src": "D01",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K09",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -536,8 +549,8 @@
    "z1": 1538.4285714285713,
    "src": "B01",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -606,8 +619,8 @@
    "z1": 1883.2857142857142,
    "src": "A03",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K15"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K09",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K15"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -641,8 +654,8 @@
    "z1": 1883.2857142857142,
    "src": "A09",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K15",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K15",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -676,8 +689,8 @@
    "z1": 1883.2857142857142,
    "src": "D08-2",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -747,11 +760,11 @@
    "src": "A09",
    "ends": [
     "visí na vrutech do stěny; spodní konec v rovině spodku K24 (spoj se dořeší: kolíky nebo úhelník)",
-    "končí v rovině desky; do boku dosedá K26 (podpěrky)"
+    "končí v rovině desky; do boku dosedá K26 (kolíky Ø 6)"
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": true,
-   "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.",
+   "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -781,8 +794,8 @@
    "z1": 2228.142857142857,
    "src": "A10",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K09",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K15"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K09",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K15"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -816,8 +829,8 @@
    "z1": 2228.142857142857,
    "src": "A06",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K02",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K19"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K02",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K19"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -851,8 +864,8 @@
    "z1": 2228.142857142857,
    "src": "A02",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K19",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K19",
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
@@ -886,12 +899,12 @@
    "z1": 2228.142857142857,
    "src": "D08-1",
    "ends": [
-    "dosedá na 2 podpěrky 5 mm v boku dílu K04",
-    "spoj s K20 se dořeší (bok končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K04",
+    "spoj s K20 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Nese most nad dveřmi. Levým koncem dosedá na podpěrky v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).",
+   "note": "Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -957,7 +970,7 @@
    "src": "C04+C05",
    "ends": [
     "k obkladu, leží na K09 (úhelník zespodu)",
-    "dosedá na 2 podpěrky 5 mm v boku dílu K20"
+    "dosedá na 2 kolíky Ø 6 v boku dílu K20"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": true,
@@ -2236,7 +2249,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K05 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K05 zespodu 2 drážky",
    "x": 749.0,
    "z": 494.4,
    "mx": 804.0,
@@ -2255,7 +2268,7 @@
    "b": "K03",
    "kind": "pins",
    "what": "K05 pravý konec → bok K03 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K03, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K03 (levá strana, 60 mm od čela a od zadní hrany), v K05 zespodu 2 drážky",
    "x": 1065.9,
    "z": 494.4,
    "mx": 1010.9,
@@ -2274,7 +2287,7 @@
    "b": "K03",
    "kind": "pins",
    "what": "K06 levý konec → bok K03 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K03, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K03 (pravá strana, 30 mm od čela a od zadní hrany), v K06 zespodu 2 drážky",
    "x": 1084.9,
    "z": 494.4,
    "mx": 1139.9,
@@ -2293,7 +2306,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K06 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K06 zespodu 2 drážky",
    "x": 1401.7,
    "z": 494.4,
    "mx": 1346.7,
@@ -2331,7 +2344,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K07 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K07 zespodu 2 drážky",
    "x": 749.0,
    "z": 839.2,
    "mx": 804.0,
@@ -2350,7 +2363,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K07 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K07 zespodu 2 drážky",
    "x": 1401.7,
    "z": 839.2,
    "mx": 1346.7,
@@ -2407,7 +2420,7 @@
    "b": "K09",
    "kind": "open",
    "what": "K10 levý konec → bok K09 (pravá strana)",
-   "now": "nevyřešeno: K09 končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)",
+   "now": "nevyřešeno: K09 končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)",
    "x": 19.0,
    "z": 1184.1,
    "mx": 74.0,
@@ -2426,7 +2439,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K10 pravý konec → bok K02 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K10 zespodu 2 drážky",
    "x": 730.0,
    "z": 1184.1,
    "mx": 675.0,
@@ -2445,7 +2458,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K11 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K11 zespodu 2 drážky",
    "x": 749.0,
    "z": 1184.1,
    "mx": 804.0,
@@ -2464,7 +2477,7 @@
    "b": "K08",
    "kind": "pins",
    "what": "K11 pravý konec → bok K08 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K08, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K08 (levá strana, 60 mm od čela a od zadní hrany), v K11 zespodu 2 drážky",
    "x": 1065.9,
    "z": 1184.1,
    "mx": 1010.9,
@@ -2483,7 +2496,7 @@
    "b": "K08",
    "kind": "pins",
    "what": "K12 levý konec → bok K08 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K08, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K08 (pravá strana, 30 mm od čela a od zadní hrany), v K12 zespodu 2 drážky",
    "x": 1084.9,
    "z": 1184.1,
    "mx": 1139.9,
@@ -2502,7 +2515,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K12 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K12 zespodu 2 drážky",
    "x": 1401.7,
    "z": 1184.1,
    "mx": 1346.7,
@@ -2540,7 +2553,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K13 levý konec → bok K09 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K13 zespodu 2 drážky",
    "x": 19.0,
    "z": 1528.9,
    "mx": 74.0,
@@ -2559,7 +2572,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K13 pravý konec → bok K02 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K13 zespodu 2 drážky",
    "x": 730.0,
    "z": 1528.9,
    "mx": 675.0,
@@ -2578,7 +2591,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K14 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K14 zespodu 2 drážky",
    "x": 749.0,
    "z": 1528.9,
    "mx": 804.0,
@@ -2597,7 +2610,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K14 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K14 zespodu 2 drážky",
    "x": 1401.7,
    "z": 1528.9,
    "mx": 1346.7,
@@ -2635,7 +2648,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K16 levý konec → bok K09 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K16 zespodu 2 drážky",
    "x": 19.0,
    "z": 1873.8,
    "mx": 74.0,
@@ -2654,7 +2667,7 @@
    "b": "K15",
    "kind": "pins",
    "what": "K16 pravý konec → bok K15 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K15, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K16 zespodu 2 drážky",
    "x": 365.0,
    "z": 1873.8,
    "mx": 310.0,
@@ -2673,7 +2686,7 @@
    "b": "K15",
    "kind": "pins",
    "what": "K17 levý konec → bok K15 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K15, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (pravá strana, 30 mm od čela a od zadní hrany), v K17 zespodu 2 drážky",
    "x": 384.0,
    "z": 1873.8,
    "mx": 439.0,
@@ -2692,7 +2705,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K17 pravý konec → bok K02 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (levá strana, 60 mm od čela a od zadní hrany), v K17 zespodu 2 drážky",
    "x": 730.0,
    "z": 1873.8,
    "mx": 675.0,
@@ -2711,7 +2724,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K18 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K18 zespodu 2 drážky",
    "x": 749.0,
    "z": 1873.8,
    "mx": 804.0,
@@ -2730,7 +2743,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K18 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K18 zespodu 2 drážky",
    "x": 1401.7,
    "z": 1873.8,
    "mx": 1346.7,
@@ -2787,7 +2800,7 @@
    "b": "K09",
    "kind": "pins",
    "what": "K21 levý konec → bok K09 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K09, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K09 (pravá strana, 30 mm od čela a od zadní hrany), v K21 zespodu 2 drážky",
    "x": 19.0,
    "z": 2218.6,
    "mx": 74.0,
@@ -2806,7 +2819,7 @@
    "b": "K15",
    "kind": "pins",
    "what": "K21 pravý konec → bok K15 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K15, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K15 (levá strana, 60 mm od čela a od zadní hrany), v K21 zespodu 2 drážky",
    "x": 365.0,
    "z": 2218.6,
    "mx": 310.0,
@@ -2825,7 +2838,7 @@
    "b": "K02",
    "kind": "pins",
    "what": "K22 levý konec → bok K02 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K02, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K02 (pravá strana, 30 mm od čela a od zadní hrany), v K22 zespodu 2 drážky",
    "x": 749.0,
    "z": 2218.6,
    "mx": 804.0,
@@ -2844,7 +2857,7 @@
    "b": "K19",
    "kind": "pins",
    "what": "K22 pravý konec → bok K19 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K19, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K19 (levá strana, 60 mm od čela a od zadní hrany), v K22 zespodu 2 drážky",
    "x": 1065.9,
    "z": 2218.6,
    "mx": 1010.9,
@@ -2863,7 +2876,7 @@
    "b": "K19",
    "kind": "pins",
    "what": "K23 levý konec → bok K19 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K19, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K19 (pravá strana, 30 mm od čela a od zadní hrany), v K23 zespodu 2 drážky",
    "x": 1084.9,
    "z": 2218.6,
    "mx": 1139.9,
@@ -2882,7 +2895,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K23 pravý konec → bok K04 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (levá strana, 60 mm od čela a od zadní hrany), v K23 zespodu 2 drážky",
    "x": 1401.7,
    "z": 2218.6,
    "mx": 1346.7,
@@ -2901,7 +2914,7 @@
    "b": "K04",
    "kind": "pins",
    "what": "K24 levý konec → bok K04 (pravá strana)",
-   "now": "2 podpěrky Ø 5 v boku K04, díry 30 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K04 (pravá strana, 30 mm od čela a od zadní hrany), v K24 zespodu 2 drážky",
    "x": 1420.7,
    "z": 2218.6,
    "mx": 1475.7,
@@ -2943,7 +2956,7 @@
    "b": "K20",
    "kind": "open",
    "what": "K24 pravý konec → bok K20 (levá strana)",
-   "now": "nevyřešeno: K20 končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)",
+   "now": "nevyřešeno: K20 končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)",
    "x": 2351.0,
    "z": 2218.6,
    "mx": 2296.0,
@@ -3095,7 +3108,7 @@
    "b": "K20",
    "kind": "pins",
    "what": "K26 pravý konec → bok K20 (levá strana)",
-   "now": "2 podpěrky Ø 5 v boku K20, díry 60 mm od hran",
+   "now": "2 dřevěné kolíky Ø 6 v boku K20 (levá strana, 60 mm od čela a od zadní hrany), v K26 zespodu 2 drážky",
    "x": 2351.0,
    "z": 2563.5,
    "mx": 2296.0,

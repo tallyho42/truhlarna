@@ -27,7 +27,16 @@ WALLGAP = 5                             # vůle u stěny
 SOKL_ZAP = 30                           # zapuštění soklu
 SAFE = 15                               # min. rezerva v pruhu, když to jde
 CUT_DONE = True                         # všechno nařezáno (2026-11-24): ID desek z půdy se dál nikde nezobrazují
-PINGAP = 1                              # police na podpěrkách z obou stran: o 1 mm kratší než světlost (aby šla zasunout)
+PINGAP = 1                              # police na kolících z obou stran: o 1 mm kratší než světlost (aby šla zasunout)
+# Spoj B (2026-11-24): dřevěné kolíky Ø 6 v boku svislého dílu, police na nich leží a má zespodu na konci drážku,
+# do které kolík zapadne (zbyde vidět jen kousek). Nic se nesmí provrtat skrz 19mm desku.
+KOLIK = dict(d=6, hole=10, out=10, slot_w=6, slot_l=12, slot_d=4, edge_r=30, edge_l=60)
+KOLIK['length'] = KOLIK['hole'] + KOLIK['out']                  # délka kolíku
+KOLIK['center'] = KOLIK['slot_d'] - KOLIK['d'] / 2               # střed díry nad spodní plochou police
+KOLIK['visible'] = KOLIK['d'] - KOLIK['slot_d']                  # kolik kolíku kouká pod policí
+assert KOLIK['hole'] <= t - 7 and KOLIK['slot_d'] <= t - 10, 'díra nebo drážka by šla moc hluboko'
+assert KOLIK['slot_l'] >= KOLIK['out'] + PINGAP / 2 + 1, 'drážka kratší než vyčnívající kolík'
+assert KOLIK['edge_l'] - KOLIK['edge_r'] > KOLIK['d'] + 6, 'díry z obou stran by se potkaly'
 
 def exists(c, r):                       # přihrádka sloupec c, řada r (odspodu)
     if c < 1 or r < 1 or r > R: return False
@@ -51,13 +60,13 @@ for j in range(N + 1):
         if (vb or va) and (hl or hr): CR[(j, k)] = dict(vb=vb, va=va, hl=hl, hr=hr)
 
 # Kdo je v křížení průběžný: H = vodorovná deska přechází přes svislou,
-# V = svislá prochází a vodorovné do ní z boku dosedají na podpěrky.
+# V = svislá prochází a vodorovné do ní z boku dosedají na kolíky (spoj B).
 # Vybráno optimalizací tak, aby žádný díl nebylo nutné kupovat.
 # Pravý bok (linie 4) a příčka u výklenku (linie 2) jsou z jednoho kusu a stojí na spodní polici.
 # Ostatní svislé díly jsou co nejdelší (min. počet dělení bez nákupu). Boční díl mostu (linie 7)
 # se šroubuje do sádrokartonu, dno mostu i horní deska do něj dosedají z boku.
 # Levý bok (linie 0) je jedna deska slepená předem z co nejméně kusů (spoj ve výšce police),
-# přišroubovaná k obkladu; police vlevo do něj dosedají na podpěrky.
+# přišroubovaná k obkladu; police vlevo do něj dosedají na kolíky.
 PATTERN = """
 7 H H H H H . H V
 6 V V V V V . H V
@@ -142,8 +151,8 @@ def end_text(p, side):
         vert = who(lambda q: q['o'] == 'V' and q['j'] == j and q['z0'] - 1 <= zb(k) + t / 2 <= q['z1'] + 1)
         if a == 'V':
             flush = vert and abs(next(q for q in P if q['id'] == vert[0])['z0'] - zb(k)) < 1   # bok končí v rovině spodku police
-            s = (f"spoj s {vert[0]} se dořeší (bok končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník" if flush else
-                 f"dosedá na 2 podpěrky 5 mm v boku dílu {vert[0]}" if vert else "na podpěrkách")
+            s = (f"spoj s {vert[0]} se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník" if flush else
+                 f"dosedá na 2 kolíky Ø 6 v boku dílu {vert[0]}" if vert else "na kolících")
         else:
             below = who(lambda q: q['o'] == 'V' and q['j'] == j and abs(q['z1'] - zb(k)) < 1)
             above = who(lambda q: q['o'] == 'V' and q['j'] == j and abs(q['z0'] - (zb(k) + t)) < 1)
@@ -161,7 +170,7 @@ def end_text(p, side):
                     'visí na vrutech do stěny' if side == 0 else 'končí v rovině desky')
             if sh_ and side == 0 and k > 0:
                 return base + f"; spodní konec v rovině spodku {', '.join(sh_)} (spoj se dořeší: kolíky nebo úhelník)"
-            return base + (f"; do boku dosedá {', '.join(sh_)} (podpěrky)" if sh_ else '')
+            return base + (f"; do boku dosedá {', '.join(sh_)} (kolíky Ø 6)" if sh_ else '')
         hz = who(lambda q: q['o'] == 'H' and q['k'] == k and q['x0'] - 1 <= xl(j) + t / 2 <= q['x1'] + 1)
         if side == 0:
             if not hz: return ''
@@ -172,9 +181,9 @@ for p in P:
     p['ends'] = [end_text(p, 0), end_text(p, 1)]
     p['note'] = ''
     if p['o'] == 'H' and p['k'] == 0: p['note'] = 'Leží celou plochou na soklu.'
-    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem dosedá na podpěrky v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).'
-    if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, podpěrky nejdou): kolíky nebo úhelník.'
-    if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Dno mostu a horní deska do něj dosedají z boku na podpěrky.')
+    if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Navíc 2 skryté nosiče polic přišroubované přes sádrokarton do dřeva za ním (v zadní hraně dna 2 díry, nasune se na ně).'
+    if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník.'
+    if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).')
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
 
@@ -206,7 +215,7 @@ SOKL = [
 
 # ---- spoje (X01…): každý styk dvou dílů, styk se stěnou a spoje soklu ----
 # Číslováno v pořadí montáže: sokl, pak odspodu nahoru a zleva doprava.
-# kind: pins = podpěrky, screw = vruty skrz, angle = úhelník, open = nevyřešeno, wall = do stěny, rest = jen leží/dosedá
+# kind: pins = kolíky Ø 6 (spoj B), screw = vruty skrz, angle = úhelník, open = nevyřešeno, wall = do stěny, rest = jen leží/dosedá
 JOINTS = []
 PBYID = {q['id']: q for q in P}
 def _J(a, b, kind, what, now, x, z, mx, mz, view='front', pts=None):
@@ -223,8 +232,8 @@ for p in P:
         flush = abs(v['z0'] - zb(k)) < 1
         fx = p['x0'] if side == 0 else p['x1']
         what = f"{p['id']} {'levý' if side == 0 else 'pravý'} konec → bok {v['id']} ({'pravá' if side == 0 else 'levá'} strana)"
-        now = (f"nevyřešeno: {v['id']} končí v rovině spodku police, podpěrky nejdou (kolíky, nebo úhelník shora)" if flush else
-               f"2 podpěrky Ø 5 v boku {v['id']}, díry {'30' if side == 0 else '60'} mm od hran")
+        now = (f"nevyřešeno: {v['id']} končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)" if flush else
+               f"2 dřevěné kolíky Ø 6 v boku {v['id']} ({'pravá' if side == 0 else 'levá'} strana, {KOLIK['edge_r'] if side == 0 else KOLIK['edge_l']} mm od čela a od zadní hrany), v {p['id']} zespodu 2 drážky")
         mz = zb(k) - 28 if k == R else zb(k) + t + 28
         _J(p['id'], v['id'], 'open' if flush else 'pins', what, now, fx, zb(k) + t / 2, fx + (OFF if side == 0 else -OFF), mz)
 for q in P:
@@ -388,8 +397,8 @@ for p in comp:
     segs = [sg for sg in SEGS if sg['parent'] == p['id']]
     p['segments'] = [sg['id'] for sg in segs]
     p['src'] = None if any('src' not in sg for sg in segs) else ' + '.join(sg['src'] for sg in segs)
-    p['note'] = (f"Jedna deska slepená předem z {len(segs)} kusů ({' + '.join(str(sg['L']) for sg in segs)} mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na podpěrky." if len(segs) > 1
-                 else "Přišroubovat přes obklad do dřevěné stěny, police do něj dosedají na podpěrky.")
+    p['note'] = (f"Jedna deska slepená předem z {len(segs)} kusů ({' + '.join(str(sg['L']) for sg in segs)} mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na kolíky." if len(segs) > 1
+                 else "Přišroubovat přes obklad do dřevěné stěny, police do něj dosedají na kolíky.")
 st2 = [x for x in pool if x['stock'] not in HOLE_IDS]
 st1 = [x for x in pool if x['stock'] in HOLE_IDS]
 # sokl: lišta z úzkého pruhu 3S, podpěry ze spárovky 18
@@ -436,16 +445,22 @@ for sid, lst in strips.items():
         tot = sum(next(q.get('cutL', q['L']) for q in ALL if q['id'] == i) + KERF for i in s['items'])
         assert tot <= s['L'], (sid, s['idx'], tot, s['L'])
 
+# kontrola: každá díra pro kolík je celá uvnitř svislého dílu, aspoň 5 mm od konce
+for d_ in JOINTS:
+    if d_['kind'] != 'pins': continue
+    sh_, v_ = PBYID[d_['a']], PBYID[d_['b']]
+    hc = sh_['z0'] + KOLIK['center'] - v_['z0']
+    assert KOLIK['d'] / 2 + 5 <= hc <= v_['L'] - KOLIK['d'] / 2 - 5, (d_['id'], hc)
 # počty spojovacího materiálu
 dowel_joints = sum(1 for p in P if p['o'] == 'V' for e in p['ends'] if 'skrz' in e)
-pin_ends = sum(1 for p in P if p['o'] == 'H' for e in p['ends'] if 'dosedá na 2 podpěrky' in e)
+pin_ends = sum(1 for p in P if p['o'] == 'H' for e in p['ends'] if 'dosedá na 2 kolíky' in e)
 angle_top = sum(1 for p in P if p['o'] == 'V' and 'úhelník' in p['ends'][1])
 verts = [p for p in P if p['o'] == 'V']
 used = sorted(strips)
 unused = [s for s in STOCK if s['id'] not in strips]
 
 out = dict(
-    geo=dict(W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
+    geo=dict(kolik=KOLIK, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
     pattern={f"{j},{k}": v for (j, k), v in A.items()},
     parts=[{k: p[k] for k in ('id', 'o', 'name', 'L', 'B', 'kind', 'x0', 'x1', 'z0', 'z1', 'src', 'ends', 'grain', 'hidden', 'note')
             if k in p} | {'strip': p.get('strip'), 'off': p.get('off'), 'srcinfo': p.get('srcinfo'), 'cutL': p.get('cutL'), 'cutB': p.get('cutB'), 'segments': p.get('segments'), 'parent': p.get('parent')} for p in ALL],
