@@ -118,7 +118,7 @@
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": true,
-   "note": "Leží celou plochou na soklu.",
+   "note": "Leží na horních hranách soklu S1–S4, přichycená zespodu do úhelníků na S1, S2 a S4.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -1153,7 +1153,7 @@
    ],
    "grain": "léta vodorovně",
    "hidden": true,
-   "note": "Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.",
+   "note": "Drží boky soklu pohromadě vzadu. Nahoře zevnitř na ní 2 malé úhelníky, do kterých se K01 zespodu přišroubuje. Skrytá.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -2206,9 +2206,9 @@
   {
    "a": "K01",
    "b": "S4",
-   "kind": "screw",
+   "kind": "angle",
    "what": "K01 → S4 zadní spojka",
-   "now": "2 vruty 4,5 × 50 shora skrz K01 do S4, 9 mm od zadní hrany",
+   "now": "2 malé úhelníky zevnitř nahoře na S4, po položení K01 se zespodu přišroubují do K01 (vruty nejvýš 16 mm, přístup otevřenou přední stranou). Vrtat shora svisle 9 mm od zdi by nešlo.",
    "x": 912.2,
    "z": 9,
    "mx": 907.4,

@@ -1,37 +1,41 @@
 # Co dokoupit
 
-Podle návrhu v4 (`knihovna.html`, hloubka 250 mm, výklenek 73 × 118 cm za křeslem). Ceny jsou orientační, s DPH.
+Podle návrhu v4 (`knihovna.html`, hloubka 250 mm, výklenek 73 × 117,5 cm za křeslem). Ceny jsou orientační, s DPH. Stav 2026-11-25: všechny díly nařezané.
 
 ## Desky: nic
 
-Všech 26 dílů i sokl (5 dílů) se uříznou z třívrstvých desek z půdy (viz `prirazeni.md`). Horní desku je potřeba slepit z pruhů C04 + C05. 30 kusů zůstává jako rezerva na chybné řezy a vzorky povrchu, takže ani rezervní deska není potřeba.
+Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půdy (archiv řezání v `prirazeni.md`). Horní deska K26 a levý bok K09 jsou slepené. 29 kusů zůstává jako rezerva na opravy a vzorky povrchu.
 
-## Spojovací a kotevní materiál (~1 800–3 300 Kč)
+## Spojovací a kotevní materiál
 
 | Položka | Množství | Na co | Cena |
 |---|---|---|---|
-| Vruty 4,5 × 50 mm, zápustná hlava | 30 ks (potřeba 22) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
-| Kolíky 8 × 35 mm (buk, drážkované) | 1 balení (~20 ks) | slepení horní desky C04 + C05 a levého boku ze 2 kusů | 30–80 Kč |
-| Smrkové čepy 10 mm (volitelně) | 30 ks | zakrytí hlav vrutů spoje A | 50–100 Kč |
-| Podpěrky polic 5 mm, ocelové | 60 ks (potřeba 58) | spoj B: police mezi průběžnými díly | 150–300 Kč |
-| Lepidlo na dřevo D3 | 0,5 kg | slepení horní desky, čepy | 100–200 Kč |
-| Malé úhelníky 30–40 mm | ~60 ks | kotvení svislých dílů a polic do zdi, horní deska zespodu, spojení soklu zevnitř | 400–800 Kč |
-| Vruty 5 × 80–100 mm | ~30 ks | úhelníky přes sádrokarton do dřeva za zadní stěnou | 150–250 Kč |
-| Vruty do dřeva 4 × 16–20 | 100 ks | úhelníky do desek (nesmí projít 19 mm deskou) | 80–150 Kč |
-| Dlouhé vruty 6 × 100–120 | ~8 ks | slepený levý bok přes obklad do dřevěné stěny | 100–200 Kč |
-| Kovové hmoždinky do sádrokartonu (typ Molly) + vruty | 4–6 ks | boční díl mostu přímo do pravé stěny (SDK) | 100–200 Kč |
-| Skrytý nosič police (trn s přírubou na vruty) | 2 ks | pod dno mostu, přes sádrokarton do dřeva | 200–500 Kč |
+| Vruty 4,5 × 50 mm, zápustná hlava | 20 ks (potřeba 16) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
+| Dřevěné kolíky Ø 6 mm | 58 ks, zkrátit na 20 mm | spoj B: police na kolících v bocích (Přemek je má) | 0 Kč |
+| Feritové magnety Ø 15–16 × 5 mm | 4 ks | odnímatelná lišta soklu S5 (Přemek je má) | 0 Kč |
+| Dvousložkový epoxid nebo montážní lepidlo | 1 balení | vlepení magnetů | 100–200 Kč |
+| Filcové podložky 3 mm | 2 ks | pod lištu soklu S5 | 30–80 Kč |
+| Lepidlo na dřevo D3 | 0,5 kg | kolíky do děr, dorazy magnetů, čepy | 100–200 Kč |
+| Smrkové čepy 10 mm (volitelně) | 20 ks | zakrytí hlav vrutů spoje A | 50–100 Kč |
+| Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu | 300–600 Kč |
+| Vruty 5 × 80–100 mm + hmoždinky | ~20 ks | úhelníky přes sádrokarton do dřeva za zadní stěnou | 150–250 Kč |
+| Vruty do dřeva 3,5–4 × 16 | 100 ks | úhelníky do desek (nesmí projít 19mm deskou) | 80–150 Kč |
+| Dlouhé vruty 6 × 100–120 | ~8 ks | slepený levý bok K09 přes obklad do dřevěné stěny | 100–200 Kč |
+| Kovové hmoždinky do sádrokartonu (typ Molly) + vruty | 4–6 ks | boční díl mostu K20 do pravé stěny (SDK) | 100–200 Kč |
 | Vyrovnávací podložky | 1 sada | sokl na nerovné podlaze (nevrtat, topení) | 50–150 Kč |
+| Ráčnový stahovací pás | 2 ks (nebo provaz) | dočasné rozpěrky při stavění spodního rámu | 0–200 Kč |
 
-## Drobné nářadí (~600–1 500 Kč)
+Kotvení dna mostu K24 do zadní stěny se ještě dořeší (spoj X50), skryté nosiče s trny jsou zrušené.
+
+## Drobné nářadí
 
 | Položka | Poznámka | Cena |
 |---|---|---|
-| Vrtáky do dřeva 3 a 5 mm, záhlubník, doraz | 5 mm s dorazem 10 mm na podpěrky, 3 mm + záhlubník na spoj A | 150–300 Kč |
-| Jemný pilový kotouč do okružní pily, 48–60 zubů | čisté hrany na třívrstvé desce | 400–900 Kč |
+| Vrták do dřeva 6 mm s dorazem | díry pro kolíky, hloubka 10 mm | 50–150 Kč |
+| Rovná fréza Ø 6 mm | drážky ve spodku polic, hloubka 4 mm | 100–300 Kč |
+| Forstnerův vrták 15–16 mm (podle magnetu) | díry pro magnety, hloubka ~5 mm | 100–250 Kč |
+| Vrtáky 3 a 5 mm, záhlubník | spoj A: 3 mm skrz, průběžnou desku 5 mm a zahloubit | 100–200 Kč |
 | Brusný papír 120 / 180 / 240 | | 100–300 Kč |
-
-Jako pravítko pro řezy poslouží rovná deska z rezervy, třeba C01 (2 m), přitažená svěrkami.
 
 ## Povrch: nic
 
@@ -40,13 +44,11 @@ Jako pravítko pro řezy poslouží rovná deska z rezervy, třeba C01 (2 m), p�
 
 ## Osvětlení: nic
 
-Knihovna je bez LED (rozhodnutí 2026-11-23). Čtecí lampa nad křeslem je samostatná, s vlastním kabelem do prodlužky.
+Knihovna je bez LED (rozhodnutí 2026-11-23). Čtecí lampa nad křeslem je samostatná, s vlastním kabelem do prodlužky v soklu.
 
 ## Rostliny (~1 000–2 500 Kč)
 
 - 2× potos (Epipremnum aureum), 1× zamiokulkas (Zamioculcas zamiifolia).
 - Obaly s vnitřním plastovým květináčem a filcové podložky.
 
-## Celkem orientačně: ~3–7 tis. Kč (bez čtecí lampy)
-
-Bez desek a bez truhláře.
+## Celkem orientačně: ~2,5–6 tis. Kč (bez čtecí lampy)

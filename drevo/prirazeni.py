@@ -180,7 +180,7 @@ def end_text(p, side):
 for p in P:
     p['ends'] = [end_text(p, 0), end_text(p, 1)]
     p['note'] = ''
-    if p['o'] == 'H' and p['k'] == 0: p['note'] = 'Leží celou plochou na soklu.'
+    if p['o'] == 'H' and p['k'] == 0: p['note'] = 'Leží na horních hranách soklu S1–S4, přichycená zespodu do úhelníků na S1, S2 a S4.'
     if p['name'].startswith('Dno mostu'): p['note'] = 'Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Původně navíc 2 skryté nosiče s trny do zadní hrany: to ale nejde dohromady s kolíky (K24 se na trny nasouvá vodorovně, na kolíky se spouští shora) a díry pro trny v 19mm hraně jsou slabé. Kotvení mostu do zadní stěny se dořeší.'
     if p['name'].startswith('Police nad křeslem'): p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník.'
     if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).')
@@ -208,7 +208,7 @@ SOKL = [
          ends=['stojí na podlaze', 'nese K01 pod příčkou K03'], note=f'Skrytá, stojí mezi čelní lištou S5 a zadní spojkou S4 (proto {D - SOKL_ZAP - 2 * t} = 250 − 30 − 2 × 19).'),
     dict(id='S4', o='S', name='Sokl: zadní spojka', L=round(xb - xa - t), B=100, kind='3S19',
          x0=xa + t, x1=xb, z0=SOKL_H - 100, z1=SOKL_H, hidden=True, grain='léta vodorovně',
-         ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. K01 se do ní shora přišroubuje 2 vruty, jinak je K01 se soklem nespojená. Skrytá.'),
+         ends=['mezi boky soklu u zdi, nahoře', 'do boků zevnitř úhelníky'], note='Drží boky soklu pohromadě vzadu. Nahoře zevnitř na ní 2 malé úhelníky, do kterých se K01 zespodu přišroubuje. Skrytá.'),
     dict(id='S5', o='S', name='Sokl: čelní lišta', L=round(xb - xa - t - 2), B=SOKL_H - 5, kind='3S19',
          x0=xa + t + 1, x1=xb - 1, z0=MAG['felt'], z1=MAG['felt'] + SOKL_H - 5, hidden=False, grain='léta vodorovně',
          ends=['stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01', 'odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3'],
@@ -287,7 +287,7 @@ _S('K01', 'S1', 'angle', 'K01 leží na S1', 'leží (tíha jde tlakem do podlah
 _S('K01', 'S3', 'rest', 'K01 leží na S3', 'jen leží, bez spoje', s3x, 110, s3x, 110)
 _S('K01', 'S2', 'angle', 'K01 leží na S2', 'leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty', _s['S2']['x0'] + t / 2, 110, _s['S2']['x0'] + t / 2, 110)
 _x01 = PBYID['K01']['x0']
-_S('K01', 'S4', 'screw', 'K01 → S4 zadní spojka', '2 vruty 4,5 × 50 shora skrz K01 do S4, 9 mm od zadní hrany',
+_S('K01', 'S4', 'angle', 'K01 → S4 zadní spojka', '2 malé úhelníky zevnitř nahoře na S4, po položení K01 se zespodu přišroubují do K01 (vruty nejvýš 16 mm, přístup otevřenou přední stranou). Vrtat shora svisle 9 mm od zdi by nešlo.',
    (s1x + s3x) / 2, 9, (s1x + _s['S3']['x0']) / 2, 62, pts=[((s1x + _s['S3']['x0']) / 2, 9), ((_s['S3']['x1'] + s2x) / 2, 9)])
 JOINTS = SJ + JOINTS
 for i, d in enumerate(JOINTS): d['id'] = f"X{i + 1:02d}"
