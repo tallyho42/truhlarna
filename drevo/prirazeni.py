@@ -439,7 +439,7 @@ for p in comp:
     segs = [sg for sg in SEGS if sg['parent'] == p['id']]
     p['segments'] = [sg['id'] for sg in segs]
     p['src'] = None if any('src' not in sg for sg in segs) else ' + '.join(sg['src'] for sg in segs)
-    p['note'] = (f"Jedna deska slepená předem z {len(segs)} kusů ({' + '.join(str(sg['L']) for sg in segs)} mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police, zakryje ho její konec. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na kolíky." if len(segs) > 1
+    p['note'] = (f"Jedna deska slepená předem z {len(segs)} kusů ({' + '.join(str(sg['L']) for sg in segs)} mm) na tupo: 3 kolíky 8 × 35 + lepidlo na spoj. Spoj je ve výšce police K21, z boků ho zakryje její konec, na čele K09 bude spára vidět. Celou desku přišroubovat přes obklad do dřevěné stěny, police do ní dosedají na kolíky." if len(segs) > 1
                  else "Přišroubovat přes obklad do dřevěné stěny, police do něj dosedají na kolíky.")
 st2 = [x for x in pool if x['stock'] not in HOLE_IDS]
 st1 = [x for x in pool if x['stock'] in HOLE_IDS]
