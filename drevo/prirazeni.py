@@ -187,7 +187,7 @@ for p in P:
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
 
-# Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety cca Ø 15–16 × 5 (přesně změřit).
+# Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety Ø 15 × 4,5 (změřeno).
 MAG = dict(d=15, th=4.5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, notch_x=160, felt=3)
 # sokl: pevná krabice pod sloupci 3–4. Boky soklu stojí přesně pod K02 a K04,
 # čelní lišta mezi nimi zapuštěná 30 mm, vzadu spojka u zdi, uprostřed podpěra pod K03.
@@ -212,7 +212,7 @@ SOKL = [
     dict(id='S5', o='S', name='Sokl: čelní lišta', L=round(xb - xa - t - 2), B=SOKL_H - 5, kind='3S19',
          x0=xa + t + 1, x1=xb - 1, z0=MAG['felt'], z1=MAG['felt'] + SOKL_H - 5, hidden=False, grain='léta vodorovně',
          ends=['stojí na 2 filcových podložkách na podlaze mezi boky soklu, zapuštěná 30 mm za čelem K01', 'odnímatelná: 2 magnety do dorazů na S1 a S2, uprostřed se opírá o čelo S3'],
-         note=f"Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø {MAG['d']} × {MAG['th']} zapuštěné v dírách {MAG['from_end']} mm od konců a {MAG['z']} mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez {MAG['notch_w']} × {MAG['notch_h']} mm, střed {MAG['notch_x']} mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit."),
+         note=f"Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø {MAG['d']} × {str(MAG['th']).replace('.', ',')} zapuštěné v dírách {MAG['from_end']} mm od konců a {MAG['z']} mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez {MAG['notch_w']} × {MAG['notch_h']} mm, střed {MAG['notch_x']} mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit."),
 ]
 
 # ---- spoje (X01…): každý styk dvou dílů, styk se stěnou a spoje soklu ----
@@ -283,9 +283,9 @@ _S('S3', 'S4', 'angle', 'S3 střední podpěra → S4', 'úhelník ke spojce', s
 _S('S5', 'S1', 'magnet', 'S5 čelní lišta → doraz na S1', f"magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S1), {MAG['from_end']} mm od konce S5, {MAG['z']} mm od spodní hrany S5", s1x, yS5 + t / 2, s1x + 60, yS5 - 40)
 _S('S5', 'S2', 'magnet', 'S5 čelní lišta → doraz na S2', f"magnet v S5 + magnet v dorazu (špalík z odřezku přilepený zevnitř na S2), {MAG['from_end']} mm od konce S5, {MAG['z']} mm od spodní hrany S5", s2x, yS5 + t / 2, s2x - 60, yS5 - 40)
 _S('S3', 'S5', 'rest', 'S3 → S5', 'čelo S3 je prostřední doraz lišty, jen dosedá', s3x, yS5, s3x, yS5 - 42)
-_S('K01', 'S1', 'angle', 'K01 leží na S1', 'leží (tíha jde tlakem do podlahy); vpředu malý úhelník zevnitř z S1 nahoru do K01, ať bok drží i bez lišty', _s['S1']['x0'] + t / 2, 110, _s['S1']['x0'] + t / 2, 110)
+_S('K01', 'S1', 'angle', 'K01 leží na S1', 'leží (tíha jde tlakem do podlahy); vpředu malý úhelník zevnitř z S1 nahoru do K01, ať bok drží i bez lišty', _s['S1']['x0'] + t / 2, D - 110, _s['S1']['x0'] + t / 2, D - 110)
 _S('K01', 'S3', 'rest', 'K01 leží na S3', 'jen leží, bez spoje', s3x, 110, s3x, 110)
-_S('K01', 'S2', 'angle', 'K01 leží na S2', 'leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty', _s['S2']['x0'] + t / 2, 110, _s['S2']['x0'] + t / 2, 110)
+_S('K01', 'S2', 'angle', 'K01 leží na S2', 'leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty', _s['S2']['x0'] + t / 2, D - 110, _s['S2']['x0'] + t / 2, D - 110)
 _x01 = PBYID['K01']['x0']
 _S('K01', 'S4', 'angle', 'K01 → S4 zadní spojka', '2 malé úhelníky zevnitř nahoře na S4, po položení K01 se zespodu přišroubují do K01 (vruty nejvýš 16 mm, přístup otevřenou přední stranou). Vrtat shora svisle 9 mm od zdi by nešlo.',
    (s1x + s3x) / 2, 9, (s1x + _s['S3']['x0']) / 2, 62, pts=[((s1x + _s['S3']['x0']) / 2, 9), ((_s['S3']['x1'] + s2x) / 2, 9)])

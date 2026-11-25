@@ -1188,7 +1188,7 @@
    ],
    "grain": "léta vodorovně",
    "hidden": false,
-   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15 × 4.5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez 60 × 15 mm, střed 160 mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit.",
+   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15 × 4,5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez 60 × 15 mm, střed 160 mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit.",
    "strip": 0,
    "off": 657,
    "srcinfo": {
@@ -2153,14 +2153,14 @@
    "what": "K01 leží na S1",
    "now": "leží (tíha jde tlakem do podlahy); vpředu malý úhelník zevnitř z S1 nahoru do K01, ať bok drží i bez lišty",
    "x": 739.5,
-   "z": 110,
+   "z": 140,
    "mx": 739.5,
-   "mz": 110,
+   "mz": 140,
    "view": "sokl",
    "pts": [
     [
      739.5,
-     110
+     140
     ]
    ],
    "id": "X07"
@@ -2191,14 +2191,14 @@
    "what": "K01 leží na S2",
    "now": "leží; vpředu malý úhelník zevnitř z S2 nahoru do K01, ať bok drží i bez lišty",
    "x": 1411.2,
-   "z": 110,
+   "z": 140,
    "mx": 1411.2,
-   "mz": 110,
+   "mz": 140,
    "view": "sokl",
    "pts": [
     [
      1411.2,
-     110
+     140
     ]
    ],
    "id": "X09"
