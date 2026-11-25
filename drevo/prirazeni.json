@@ -15,8 +15,8 @@
    "visible": 2
   },
   "mag": {
-   "d": "15–16",
-   "th": 5,
+   "d": 15,
+   "th": 4.5,
    "from_end": 20,
    "z": 67,
    "block_w": 40,
@@ -1188,7 +1188,7 @@
    ],
    "grain": "léta vodorovně",
    "hidden": false,
-   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15–16 × 5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez 60 × 15 mm, střed 160 mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit.",
+   "note": "Na magnetech, sundá se a je přístup k prodlužce. Vzadu 2 feritové magnety Ø 15 × 4.5 zapuštěné v dírách 20 mm od konců a 67 mm od spodní hrany, protikusy (stejné magnety) v dorazech na S1 a S2. Ve spodní hraně úchyt (výřez 60 × 15 mm, střed 160 mm od levého konce). Je o 2 mm kratší než mezera mezi boky (1 mm vůle na každé straně), ať jde lehce nasadit.",
    "strip": 0,
    "off": 657,
    "srcinfo": {

@@ -12,7 +12,7 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 |---|---|---|---|
 | Vruty 4,5 × 50 mm, zápustná hlava | 20 ks (potřeba 16) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
 | Dřevěné kolíky Ø 6 mm | 58 ks, zkrátit na 20 mm | spoj B: police na kolících v bocích (Přemek je má) | 0 Kč |
-| Feritové magnety Ø 15–16 × 5 mm | 4 ks | odnímatelná lišta soklu S5 (Přemek je má) | 0 Kč |
+| Feritové magnety Ø 15 × 4,5 mm | 4 ks | odnímatelná lišta soklu S5 (Přemek je má) | 0 Kč |
 | Lepidlo Mamut Glue (MS polymer) | máš | vlepení magnetů | 0 Kč |
 | Filcové podložky 3 mm | 2 ks | pod lištu soklu S5 | 30–80 Kč |
 | Lepidlo na dřevo D3 | 0,5 kg | kolíky do děr, dorazy magnetů, čepy | 100–200 Kč |
@@ -33,7 +33,7 @@ Kotvení dna mostu K24 do zadní stěny se ještě dořeší (spoj X50), skryté
 |---|---|---|
 | Vrták do dřeva 6 mm s dorazem | díry pro kolíky, hloubka 10 mm | 50–150 Kč |
 | Rovná fréza Ø 6 mm | drážky ve spodku polic, hloubka 4 mm | 100–300 Kč |
-| Forstnerův vrták 15–16 mm (podle magnetu) | díry pro magnety, hloubka ~5 mm | 100–250 Kč |
+| Forstnerův vrták 15 mm | díry pro magnety, hloubka 4,5 mm | 100–250 Kč |
 | Vrtáky 3 a 5 mm, záhlubník | spoj A: 3 mm skrz, průběžnou desku 5 mm a zahloubit | 100–200 Kč |
 | Brusný papír 120 / 180 / 240 | | 100–300 Kč |
 

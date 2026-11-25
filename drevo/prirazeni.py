@@ -188,7 +188,7 @@ for p in P:
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
 
 # Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety cca Ø 15–16 × 5 (přesně změřit).
-MAG = dict(d='15–16', th=5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, notch_x=160, felt=3)
+MAG = dict(d=15, th=4.5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, notch_x=160, felt=3)
 # sokl: pevná krabice pod sloupci 3–4. Boky soklu stojí přesně pod K02 a K04,
 # čelní lišta mezi nimi zapuštěná 30 mm, vzadu spojka u zdi, uprostřed podpěra pod K03.
 xa, xb = xl(2), xl(K)                    # levá hrana levého a pravého boku soklu
