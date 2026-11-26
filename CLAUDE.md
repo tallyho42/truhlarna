@@ -108,7 +108,7 @@ Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopL
 
 ## Otevřené body
 
-- **Rozhodnuto 2026-11-26:** X21 (K08 na K07) a X23 (K10 levým koncem do K09) = kolíky 8 × 35 na tupo (`DOWEL` v `prirazeni.py`; K09 + K10 se slepí předem do L a usadí spolu; vruty K07 → K03 40 mm od hran, kolíky X21 90 mm). Dno mostu K24 drží úhelníky: X49 zespodu na K04, X51 shora do K20, X52 K25 na K24. X50 (kotvení do zadní stěny) zrušen, číslo zůstává (kind `none`), aby se spoje nepřečíslovaly. Přepisy spojů a konců dílů jsou v `JOVR` a `END_OVR`.
+- **Rozhodnuto 2026-11-26:** X21 (K08 na K07) a X23 (K10 levým koncem do K09) = kolíky 8 × 35 na tupo (`DOWEL` v `prirazeni.py`; K09 + K10 se slepí předem do L a usadí spolu; vruty K07 → K03 40 mm od hran, kolíky X21 90 mm). Dno mostu K24 drží úhelníky: X49 zespodu na K04 a X51 shora do K20, u obou 2 kusy (větší 50–60 mm vzadu, menší 20–30 mm vpředu ~40 mm za čelem, ať je míň vidět), X52 K25 na K24. X50 (kotvení do zadní stěny) zrušen, číslo zůstává (kind `none`), aby se spoje nepřečíslovaly. Přepisy spojů a konců dílů jsou v `JOVR` a `END_OVR`.
 - K24 nemá u pravé stěny 5mm vůli jako díly ke stěně (jen 1 mm jako police) (řetěz obklad → K20 dává přesně 2370). Před montáží změřit šířku ve výšce 2,2 m.
 
 - Ověřit horní hranu zárubně na pravé stěně (musí být pod 220 cm).

@@ -18,7 +18,7 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 | Dřevěné kolíky 8 × 35 mm | 5 ks (+ co zbylo z K09/K26) | X21 K08 na K07, X23 K10 do K09 | 30–80 Kč |
 | Lepidlo na dřevo D3 | 0,5 kg | kolíky do děr, dorazy magnetů, čepy | 100–200 Kč |
 | Smrkové čepy 10 mm (volitelně) | 20 ks | zakrytí hlav vrutů spoje A | 50–100 Kč |
-| Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu, most K24 (X49, X51, X52, raději 50–60 mm) | 300–600 Kč |
+| Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu, most K24 (X49 a X51: vždy 1 větší 50–60 mm vzadu + 1 menší vpředu, X52) | 300–600 Kč |
 | Vruty 5 × 80–100 mm + hmoždinky | ~20 ks | úhelníky přes sádrokarton do dřeva za zadní stěnou | 150–250 Kč |
 | Vruty do dřeva 3,5–4 × 16 | 100 ks | úhelníky do desek (nesmí projít 19mm deskou) | 80–150 Kč |
 | Dlouhé vruty 6 × 100–120 | ~8 ks | slepený levý bok K09 přes obklad do dřevěné stěny | 100–200 Kč |

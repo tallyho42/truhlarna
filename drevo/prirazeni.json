@@ -808,7 +808,7 @@
    "za0": 2209.0,
    "src": "A09",
    "ends": [
-    "visí na vrutech do stěny; spodní konec v rovině spodku K24, úhelník shora (X51)",
+    "visí na vrutech do stěny; spodní konec v rovině spodku K24, 2 úhelníky shora (X51)",
     "končí v rovině desky; do boku dosedá K26 (kolíky Ø 6)"
    ],
    "grain": "léta svisle (podél výšky)",
@@ -952,12 +952,12 @@
    "za0": 2209.0,
    "src": "D08-1",
    "ends": [
-    "leží na úhelníku zespodu na K04 (X49)",
-    "úhelník shora do K20 (X51)"
+    "leží na 2 úhelnících zespodu na K04, vzadu větší, vpředu menší (X49)",
+    "2 úhelníky shora do K20, vzadu větší, vpředu menší (X51)"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Nese most nad dveřmi. Drží ho 3 úhelníky: zespodu na K04 (X49), shora do K20 (X51) a K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky vzadu u zdi, natřít bíle.",
+   "note": "Nese most nad dveřmi. Na každém konci 2 úhelníky, větší vzadu u zdi a menší vpředu (ať je míň vidět): zespodu na K04 (X49) a shora do K20 (X51). K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky natřít bíle.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -3024,7 +3024,7 @@
    "b": "K04",
    "kind": "angle",
    "what": "K24 levý konec → bok K04 (pravá strana)",
-   "now": "úhelník zespodu: na pravé ploše K04 pod K24, vzadu u zdi (natřít bíle jako zeď), K24 na něm leží a zespodu se k němu přišroubuje",
+   "now": "2 úhelníky zespodu na pravé ploše K04 pod K24: větší (50–60 mm) vzadu u zdi, menší (20–30 mm) vpředu asi 40 mm za čelem, ať je míň vidět. Natřít bíle. K24 na nich leží a zespodu se k nim přišroubuje",
    "x": 1420.7,
    "z": 2218.6,
    "mx": 1475.7,
@@ -3067,7 +3067,7 @@
    "b": "K20",
    "kind": "angle",
    "what": "K24 pravý konec → bok K20 (levá strana)",
-   "now": "úhelník shora: v přihrádce na K24 vzadu u zdi, do levé plochy K20 a do horní plochy K24 (K20 končí v rovině spodku K24, zespodu nejde)",
+   "now": "2 úhelníky shora v přihrádce na K24, do levé plochy K20 a horní plochy K24: větší (50–60 mm) vzadu u zdi, menší (20–30 mm) vpředu asi 40 mm za čelem (K20 končí v rovině spodku K24, zespodu nejde)",
    "x": 2351.0,
    "z": 2218.6,
    "mx": 2296.0,

@@ -197,15 +197,15 @@ END_OVR = {
     ('K08', 0): 'stojí na K07 nad příčkou K03 (2 kolíky 8 × 35, X21)',
     ('K09', 0): 'visí na vrutech do stěny; spodní konec v rovině spodku K10, K10 na 3 kolících 8 × 35 (X23)',
     ('K10', 0): 'na tupo k K09: 3 kolíky 8 × 35 (X23), slepit s K09 předem',
-    (_k24, 0): 'leží na úhelníku zespodu na K04 (X49)',
-    (_k24, 1): 'úhelník shora do K20 (X51)',
-    ('K20', 0): f'visí na vrutech do stěny; spodní konec v rovině spodku {_k24}, úhelník shora (X51)',
+    (_k24, 0): 'leží na 2 úhelnících zespodu na K04, vzadu větší, vpředu menší (X49)',
+    (_k24, 1): '2 úhelníky shora do K20, vzadu větší, vpředu menší (X51)',
+    ('K20', 0): f'visí na vrutech do stěny; spodní konec v rovině spodku {_k24}, 2 úhelníky shora (X51)',
     ('K25', 0): f'stojí na {_k24} (úhelník vzadu v přihrádce, X52)',
 }
 for p in P:
     for sd in (0, 1):
         if (p['id'], sd) in END_OVR: p['ends'][sd] = END_OVR[(p['id'], sd)]
-    if p['id'] == _k24: p['note'] = f'Nese most nad dveřmi. Drží ho 3 úhelníky: zespodu na K04 (X49), shora do K20 (X51) a K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky vzadu u zdi, natřít bíle.'
+    if p['id'] == _k24: p['note'] = f'Nese most nad dveřmi. Na každém konci 2 úhelníky, větší vzadu u zdi a menší vpředu (ať je míň vidět): zespodu na K04 (X49) a shora do K20 (X51). K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky natřít bíle.'
     if p['id'] == 'K10': p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Levým koncem na tupo na 3 kolících 8 × 35 do K09 (X23): K09 a K10 se slepí předem do L a usadí spolu, pravý konec K10 se spustí na kolíky v K02.'
     if p['id'] == 'K20': p['note'] = f'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu {_k24} se k němu přichytí úhelníkem shora (X51).'
 
@@ -296,8 +296,8 @@ JOVR = {
     ('K08', 'K07'): ('dowel', f"2 kolíky {_D['d']} × {_D['L']} na tupo: díry v horní ploše K07 {_D['x21_hole']} mm hluboké, ve spodním čele K08 {_D['L'] - _D['x21_hole'] + 1} mm, {_D['x21'][0]} mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou {_D['x21_screw']} a {D - _D['x21_screw']} mm od čela, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14."),
     ('K10', 'K09'): ('dowel', f"3 kolíky {_D['d']} × {_D['L']} na tupo: díry v pravé ploše K09 {_D['x23_hole']} mm hluboké, v levém čele K10 {_D['L'] - _D['x23_hole'] + 1} mm, {', '.join(map(str, _D['x23']))} mm od čela, uprostřed tloušťky K10 (9,5 mm nad spodním koncem K09). K09 a K10 slepit předem do L a usadit spolu."),
     ('K03', 'K07'): ('screw', f"2 vruty 4,5 × 50 shora skrz K07 do čela K03, {_D['x21_screw']} a {D - _D['x21_screw']} mm od čela (uprostřed jsou díry pro kolíky K08)"),
-    (_k24, 'K04'): ('angle', f"úhelník zespodu: na pravé ploše K04 pod {_k24}, vzadu u zdi (natřít bíle jako zeď), {_k24} na něm leží a zespodu se k němu přišroubuje"),
-    (_k24, 'K20'): ('angle', f"úhelník shora: v přihrádce na {_k24} vzadu u zdi, do levé plochy K20 a do horní plochy {_k24} (K20 končí v rovině spodku {_k24}, zespodu nejde)"),
+    (_k24, 'K04'): ('angle', f"2 úhelníky zespodu na pravé ploše K04 pod {_k24}: větší (50–60 mm) vzadu u zdi, menší (20–30 mm) vpředu asi 40 mm za čelem, ať je míň vidět. Natřít bíle. {_k24} na nich leží a zespodu se k nim přišroubuje"),
+    (_k24, 'K20'): ('angle', f"2 úhelníky shora v přihrádce na {_k24}, do levé plochy K20 a horní plochy {_k24}: větší (50–60 mm) vzadu u zdi, menší (20–30 mm) vpředu asi 40 mm za čelem (K20 končí v rovině spodku {_k24}, zespodu nejde)"),
     ('K25', _k24): ('angle', f"úhelník vzadu v přihrádce: K25 stojí na {_k24}, přichycená úhelníkem do horní plochy {_k24} (místo vrutů zespodu)"),
 }
 for d_ in JOINTS:
