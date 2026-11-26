@@ -368,9 +368,9 @@ function holeFace(p,face,x,top,Lpx,extra){
   const holes=pinHoles(p.id,face), e=face===0?KO.edge_r:KO.edge_l, sx=HF.w/D, sl=Lpx/p.L, bot=top+Lpx;
   const xs=[x+e*sx,x+HF.w-e*sx], cx=x+HF.w/2;
   let s='<rect x="'+x+'" y="'+top+'" width="'+HF.w+'" height="'+Lpx+'" '+WOOD2+'/>';
-  s+=T(cx,top-30,face===0?"pravá strana":"levá strana",{anchor:"middle",fs:16,w:1});
-  s+=T(cx,top-12,"kolíky "+e+" mm od hran",{anchor:"middle",fs:13});
-  s+=T(x+2,top+16,face===0?"čelo":"zeď",{fs:12,fill:"#6B4A2E"})+T(x+HF.w-2,top+16,face===0?"zeď":"čelo",{fs:12,fill:"#6B4A2E",anchor:"end"});
+  s+=T(cx,top-44,face===0?"pravá strana":"levá strana",{anchor:"middle",fs:16,w:1});
+  s+=T(cx,top-26,"kolíky "+e+" mm od hran",{anchor:"middle",fs:13});
+  s+=T(x,top-6,face===0?"čelo":"zeď",{fs:12,fill:"#6B4A2E"})+T(x+HF.w,top-6,face===0?"zeď":"čelo",{fs:12,fill:"#6B4A2E",anchor:"end"});
   holes.forEach((j,i)=>{
     const y=bot-j.hole*sl;
     s+=hc(xs[0],y,4)+hc(xs[1],y,4);
@@ -396,7 +396,7 @@ const x23extra=(x,top,bot,sx,sl,yb)=>{
 };
 function figHoles(p){
   const faces=[1,0].filter(f=>pinHoles(p.id,f).length);   // levá vlevo, pravá vpravo
-  const Lpx=Math.max(p.L*HF.k,HF.min), top=100;
+  const Lpx=Math.max(p.L*HF.k,HF.min), top=114;
   const n=faces.map(f=>pinHoles(p.id,f).length);
   const extra=p.id==="K09"?[x23extra]:null;
   let s='', yb=0, VB;
