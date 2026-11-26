@@ -10,7 +10,7 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 
 | Položka | Množství | Na co | Cena |
 |---|---|---|---|
-| Vruty 4,5 × 50 mm, zápustná hlava | 20 ks (potřeba 16) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
+| Vruty 4,5 × 50 mm, zápustná hlava | 16 ks (potřeba 14) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
 | Dřevěné kolíky Ø 6 mm | 56 ks, zkrátit na 20 mm | spoj B: police na kolících v bocích (Přemek je má) | 0 Kč |
 | Feritové magnety Ø 15 × 4,5 mm | 4 ks | odnímatelná lišta soklu S5 (Přemek je má) | 0 Kč |
 | Lepidlo Mamut Glue (MS polymer) | máš | vlepení magnetů | 0 Kč |
@@ -18,7 +18,7 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 | Dřevěné kolíky 8 × 35 mm | 5 ks (+ co zbylo z K09/K26) | X21 K08 na K07, X23 K10 do K09 | 30–80 Kč |
 | Lepidlo na dřevo D3 | 0,5 kg | kolíky do děr, dorazy magnetů, čepy | 100–200 Kč |
 | Smrkové čepy 10 mm (volitelně) | 20 ks | zakrytí hlav vrutů spoje A | 50–100 Kč |
-| Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu | 300–600 Kč |
+| Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu, most K24 (X49, X51, X52, raději 50–60 mm) | 300–600 Kč |
 | Vruty 5 × 80–100 mm + hmoždinky | ~20 ks | úhelníky přes sádrokarton do dřeva za zadní stěnou | 150–250 Kč |
 | Vruty do dřeva 3,5–4 × 16 | 100 ks | úhelníky do desek (nesmí projít 19mm deskou) | 80–150 Kč |
 | Dlouhé vruty 6 × 100–120 | ~8 ks | slepený levý bok K09 přes obklad do dřevěné stěny | 100–200 Kč |
@@ -26,7 +26,7 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 | Vyrovnávací podložky | 1 sada | sokl na nerovné podlaze (nevrtat, topení) | 50–150 Kč |
 | Ráčnový stahovací pás | 2 ks (nebo provaz) | dočasné rozpěrky při stavění spodního rámu | 0–200 Kč |
 
-Kotvení dna mostu K24 do zadní stěny se ještě dořeší (spoj X50), skryté nosiče s trny jsou zrušené.
+Dno mostu K24 se do zadní stěny nekotví (X50 zrušen), drží ho úhelníky X49 (na K04), X51 (do K20) a X52 (K25).
 
 ## Drobné nářadí
 

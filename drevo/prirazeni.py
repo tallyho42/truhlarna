@@ -39,7 +39,7 @@ assert KOLIK['slot_l'] - KOLIK['slot_w'] / 2 >= KOLIK['out'] - PINGAP / 2 + 1, '
 assert KOLIK['edge_l'] - KOLIK['edge_r'] > KOLIK['d'] + 6, 'díry z obou stran by se potkaly'
 # Kolíky 8 × 35 na tupo (2026-11-26, Přemek): X21 K08 stojí na kolících v K07, X23 K10 levým koncem na kolících v K09.
 # hole_face = hloubka díry v ploše desky (z 19 zbyde 7–9), zbytek kolíku jde do čela druhého dílu.
-DOWEL = dict(d=8, L=35, x21=(90, 160), x21_hole=10, x21_screw=40, x23=(40, 125, 210), x23_hole=12)
+DOWEL = dict(d=8, L=35, x21=(90, 160), x21_hole=10, x21_screw=60, x23=(40, 125, 210), x23_hole=12)
 assert DOWEL['x21_hole'] <= t - 7 and DOWEL['x23_hole'] <= t - 7, 'díra pro kolík 8 by šla moc hluboko'
 assert min(DOWEL['x21']) - DOWEL['x21_screw'] >= 30, 'kolíky X21 moc blízko vrutů K07 → K03'
 
@@ -293,9 +293,9 @@ _J(k24['id'], 'zadní stěna', 'none', f"{k24['id']} → zadní stěna", f"zruš
 # rozhodnuté spoje (2026-11-26, Přemek)
 _D, _k24 = DOWEL, k24['id']
 JOVR = {
-    ('K08', 'K07'): ('dowel', f"2 kolíky {_D['d']} × {_D['L']} na tupo: díry v horní ploše K07 {_D['x21_hole']} mm hluboké, ve spodním čele K08 {_D['L'] - _D['x21_hole'] + 1} mm, {_D['x21'][0]} mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou {_D['x21_screw']} mm od hran, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14."),
+    ('K08', 'K07'): ('dowel', f"2 kolíky {_D['d']} × {_D['L']} na tupo: díry v horní ploše K07 {_D['x21_hole']} mm hluboké, ve spodním čele K08 {_D['L'] - _D['x21_hole'] + 1} mm, {_D['x21'][0]} mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou {_D['x21_screw']} a {D - _D['x21_screw']} mm od čela, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14."),
     ('K10', 'K09'): ('dowel', f"3 kolíky {_D['d']} × {_D['L']} na tupo: díry v pravé ploše K09 {_D['x23_hole']} mm hluboké, v levém čele K10 {_D['L'] - _D['x23_hole'] + 1} mm, {', '.join(map(str, _D['x23']))} mm od čela, uprostřed tloušťky K10 (9,5 mm nad spodním koncem K09). K09 a K10 slepit předem do L a usadit spolu."),
-    ('K03', 'K07'): ('screw', f"2 vruty 4,5 × 50 shora skrz K07 do čela K03, {_D['x21_screw']} mm od čela a od zadní hrany (uprostřed jsou díry pro kolíky K08)"),
+    ('K03', 'K07'): ('screw', f"2 vruty 4,5 × 50 shora skrz K07 do čela K03, {_D['x21_screw']} a {D - _D['x21_screw']} mm od čela (uprostřed jsou díry pro kolíky K08)"),
     (_k24, 'K04'): ('angle', f"úhelník zespodu: na pravé ploše K04 pod {_k24}, vzadu u zdi (natřít bíle jako zeď), {_k24} na něm leží a zespodu se k němu přišroubuje"),
     (_k24, 'K20'): ('angle', f"úhelník shora: v přihrádce na {_k24} vzadu u zdi, do levé plochy K20 a do horní plochy {_k24} (K20 končí v rovině spodku {_k24}, zespodu nejde)"),
     ('K25', _k24): ('angle', f"úhelník vzadu v přihrádce: K25 stojí na {_k24}, přichycená úhelníkem do horní plochy {_k24} (místo vrutů zespodu)"),

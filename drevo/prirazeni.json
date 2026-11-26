@@ -34,7 +34,7 @@
     160
    ],
    "x21_hole": 10,
-   "x21_screw": 40,
+   "x21_screw": 60,
    "x23": [
     40,
     125,
@@ -2388,7 +2388,7 @@
    "b": "K07",
    "kind": "screw",
    "what": "K03 nahoře pod K07",
-   "now": "2 vruty 4,5 × 50 shora skrz K07 do čela K03, 40 mm od čela a od zadní hrany (uprostřed jsou díry pro kolíky K08)",
+   "now": "2 vruty 4,5 × 50 shora skrz K07 do čela K03, 60 a 190 mm od čela (uprostřed jsou díry pro kolíky K08)",
    "x": 1075.4,
    "z": 829.7,
    "mx": 1075.4,
@@ -2449,7 +2449,7 @@
    "b": "K07",
    "kind": "dowel",
    "what": "K08 stojí na K07",
-   "now": "2 kolíky 8 × 35 na tupo: díry v horní ploše K07 10 mm hluboké, ve spodním čele K08 26 mm, 90 mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou 40 mm od hran, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14.",
+   "now": "2 kolíky 8 × 35 na tupo: díry v horní ploše K07 10 mm hluboké, ve spodním čele K08 26 mm, 90 mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou 60 a 190 mm od čela, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14.",
    "x": 1075.4,
    "z": 848.7,
    "mx": 1075.4,
