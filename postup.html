@@ -352,6 +352,102 @@ function pinTable(){
       return '<tr><td><b>'+id+'</b> '+esc(v.name)+'</td><td>'+nf(v.L)+'</td><td>'+rows[id].sort((a,b)=>a.h-b.h).map(r=>'<b>'+nf(r.h)+'</b> '+r.face+' (pro '+r.shelf+', spoj '+r.jid+')').join('<br>')+'</td></tr>';}).join("")+'</tbody></table></div>';
 }
 
+/* ---------- výkresy dílů s dírami (krok Vrtání) ---------- */
+const HF={w:120,k:0.24,min:170,step:17,VB:480};
+const hc=(x,y,r,col)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#fff" stroke="'+(col||"#43454A")+'" stroke-width="2"/>';
+const lnD=(x1,y1,x2,y2)=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#8A8C90" stroke-width="1" stroke-dasharray="3 3"/>';
+const ln=(x1,y1,x2,y2)=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#43454A" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>';
+// svislá kóta s textem otočeným podél čáry (text vlevo od čáry)
+const vdim=(x,y1,y2,s,col)=>ln(x,y1,x,y2)+'<text x="'+(x-4)+'" y="'+((y1+y2)/2)+'" transform="rotate(-90 '+(x-4)+' '+((y1+y2)/2)+')" text-anchor="middle" font-family="'+LBL+'" font-size="14" font-weight="600" fill="'+(col||"#43454A")+'">'+s+'</text>';
+// vodorovná kóta, text pod čarou
+const hdim=(x1,x2,y,s,col)=>ln(x1,y,x2,y)+T((x1+x2)/2,y+15,s,{anchor:"middle",fs:13,w:1,fill:col});
+const pinHoles=(id,face)=>DATA.joints.filter(j=>j.kind==="pins"&&j.b===id&&j.side===face).sort((a,b)=>a.hole-b.hole);
+function holeFace(p,face,x,top,Lpx,extra){
+  // face 0 = pravá strana dílu (díry KO.edge_r od hran), 1 = levá (KO.edge_l). Kreslí se pohled přímo na stranu:
+  // pravou stranu vidíš zprava, čelo je vlevo; levou zleva, čelo vpravo.
+  const holes=pinHoles(p.id,face), e=face===0?KO.edge_r:KO.edge_l, sx=HF.w/D, sl=Lpx/p.L, bot=top+Lpx;
+  const xs=[x+e*sx,x+HF.w-e*sx], cx=x+HF.w/2;
+  let s='<rect x="'+x+'" y="'+top+'" width="'+HF.w+'" height="'+Lpx+'" '+WOOD2+'/>';
+  s+=T(cx,top-30,face===0?"pravá strana":"levá strana",{anchor:"middle",fs:16,w:1});
+  s+=T(cx,top-12,"kolíky "+e+" mm od hran",{anchor:"middle",fs:13});
+  s+=T(x+2,top+16,face===0?"čelo":"zeď",{fs:12,fill:"#6B4A2E"})+T(x+HF.w-2,top+16,face===0?"zeď":"čelo",{fs:12,fill:"#6B4A2E",anchor:"end"});
+  holes.forEach((j,i)=>{
+    const y=bot-j.hole*sl;
+    s+=hc(xs[0],y,4)+hc(xs[1],y,4);
+    const dx=face===1?x-14-i*HF.step:x+HF.w+22+i*HF.step, near=face===1?xs[0]:xs[1];
+    s+=lnD(near,y,dx,y)+vdim(dx,bot,y,nf(j.hole));
+  });
+  // vzdálenost od bližší hrany
+  if(holes.length){s+=lnD(xs[0],bot,xs[0],bot+24)+lnD(xs[1],bot,xs[1],bot+24)+lnD(x,bot,x,bot+24)+lnD(x+HF.w,bot,x+HF.w,bot+24)+
+    hdim(x,xs[0],bot+18,e)+hdim(xs[1],x+HF.w,bot+18,e);}
+  let yb=bot+44;
+  (extra||[]).forEach(f=>{const r=f(x,top,bot,sx,sl,yb);s+=r.s;yb=r.yb;});
+  s+=T(cx,yb+6,"▼ spodní konec",{anchor:"middle",fs:13,w:1});
+  return {s,yb:yb+6};
+}
+// K09: díry Ø 8 pro K10 (X23) v pravé straně u spodního konce
+const x23extra=(x,top,bot,sx,sl,yb)=>{
+  const col="#1F4E8C", y=bot-t/2*sl; let s='';
+  DW.x23.forEach(v=>s+='<circle cx="'+(x+v*sx)+'" cy="'+y+'" r="5" fill="#fff" stroke="'+col+'" stroke-width="2.5"/>');
+  DW.x23.forEach((v,i)=>{const yy=yb+i*26;s+=lnD(x+v*sx,bot,x+v*sx,yy+4)+hdim(x,x+v*sx,yy,v,col);});
+  s+=lnD(x,bot,x,yb+60);
+  s+=T(x+HF.w+8,yb+6,"Ø 8 pro K10:",{fs:13,w:1,fill:col})+T(x+HF.w+8,yb+22,"střed 9,5 od spodu",{fs:13,fill:col})+T(x+HF.w+8,yb+38,"od čela, hl. "+DW.x23_hole,{fs:13,fill:col});
+  return {s,yb:yb+DW.x23.length*26+6};
+};
+function figHoles(p){
+  const faces=[1,0].filter(f=>pinHoles(p.id,f).length);   // levá vlevo, pravá vpravo
+  const Lpx=Math.max(p.L*HF.k,HF.min), top=100;
+  const n=faces.map(f=>pinHoles(p.id,f).length);
+  const extra=p.id==="K09"?[x23extra]:null;
+  let s='', yb=0, VB;
+  if(faces.length===2){
+    const xl=30+n[0]*HF.step, xr=xl+HF.w+60;
+    const a=holeFace(p,1,xl,top,Lpx), b=holeFace(p,0,xr,top,Lpx);
+    s=a.s+b.s; yb=Math.max(a.yb,b.yb); VB=xr+HF.w+22+n[1]*HF.step+10;
+  }else{
+    const f=faces[0], x=f===1?30+n[0]*HF.step:20;
+    const a=holeFace(p,f,x,top,Lpx,extra); s=a.s; yb=a.yb; VB=x+HF.w+(f===0?22+n[0]*HF.step:0)+(extra?140:10);
+  }
+  VB=Math.max(VB,300);
+  const head=T(10,22,p.id+" · "+esc(p.name),{fs:17,w:1})+T(10,40,"délka "+nf(p.L)+" mm",{fs:14});
+  const cnt=faces.reduce((a,f)=>a+2*pinHoles(p.id,f).length,0)+(p.id==="K09"?DW.x23.length:0);
+  return fig(svgw("0 0 "+VB+" "+(yb+14),head+s,"Díry v "+p.id).replace("<svg ",'<svg style="max-width:'+VB+'px;margin:0 auto" '),
+    cnt+" děr. Čísla podél dílu = výška středu díry od <b>spodního konce</b>, dole = vzdálenost od bližší hrany (čelo / zeď). Kolíky Ø "+KO.d+", hloubka "+KO.hole+". Délka dílu není v měřítku.");
+}
+// díry 8 × 35 v K07 (horní plocha), K08 (spodní čelo) a K10 (levé čelo)
+function figDowels(){
+  const col="#1F4E8C", c=(x,y)=>'<circle cx="'+x+'" cy="'+y+'" r="5" fill="#fff" stroke="'+col+'" stroke-width="2.5"/>';
+  const ax=PBY.K08.x0-PBY.K07.x0+9.5, L7=PBY.K07.L;
+  // K07 shora: délka vodorovně, čelo dole
+  const k=400/L7, x0=40, y0=80, h7=D*0.5, sy=h7/D, hx=x0+ax*k;
+  let s=T(10,22,"Díry Ø 8 pro kolíky 8 × 35",{fs:17,w:1});
+  s+=T(x0,y0-30,"K07 shora (horní plocha), hloubka "+DW.x21_hole,{fs:14,w:1});
+  s+='<rect x="'+x0+'" y="'+y0+'" width="'+(L7*k)+'" height="'+h7+'" '+WOOD2+'/>';
+  s+=T(x0+4,y0+h7-6,"čelo",{fs:12,fill:"#6B4A2E"})+T(x0+4,y0+14,"zeď",{fs:12,fill:"#6B4A2E"});
+  const ys=DW.x21.map(v=>y0+h7-v*sy);
+  ys.forEach(y=>s+=c(hx,y));
+  s+=lnD(x0,y0,x0,y0-12)+lnD(hx,ys[1],hx,y0-12)+hdim(x0,hx,y0-8,"")+T((x0+hx)/2,y0-12,nf(ax)+" od levého konce",{anchor:"middle",fs:13,w:1,fill:col});
+  s+=lnD(hx,ys[0],hx+70,ys[0])+lnD(hx,ys[1],hx+70,ys[1]);
+  s+=vdim(hx+60,y0+h7,ys[0],DW.x21[0],col)+vdim(hx+60,y0,ys[1],D-DW.x21[1],col);
+  s+=lnD(x0+L7*k,y0+h7,hx+70,y0+h7)+lnD(x0+L7*k,y0,hx+70,y0);
+  // čela K08 a K10: 250 × 19, měřítko 1,6
+  const ends=[["K08 spodní čelo (2 díry, hloubka "+(DW.L-DW.x21_hole+1)+")",DW.x21],["K10 levé čelo (3 díry, hloubka "+(DW.L-DW.x23_hole+1)+")",DW.x23]];
+  let y=y0+h7+60; const ke=1.6;
+  ends.forEach(([lab,pos])=>{
+    s+=T(x0,y,lab,{fs:14,w:1});
+    const ry=y+12, rh=t*ke;
+    s+='<rect x="'+x0+'" y="'+ry+'" width="'+(D*ke)+'" height="'+rh+'" '+WOOD2+'/>';
+    s+=T(x0-4,ry+rh-4,"čelo",{fs:12,fill:"#6B4A2E",anchor:"end"})+T(x0+D*ke+4,ry+rh-4,"zeď",{fs:12,fill:"#6B4A2E"});
+    pos.forEach(v=>s+=c(x0+v*ke,ry+rh/2));
+    pos.forEach((v,i)=>{const yy=ry+rh+16+i*26;s+=lnD(x0+v*ke,ry+rh,x0+v*ke,yy+4)+hdim(x0,x0+v*ke,yy,v,col);});
+    s+=lnD(x0,ry+rh,x0,ry+rh+16+pos.length*26-18);
+    y=ry+rh+16+pos.length*26+30;
+  });
+  s+=T(x0,y-10,"Díry v čelech jsou uprostřed tloušťky (9,5 mm). Kóty jsou od čela.",{fs:13});
+  return fig(svgw("0 0 "+HF.VB+" "+y,s,"Díry pro kolíky 8 × 35"),
+    "X21: K07 nahoře + K08 dole, X23: K10 levé čelo + K09 pravá strana (K09 viz jeho výkres výš). Nejdřív vrtej do čela, protějšek označ značkovacími hroty.");
+}
+
 /* ---------- steps ---------- */
 const STEPS=[];
 const add=(short,title,render)=>STEPS.push({short,title,render});
@@ -375,7 +471,8 @@ add("Vrtání děr","Vyvrtej díry pro kolíky ve svislých dílech",()=>{
   '<li>Vrtej v dílně na ležícím dílu, nejlíp ještě před broušením (vytržená vlákna kolem děr se pak zabrousí). Výšky jsou v tabulce, měřené od <b>spodního konce</b> dílu ke středu díry. „Pravá strana“ = strana dílu, která bude vpravo, když se na něj díváš zepředu.</li>'+
   '<li>Šablona z odřezku 250 mm s lištou na doraz: 4 díry Ø '+KO.d+', '+KO.edge_r+' a '+KO.edge_l+' mm od konců. <b>Pravá strana</b> dílu: díry '+KO.edge_r+' mm od hran, <b>levá strana</b>: '+KO.edge_l+' mm. Ve stejném místě z obou stran by se díry provrtaly skrz. Lištu opři o čelo dílu, střed děr na čáru výšky.</li>'+
   '<li>Vrtat kolmo (stojánek, nebo pomocný špalík s kolmou dírou jako vodítko).</li>'+
-  '<li>Kolíky zkrať na <b>'+KO.length+' mm</b> ('+KO.hole+' v díře, '+KO.out+' venku), potřebuješ jich '+DATA.counts.pins+'. Vlepíš je až při montáži, po nátěru (do děr barvu nezatírej).</li></ol>'+pinTable()+
+  '<li>Kolíky zkrať na <b>'+KO.length+' mm</b> ('+KO.hole+' v díře, '+KO.out+' venku), potřebuješ jich '+DATA.counts.pins+'. Vlepíš je až při montáži, po nátěru (do děr barvu nezatírej).</li></ol>'+
+  '<h3>Díly s dírami</h3><div class="figs">'+MAIN.filter(p=>p.o==="V"&&(pinHoles(p.id,0).length||pinHoles(p.id,1).length)).map(figHoles).join("")+figDowels()+'</div>'+pinTable()+
   '<h3>Díry pro kolíky 8 × 35 (na tupo)</h3><ol class="do"><li><b>X21, K08 na K07:</b> v horní ploše K07 nad K03, tedy osa děr <b>'+nf(PBY.K08.x0-PBY.K07.x0+9.5)+' mm od levého konce K07</b> (levá plocha K08 '+nf(PBY.K08.x0-PBY.K07.x0)+' mm), 2 díry Ø 8, '+DW.x21_hole+' mm hluboké, '+DW.x21[0]+' mm od čela a od zadní hrany. Ve spodním čele K08 proti nim 2 díry '+(DW.L-DW.x21_hole+1)+' mm. Vruty K07 → K03 pak dej '+DW.x21_screw+' a '+(DATA.geo.D-DW.x21_screw)+' mm od čela, mimo kolíky. Kolíky do K07 vlepíš až při montáži (po nátěru).</li>'+
   '<li><b>X23, K10 do K09:</b> v levém čele K10 3 díry Ø 8, '+(DW.L-DW.x23_hole+1)+' mm hluboké, uprostřed tloušťky, '+DW.x23.join(', ')+' mm od čela. V pravé ploše K09 proti nim 3 díry '+DW.x23_hole+' mm hluboké (z 19 zbyde 7), střed 9,5 mm nad spodním koncem K09.</li>'+
   '<li>Nejdřív vrtej do čela (K08, K10), vlož značkovací hroty Ø 8, díly přiraž k sobě srovnané čely a hroty označí díry v ploše. Doraz na vrtáku i tady.</li></ol>';
