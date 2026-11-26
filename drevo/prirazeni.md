@@ -70,9 +70,9 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | K05 | Police | 316 × 250 | D08-2 | dosedá na 2 kolíky Ø 6 v boku dílu K02 / dosedá na 2 kolíky Ø 6 v boku dílu K03 |
 | K06 | Police | 316 × 250 | A07 | dosedá na 2 kolíky Ø 6 v boku dílu K03 / dosedá na 2 kolíky Ø 6 v boku dílu K04 |
 | K07 | Police | 652 × 250 | B02 | dosedá na 2 kolíky Ø 6 v boku dílu K02 / dosedá na 2 kolíky Ø 6 v boku dílu K04 |
-| K08 | Svislá příčka | 671 × 250 | B08 | stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce) / pod K14 (spoj A: 2 vruty shora skrz polici) |
-| K09 | Levý bok (u obkladu) | 1379 × 250 | D02 + A01 | visí na vrutech do stěny; spodní konec v rovině spodku K10 (spoj se dořeší: kolíky nebo úhelník) / pod K26 (úhelník vzadu) |
-| K10 | Police nad křeslem | 710 × 250 | D08-3 | spoj s K09 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník / dosedá na 2 kolíky Ø 6 v boku dílu K02 |
+| K08 | Svislá příčka | 671 × 250 | B08 | stojí na K07 nad příčkou K03 (2 kolíky 8 × 35, X21) / pod K14 (spoj A: 2 vruty shora skrz polici) |
+| K09 | Levý bok (u obkladu) | 1379 × 250 | D02 + A01 | visí na vrutech do stěny; spodní konec v rovině spodku K10, K10 na 3 kolících 8 × 35 (X23) / pod K26 (úhelník vzadu) |
+| K10 | Police nad křeslem | 710 × 250 | D08-3 | na tupo k K09: 3 kolíky 8 × 35 (X23), slepit s K09 předem / dosedá na 2 kolíky Ø 6 v boku dílu K02 |
 | K11 | Police | 316 × 250 | A04 | dosedá na 2 kolíky Ø 6 v boku dílu K02 / dosedá na 2 kolíky Ø 6 v boku dílu K08 |
 | K12 | Police | 316 × 250 | A05 | dosedá na 2 kolíky Ø 6 v boku dílu K08 / dosedá na 2 kolíky Ø 6 v boku dílu K04 |
 | K13 | Police | 710 × 250 | D01 | dosedá na 2 kolíky Ø 6 v boku dílu K09 / dosedá na 2 kolíky Ø 6 v boku dílu K02 |
@@ -82,12 +82,12 @@ Hloubka 250 mm, tl. 19 mm, prořez 4 mm, u stěny vůle 5 mm. Délka dílu je v�
 | K17 | Police | 345 × 250 | A09 | dosedá na 2 kolíky Ø 6 v boku dílu K15 / dosedá na 2 kolíky Ø 6 v boku dílu K02 |
 | K18 | Police | 652 × 250 | D08-2 | dosedá na 2 kolíky Ø 6 v boku dílu K02 / dosedá na 2 kolíky Ø 6 v boku dílu K04 |
 | K19 | Svislá příčka | 671 × 250 | D01 | stojí na K18 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
-| K20 | Boční díl mostu (u pravé stěny) | 364 × 250 | A09 | visí na vrutech do stěny; spodní konec v rovině spodku K24 (spoj se dořeší: kolíky nebo úhelník) / končí v rovině desky; do boku dosedá K26 (kolíky Ø 6) |
+| K20 | Boční díl mostu (u pravé stěny) | 364 × 250 | A09 | visí na vrutech do stěny; spodní konec v rovině spodku K24, úhelník shora (X51) / končí v rovině desky; do boku dosedá K26 (kolíky Ø 6) |
 | K21 | Police | 345 × 250 | A10 | dosedá na 2 kolíky Ø 6 v boku dílu K09 / dosedá na 2 kolíky Ø 6 v boku dílu K15 |
 | K22 | Police | 316 × 250 | A06 | dosedá na 2 kolíky Ø 6 v boku dílu K02 / dosedá na 2 kolíky Ø 6 v boku dílu K19 |
 | K23 | Police | 316 × 250 | A02 | dosedá na 2 kolíky Ø 6 v boku dílu K19 / dosedá na 2 kolíky Ø 6 v boku dílu K04 |
-| K24 | Dno mostu nad dveřmi | 929 × 250 | D08-1 | dosedá na 2 kolíky Ø 6 v boku dílu K04 / spoj s K20 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník |
-| K25 | Svislá příčka | 326 × 250 | B02 | stojí na K24 (spoj A: 2 vruty zespodu skrz polici) / pod K26 (úhelník vzadu) |
+| K24 | Dno mostu nad dveřmi | 929 × 250 | D08-1 | leží na úhelníku zespodu na K04 (X49) / úhelník shora do K20 (X51) |
+| K25 | Svislá příčka | 326 × 250 | B02 | stojí na K24 (úhelník vzadu v přihrádce, X52) / pod K26 (úhelník vzadu) |
 | K26 | Horní deska | 2346 × 250 | C04+C05 | k obkladu, leží na K09 (úhelník zespodu) / dosedá na 2 kolíky Ø 6 v boku dílu K20 |
 | S1 | Sokl: levý bok (pod K02) | 140 × 220 | B10 | stojí na podlaze (nevrtat, vyrovnat podložkami) / nese K01, nad ním stojí K02 |
 | S2 | Sokl: pravý bok (pod K04) | 140 × 220 | B10 | stojí na podlaze (nevrtat, vyrovnat podložkami) / nese K01, nad ním stojí K04 |

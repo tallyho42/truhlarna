@@ -37,6 +37,11 @@ KOLIK['visible'] = KOLIK['d'] - KOLIK['slot_d']                  # kolik kolíku
 assert KOLIK['hole'] <= t - 7 and KOLIK['slot_d'] <= t - 10, 'díra nebo drážka by šla moc hluboko'
 assert KOLIK['slot_l'] - KOLIK['slot_w'] / 2 >= KOLIK['out'] - PINGAP / 2 + 1, 'drážka (plná šířka bez zaobleného konce) kratší než vyčnívající kolík'
 assert KOLIK['edge_l'] - KOLIK['edge_r'] > KOLIK['d'] + 6, 'díry z obou stran by se potkaly'
+# Kolíky 8 × 35 na tupo (2026-11-26, Přemek): X21 K08 stojí na kolících v K07, X23 K10 levým koncem na kolících v K09.
+# hole_face = hloubka díry v ploše desky (z 19 zbyde 7–9), zbytek kolíku jde do čela druhého dílu.
+DOWEL = dict(d=8, L=35, x21=(90, 160), x21_hole=10, x21_screw=40, x23=(40, 125, 210), x23_hole=12)
+assert DOWEL['x21_hole'] <= t - 7 and DOWEL['x23_hole'] <= t - 7, 'díra pro kolík 8 by šla moc hluboko'
+assert min(DOWEL['x21']) - DOWEL['x21_screw'] >= 30, 'kolíky X21 moc blízko vrutů K07 → K03'
 
 def exists(c, r):                       # přihrádka sloupec c, řada r (odspodu)
     if c < 1 or r < 1 or r > R: return False
@@ -186,6 +191,23 @@ for p in P:
     if p['o'] == 'V' and p['j'] in (0, N): p['note'] = ('Přišroubovat přes obklad do levé stěny (2–3 vruty s hmoždinkou).' if p['j'] == 0 else 'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).')
     if p['o'] == 'H' and p['k'] == R: p['note'] = 'Zasouvá se zepředu jako poslední, pod stropem jsou jen 2 cm.'
     p['grain'] = 'léta vodorovně (podél délky)' if p['o'] == 'H' else 'léta svisle (podél výšky)'
+# rozhodnuté spoje (2026-11-26): přepíše texty konců, které obecné pravidlo neumí
+_k24 = next(q['id'] for q in P if q['name'].startswith('Dno mostu'))
+END_OVR = {
+    ('K08', 0): 'stojí na K07 nad příčkou K03 (2 kolíky 8 × 35, X21)',
+    ('K09', 0): 'visí na vrutech do stěny; spodní konec v rovině spodku K10, K10 na 3 kolících 8 × 35 (X23)',
+    ('K10', 0): 'na tupo k K09: 3 kolíky 8 × 35 (X23), slepit s K09 předem',
+    (_k24, 0): 'leží na úhelníku zespodu na K04 (X49)',
+    (_k24, 1): 'úhelník shora do K20 (X51)',
+    ('K20', 0): f'visí na vrutech do stěny; spodní konec v rovině spodku {_k24}, úhelník shora (X51)',
+    ('K25', 0): f'stojí na {_k24} (úhelník vzadu v přihrádce, X52)',
+}
+for p in P:
+    for sd in (0, 1):
+        if (p['id'], sd) in END_OVR: p['ends'][sd] = END_OVR[(p['id'], sd)]
+    if p['id'] == _k24: p['note'] = f'Nese most nad dveřmi. Drží ho 3 úhelníky: zespodu na K04 (X49), shora do K20 (X51) a K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky vzadu u zdi, natřít bíle.'
+    if p['id'] == 'K10': p['note'] = 'Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Levým koncem na tupo na 3 kolících 8 × 35 do K09 (X23): K09 a K10 se slepí předem do L a usadí spolu, pravý konec K10 se spustí na kolíky v K02.'
+    if p['id'] == 'K20': p['note'] = f'Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu {_k24} se k němu přichytí úhelníkem shora (X51).'
 
 # Čelní lišta S5 na magnetech (2026-11-24): Přemkovy feritové magnety Ø 15 × 4,5 (změřeno).
 MAG = dict(d=15, th=4.5, from_end=20, z=67, block_w=40, block_h=80, notch_w=60, notch_h=15, notch_x=160, felt=3)
@@ -265,9 +287,23 @@ _J('K09', 'obklad', 'wall', 'K09 → obklad a dřevěná stěna', '6–8 dlouhý
    0, k09['z0'], t + OFF + 20, (zb(4) + t + zb(5)) / 2, pts=[(t / 2, (zb(4) + t + zb(5)) / 2)])
 _J('K20', 'pravá stěna', 'wall', 'K20 → pravá stěna (sádrokarton)', 'vruty s kovovými hmoždinkami do sádrokartonu, ideálně do profilu',
    W, k20['z0'], W - t - OFF, (zb(6) + t + zb(7)) / 2 + 20, pts=[(W - t / 2, (zb(6) + t + zb(7)) / 2 + 20)])
-_J(k24['id'], 'zadní stěna', 'open', f"{k24['id']} → zadní stěna", f"nevyřešeno: skryté nosiče s trny nejdou dohromady s kolíky (na trny se K24 nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Možnost: v levém konci K24 drážka od zadní hrany až k přednímu kolíku, nebo jiné kotvení (úhelník, lišta pod K24)",
+_J(k24['id'], 'zadní stěna', 'none', f"{k24['id']} → zadní stěna", f"zrušeno (2026-11-26): není potřeba, {k24['id']} drží úhelníky na K04, K20 a K25 (X49, X51, X52). Číslo X50 zůstává, ať se ostatní nepřečíslují.",
    (k24['x0'] + k24['x1']) / 2, zb(6) + t / 2, (k24['x0'] + xl(6)) / 2, zb(6) + t + 28,
    pts=[(k24['x0'] + k24['L'] / 3, zb(6) + t / 2), (k24['x0'] + 2 * k24['L'] / 3, zb(6) + t / 2)])
+# rozhodnuté spoje (2026-11-26, Přemek)
+_D, _k24 = DOWEL, k24['id']
+JOVR = {
+    ('K08', 'K07'): ('dowel', f"2 kolíky {_D['d']} × {_D['L']} na tupo: díry v horní ploše K07 {_D['x21_hole']} mm hluboké, ve spodním čele K08 {_D['L'] - _D['x21_hole'] + 1} mm, {_D['x21'][0]} mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou {_D['x21_screw']} mm od hran, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14."),
+    ('K10', 'K09'): ('dowel', f"3 kolíky {_D['d']} × {_D['L']} na tupo: díry v pravé ploše K09 {_D['x23_hole']} mm hluboké, v levém čele K10 {_D['L'] - _D['x23_hole'] + 1} mm, {', '.join(map(str, _D['x23']))} mm od čela, uprostřed tloušťky K10 (9,5 mm nad spodním koncem K09). K09 a K10 slepit předem do L a usadit spolu."),
+    ('K03', 'K07'): ('screw', f"2 vruty 4,5 × 50 shora skrz K07 do čela K03, {_D['x21_screw']} mm od čela a od zadní hrany (uprostřed jsou díry pro kolíky K08)"),
+    (_k24, 'K04'): ('angle', f"úhelník zespodu: na pravé ploše K04 pod {_k24}, vzadu u zdi (natřít bíle jako zeď), {_k24} na něm leží a zespodu se k němu přišroubuje"),
+    (_k24, 'K20'): ('angle', f"úhelník shora: v přihrádce na {_k24} vzadu u zdi, do levé plochy K20 a do horní plochy {_k24} (K20 končí v rovině spodku {_k24}, zespodu nejde)"),
+    ('K25', _k24): ('angle', f"úhelník vzadu v přihrádce: K25 stojí na {_k24}, přichycená úhelníkem do horní plochy {_k24} (místo vrutů zespodu)"),
+}
+for d_ in JOINTS:
+    o_ = JOVR.get((d_['a'], d_['b']))
+    if o_: d_['kind'], d_['now'] = o_
+assert all(any((d_['a'], d_['b']) == k_ for d_ in JOINTS) for k_ in JOVR), 'JOVR: spoj nenalezen'
 JOINTS.sort(key=lambda d: (round(d['z']), d['x']))
 # sokl (půdorys: y = vzdálenost od zadní zdi)
 _s = {q['id']: q for q in SOKL}
@@ -503,7 +539,7 @@ used = sorted(strips)
 unused = [s for s in STOCK if s['id'] not in strips]
 
 out = dict(
-    geo=dict(kolik=KOLIK, mag=MAG, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
+    geo=dict(kolik=KOLIK, mag=MAG, dowel=DOWEL, W=W, H=H, t=t, TOPGAP=TOPGAP, PLINTH=PLINTH, D=D, N=N, K=K, R=R, sw=sw, sh=sh, KERF=KERF, XL=XL, CW=CW, NOOK=NOOK),
     pattern={f"{j},{k}": v for (j, k), v in A.items()},
     parts=[{k: p[k] for k in ('id', 'o', 'name', 'L', 'B', 'kind', 'x0', 'x1', 'z0', 'z1', 'za0', 'src', 'ends', 'grain', 'hidden', 'note')
             if k in p} | {'strip': p.get('strip'), 'off': p.get('off'), 'srcinfo': p.get('srcinfo'), 'cutL': p.get('cutL'), 'cutB': p.get('cutB'), 'segments': p.get('segments'), 'parent': p.get('parent')} for p in ALL],

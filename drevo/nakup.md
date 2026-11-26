@@ -11,10 +11,11 @@ Všech 26 dílů i sokl (5 dílů) je nařezaných z třívrstvých desek z půd
 | Položka | Množství | Na co | Cena |
 |---|---|---|---|
 | Vruty 4,5 × 50 mm, zápustná hlava | 20 ks (potřeba 16) | spoj A: svislý díl stojí na polici / nese ji, předvrtat skrz | 80–150 Kč |
-| Dřevěné kolíky Ø 6 mm | 58 ks, zkrátit na 20 mm | spoj B: police na kolících v bocích (Přemek je má) | 0 Kč |
+| Dřevěné kolíky Ø 6 mm | 56 ks, zkrátit na 20 mm | spoj B: police na kolících v bocích (Přemek je má) | 0 Kč |
 | Feritové magnety Ø 15 × 4,5 mm | 4 ks | odnímatelná lišta soklu S5 (Přemek je má) | 0 Kč |
 | Lepidlo Mamut Glue (MS polymer) | máš | vlepení magnetů | 0 Kč |
 | Filcové podložky 3 mm | 2 ks | pod lištu soklu S5 | 30–80 Kč |
+| Dřevěné kolíky 8 × 35 mm | 5 ks (+ co zbylo z K09/K26) | X21 K08 na K07, X23 K10 do K09 | 30–80 Kč |
 | Lepidlo na dřevo D3 | 0,5 kg | kolíky do děr, dorazy magnetů, čepy | 100–200 Kč |
 | Smrkové čepy 10 mm (volitelně) | 20 ks | zakrytí hlav vrutů spoje A | 50–100 Kč |
 | Malé úhelníky 20–40 mm | ~30 ks | svislé díly do zdi (K02 a K04 nahoře i v půlce), horní deska zespodu, sokl zevnitř, K01 do soklu | 300–600 Kč |
@@ -31,6 +32,7 @@ Kotvení dna mostu K24 do zadní stěny se ještě dořeší (spoj X50), skryté
 
 | Položka | Poznámka | Cena |
 |---|---|---|
+| Vrták 8 mm + značkovací hroty Ø 8 | díry pro kolíky 8 × 35 (X21, X23) | 50–150 Kč |
 | Vrták do dřeva 6 mm s dorazem | díry pro kolíky, hloubka 10 mm | 50–150 Kč |
 | Rovná fréza Ø 6 mm | drážky ve spodku polic, hloubka 4 mm | 100–300 Kč |
 | Forstnerův vrták 15 mm | díry pro magnety, hloubka 4,5 mm | 100–250 Kč |

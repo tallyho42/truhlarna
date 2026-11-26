@@ -108,8 +108,7 @@ Přemek se rozhodl knihovnu udělat úplně bez LED. Dřívější výběr (TopL
 
 ## Otevřené body
 
-- **Spoje K10–K09 a K24–K20:** K09 i K20 končí dole v rovině spodku police, kterou mají nést, takže kolík do boku tam nejde. Díly jsou už nařezané (rozměry se nemění), spoj se dořeší: kolíky, nebo úhelník shora (asi K24).
-- **Kotvení dna mostu K24 do zadní stěny (X50):** skryté nosiče s trny nejdou dohromady s kolíky (na trny se nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Dořešit (drážka v levém konci K24 od zadní hrany k přednímu kolíku, úhelník, lišta pod K24…).
+- **Rozhodnuto 2026-11-26:** X21 (K08 na K07) a X23 (K10 levým koncem do K09) = kolíky 8 × 35 na tupo (`DOWEL` v `prirazeni.py`; K09 + K10 se slepí předem do L a usadí spolu; vruty K07 → K03 40 mm od hran, kolíky X21 90 mm). Dno mostu K24 drží úhelníky: X49 zespodu na K04, X51 shora do K20, X52 K25 na K24. X50 (kotvení do zadní stěny) zrušen, číslo zůstává (kind `none`), aby se spoje nepřečíslovaly. Přepisy spojů a konců dílů jsou v `JOVR` a `END_OVR`.
 - K24 nemá u pravé stěny 5mm vůli jako díly ke stěně (jen 1 mm jako police) (řetěz obklad → K20 dává přesně 2370). Před montáží změřit šířku ve výšce 2,2 m.
 
 - Ověřit horní hranu zárubně na pravé stěně (musí být pod 220 cm).
@@ -165,7 +164,7 @@ Doporučení pro focení: ke každému kusu nebo balíku štítek s ID, svinovac
 - **Pravý bok hlavní části** a **příčka u výklenku** jsou z jednoho kusu, **oba 2395 mm z D03** (2 pruhy, v každém zbývá 5 mm), stojí na spodní polici a jdou až pod horní desku. Dno mostu do pravého boku dosedá z boku na kolíky. Kvůli příčce je **mezera ke stropu 2 cm**, knihovna končí na 257,3 cm.
 - **Svislé díly co nejdelší** (Přemek nechce přesné kolíkování): příčka vpravo dole 2 díly, příčka nad křeslem 1 kus (1016). Většina polic leží na kolících (spoj B).
 - **Levý bok = jedna deska 1379 mm slepená předem** z co nejméně kusů (vyšly 2: D02 1044 + A01 335, díry A01 k obkladu), kolíky 8 mm + lepidlo, spoje ve výšce polic. Celá se přišroubuje přes obklad do dřevěné stěny, police vlevo (nad křeslem až po horní řadu) do ní dosedají na kolíky a k obkladu nesahají. V `prirazeni.py` jako `composite`, kusy `K09.1…`.
-- **Boční díl mostu** se šroubuje přímo do sádrokartonu pravé stěny (bez úhelníku), horní deska do něj dosedá z boku na kolíky. Dno mostu K24 ne: K20 končí v rovině spodku dna, spoj se dořeší (viz Otevřené body).
+- **Boční díl mostu** se šroubuje přímo do sádrokartonu pravé stěny (bez úhelníku), horní deska do něj dosedá z boku na kolíky. Dno mostu K24 se k němu přichytí úhelníkem shora (X51).
 - Díly jsou číslované odspodu nahoru a zleva doprava = pořadí montáže (Přemek to tak chce držet).
 - Konstrukce z krátkých dílů: v každém křížení je jeden díl průběžný (`PATTERN` v `prirazeni.py`, vybraný optimalizací, aby se nic nekupovalo). 26 dílů + sokl, **0 ke koupi**, 29 kusů rezerva. Horní deska se slepí z C04 + C05 (Přemek souhlasí).
 - **Skutečné výšky** (`ZA` v `prirazeni.py`, pole `za0` a `hole`): díly jsou nařezané na celé mm, takže výšky děr pro kolíky se počítají ze skutečných délek (police nad příčkou leží na příčce, ostatní podle zaokrouhlené díry v K02/K04, všechny police v úrovni stejně). Tabulka děr v postupu bere `hole` ze spojů. K15 vychází o 1 mm delší než místo pod K26: horní konec zabrousit.
@@ -174,7 +173,7 @@ Doporučení pro focení: ke každému kusu nebo balíku štítek s ID, svinovac
 - Lepidlo na magnety: Debbex Mamut Glue (MS polymer), Přemek ho má (2026-11-25). Podložky pod soklem max ~10 mm (místo pod stropem). V soklu nejdřív vyrovnat, pak lepit dorazy magnetů.
 - Spoje (Přemek má aku vrtačku, okružní a přímočarou pilu, frézku, brusku, svěrky, nemá stolní pilu): A) svislý díl stojí na polici / nese ji = 2 vruty 4,5 × 50 skrz, díly srovnat k lati a předvrtat společně (žádné měření, kolíky zamítnuty jako moc přesné), B) police mezi průběžnými díly = **dřevěné kolíky Ø 6 × 20** (Přemkovy, 2026-11-24): díra ve svislém dílu 10 mm hluboká (z 19 zbyde 9), kolík 10 mm venku; police má zespodu na konci drážku 14 mm dlouhou, 4 mm hlubokou (zbyde 15), na levém konci 6 mm širokou, na pravém 8 mm (vůle), kolík pod ní kouká 2 mm, střed díry 1 mm nad spodkem police. Parametry `KOLIK` v `prirazeni.py`. Nic nesmí jít skrz. Drážky drží polici i proti posunutí, úhelník vzadu u polic není potřeba; police se zasune o pár mm výš a spustí na kolíky. Horní deska K26 (pod stropem 2 cm) se zasune zepředu o pár mm výš a spustí: leží na svislých dílech (úhelníky zespodu), vpravo na kolících v K20. Staví se na místě odspodu v pořadí čísel dílů.
 - Poškozené desky (A01, A08, A18) jsou na dílech se skrytou stranou. Přiřazení drží v pruhu rezervu ≥ 15 mm, kde to jde. Výjimka: K02 a K04 z D03 a K01 z A18 (rezerva 5 mm).
-- Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (K02 a K04 nahoře i v půlce, K15, K19, K25 nahoře; K09 vruty přes obklad). Kotvení dna mostu K24 do zadní stěny se dořeší (X50), skryté nosiče s trny zrušené.
+- Stěny: zadní i pravá jsou sádrokarton, za zadním je dřevo. Kotvení úhelníky s dlouhým vrutem přes SDK do dřeva (K02 a K04 nahoře i v půlce, K15, K19, K25 nahoře; K09 vruty přes obklad). Dno mostu K24 se do zadní stěny nekotví (X50 zrušen), drží ho úhelníky na K04, K20 a K25.
 - Kvalita: vše A/B z půdy (původní návrh počítal s B/C kvůli sukům jako obklad).
 
 - Porovnat inventář s kusovníkem výše.

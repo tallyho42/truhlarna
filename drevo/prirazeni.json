@@ -26,6 +26,22 @@
    "notch_x": 160,
    "felt": 3
   },
+  "dowel": {
+   "d": 8,
+   "L": 35,
+   "x21": [
+    90,
+    160
+   ],
+   "x21_hole": 10,
+   "x21_screw": 40,
+   "x23": [
+    40,
+    125,
+    210
+   ],
+   "x23_hole": 12
+  },
   "W": 2370,
   "H": 2593,
   "t": 19,
@@ -365,7 +381,7 @@
    "za0": 849,
    "src": "B08",
    "ends": [
-    "stojí na K07 (pod ní je další příčka: úhelník vzadu v přihrádce)",
+    "stojí na K07 nad příčkou K03 (2 kolíky 8 × 35, X21)",
     "pod K14 (spoj A: 2 vruty shora skrz polici)"
    ],
    "grain": "léta svisle (podél výšky)",
@@ -401,7 +417,7 @@
    "za0": 1175.0,
    "src": "D02 + A01",
    "ends": [
-    "visí na vrutech do stěny; spodní konec v rovině spodku K10 (spoj se dořeší: kolíky nebo úhelník)",
+    "visí na vrutech do stěny; spodní konec v rovině spodku K10, K10 na 3 kolících 8 × 35 (X23)",
     "pod K26 (úhelník vzadu)"
    ],
    "grain": "léta svisle (podél výšky)",
@@ -432,12 +448,12 @@
    "za0": 1175.0,
    "src": "D08-3",
    "ends": [
-    "spoj s K09 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník",
+    "na tupo k K09: 3 kolíky 8 × 35 (X23), slepit s K09 předem",
     "dosedá na 2 kolíky Ø 6 v boku dílu K02"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Spoj levého konce s K09 se dořeší (K09 končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník.",
+   "note": "Na přední hraně je čtecí lampa (samostatná, kabel do prodlužky). Levým koncem na tupo na 3 kolících 8 × 35 do K09 (X23): K09 a K10 se slepí předem do L a usadí spolu, pravý konec K10 se spustí na kolíky v K02.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -792,12 +808,12 @@
    "za0": 2209.0,
    "src": "A09",
    "ends": [
-    "visí na vrutech do stěny; spodní konec v rovině spodku K24 (spoj se dořeší: kolíky nebo úhelník)",
+    "visí na vrutech do stěny; spodní konec v rovině spodku K24, úhelník shora (X51)",
     "končí v rovině desky; do boku dosedá K26 (kolíky Ø 6)"
    ],
    "grain": "léta svisle (podél výšky)",
    "hidden": true,
-   "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu se dořeší (K20 končí v rovině jeho spodku).",
+   "note": "Přišroubovat přímo do pravé stěny (sádrokarton: kovové hmoždinky do SDK, ideálně do profilu), bez úhelníku. Horní deska do něj dosedá z boku na kolíky, dno mostu K24 se k němu přichytí úhelníkem shora (X51).",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -936,12 +952,12 @@
    "za0": 2209.0,
    "src": "D08-1",
    "ends": [
-    "dosedá na 2 kolíky Ø 6 v boku dílu K04",
-    "spoj s K20 se dořeší (bok končí v rovině spodku police, kolík tam nejde): kolíky nebo úhelník"
+    "leží na úhelníku zespodu na K04 (X49)",
+    "úhelník shora do K20 (X51)"
    ],
    "grain": "léta vodorovně (podél délky)",
    "hidden": false,
-   "note": "Nese most nad dveřmi. Levým koncem leží na kolících v pravém boku hlavní části, pravý konec do bočního dílu mostu (spoj se dořeší: kolíky nebo úhelník shora, K20 končí v rovině spodku dna). Původně navíc 2 skryté nosiče s trny do zadní hrany: to ale nejde dohromady s kolíky (K24 se na trny nasouvá vodorovně, na kolíky se spouští shora) a díry pro trny v 19mm hraně jsou slabé. Kotvení mostu do zadní stěny se dořeší.",
+   "note": "Nese most nad dveřmi. Drží ho 3 úhelníky: zespodu na K04 (X49), shora do K20 (X51) a K25 na něm stojí přichycená úhelníkem (X52). Do zadní stěny se nekotví (X50 zrušen). Úhelníky vzadu u zdi, natřít bíle.",
    "strip": 0,
    "off": 0,
    "srcinfo": {
@@ -972,7 +988,7 @@
    "za0": 2228.0,
    "src": "B02",
    "ends": [
-    "stojí na K24 (spoj A: 2 vruty zespodu skrz polici)",
+    "stojí na K24 (úhelník vzadu v přihrádce, X52)",
     "pod K26 (úhelník vzadu)"
    ],
    "grain": "léta svisle (podél výšky)",
@@ -2372,7 +2388,7 @@
    "b": "K07",
    "kind": "screw",
    "what": "K03 nahoře pod K07",
-   "now": "2 vruty 4,5 × 50 shora skrz K07 do čela K03",
+   "now": "2 vruty 4,5 × 50 shora skrz K07 do čela K03, 40 mm od čela a od zadní hrany (uprostřed jsou díry pro kolíky K08)",
    "x": 1075.4,
    "z": 829.7,
    "mx": 1075.4,
@@ -2431,9 +2447,9 @@
   {
    "a": "K08",
    "b": "K07",
-   "kind": "angle",
+   "kind": "dowel",
    "what": "K08 stojí na K07",
-   "now": "pod K07 stojí K03, zespodu šroubovat nejde: úhelník vzadu v přihrádce",
+   "now": "2 kolíky 8 × 35 na tupo: díry v horní ploše K07 10 mm hluboké, ve spodním čele K08 26 mm, 90 mm od čela a od zadní hrany (vruty K07 → K03 pod ní jsou 40 mm od hran, nepotkají se). Kolíky vlepit do K07, K08 se na ně jen nasadí, nahoře ho drží vruty skrz K14.",
    "x": 1075.4,
    "z": 848.7,
    "mx": 1075.4,
@@ -2469,9 +2485,9 @@
   {
    "a": "K10",
    "b": "K09",
-   "kind": "open",
+   "kind": "dowel",
    "what": "K10 levý konec → bok K09 (pravá strana)",
-   "now": "nevyřešeno: K09 končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)",
+   "now": "3 kolíky 8 × 35 na tupo: díry v pravé ploše K09 12 mm hluboké, v levém čele K10 24 mm, 40, 125, 210 mm od čela, uprostřed tloušťky K10 (9,5 mm nad spodním koncem K09). K09 a K10 slepit předem do L a usadit spolu.",
    "x": 19.0,
    "z": 1184.1,
    "mx": 74.0,
@@ -3006,9 +3022,9 @@
   {
    "a": "K24",
    "b": "K04",
-   "kind": "pins",
+   "kind": "angle",
    "what": "K24 levý konec → bok K04 (pravá strana)",
-   "now": "2 dřevěné kolíky Ø 6 v boku K04 (pravá strana, 30 mm od čela a od zadní hrany), v K24 zespodu 2 drážky 6 × 14 × 4",
+   "now": "úhelník zespodu: na pravé ploše K04 pod K24, vzadu u zdi (natřít bíle jako zeď), K24 na něm leží a zespodu se k němu přišroubuje",
    "x": 1420.7,
    "z": 2218.6,
    "mx": 1475.7,
@@ -3021,15 +3037,14 @@
     ]
    ],
    "side": 0,
-   "id": "X49",
-   "hole": 2051
+   "id": "X49"
   },
   {
    "a": "K24",
    "b": "zadní stěna",
-   "kind": "open",
+   "kind": "none",
    "what": "K24 → zadní stěna",
-   "now": "nevyřešeno: skryté nosiče s trny nejdou dohromady s kolíky (na trny se K24 nasouvá vodorovně, na kolíky spouští shora) a díry pro trny v 19mm hraně jsou slabé. Možnost: v levém konci K24 drážka od zadní hrany až k přednímu kolíku, nebo jiné kotvení (úhelník, lišta pod K24)",
+   "now": "zrušeno (2026-11-26): není potřeba, K24 drží úhelníky na K04, K20 a K25 (X49, X51, X52). Číslo X50 zůstává, ať se ostatní nepřečíslují.",
    "x": 1885.9,
    "z": 2218.6,
    "mx": 1717.9,
@@ -3050,9 +3065,9 @@
   {
    "a": "K24",
    "b": "K20",
-   "kind": "open",
+   "kind": "angle",
    "what": "K24 pravý konec → bok K20 (levá strana)",
-   "now": "nevyřešeno: K20 končí v rovině spodku police, kolík do boku tam nejde (jiné kolíky, nebo úhelník shora)",
+   "now": "úhelník shora: v přihrádce na K24 vzadu u zdi, do levé plochy K20 a do horní plochy K24 (K20 končí v rovině spodku K24, zespodu nejde)",
    "x": 2351.0,
    "z": 2218.6,
    "mx": 2296.0,
@@ -3070,9 +3085,9 @@
   {
    "a": "K25",
    "b": "K24",
-   "kind": "screw",
+   "kind": "angle",
    "what": "K25 stojí na K24",
-   "now": "2 vruty 4,5 × 50 zespodu skrz K24 do čela K25",
+   "now": "úhelník vzadu v přihrádce: K25 stojí na K24, přichycená úhelníkem do horní plochy K24 (místo vrutů zespodu)",
    "x": 2024.6,
    "z": 2228.1,
    "mx": 2024.6,
@@ -3223,10 +3238,10 @@
   }
  ],
  "counts": {
-  "dowels": 16,
-  "dowel_joints": 8,
-  "pins": 58,
-  "pin_ends": 29,
+  "dowels": 14,
+  "dowel_joints": 7,
+  "pins": 56,
+  "pin_ends": 28,
   "angle_top": 6,
   "verts": 9,
   "parts": 26,
